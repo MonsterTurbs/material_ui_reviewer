@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Notes: Building the About Us Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. Create <code>About.js</code> 📁</h2>
+    <p>In your <code>components</code> folder, add a new file named <code>About.js</code>. This will hold the About Us page code. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Import Tools 📥</h2>
+    <p>At the top of <code>About.js</code>, import:<br>
+      <code>import React from 'react';<br>
+      import { makeStyles, useTheme } from '@material-ui/core/styles';<br>
+      import Grid from '@material-ui/core/Grid';<br>
+      import Typography from '@material-ui/core/Typography';</code><br>
+    These give you styling hooks, grid layout, and text components. 🛠️</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Setup Styles &amp; Component 🎨</h2>
+    <p>Define styles and component:<br>
+      <code>const useStyles = makeStyles(theme =&gt; ({ ... }));</code><br>
+      Export a function <code>About</code>, inside get <code>classes = useStyles()</code> and <code>theme = useTheme()</code>. Then return <code>&lt;Grid container direction="column"&gt;</code> wrapping the page. 💅</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Add Title 🏷️</h2>
+    <p>First child of container:<br>
+      <code>&lt;Grid item className={classes.rowContainer} style={{ marginTop: '2m' }}&gt;<br>
+        &lt;Typography variant="h2"&gt;About Us&lt;/Typography&gt;<br>
+      &lt;/Grid&gt;</code><br>
+    This displays the page title with side padding and top margin. 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Mission Statement ✒️</h2>
+    <p>Create a centered mission text:<br>
+      <code>&lt;Grid item container justify="center" className={classes.rowContainer}&gt;<br>
+        &lt;Typography variant="h4" align="center" className={classes.missionStatement}&gt;"Your mission text..."&lt;/Typography&gt;<br>
+      &lt;/Grid&gt;</code><br>
+      Style <code>missionStatement</code> with <code>fontStyle: 'italic', fontWeight: 300, fontSize: '1.5rem', maxWidth: '50m', lineHeight: 1.4</code>. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Register in <code>App.js</code> 🔗</h2>
+    <p>In <code>App.js</code>, replace the dummy route:<br>
+      <code>import About from './components/About';<br>
+      &lt;Route path="/about" render={() =&gt; &lt;About /&gt;} /&gt;</code><br>
+    Now your About page loads! 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>7. History Section 📜</h2>
+    <p>Below mission, add:<br>
+      <code>&lt;Grid item container direction="row" className={classes.rowContainer}&gt;<br>
+        &lt;Grid item container direction="column" lg&gt;<br>
+          &lt;Typography variant="h4" gutterBottom&gt;History&lt;/Typography&gt;<br>
+          &lt;Typography variant="body1" paragraph style={{ fontWeight:700, fontStyle:'italic' }}&gt;"We’re the new kid on the block..."&lt;/Typography&gt;<br>
+          &lt;Typography variant="body1" paragraph&gt;Other history sentence...&lt;/Typography&gt;<br>
+          ...<br>
+        &lt;/Grid&gt;<br>
+        &lt;Grid item lg container justify="center"&gt;<br>
+          &lt;img src={historyIcon} alt="quill on book" style={{ maxHeight:'22m' }} /&gt;<br>
+        &lt;/Grid&gt;<br>
+      &lt;/Grid&gt;</code><br>
+    • Import <code>historyIcon</code> from your assets.<br>
+    • Add <code>lg</code> props on both items to share space, then center icon with <code>justify="center"</code>. 📖</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Constrain Text Width ✂️</h2>
+    <p>On the <code>Grid item container direction="column"</code> for text, add <code>style={{ maxWidth: '35m' }}</code> so paragraphs stay readable. 📐</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Space-Around Alignment ⚖️</h2>
+    <p>Wrap each of the two containers (text &amp; icon) in an extra <code>&lt;Grid item&gt;</code>. Then on their row wrapper, add <code>justify="space-around"</code> to evenly distribute them. 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2>10. Save &amp; Review ✅</h2>
+    <p>Save your code, refresh the browser, and test at various sizes to ensure history section looks balanced and responsive. Great job! 🎉</p>
+  </div>
+</body>
+</html>

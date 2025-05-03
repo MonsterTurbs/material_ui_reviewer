@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internet Explorer Support Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin-bottom: 15px;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      color: #4a2f23;
+      margin-top: 0;
+    }
+    p, ul {
+      color: #333333;
+      line-height: 1.5;
+      padding-left: 20px;
+    }
+    ul {
+      list-style: inside;
+    }
+    code {
+      background: #f0f0f0;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>😩 Why Internet Explorer?</h2>
+    <p>Internet Explorer (IE) is an old browser with <strong>only ~1–3% market share</strong> and poor support for modern web standards. 🌐</p>
+  </div>
+
+  <div class="card">
+    <h2>⚠️ When to Support IE</h2>
+    <ul>
+      <li>👔 Your boss <strong>requires</strong> it.</li>
+      <li>💰 Analytics show <strong>revenue-critical users</strong> on IE.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Testing Strategy</h2>
+    <p>Start testing in IE <strong>first</strong> if you must support it. Fixing for IE early makes other browsers easier. 🛠️</p>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Common Fixes</h2>
+    <ul>
+      <li>🧩 Use <strong>polyfills</strong> to add missing JavaScript features.</li>
+      <li>💅 Apply CSS fallbacks or simpler styles when modern CSS isn't supported.</li>
+      <li>⚙️ Find JavaScript/CSS workarounds or hacks for unsupported APIs.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🌟 Polyfills</h2>
+    <p>A polyfill <strong>emulates missing features</strong> in older browsers. 🧙‍♂️</p>
+    <ul>
+      <li>💻 Write code that emulates newer APIs with older syntax.</li>
+      <li>🌐 Use <a href="https://polyfill.io">polyfill.io</a> to auto-load needed polyfills.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⏳ Support Ending</h2>
+    <p>Microsoft ends official IE11 support in <strong>2025</strong>. After that, you can stop worrying about IE! 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>✅ Quick Recap</h2>
+    <ul>
+      <li>IE has very low usage and poor modern support.</li>
+      <li>Only support if absolutely essential.</li>
+      <li>Use polyfills and fallbacks for missing features.</li>
+      <li>IE support ends in 2025—then you’re free! 🕊️</li>
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snap-To-Question Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { display: block; background: #f4f4f4; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🎯 Goal</h2>
+    <p>Make the estimate page jump to each question’s title on mobile—so users never lose context! 📱✨</p>
+  </div>
+
+  <div class="card">
+    <h2>📱 Why Snap On Mobile?</h2>
+    <p>On small screens, navigating questions can hide the title. Snapping brings the title back into view automatically. 👀🔝</p>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ Import useRef Hook</h2>
+    <code>import React, { useState, useRef, ... } from 'react';</code>
+    <p>useRef gives a handle to the actual DOM node so we can measure and scroll to it.</p>
+  </div>
+
+  <div class="card">
+    <h2>🔗 Create & Attach the Ref</h2>
+    <p>Generate the ref and attach to the wrapper of your question title:</p>
+    <code>const questionRef = useRef(null);
+
+// in JSX:
+&lt;Grid item ref={questionRef}&gt;
+  &lt;Typography&gt;{currentQuestion.title}&lt;/Typography&gt;
+&lt;/Grid&gt;
+</code>
+  </div>
+
+  <div class="card">
+    <h2>🔄 Scroll on Navigation</h2>
+    <p>In your <code>nextQuestion</code> and <code>previousQuestion</code> functions, add:</p>
+    <code>if (matchesSm) {
+  window.scrollTo({
+    top: questionRef.current.offsetTop + 75,
+    behavior: 'smooth'
+  });
+}</code>
+    <p>This finds the element’s position and scrolls the window smoothly to it.</p>
+  </div>
+
+  <div class="card">
+    <h2>➡️ Also on First-Page Select</h2>
+    <p>When selecting the very first question, call the same scroll logic in your <code>handleSelect</code> case.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎉 Result</h2>
+    <p>Users on a phone will jump directly to each question’s title as they move through—no extra swipes! 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>💡 Extra Tip</h2>
+    <p>React refs aren’t just for forms—use them whenever you need to interact with real DOM APIs like scrolling, focus, or measuring! 🛠️</p>
+  </div>
+</body>
+</html>

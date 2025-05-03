@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📢 Call to Action Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 30px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>📢 Call to Action: Key Tips</h1>
+  <div class="container">
+    <div class="card">
+      <h2>🧩 Button Buffer Zone</h2>
+      <p>Add <code>margin-left: 2rem;</code> to the estimate button so it never rubs against the text. This gives a comfy gap! 😊</p>
+    </div>
+
+    <div class="card">
+      <h2>🔄 Responsive Layout Switch</h2>
+      <p>Use <code>useMediaQuery</code> and your theme breakpoints to check when the screen is small. Then toggle <code>direction</code> between <code>row</code> and <code>column</code> so items stack nicely on mobile.</p>
+    </div>
+
+    <div class="card">
+      <h2>⚖️ Justify Tweaks</h2>
+      <p>For small screens, change <code>justify="space-between"</code> to <code>justify="center"</code> so items stay together, not spread out vertically.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔠 Centering Text</h2>
+      <p>Use a ternary on <code>text-align</code> inside your grid item: center the text only when <code>matchesSM</code> is true.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔀 Button Alignment</h2>
+      <p>Wrap the free estimate button in its own grid container. Then use <code>justify</code> on that container to move it to the right on desktop, or center it on mobile.</p>
+    </div>
+
+    <div class="card">
+      <h2>📐 Margin Adjustments</h2>
+      <p>Reduce large margins at small breakpoints by checking <code>matchesSM</code>. For example:
+        <code>margin-left: matchesSM ? '2rem' : '5rem'</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>🌟 Spacing on Wrap</h2>
+      <p>Use the grid <code>spacing</code> prop with a ternary to add extra gap only on extra-small devices: <code>spacing={matchesXS ? 10 : 0}</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>🖼️ Parallax Background</h2>
+      <p>Give your background style:
+        <code>background-attachment: fixed;</code> for a cool parallax on desktop, then reset to <code>inherit</code> on mobile (breakpoint down 'md').</p>
+    </div>
+
+    <div class="card">
+      <h2>✅ Final Checks</h2>
+      <ul>
+        <li>Test by resizing:<br> • Desktop: parallax on, row layout.<br> • Tablet: mobile bg, column layout.<br> • Phone: centered items, no parallax.</li>
+        <li>Enjoy a smooth, beginner-friendly responsive design! 🎉</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

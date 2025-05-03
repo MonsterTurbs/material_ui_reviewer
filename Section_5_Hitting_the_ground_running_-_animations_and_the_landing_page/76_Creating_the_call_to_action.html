@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📘 Call to Action Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: #1976d2;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="card">
+      <h2>🆕 1. Create New Component File</h2>
+      <p>Make a new file <code>CallToAction.js</code> in your <code>UI</code> folder. This will hold the “Free Estimate” section you’ll reuse on many pages.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔧 2. Import What You Need</h2>
+      <ul>
+        <li><code>React</code> for components</li>
+        <li><code>Grid</code> and <code>Typography</code> from Material UI</li>
+        <li><code>Button</code> and your custom <code>ButtonArrow</code></li>
+        <li><code>makeStyles</code> and <code>useTheme</code> for styling</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎨 3. Set Up Styles</h2>
+      <ul>
+        <li>Use <code>makeStyles(theme =&gt; ({ ... }))</code> to define CSS.</li>
+        <li>Grab <code>theme</code> inside your component via <code>useTheme()</code>.</li>
+        <li>Leave the style object empty at first, then add rules as you build.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🏗️ 4. Build Component Structure</h2>
+      <ul>
+        <li>Return a <code>&lt;Grid container&gt;</code> (row by default).</li>
+        <li>First <code>Grid item</code>: a text block (itself a <code>container direction="column"</code>).</li>
+        <li>Second <code>Grid item</code>: the “Free Estimate” button.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📝 5. Add Text Section</h2>
+      <ul>
+        <li>Inside the left block, use <code>&lt;Typography variant="h2"&gt;</code> for title.</li>
+        <li>Add a line break (<code>&lt;br/&gt;</code>) to split lines.</li>
+        <li>Use <code>variant="subtitle2"</code> below for smaller description.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔘 6. Add & Style Button</h2>
+      <ul>
+        <li>Paste in the <code>&lt;Button variant="outlined"&gt;Learn More&lt;/Button&gt;</code> block.</li>
+        <li>Wrap arrow icon with <code>&lt;ButtonArrow fill={theme.palette.common.blue} /&gt;</code>.</li>
+        <li>Tweak <code>margin</code> so text and arrow have space.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🌄 7. (Optional) Add Background Image</h2>
+      <ul>
+        <li>Place a <code>&lt;div&gt;</code> under your grid with <code>className={classes.background}</code>.</li>
+        <li>In CSS: <code>background-image: url(...); background-size: cover;</code></li>
+        <li>Use <code>position: absolute</code> & appropriate <code>height</code> to overlay grid.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📐 8. Make It Responsive</h2>
+      <ul>
+        <li>Import <code>useMediaQuery</code> to detect small screens.</li>
+        <li>Switch layout to <code>direction="column"</code> at extra-small breakpoints.</li>
+        <li>Adjust paddings, font sizes, and background image for mobile.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✅ 9. Use It in Pages</h2>
+      <ul>
+        <li>Import your <code>CallToAction</code> into <code>LandingPage.js</code>.</li>
+        <li>Add it as a final <code>&lt;Grid item&gt;</code> under other sections.</li>
+        <li>Enjoy a consistent “Free Estimate” prompt everywhere! 🎉</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

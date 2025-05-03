@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vercel (Now) Deployment Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+    p, ul {
+      color: #444444;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+    ul {
+      list-style: inside;
+    }
+    code {
+      background: #eef2f7;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🚀 What is Now (Vercel)?</h2>
+    <p>Now (now called Vercel) is a super-easy hosting platform made by the creators of Next.js. It offers:</p>
+    <ul>
+      <li>🔧 Zero-config setup—just push your code!</li>
+      <li>🔒 Free&nbsp;SSL certificates for secure HTTPS.</li>
+      <li>🌍 Automatic global CDN for super-fast loading everywhere.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>👍 Why Use Vercel?</h2>
+    <ul>
+      <li>📦 Perfectly built for Next.js apps.</li>
+      <li>⚡ Instant deployments with a single command.</li>
+      <li>🔄 Easy GitHub integration for automatic deploys.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✍️ Step 1: Sign Up for Free</h2>
+    <ul>
+      <li>1️⃣ Go to <a href="https://vercel.com">vercel.com</a> and click “Sign Up.”</li>
+      <li>2️⃣ Enter your email and confirm via the link they send you.</li>
+      <li>3️⃣ Choose a username and complete your profile.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>💻 Step 2: Install &amp; Log In via CLI</h2>
+    <p>Open your terminal and run:</p>
+    <pre>npm install -g now
+now login</pre>
+    <p>Enter your email when prompted and confirm in your inbox. ✔️</p>
+  </div>
+
+  <div class="card">
+    <h2>🚢 Step 3: Deploy Your App</h2>
+    <p>In your project folder, just run:</p>
+    <pre>now</pre>
+    <p>That’s it—Vercel will build and give you a live URL! 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Step 4: Verify &amp; Test</h2>
+    <ul>
+      <li>📋 Copy your deployment URL and open it in a browser.</li>
+      <li>✉️ Test forms and interactive features to make sure everything works. 🛠️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🌐 Dashboard &amp; Domains</h2>
+    <p>In your Vercel dashboard, click your project to see:</p>
+    <ul>
+      <li>🔗 Live deployments history.</li>
+      <li>🗂️ Domains tab to add custom URLs.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔑 Step 5: Add a Custom Domain</h2>
+    <p>In the Domains tab:</p>
+    <ul>
+      <li>1️⃣ Click “Add” and enter your domain (e.g., <code>myapp.com</code>).</li>
+      <li>2️⃣ You’ll see required nameservers (e.g., <code>ns1.vercel-dns.com</code>).</li>
+      <li>3️⃣ In your domain provider, update your nameservers accordingly.</li>
+      <li>4️⃣ Wait for DNS to propagate (up to 48 hours).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ Quick Recap</h2>
+    <ul>
+      <li>🚀 Sign up on Vercel and install <code>now</code> CLI.</li>
+      <li>📂 Run <code>now</code> in your project folder.</li>
+      <li>🔗 Test your live URL and features.</li>
+      <li>🌐 Add a custom domain and update nameservers.</li>
+      <li>🎉 Enjoy fast, secure hosting with free SSL &amp; CDN!</li>
+    </ul>
+  </div>
+</body>
+</html>

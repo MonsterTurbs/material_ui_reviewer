@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Notes: Lazy Loading in React</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 1rem;
+      margin: 6px 0;
+      line-height: 1.4;
+    }
+    code {
+      background: #f0f0f0;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🌓 What Is Lazy Loading?</h2>
+    <p>• Only load or render what the user sees right now 👀</p>
+    <p>• Defers off-screen content until needed, so pages start faster 🚀</p>
+    <p>• Great for long lists, many images, or heavy components 🖼️</p>
+  </div>
+
+  <div class="card">
+    <h2>⚡ Why Use It?</h2>
+    <p>• Reduces initial bundle size—faster first paint 🏎️</p>
+    <p>• Saves bandwidth if user never scrolls to some content 💾</p>
+    <p>• Improves perceived performance &amp; SEO scores 📈</p>
+  </div>
+
+  <div class="card">
+    <h2>📦 Popular React Package</h2>
+    <p>We’ll use <code>react-lazy-load-image-component</code>—easy &amp; feature-rich.</p>
+    <p>• ~35k weekly downloads 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>💻 Install</h2>
+    <pre><code>npm install react-lazy-load-image-component</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🖼 Lazy Loading an Image</h2>
+    <p>Instead of:</p>
+    <pre><code>&lt;img src="photo.jpg" alt="..." /&gt;</code></pre>
+    <p>Use:</p>
+    <pre><code>import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+&lt;LazyLoadImage
+  src="photo.jpg"
+  alt="My Photo"
+  width="300"
+  height="200"
+/&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Key Props</h2>
+    <p>• <code>placeholder</code>: React element while loading ⏳</p>
+    <p>• <code>placeholderSrc</code>: image URL as placeholder 📷</p>
+    <p>• <code>threshold</code>: pixels before viewport to start loading 📐</p>
+    <p>• <code>effect</code>: apply fade/blur/wave on load ✨</p>
+  </div>
+
+  <div class="card">
+    <h2>📝 Usage Tips</h2>
+    <p>1. Always set width/height to avoid layout shifts 📏</p>
+    <p>2. Tune <code>threshold</code> so images load just in time ⌛</p>
+    <p>3. Use a lightweight placeholder or low-res thumbnail 🔍</p>
+    <p>4. Wrap heavy components in <code>LazyLoadComponent</code> too 📦</p>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Refactoring Your App</h2>
+    <p>• Identify all long lists and off-screen images 🗒️</p>
+    <p>• Replace &lt;img&gt; with &lt;LazyLoadImage&gt;</p>
+    <p>• Wrap non-visible sections/components in &lt;LazyLoadComponent&gt;</p>
+    <p>• Test responsiveness &amp; scroll behavior ✔️</p>
+  </div>
+
+  <div class="card">
+    <h2>🎓 Takeaways</h2>
+    <p>• Lazy loading boosts performance, especially on mobile 📱</p>
+    <p>• <code>react-lazy-load-image-component</code> makes it easy 👍</p>
+    <p>• Use placeholders &amp; threshold for smooth UX 😊</p>
+  </div>
+
+</body>
+</html>

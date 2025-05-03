@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material UI Switch Component Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f0f8ff; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    .card { background: #ffffff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 20px; margin: 10px 0; width: 100%; max-width: 700px; }
+    h2 { color: #1a237e; margin-top: 0; }
+    p, ul { color: #333333; line-height: 1.6; padding-left: 20px; }
+    ul { list-style: inside; }
+    code { background: #eef6fb; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🔀 What Is a Switch?</h2>
+    <p>A Switch is a toggle control that you can turn <strong>on</strong> or <strong>off</strong>. It’s just like a light switch you see on your phone or in settings! 💡</p>
+  </div>
+
+  <div class="card">
+    <h2>📋 When to Use Switches</h2>
+    <ul>
+      <li>🔲 <strong>Checkboxes</strong>: for choosing multiple options.</li>
+      <li>🔘 <strong>Radio buttons</strong>: for choosing exactly one option.</li>
+      <li>⚙️ <strong>Switches</strong>: for toggling a setting on/off (like filters).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ How to Add a Switch</h2>
+    <p>First, import the components:</p>
+    <pre><code>import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+    </code></pre>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Wrapping with FormControlLabel</h2>
+    <p>Use <code>FormControlLabel</code> to pair your Switch with a label and keep them aligned:</p>
+    <pre><code><FormGroup row>
+  <FormControlLabel
+    control={
+      <Switch
+        checked={on}
+        onChange={handleToggle}
+        name="websites"
+      />
+    }
+    label="Websites"
+  />
+</FormGroup>
+    </code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Customization & Accessibility</h2>
+    <ul>
+      <li>📏 Sizes: set <code>size="small"</code> or default.</li>
+      <li>🎨 Colors: use props like <code>color="primary"</code>.</li>
+      <li>🔈 A11y: add <code>inputProps={{ 'aria-label': '...'}} </code> for screen readers.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Next Steps</h2>
+    <p>In our project, we’ll use switches to <strong>filter</strong> the project table by category. Each toggle will show or hide certain rows. Let’s code it! 💻</p>
+  </div>
+
+</body>
+</html>

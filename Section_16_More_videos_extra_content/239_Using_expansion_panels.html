@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Notes: Expansion Panel in Mobile Menu 📚</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background: #f5f5f5;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+    .card p {
+      line-height: 1.5;
+      margin: 0.5rem 0;
+    }
+    .emoji {
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>What Is an Expansion Panel?</h2>
+    <p>• An Expansion Panel is a UI component that can hide or reveal content when clicked.</p>
+    <p>• It has three main parts:</p>
+    <ul>
+      <li>ExpansionPanel – the wrapper</li>
+      <li>ExpansionPanelSummary – the always-visible header</li>
+      <li>ExpansionPanelDetails – the hidden content</li>
+    </ul>
+    <p>• Great for showing extra details only on demand, keeping screens clean.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>Key Components to Import</h2>
+    <p>• <code>ExpansionPanel</code> – the outer container</p>
+    <p>• <code>ExpansionPanelSummary</code> – header area with title and icon</p>
+    <p>• <code>ExpansionPanelDetails</code> – hidden content section</p>
+    <p>• <code>ExpandMoreIcon</code> – the little arrow icon</p>
+    <p>• <code>Grid</code> – for easy layout inside panels</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔧</span>Integrating into the Mobile Menu</h2>
+    <p>1. In your mobile header (<code>Header.js</code>), where you map routes:</p>
+    <pre><code>
+// Pseudocode
+routes.map(route => 
+  route.name === 'Services'
+    ? (
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          Services
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Grid container direction="column">
+            { menuOptions.map(opt =>
+                <ListItem ...>{opt.name}</ListItem>
+            ) }
+          </Grid>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+    )
+    : <ListItem ...>{route.name}</ListItem>
+)
+    </code></pre>
+    <p>2. Handle selection indices so opening sub-items still highlight correctly.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Styling Tweaks</h2>
+    <p>• Remove default panel margins:</p>
+    <pre><code>
+const useStyles = makeStyles({
+  expansionPanel: {
+    '&.Mui-expanded': {
+      margin: 0,
+    },
+  },
+  details: {
+    padding: 0,
+  },
+  root: {
+    backgroundColor: '#1976d2',
+    boxShadow: 'none',
+    borderBottom: '1px solid rgba(0,0,0,0.12)',
+  },
+});
+    </code></pre>
+    <p>• Zero out padding on <code>ExpansionPanelDetails</code>.</p>
+    <p>• Match menu item borders and colors for a seamless menu look.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🚀</span>Why Use Expansion Panels?</h2>
+    <p>• Improves mobile UX by grouping sub-links neatly.</p>
+    <p>• Saves vertical space, avoids endless scroll.</p>
+    <p>• Consistent look & feel with desktop menu dropdown.</p>
+  </div>
+
+</body>
+</html>

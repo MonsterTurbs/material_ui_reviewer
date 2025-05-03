@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 1em; background: #f9f9f9; }
+    .card { background: #fff; border-radius: 8px; padding: 1em; margin-bottom: 1em; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; }
+    .emoji { font-size: 1.2em; margin-right: 0.5em; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2><span class="emoji">📬</span>Adding Header & Footer</h2>
+    <p>We imported <code>Header</code> and <code>Footer</code> components in <code>_app.js</code> and rendered them around the main page content. This makes all pages share the same top and bottom layout.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>Installing Missing Packages</h2>
+    <p>When we saw errors like <code>react-lottie</code> or <code>@mui/icons-material</code> not found, we ran <code>npm install</code> to add those packages. Always check the console and add what’s missing!</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔗</span>Fixing Links</h2>
+    <p>Next.js uses a custom <code>Link</code> component (with a <code>href</code> prop) instead of React Router’s <code>to</code>. We replaced all <code>to="..."</code> with <code>href="..."</code> and imported Link from <code>../src/link.js</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Backticks for CSS URLs</h2>
+    <p>In our CSS-in-JS styles, <code>url()</code> needed backticks (``) so JS sees it as a template string. We wrapped each URL like <code>background: `url(/assets/bg.jpg)`</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔧</span>Class-Based State in _app.js</h2>
+    <p>Because <code>_app.js</code> is a class component, we added a <code>constructor</code> with <code>this.state = {value:0, selectedIndex:0}</code> and methods <code>setValue</code> and <code>setSelectedIndex</code> to update state. We then passed these down as props to Header, Footer, and pages.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Review & Test</h2>
+    <p>Finally, we restarted the dev server with <code>npm run dev</code>, fixed remaining errors, and saw our app loading correctly in Next.js with server-side rendering enabled.</p>
+  </div>
+</body>
+</html>

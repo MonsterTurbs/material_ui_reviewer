@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Notes: Expansion Panel Bonus Video</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 1rem;
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🎉 What Is an Expansion Panel?</h2>
+    <p>• An <strong>Expansion Panel</strong> is like a little box that can open and close to show more details. 📦</p>
+    <p>• It has a “summary” part you always see (the label) and “details” you see when you click it. 🔍</p>
+    <p>• Use it when you want to hide extra info until the user needs it. 🙌</p>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Key Components</h2>
+    <p><strong>ExpansionPanel</strong> – the overall container that can open/close.</p>
+    <p><strong>ExpansionPanelSummary</strong> – the always-visible label area, with an “expand” arrow icon.</p>
+    <p><strong>ExpansionPanelDetails</strong> – the hidden content that appears when opened.</p>
+    <p><strong>ExpandMoreIcon</strong> – the little arrow icon you click to open/close. ↕️</p>
+  </div>
+
+  <div class="card">
+    <h2>✅ Uncontrolled vs. Controlled</h2>
+    <p>• <em>Uncontrolled</em> panels open/close on their own when clicked.</p>
+    <p>• <em>Controlled</em> panels use React state (<code>expanded</code>) to decide when to open/close.</p>
+    <p>• Controlled panels let you make an “accordion” effect (only one open at a time). 🤹‍♂️</p>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ Steps to Implement in Mobile Header</h2>
+    <p>1. Import components:<br>
+       <code>ExpansionPanel</code>, <code>ExpansionPanelSummary</code>,<br>
+       <code>ExpansionPanelDetails</code>, <code>ExpandMoreIcon</code><br>
+       (and <code>Grid</code> for layout)</p>
+    <p>2. In your mobile menu mapping:<br>
+       • When the route is “Services,” render an <code>ExpansionPanel</code>.<br>
+       • Put the “Services” label inside <code>ExpansionPanelSummary</code>.<br>
+       • Put service links inside <code>ExpansionPanelDetails</code> in a vertical <code>Grid</code>.</p>
+    <p>3. Handle selection:<br>
+       • Keep track of both the main menu index and the service-tabs index.<br>
+       • Update <code>selectedIndex</code> when a service link is clicked.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Styling Tweaks</h2>
+    <p>• Remove default margins on the panel (<code>.Mui-expanded</code>).</p>
+    <p>• Match background color to your theme.</p>
+    <p>• Zero out extra padding in <code>ExpansionPanelDetails</code>.</p>
+    <p>• Add dividers and border styles for clearer separation.</p>
+    <p>• Color the expand icon to match your secondary theme color. 🧡</p>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Inspect & Adjust</h2>
+    <p>• Use browser DevTools to find unwanted margins/paddings.</p>
+    <p>• Target Material-UI’s classes (e.g. <code>.MuiExpansionPanel-root</code>) with <code>classes</code> overrides.</p>
+    <p>• Always align text/icons so they match the rest of your menu. ✔️</p>
+  </div>
+
+  <div class="card">
+    <h2>🤔 Why Use Expansion Panels?</h2>
+    <p>• Great for hiding advanced options/details until needed.</p>
+    <p>• Keeps your UI simple and uncluttered on mobile. 📱</p>
+    <p>• Built-in accessibility and animations from Material UI. 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Next Steps</h2>
+    <p>• Try adding an “accordion” behavior so only one panel opens at a time.</p>
+    <p>• Experiment with <code>ExpansionPanelActions</code> for custom buttons inside. 🎛️</p>
+    <p>• Apply these patterns to other sections of your app where you need collapsible content.</p>
+  </div>
+
+</body>
+</html>

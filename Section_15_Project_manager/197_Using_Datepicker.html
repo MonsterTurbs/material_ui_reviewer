@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Project Dialog & Pickers Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 { color: #0d47a1; margin-top: 0; }
+    p, ul { color: #333; line-height: 1.5; }
+    ul { padding-left: 20px; }
+    code {
+      background: #eef6fb;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>📦 Install Pickers & Date Library</h2>
+    <ul>
+      <li>Stop dev server and run in your project folder:</li>
+      <li><code>npm install @material-ui/pickers @date-io/date-fns date-fns@next</code> ✅</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📥 Import Components</h2>
+    <p>At the top of <code>Index.js</code>, add:</p>
+    <pre><code>import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔐 Dialog State</h2>
+    <p>Control the dialog open/close:</p>
+    <pre><code>const [dialogOpen, setDialogOpen] = useState(false);</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🚪 Add the Dialog</h2>
+    <ul>
+      <li>Wrap content with:</li>
+      <pre><code>&lt;Dialog open=&#123;dialogOpen&#125; onClose={() =&gt; setDialogOpen(false)}&gt;
+  ...dialog content...
+&lt;/Dialog&gt;</code></pre>
+      <li>Trigger open with your Add button:<br>
+      <code>&lt;AddIcon style=&#123;{cursor: 'pointer'}&#125; onClick={() =&gt; setDialogOpen(true)} /&gt;</code> 🎉</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🛡️ Wrap with Pickers Provider</h2>
+    <p>At a high level (e.g. above your main grid), wrap with:</p>
+    <pre><code>&lt;MuiPickersUtilsProvider utils=&#123;DateFnsUtils&#125;&gt;
+  ...your app...
+&lt;/MuiPickersUtilsProvider&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🗂️ Dialog Title</h2>
+    <p>Inside Dialog, show a centered title:</p>
+    <pre><code>&lt;Grid container justify="center"&gt;
+  &lt;Grid item&gt;
+    &lt;Typography variant="h1" gutterBottom&gt;Add a New Project&lt;/Typography&gt;
+  &lt;/Grid&gt;
+&lt;/Grid&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>✏️ Project Name Field</h2>
+    <p>First question in dialog:</p>
+    <pre><code>const [name, setName] = useState('');
+
+&lt;TextField
+  label="Name"
+  id="name"
+  value=&#123;name&#125;
+  onChange=&#123;e =&gt; setName(e.target.value)&#125;
+/&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>📅 Date Picker Field</h2>
+    <p>Second column: pick a date!</p>
+    <pre><code>const [date, setDate] = useState(new Date());
+
+&lt;KeyboardDatePicker
+  format="MM/dd/yyyy"
+  value=&#123;date&#125;
+  onChange=&#123;d =&gt; setDate(d)&#125;
+/&gt;</code></pre>
+  </div>
+</body>
+</html>

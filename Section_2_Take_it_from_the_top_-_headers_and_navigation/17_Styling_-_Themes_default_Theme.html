@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Material UI Palette - Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      line-height: 1.8;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p, ul, code {
+      font-size: 16px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎨 Study Notes: Material UI Theme - Palette</h1>
+
+<div class="card">
+  <h2>🧠 What is the Palette?</h2>
+  <p>The <code>palette</code> in Material UI is where you define your application's color scheme. It helps create a consistent look and feel across your app.</p>
+</div>
+
+<div class="card">
+  <h2>📦 Palette Properties</h2>
+  <ul>
+    <li><strong>common</strong> – stores shared colors (e.g. brand colors)</li>
+    <li><strong>type</strong> – set to <code>'light'</code> or <code>'dark'</code></li>
+    <li><strong>primary</strong> – your app's main color; auto-generates <code>light</code> and <code>dark</code> shades</li>
+    <li><strong>secondary</strong> – used for accents; works just like <code>primary</code></li>
+    <li><strong>error</strong> – colors used when showing error states</li>
+    <li><strong>grey</strong> – shades of grey from light to dark (e.g. <code>grey[100]</code>, <code>grey[900]</code>)</li>
+    <li><strong>text</strong> – different opacities for primary, secondary, and disabled text</li>
+    <li><strong>divider</strong> – line separators with subtle opacity</li>
+    <li><strong>background</strong> – controls the default page and component backgrounds</li>
+    <li><strong>action</strong> – defines opacity for hover, selected, disabled states</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🎯 Why Use the Palette?</h2>
+  <ul>
+    <li>Centralizes all colors in one file</li>
+    <li>Easy to change colors across the whole app</li>
+    <li>Helps maintain consistency</li>
+    <li>Material UI uses the palette by default in many components</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🧪 Example of a Custom Palette</h2>
+  <pre><code>const theme = createMuiTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#007bff',
+    },
+    secondary: {
+      main: '#ff4081',
+    },
+    background: {
+      default: '#f5f5f5',
+      paper: '#ffffff',
+    },
+    text: {
+      primary: '#000',
+      secondary: '#555',
+    },
+  }
+});</code></pre>
+</div>
+
+<div class="card">
+  <h2>📝 Summary</h2>
+  <ul>
+    <li>The <code>palette</code> is part of the <code>theme</code> object</li>
+    <li>It controls all colors used in your app</li>
+    <li>You can override default values by setting them in your custom theme</li>
+    <li>Now that we understand the structure, we’re ready to create our own theme!</li>
+  </ul>
+</div>
+
+</body>
+</html>

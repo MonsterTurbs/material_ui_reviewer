@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beginner-Friendly Study Notes (Part 2)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.2s;
+      width: 100%;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    .card h2 {
+      font-size: 1.3em;
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 Study Notes: Refactoring Tabs & Drawer</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🔍 1. Check Active Tab on Refresh</h2>
+      <ul>
+        <li>After refactor, refreshing still keeps the correct tab active.</li>
+        <li>Confirms our new dynamic switch logic works in real runtime.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ 2. Move ARIA & Events into Routes</h2>
+      <ul>
+        <li>Cut <code>aria-owns</code>, <code>aria-haspopup</code>, <code>onMouseOver</code> from tabs code.</li>
+        <li>Paste them as properties in the <code>services</code> object inside the <code>routes</code> array.</li>
+        <li>Now all tab settings live in one place (<code>routes</code>).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔄 3. Map Over Routes for Tabs</h2>
+      <ul>
+        <li>Use <code>routes.map((route, i) =&gt; (...))</code> to create each <code>&lt;Tab&gt;</code>.</li>
+        <li>Set props dynamically:<br>
+            - <code>to={route.link}</code><br>
+            - <code>label={route.name}</code><br>
+            - <code>aria-*</code> and <code>onMouseOver</code> from route object.
+        </li>
+        <li>Keeps JSX short and flexible.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📜 4. Map Over Routes for Drawer List</h2>
+      <ul>
+        <li>Similar technique: use <code>routes.map((route) =&gt; (...))</code> to create each <code>&lt;ListItem&gt;</code>.</li>
+        <li>Props set dynamically:<br>
+            - <code>onClick</code> closes drawer + sets value<br>
+            - <code>divider</code>, <code>button</code>, <code>component=Link</code><br>
+            - <code>to={route.link}</code><br>
+            - <code>selected={value === route.activeIndex}</code>
+        </li>
+        <li>Inside <code>&lt;ListItemText&gt;</code>, show <code>{route.name}</code>.
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔑 5. Add <code>key</code> Props</h2>
+      <ul>
+        <li>Each mapped element needs a unique <code>key</code> to help React.</li>
+        <li>Tabs: use <code>{`tab-${route.name}-${i}`}</code> or similar.</li>
+        <li>ListItems: use <code>{`item-${route.activeIndex}`}</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📌 6. Keep Mounted for SEO</h2>
+      <ul>
+        <li>Add <code>keepMounted</code> to the menu component.</li>
+        <li>Ensures all tab items stay in the DOM even when hidden.</li>
+        <li>Helps search engines crawl all pages.
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎉 7. Why This Matters</h2>
+      <ul>
+        <li>Reduces repetitive JSX code.</li>
+        <li>Makes adding/removing routes trivial.</li>
+        <li>Keeps logic centralized in the <code>routes</code> array.</li>
+        <li>Easier maintenance and better performance.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

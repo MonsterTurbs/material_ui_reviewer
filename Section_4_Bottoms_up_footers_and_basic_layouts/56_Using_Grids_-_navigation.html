@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔗 Footer Links & Navigation - Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e65100;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔗 Footer Links & Navigation - Study Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>1. ➕ Add Spacing to Columns</h2>
+      <p>On each inner grid container, add <code>spacing={2}</code> to get 16px gaps (2 × 8px):</p>
+      <pre><code>&lt;Grid container direction="column" spacing={2}&gt;…&lt;/Grid&gt;</code></pre>
+      <p>✨ Links now have space around them!</p>
+    </div>
+
+    <div class="card">
+      <h2>2. 📏 Give Columns Margin</h2>
+      <ul>
+        <li>Add <code>className={classes.gridItem}</code> to each outer <code>&lt;Grid item&gt;</code>.</li>
+        <li>In styles, set <code>.gridItem {{ margin: '3em' }}</code> for responsive whitespace.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>3. 🛠️ Make Links Clickable</h2>
+      <p>Import React Router's Link:</p>
+      <pre><code>import { Link } from 'react-router-dom';</code></pre>
+      <p>Then on each grid item, add props:</p>
+      <pre><code>&lt;Grid
+  component={Link}
+  to="/services"
+  ...
+&gt;Services&lt;/Grid&gt;</code></pre>
+      <p>🔗 Now clicking the text navigates to that page!</p>
+    </div>
+
+    <div class="card">
+      <h2>4. 🚫 Remove Underline</h2>
+      <p>Add <code>textDecoration: 'none'</code> to your <code>.link</code> style so links look clean:</p>
+      <pre><code>.link {{
+  color: 'white',
+  fontSize: '0.75rem',
+  fontWeight: 'bold',
+  textDecoration: 'none'
+}}</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>5. 🎉 Test Your Footer</h2>
+      <ul>
+        <li>🔄 Save and refresh your app.</li>
+        <li>💻 Click each footer link to see it change pages.</li>
+        <li>📱 Resize the window or check on mobile—layout stays nice!</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

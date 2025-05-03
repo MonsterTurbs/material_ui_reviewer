@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Header Component - Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      line-height: 1.8;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p, ul, code {
+      font-size: 16px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🧱 Study Notes: Creating the Header Component</h1>
+
+<div class="card">
+  <h2>📌 Why Start with the Header?</h2>
+  <ul>
+    <li>The header shows on every page of the website</li>
+    <li>Acts like the "backbone" or "top navigation"</li>
+    <li>Gives us a consistent layout structure before adding other content</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🔧 What We'll Use</h2>
+  <ul>
+    <li><strong>AppBar</strong> – Material UI component for headers</li>
+    <li><strong>Toolbar</strong> – Used inside AppBar to layout items horizontally</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>📁 Folder Structure Setup</h2>
+  <ul>
+    <li>Create <code>src/UI</code> folder</li>
+    <li>Create <code>src/components</code> folder</li>
+    <li>Move <code>App.js</code> inside <code>components</code></li>
+    <li>Update the import in <code>index.js</code> to: <code>./components/App.js</code></li>
+    <li>Create <code>Header.js</code> inside <code>UI</code></li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>📄 Code for <code>Header.js</code></h2>
+  <pre><code>import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+
+export default function Header(props) {
+  return (
+    &lt;AppBar position="fixed"&gt;
+      &lt;Toolbar&gt;Arc Development&lt;/Toolbar&gt;
+    &lt;/AppBar&gt;
+  );
+}</code></pre>
+</div>
+
+<div class="card">
+  <h2>🔁 Use It in <code>App.js</code></h2>
+  <ul>
+    <li>Import the header:</li>
+    <code>import Header from './UI/Header'</code>
+    <li>Add it before the content:</li>
+    <code>&lt;Header /&gt;</code>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>📣 What's Happening?</h2>
+  <ul>
+    <li><code>&lt;AppBar /&gt;</code> makes a full-width top bar</li>
+    <li><code>&lt;Toolbar /&gt;</code> makes the content inside align horizontally</li>
+    <li>Using <code>position="fixed"</code> keeps it always at the top</li>
+    <li>If you change it to <code>static</code>, the header shrinks and scrolls with the page</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>✅ Summary</h2>
+  <ul>
+    <li>We've built a reusable header using Material UI</li>
+    <li>It spans full width and stays at the top</li>
+    <li>We're ready to customize it further later on</li>
+  </ul>
+</div>
+
+</body>
+</html>

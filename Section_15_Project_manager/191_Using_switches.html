@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Box & Switch Setup Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafe;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+    p, ul {
+      color: #444;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+    ul { list-style: inside; }
+    code {
+      background: #eef2f7;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>📐 1. Position the Title</h2>
+    <p>Move the “Projects” heading for better spacing:</p>
+    <ul>
+      <li>Add to its <code>Grid item</code>: <code>style={{ marginTop: '2rem', marginLeft: '5rem' }}</code> 😊</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔍 2. Add the Search Box</h2>
+    <ul>
+      <li>Import:</li>
+      <ul>
+        <li><code>TextField</code> from <code>@material-ui/core/TextField</code></li>
+        <li><code>InputAdornment</code> from <code>@material-ui/core/InputAdornment</code></li>
+        <li><code>AddIcon</code> from <code>@material-ui/icons/Add</code></li>
+      </ul>
+      <li>Place under title in its own <code>Grid item</code>.</li>
+      <li>Use <code>inputProps</code> to add a plus icon at the end:</li>
+      <pre><code>&lt;TextField
+  placeholder="Search or add new entry"
+  style={{ width: '35rem', marginLeft: '5rem' }}
+  InputProps={{
+    endAdornment: (
+      &lt;InputAdornment position="end"&gt;
+        &lt;AddIcon color="primary" /&gt;
+      &lt;/InputAdornment&gt;
+    ),
+  }}
+/&gt;</code></pre>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔀 3. Import Switch Components &amp; State</h2>
+    <ul>
+      <li>Import at top of your file:</li>
+      <ul>
+        <li><code>useState</code> from React</li>
+        <li><code>Switch</code> from <code>@material-ui/core/Switch</code></li>
+        <li><code>FormGroup</code> from <code>@material-ui/core/FormGroup</code></li>
+        <li><code>FormControlLabel</code> from <code>@material-ui/core/FormControlLabel</code></li>
+      </ul>
+      <li>Create four state variables:</li>
+      <pre><code>const [websites, setWebsites] = useState(false);
+const [iOS, setiOS] = useState(false);
+const [android, setAndroid] = useState(false);
+const [software, setSoftware] = useState(false);
+</code></pre>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ 4. Build the Switch Row</h2>
+    <p>Under the search box, add:</p>
+    <pre><code>&lt;Grid item&gt;
+  &lt;FormGroup row&gt;
+    &lt;FormControlLabel
+      control={
+        &lt;Switch
+          checked={websites}
+          onChange={() =&gt; setWebsites(!websites)}
+          color="primary"
+        /&gt;
+      }
+      label="Websites"
+      labelPlacement="start"
+    /&gt;
+    {/* Repeat for iOS, Android, Custom Software */}
+  &lt;/FormGroup&gt;
+&lt;/Grid&gt;
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🎨 5. Style Switch Labels &amp; Alignment</h2>
+    <ul>
+      <li><strong>Theme override</strong> to remove extra left margin on start labels:</li>
+      <pre><code>// in theme.js overrides
+MuiFormControlLabel: {
+  labelPlacementStart: {
+    marginLeft: 0,
+  },
+},
+</code></pre>
+      <li>Add spacing between labels:</li>
+      <pre><code>&lt;FormControlLabel
+  style={{ marginRight: '5rem' }}
+  ...
+/&gt;</code></pre>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📏 6. Final Spacing Adjustments</h2>
+    <ul>
+      <li>Wrap <code>FormGroup</code> in a <code>Grid item</code> with <code>style={{ marginLeft: '5rem', marginTop: '2rem' }}</code>.</li>
+      <li>This aligns everything neatly under the search box. ✔️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ 7. Test Your Switches</h2>
+    <ul>
+      <li>Run <code>npm run dev</code> and open <code>localhost:3000</code>.</li>
+      <li>Flip each switch and verify state toggles correctly. 👍</li>
+      <li>Ready for filtering logic next! 🚀</li>
+    </ul>
+  </div>
+
+</body>
+</html>

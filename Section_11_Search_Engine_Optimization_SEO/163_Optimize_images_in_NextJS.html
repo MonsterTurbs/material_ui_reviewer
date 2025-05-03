@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next.js Migration Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f4f4f4; }
+    .card { background: white; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 8px 0; }
+    .emoji { font-size: 1.2em; margin-right: 6px; vertical-align: middle; }
+    code { background: #eee; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2><span class="emoji">🔌</span>Install Image Optimizer</h2>
+    <p>• Run <code>npm install next-optimized-images imagemin-mozjpeg imagemin-optipng next-compose-plugins</code> to add automatic JPEG/PNG compression. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>Configure <code>next.config.js</code></h2>
+    <p>• Wrap your exports using <code>withPlugins</code> to include <code>withOptimizedImages</code>. 🤓</p>
+    <p>• Example:
+      <pre><code>const withPlugins = require('next-compose-plugins');
+const withOptimizedImages = require('next-optimized-images');
+
+module.exports = withPlugins([
+  [withOptimizedImages, { /* your options */ }]
+]);</code></pre>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🚀</span>Restart Dev Server</h2>
+    <p>• Run <code>npm run dev</code> to see changes. Fix any errors in the terminal.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🐞</span>Fix _document.js Theme Import</h2>
+    <p>• Correct theme path and naming:</p>
+    <p><code>import theme from '../src/UI/theme';</code> and use <code>theme.palette.primary.main</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>Install Missing Packages</h2>
+    <p>• If you see <code>react-lottie</code> or Material‑UI errors, install them:</p>
+    <p><code>npm install react-lottie @material-ui/core @material-ui/styles</code></p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔧</span>Fix CSS <code>url()</code> Usage</h2>
+    <p>• Wrap background URLs in backticks: <code>background: `url('/assets/bg.jpg')`;</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Verify Pre-Rendering</h2>
+    <p>• Open <code>http://localhost:3000</code>, check the Next.js badge at bottom-right in dev mode.</p>
+    <p>• This confirms server‑side rendered HTML is sent before React hydrates. ✨</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎉</span>Success!</h2>
+    <p>• You’ve migrated to Next.js with optimized images and SSR for better performance &amp; SEO. 🎊</p>
+  </div>
+</body>
+</html>

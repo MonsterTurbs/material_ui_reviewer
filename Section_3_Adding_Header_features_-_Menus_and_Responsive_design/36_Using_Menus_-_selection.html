@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✅ Selected Menu Item - Material UI Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f5f9;
+      padding: 30px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+    .container {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .card ul, .card ol {
+      padding-left: 20px;
+      margin: 0.5rem 0;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 Selected Menu Item - Material UI Study Notes</h1>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>🧠 1. Use State to Track the Selected Menu Item</h2>
+      <p>🔹 Create state to remember which menu option is active:</p>
+      <pre><code>const [selectedIndex, setSelectedIndex] = useState(0);</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>📋 2. List Your Menu Options</h2>
+      <p>🔹 Store your menu items in an array for easy rendering and indexing:</p>
+      <pre><code>const menuOptions = [
+  { name: 'Services', link: '/services' },
+  { name: 'Custom Software', link: '/custom-software' },
+  // ... add more options
+];</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🔁 3. Loop with <code>.map()</code></h2>
+      <p>🔹 Use <code>menuOptions.map((option, index) =&gt; ...)</code> to render each <code>MenuItem</code>:</p>
+      <ul>
+        <li>💡 <code>option.name</code> for the display text</li>
+        <li>🔗 <code>option.link</code> for the route</li>
+        <li>🔑 <code>key={option.name}</code> as React key</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🖱️ 4. Attach an onClick Handler</h2>
+      <p>🔹 Implement <code>handleMenuItemClick(event, index)</code>:</p>
+      <ul>
+        <li>➡️ <code>setAnchorEl(null)</code></li>
+        <li>➡️ <code>setOpen(false)</code></li>
+        <li>➡️ <code>setSelectedIndex(index)</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎨 5. Add <code>selected</code> Styling</h2>
+      <p>🔹 Highlight the active item:</p>
+      <pre><code>selected={index === selectedIndex && value === 1}</code></pre>
+      <p>🔸 This applies when the Services tab (value = 1) is open.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔗 6. Integrate React Router</h2>
+      <p>🔹 Make each <code>MenuItem</code> a link:</p>
+      <ul>
+        <li>🔗 <code>component={Link}</code></li>
+        <li>🔗 <code>to={option.link}</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✅ 7. Results</h2>
+      <ul>
+        <li>🎉 The selected menu item is highlighted.</li>
+        <li>🎉 You can choose a service from the dropdown.</li>
+        <li>🎉 Styling stays consistent with Material UI design.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>💡 8. Bonus: Clean Code Tips</h2>
+      <ul>
+        <li>✏️ Use an array for DRY rendering.</li>
+        <li>🎨 Move reusable styles into the theme.</li>
+        <li>🔑 Always add a unique <code>key</code> in loops.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

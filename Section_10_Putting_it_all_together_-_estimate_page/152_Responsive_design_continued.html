@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estimate Page Responsive Design Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      border: 1px solid #ccc; 
+      border-radius: 8px; 
+      padding: 16px; 
+      margin-bottom: 16px; 
+      width: 100%; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { 
+      background: #f4f4f4; 
+      padding: 2px 4px; 
+      border-radius: 4px; 
+      font-family: monospace; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">⬆️</span>Add Spacing Above Title</h2>
+    <p>Give the dialog title a bit of breathing room by adding <code>marginTop: '1rem'</code> to its Grid item. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">↕️</span>Adjust Message Field Spacing</h2>
+    <p>Tweak the <code>message</code> style: use <code>marginTop: '3rem'</code> and <code>marginBottom: '2rem'</code> so it sits evenly between inputs and text. 📝</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⬇️</span>Space Below Estimate Title</h2>
+    <p>On the wrapper Grid, add <code>marginBottom: '1rem'</code> to separate the title from form fields below. 🎨</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📐</span>Setup Breakpoint Flags</h2>
+    <pre><code>const matchesMD = useMediaQuery(theme.breakpoints.down('md'));  
+const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));</code></pre>
+    <p>This lets us conditionally apply styles at medium and small screen widths. 🔍</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎯</span>Center Title & Remove Left Margin at MD</h2>
+    <pre><code>&lt;Typography
+  align={matchesMD ? 'center' : undefined}
+  style={{ marginLeft: matchesMD ? 0 : '5rem' }}
+&gt;Estimate&lt;/Typography&gt;</code></pre>
+    <p>On medium and below, title is centered and left margin is cleared. 📏</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔀</span>Center Animation at MD</h2>
+    <pre><code>&lt;Grid item container direction={'column'}
+  alignItems={matchesMD ? 'center' : undefined}
+&gt;
+  &lt;Lottie style={{ marginRight: matchesMD ? 0 : '10rem' }} /&gt;
+&lt;/Grid&gt;</code></pre>
+    <p>Lottie animation centers when screen ≤ medium. 🎥</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">↔️</span>Full-Width Questions at MD</h2>
+    <pre><code>&lt;Grid item md
+  style={{ marginRight: matchesMD ? 0 : '2rem' }}
+&gt;…questions…&lt;/Grid&gt;</code></pre>
+    <p>Removes right margin so questions stretch across on medium screens. 🗒️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📏</span>Add Option Gaps at SM</h2>
+    <pre><code>&lt;Grid item container
+  style={{ marginBottom: matchesSM ? '1.5rem' : 0 }}
+&gt;…option…&lt;/Grid&gt;</code></pre>
+    <p>Small screens get extra space between each selectable option. 🤏</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">↔️</span>Edge Padding on Small</h2>
+    <pre><code>&lt;Typography
+  style={{
+    marginLeft: matchesSM ? '1rem' : 0,
+    marginRight: matchesSM ? '1rem' : 0
+  }}
+&gt;{question.title}&lt;/Typography&gt;</code></pre>
+    <p>Keeps text from touching screen edges on small devices. 📱</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📱</span>Full-Screen Dialog at SM</h2>
+    <pre><code>&lt;Dialog fullScreen={matchesSM} ...&gt;…&lt;/Dialog&gt;
+style={{ zIndex: 1302 }}</code></pre>
+    <p>Uses full-screen mode on phones and ensures it appears above the header. ☁️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔀</span>Stack Actions in Column on Small</h2>
+    <pre><code>&lt;Grid container
+  direction={matchesSM ? 'column' : 'row'}
+  alignItems={matchesSM ? 'center' : undefined}
+&gt;…buttons…&lt;/Grid&gt;</code></pre>
+    <p>Buttons stack and center on small screens for better tap targets. 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🙈</span>Hide Review on Small</h2>
+    <pre><code>&lt;Hidden smDown&gt;
+  &lt;Grid item&gt;…selection review…&lt;/Grid&gt;
+&lt;/Hidden&gt;</code></pre>
+    <p>Selection review is hidden on phones to reduce clutter. 📵</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⬇️</span>Center Bottom Button</h2>
+    <pre><code>&lt;Grid item
+  style={{ marginBottom: matchesSM ? '5rem' : 0 }}
+&gt;…Cancel button…&lt;/Grid&gt;</code></pre>
+    <p>Ensures cancel button sits visibly above the screen bottom on mobile. 🎛️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎉</span>Finish!</h2>
+    <p>With these tweaks, the estimate page now gracefully adapts from desktop to phone, offering a clean and user-friendly experience on all screen sizes. 🥳</p>
+  </div>
+
+</body>
+</html>

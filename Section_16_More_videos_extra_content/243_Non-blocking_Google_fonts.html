@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Notes: Non-Blocking Google Fonts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 1rem;
+      margin: 6px 0;
+      line-height: 1.4;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🚦 The Problem: Render-Blocking Fonts</h2>
+    <p>• When a page loads, links to Google Fonts in &lt;head&gt; block rendering until fonts arrive ⏳</p>
+    <p>• Slow connections mean users stare at a blank page or fallback text 😕</p>
+    <p>• PageSpeed Insights flags <em>“eliminate render blocking resources”</em> for Google Fonts 📊</p>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Solution: Font Face Observer</h2>
+    <p>• Use the <code>fontfaceobserver</code> library to load fonts asynchronously 🎉</p>
+    <p>• First, include your Google Fonts link only in a JS file, not in &lt;head&gt; 💻</p>
+    <p>• Then observe and load fonts in code, adding them to the document after initial render 👌</p>
+  </div>
+
+  <div class="card">
+    <h2>📦 Installing</h2>
+    <p>Run:</p>
+    <pre><code>npm install fontfaceobserver</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🗂 Setting Up <code>fonts.js</code></h2>
+    <p>Create <code>src/ui/fonts.js</code> with:</p>
+    <pre><code>import FontFaceObserver from 'fontfaceobserver';
+
+// Create &lt;link&gt; for Google Fonts
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = 'https://fonts.googleapis.com/css?family=Pacifico|Roboto:300,400,500,700&display=swap';
+document.head.appendChild(link);
+
+// Observe each font
+const roboto = new FontFaceObserver('Roboto');
+const pacifico = new FontFaceObserver('Pacifico');
+
+export default function loadFonts() {
+  roboto.load();
+  pacifico.load();
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔌 Hooking Into Next.js</h2>
+    <p>In <code>pages/_app.js</code>, import and call after mount:</p>
+    <pre><code>import loadFonts from '@/ui/fonts';
+
+function MyApp({ Component, pageProps }) {
+  React.useEffect(() => {
+    loadFonts(); // start loading fonts non-blocking
+  }, []);
+
+  return &lt;Component {...pageProps} /&gt;;
+}
+
+export default MyApp;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🚀 What It Does</h2>
+    <p>1. Page renders immediately with system fonts 🔥</p>
+    <p>2. <code>loadFonts()</code> appends the Google Fonts &lt;link&gt; dynamically 📨</p>
+    <p>3. Observers fetch and apply fonts when ready—no blocking initial render 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2>👍 Benefits</h2>
+    <p>• Faster first paint and contentful paint metrics 🏎️</p>
+    <p>• Better PageSpeed scores on mobile &amp; desktop 📈</p>
+    <p>• Smooth font loading without layout jank ✨</p>
+  </div>
+
+  <div class="card">
+    <h2>🎓 Key Takeaways</h2>
+    <p>• Non-blocking Google Fonts improves UX and performance 💡</p>
+    <p>• <code>fontfaceobserver</code> lets you load fonts in JS, not in &lt;head&gt; 🛠️</p>
+    <p>• Hook into <code>useEffect</code> in <code>_app.js</code> (or <code>componentDidMount</code>) 🚩</p>
+    <p>• Always test with <a href="https://developers.google.com/speed/pagespeed/insights">PageSpeed Insights</a> 🧐</p>
+  </div>
+
+</body>
+</html>

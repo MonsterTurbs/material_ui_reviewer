@@ -1,0 +1,278 @@
+Section 1: Introduction
+<li data-file="1_Welcome.html
+<li data-file="2_Why_material-UI.html
+<li data-file="3_Course_overview.html
+<li data-file="4_Course_requirements.html
+<li data-file="5_Important_MUI_Update_info.html
+<li data-file="6_Environment_setup.html
+<li data-file="7_Project_files_and_resources.html
+
+Section 2: Take_it_from_the_top_-_headers_and_navigation
+<li data-file="8_Section_2_Introduction.html
+<li data-file="9_Project_overview.html
+<li data-file="10_Project_overview_continued.html
+<li data-file="11_Image_optimization.html
+<li data-file="12_Boilerplate_cleanup.html
+<li data-file="13_The_AppBar_Component.html
+<li data-file="14_AppBar_Transitions.html
+<li data-file="15_Important_fix.html
+<li data-file="16_Styling_-_Themes_setup.html
+<li data-file="17_Styling_-_Themes_default_Theme.html
+<li data-file="18_Styling_-_Themes_Palette.html
+<li data-file="19_Styling_-_Themes_Typography.html
+<li data-file="20_Styling_-_Inline.html
+<li data-file="21_AppBar_Logo.html
+<li data-file="22_Favicon.html
+<li data-file="23_Tabs_overview.html
+<li data-file="24_Using_Tabs.html
+<li data-file="25_Buttons_overview.html
+<li data-file="26_Using_Buttons.html
+<li data-file="27_Styling_the_active_Tab.html
+<li data-file="28_Navigation_with_React_Router.html
+<li data-file="29_Active_tab_refresh_fix.html
+
+Section 3: Adding_Header_features_-_Menus_and_Responsive_design
+<li data-file="30_Section_3_Introduction.html
+<li data-file="31_Menus_overview.html
+<li data-file="32_Menus_overview_continued.html
+<li data-file="33_Using_Menus_-_setup.html
+<li data-file="34_Using_Menus_-_navigation.html
+<li data-file="35_Using_Menus_-_styling.html
+<li data-file="36_Using_Menus_-_selection.html
+<li data-file="37_Using_Menus_-_refresh_fix.html
+<li data-file="38_Responsive_design_overview.html
+<li data-file="39_Responsive_design_continued.html
+<li data-file="40_Responsive_units_clarification_--_which_to_use.html
+<li data-file="41_Using_media_queries.html
+<li data-file="42_Drawers_overview.html
+<li data-file="43_Using_Drawers.html
+<li data-file="44_Lists_overview.html
+<li data-file="45_Using_Lists_-_setup.html
+<li data-file="46_Using_Lists_-_styling.html
+<li data-file="47_Using_Lists_-_selection.html
+<li data-file="48_Selection_cleanup.html
+<li data-file="49_Section_cleanup_continued.html
+<li data-file="50_Clipped_AppBar.html
+
+Section 4: Bottoms_up_footers_and_basic_layouts
+<li data-file="51_Section_4_Introduction.html
+<li data-file="52_Footer_setup.html
+<li data-file="53_Grid_overview.html
+<li data-file="54_Grid_overview_continued.html
+<li data-file="55_Using_Grids_-_setup.html
+<li data-file="56_Using_Grids_-_navigation.html
+<li data-file="57_Active_tab_footer_refactor.html
+<li data-file="58_Responsive_Grids.html
+<li data-file="59_Social_media_icons.html
+
+Section 5: Hitting_the_ground_running_-_animations_and_the_landing_page
+<li data-file="60_Section_5_Introduction.html
+<li data-file="61_Animation_export_and_bodymmoving.html
+<li data-file="62_Animation_configuration.html
+<li data-file="63_React-lottie.html
+<li data-file="64_Creating_the_hero_block.html
+<li data-file="65_Styling_the_hero_block.html
+<li data-file="66_Styling_the_hero_block_continued.html
+<li data-file="67_Creating_the_services_block_-_custom_software.html
+<li data-file="68_Creating_the_services_block-_custom_software_continued.html
+<li data-file="69_Creating_the_services_block_-_iOS_Mobile_App_development.html
+<li data-file="70_Creating_the_services_block_-_website_development.html
+<li data-file="71_Cards_overview.html
+<li data-file="72_Creating_the_revolution_block.html
+<li data-file="73_Creating_the_revolution_block_continued.html
+<li data-file="74_Creating_the_information_block.html
+<li data-file="75_Creating_the_information_block_continued.html
+<li data-file="76_Creating_the_call_to_action.html
+<li data-file="77_Create_the_call_to_action_continued.html
+<li data-file="78_Finishing_the_call_to_action.html
+<li data-file="79_Section_cleanup.html
+<li data-file="80_Section_cleanup_continued.html
+
+Section 6: Complex_layouts
+<li data-file="81_Section_Introduction.html
+<li data-file="82_Services_page_-_overview.html
+<li data-file="83_Services_page_-_setup.html
+<li data-file="84_Services_page_-_responsive_setup.html
+<li data-file="85_Custom_software_development_page_-_overview.html
+<li data-file="86_Custom_software_development_page_-_setup.html
+<li data-file="87_Custom_software_development_page_-_middle_icons.html
+<li data-file="88_Custom_software_development_page_-_animations_row_1.html
+<li data-file="89_Custom_software_development_page_-_row_2.html
+<li data-file="90_Custom_software_development_page_-_responsive_design.html
+<li data-file="91_Custom_software_development_page_-_responsive_design_continued.html
+<li data-file="92_iOS_Android_App_development_page_-_overview.html
+<li data-file="93_iOS_Android_App_development_page_-_setup.html
+<li data-file="94_iOS_Android_App_development_page_-_responsive_design.html
+<li data-file="95_Website_development_page_-_overview.html
+<li data-file="96_Website_development_page_-_setup.html
+<li data-file="97_Website_development_page_-_responsive_design.html
+<li data-file="98_The_revolution_page_-_overview.html
+<li data-file="99_The_revolution_page_-_technology_and_vision.html
+<li data-file="100_The_revolution_page_-_process.html
+<li data-file="101_The_revolution_page_-_process_continued.html
+<li data-file="102_The_revolution_page_-_responsive_design.html
+<li data-file="103_About_us_page_-_overview.html
+<li data-file="104_About_us_page_-_setup.html
+<li data-file="105_About_us_page_-_team.html
+<li data-file="106_About_us_page_-_responsive_design.html
+
+Section 7: Inputs_validation_and_confirmation
+<li data-file="107_Section_7_Introduction.html
+<li data-file="108_Textfield_overview.html
+<li data-file="109_Using_Textfields_-_setup.html
+<li data-file="110_Contact_information.html
+<li data-file="111_Using_Textfields_-_State_controlled_values.html
+<li data-file="112_Using_Textfields_-_Styling.html
+<li data-file="113_Using_Textfields_-_Styling_continued.html
+<li data-file="114_Using_Textfields_-_Responsive_design.html
+<li data-file="115_Using_Textfields_-_Validation.html
+<li data-file="116_Using_Textfields_-_Validation_continued.html
+<li data-file="117_Dialogs_overview.html
+<li data-file="118_Using_Dialogs_-_Setup.html
+<li data-file="119_Using_Dialogs_-_Styling.html
+<li data-file="120_Section_cleanup.html
+
+Section 8: Google_cloud_functions
+<li data-file="121_Section_8_Introduction.html
+<li data-file="122_Firebase_overview.html
+<li data-file="123_Firebase_Setup.html
+<li data-file="124_Nodemailer_overview.html
+<li data-file="125_Firebase_Billing_Policy_Change.html
+<li data-file="126_Using_Nodemailer.html
+<li data-file="127_Nodemailer_fix.html
+
+Section 9: Network_Requests
+<li data-file="128_Section_9_Introduction.html
+<li data-file="129_Axios_overview_and_setup.html
+<li data-file="130_Progress_indicators_overview.html
+<li data-file="131_Using_circular_progress.html
+<li data-file="132_Snackbars_overview.html
+<li data-file="133_Using_Snackbars.html
+<li data-file="134_Sending_the_form_values.html
+
+Section 10: Putting_it_all_together_-_estimate_page
+<li data-file="135_Section_10_Introduction.html
+<li data-file="136_Estimate_page_-_setup.html
+<li data-file="137_Estimate_page_-_setup_continued.html
+<li data-file="138_Estimate_page_-_dynamic_questions.html
+<li data-file="139_Question_navigation.html
+<li data-file="140_Question_navigation_continued.html
+<li data-file="141_Question_navigation_fix.html
+<li data-file="142_Multiple_option_selection.html
+<li data-file="143_Single_option_selection.html
+<li data-file="144_Estimate_dialog.html
+<li data-file="145_Calculate_estimate_cost.html
+<li data-file="146_Selection_review.html
+<li data-file="147_Selection_review_continued.html
+<li data-file="148_Selection_review_features.html
+<li data-file="149_Finishing_selection_review.html
+<li data-file="150_Selection_review_websites_fix.html
+<li data-file="151_Responsive_design.html
+<li data-file="152_Responsive_design_continued.html
+<li data-file="153_Sending_the_estimate.html
+<li data-file="154_Sending_the_estimate_continued.html
+<li data-file="155_Disabling_the_estimate_button.html
+<li data-file="156_Sending_the_estimate_cleanup.html
+
+Section 11: Search_Engine_Optimization_SEO
+<li data-file="157_Section_11_Introduction.html
+<li data-file="158_NextJS_overview.html
+<li data-file="159_Important_NextJS_fix.html
+<li data-file="160_Migrate_from_create-react-app_to_NextJS.html
+<li data-file="161_Using_static_images.html
+<li data-file="162_Using_static_images_continued.html
+<li data-file="163_Optimize_images_in_NextJS.html
+<li data-file="164_Adding_footer_and_header_to_NextJS.html
+<li data-file="165_FOUC_fix.html
+<li data-file="166_Good_title_tags.html
+<li data-file="167_Meta_description_tags.html
+<li data-file="168_OpenGraph_tags.html
+<li data-file="169_Canonical_tags.html
+<li data-file="170_Robots_txt_and_sitemap_txt.html
+
+Section 12: Cross-Browser_support
+<li data-file="171_Section_12_Introduction.html
+<li data-file="172_Important_note_watch_for_all_browsers.html
+<li data-file="173_Safari_support.html
+<li data-file="174_Safari_support_continued.html
+<li data-file="175_Firefox_support.html
+<li data-file="176_Microsoft_edge_support.html
+<li data-file="177_Internet_explorer_support.html
+
+Section 13: Deployment
+<li data-file="178_Section_13_Introduction.html
+<li data-file="179_Heroku.html
+<li data-file="180_Custom_URLs_on_Heroku.html
+<li data-file="181_Now.html
+
+Section 14: Google_analytics
+<li data-file="182_Important_Google_analytics_update.html
+<li data-file="183_Section_14_Introduction.html
+<li data-file="184_Account_setup_and_react-ga.html
+<li data-file="185_Filtering_and_page_tracking.html
+<li data-file="186_Event_tracking.html
+<li data-file="187_Conversion_tracking.html
+
+Section 15: Project_manager
+<li data-file="188_Section_15_Introduction.html
+<li data-file="189_Project_2_setup.html
+<li data-file="190_Switches_overview.html
+<li data-file="191_Using_switches.html
+<li data-file="192_Tables_overview.html
+<li data-file="193_Using_tables.html
+<li data-file="194_Table_styling.html
+<li data-file="195_Pickers_overview.html
+<li data-file="196_Pickers_dependency_problem_-_fix.html
+<li data-file="197_Using_Datepicker.html
+<li data-file="198_Using_Datepicker_continued.html
+<li data-file="199_Radio_buttons_overview.html
+<li data-file="200_Using_Radios.html
+<li data-file="201_Select_overview.html
+<li data-file="202_Using_select.html
+<li data-file="203_Adding_a_project.html
+<li data-file="204_Adding_a_project_continued.html
+<li data-file="205_Fix_adding_website.html
+<li data-file="206_Filtering_Table_by_search.html
+<li data-file="207_Table_sorting_setup.html
+<li data-file="208_Table_sorting_setup.html
+<li data-file="209_Table_sorting_fixes.html
+<li data-file="210_Table_sorting_fixes_continued.html
+<li data-file="211_Tooltip_overview.html
+<li data-file="212_Deleting_rows.html
+<li data-file="213_Undo_delete.html
+<li data-file="214_Undo_delete_continued.html
+<li data-file="215_Filtering_table_with_switches.html
+<li data-file="216_Filtering_total_by_range.html
+<li data-file="217_Filtering_total_by_range_continued.html
+<li data-file="218_Filtering_total_by_range_finished.html
+<li data-file="219_Chips_overview.html
+<li data-file="220_Using_chips.html
+<li data-file="221_Using_chips_continued.html
+<li data-file="222_Responsive_design.html
+<li data-file="223_Responsive_design_continued.html
+<li data-file="224_Responsive_design_wrap_up.html
+
+Section 16: More_videos_extra_content
+<li data-file="225_Estimate_question_selection_fix.html
+<li data-file="226_Estimate_question_selection_fix_continued.html
+<li data-file="227_Snap_page_to_question_title.html
+<li data-file="228_Fine_tune_mobile_styles.html
+<li data-file="229_Fine_tune_mobile_styles_continued.html
+<li data-file="230_The_revolution_refactor.html
+<li data-file="231_Advanced_menu_overview_.html
+<li data-file="232_Advanced_menu_overview_continued.html
+<li data-file="233_Using_the_advanced_menu.html
+<li data-file="234_Using_the_advanced_menu_continued.html
+<li data-file="235_Thoughts_on_styled-components.html
+<li data-file="236_Convert_styled-components_to_Material-UI.html
+<li data-file="237_Convert_styled-components_to_Material-UI_continued.html
+<li data-file="238_Expansion_panels_overview.html
+<li data-file="239_Using_expansion_panels.html
+<li data-file="240_Using_expansion_panels_continued.html
+<li data-file="241_Using_expansion_panels_finished.html
+<li data-file="242_Skeleton_overview.html
+<li data-file="243_Non-blocking_Google_fonts.html
+<li data-file="244_Lazy_loading_overview.html
+<li data-file="245_Implement_lazy_loading.html
+<li data-file="246_Better_Active_tab_approach.html
+<li data-file="247_Better_Active_tab_approach_continued.html

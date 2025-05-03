@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔧 Integrating Responsiveness with Material UI</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 20px; color: #333; }
+    header { text-align: center; margin-bottom: 30px; }
+    header h1 { margin: 0; font-size: 2rem; }
+    header p { color: #555; font-size: 1rem; }
+    .container { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; width: 100%; max-width: 800px; }
+    .card h2 { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; margin-top: 0; }
+    .card p { line-height: 1.5; margin: 10px 0; }
+    .card code { background: #f0f0f0; padding: 2px 4px; border-radius: 4px; font-size: 0.9rem; }
+    .card pre { background: #f0f0f0; padding: 10px; border-radius: 4px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🔧 Integrating Responsiveness with Material UI</h1>
+    <p>📚 Study notes for implementing responsive design using Material UI hooks and breakpoints.</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>📦 1. Import Hooks &amp; Theme</h2>
+      <p>➡️ Import <code>useMediaQuery</code> and <code>useTheme</code> from Material UI Core:</p>
+      <pre><code>import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';</code></pre>
+      <p>🛠️ Set up the theme in your component:</p>
+      <pre><code>const theme = useTheme();</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>📺 2. Detect Screen Size</h2>
+      <p>🔍 Create a boolean <code>matches</code> using a breakpoint:</p>
+      <pre><code>const matches = useMediaQuery(theme.breakpoints.down('md'));  // true if screen is medium or smaller</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🌿 3. Conditional Rendering</h2>
+      <p>✂️ Use a ternary in JSX to show tabs only on larger screens:</p>
+      <pre><code>{'{'}matches ? null : (
+  &lt;Tabs ... /&gt;
+){'}'}</code></pre>
+      <p>🚫 The output is null for medium and below, hiding the tabs.</p>
+    </div>
+
+    <div class="card">
+      <h2>↔️ 4. Responsive Styles</h2>
+      <p>🎨 In your styles object, use <code>theme.breakpoints.down()</code> to adjust the logo height:</p>
+      <pre><code>logo: {
+  height: '8em',
+  [theme.breakpoints.down('md')]: { height: '7em' },
+  [theme.breakpoints.down('xs')]: { height: '5.5em' }
+}</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>↕️ 5. Adjust Spacing</h2>
+      <p>🧹 Include breakpoints for toolbar margin to remove extra gaps:</p>
+      <pre><code>toolbarMargin: {
+  marginBottom: '3em',
+  [theme.breakpoints.down('md')]: { marginBottom: '2em' },
+  [theme.breakpoints.down('xs')]: { marginBottom: '1.25em' }
+}</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>☰ 6. Next Step: Drawer</h2>
+      <p>📱 On mobile view, swap tabs for a <code>&lt;Drawer&gt;</code>. In the next video, we'll cover how to implement this component for navigation.</p>
+    </div>
+  </div>
+</body>
+</html>

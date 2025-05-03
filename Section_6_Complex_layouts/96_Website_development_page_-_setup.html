@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Notes: Website Development Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. Create File 📁</h2>
+    <p>Make a new file named <code>websites.js</code> inside the <code>components</code> folder. This will hold our website page code. 😊</p>
+  </div>
+  <div class="card">
+    <h2>2. Import Modules 📥</h2>
+    <p>At the top of <code>websites.js</code>, import React, Material‑UI tools (Grid, IconButton, Typography, Hidden), <code>makeStyles</code>, <code>useTheme</code>, and <code>useMediaQuery</code>. Also import back and forward arrow icons. These let us build and style our page. 🛠️</p>
+  </div>
+  <div class="card">
+    <h2>3. Setup Styles & Component 🎨</h2>
+    <p>Use <code>makeStyles</code> to create a <code>useStyles</code> hook for styling. Then define the <code>Websites</code> function component, get <code>classes</code> and <code>theme</code>, and return a <code>Grid container</code> with <code>direction="column"</code>. 💅</p>
+  </div>
+  <div class="card">
+    <h2>4. Copy Header & Arrows 🔁</h2>
+    <p>Copy the header & arrow <code>Grid item</code> from the Custom Software page. Paste it into <code>websites.js</code>. This makes the page title and navigation arrows appear. ↔️</p>
+  </div>
+  <div class="card">
+    <h2>5. Add Component to <code>App.js</code> ➕</h2>
+    <p>Open <code>App.js</code>, import <code>Websites</code> from <code>'./websites'</code>, and add its route where the other service pages are rendered. Now the website page can load! 🌐</p>
+  </div>
+  <div class="card">
+    <h2>6. Style Header 🖌️</h2>
+    <p>Copy the heading styles from the Custom Software page into your <code>useStyles</code> object and save. Refresh to see the styled title on the Website Development page. ✨</p>
+  </div>
+  <div class="card">
+    <h2>7. Update Text 📝</h2>
+    <p>Open the design file, copy the two paragraph texts under Website Development, and replace the old text in <code>websites.js</code>. Remove any extra <code>Typography</code> components. This puts the right content on the page. 📄</p>
+  </div>
+  <div class="card">
+    <h2>8. Add Content Row ➗</h2>
+    <p>Under the previous <code>Grid item</code>, add a new <code>Grid container direction="row"</code> with two <code>Grid items</code>. This sets up a row with an icon on the left and text on the right. 📐</p>
+  </div>
+  <div class="card">
+    <h2>9. Import Images & Analytics 🖼️</h2>
+    <p>Import images: <code>analytics</code>, <code>SEO</code>, <code>outreach</code>, and <code>ecommerce</code> from your assets folder. These icons will go in each section. 📂</p>
+  </div>
+  <div class="card">
+    <h2>10. Add Analytics Section 📊</h2>
+    <p>Inside the first <code>Grid item</code>, add a <code>Typography variant="h4"</code> with text "Analytics" and a <code>&lt;img&gt;</code> showing the analytics icon. This displays the section title and image. 🔍</p>
+  </div>
+  <div class="card">
+    <h2>11. Align & Style Text & Items 🎯</h2>
+    <p>On the row container, set <code>alignItems="center"</code>. For the paragraph, add a class with <code>maxWidth: '30m'</code> to limit its width. Save and refresh to see centered icon and text nicely side by side. ⚖️</p>
+  </div>
+  <div class="card">
+    <h2>12. Adjust Image Position 📐</h2>
+    <p>Add a style of <code>marginLeft: '-2.75m'</code> to the analytics image to align the graph bar with the title and let the magnifying glass hang over. Looks neat! 📏</p>
+  </div>
+  <div class="card">
+    <h2>13. Repeat for Other Sections 🔄</h2>
+    <p>Copy the analytics section code, change the icon, title, and text for SEO, Outreach, and eCommerce. Each section uses the same layout. You're done! 🎉</p>
+  </div>
+</body>
+</html>

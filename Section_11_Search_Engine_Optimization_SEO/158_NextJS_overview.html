@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction to Next.js - Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.4; }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    pre { background: #f9f9f9; padding: 12px; border-radius: 4px; overflow-x: auto; }
+    code { font-family: monospace; background: #eee; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">⚛️➡️🌐</span>What Is Next.js?</h2>
+    <p>Next.js is a React framework that adds server-side rendering, file-based routing, and many built-in optimizations. It helps pages load faster and makes content immediately visible to search engines and users. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔄</span>Server-Side Rendering Demo</h2>
+    <p>Normally, Create React App returns only a <code>&lt;div&gt;You need JavaScript&lt;/div&gt;</code>. With SSR, the server sends complete HTML, so pages appear instantly and bots see real content without waiting for JS. 🚀</p>
+    <pre><code>$ curl http://localhost:3000
+&lt;div id="root"&gt;You need to enable JavaScript to run this app.&lt;/div&gt;
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🗂️</span>File-System Routing</h2>
+    <p>Next.js uses the <code>/pages</code> folder: each <code>.js</code> file becomes a route. Create <code>about.js</code> and visit <code>/about</code>—no extra router setup needed! 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>Automatic Code Splitting</h2>
+    <p>Only the code needed for the current page loads. If you import a chart on one page, it won’t bloat other pages—improving performance. ⚡️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎯</span>Performance &amp; SEO Benefits</h2>
+    <ul>
+      <li>Faster initial load with pre-rendered HTML.</li>
+      <li>Search engines get full content immediately.</li>
+      <li>Reduced bandwidth and hosting costs.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🏢</span>Who Uses Next.js?</h2>
+    <p>Many sites rely on it: Vercel, Hulu, Marvel, and even Material UI’s official site. It’s trusted for real-world production. 💪</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🚀</span>Next Steps</h2>
+    <p>We’ll migrate our Create React App into Next.js to unlock SSR and routing. Then we’ll add SEO tags, generate <code>robots.txt</code> &amp; <code>sitemap.xml</code>, and deploy live. Let’s go! 🌍</p>
+  </div>
+
+</body>
+</html>

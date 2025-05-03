@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Page Navigation & State Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; font-size: 1.25em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">➕</span>Adding More Questions</h2>
+    <p>Copy <code>softwareQuestions</code> and <code>websiteQuestions</code> constants from the provided text file into <code>Estimate.js</code>. These extend your initial <code>defaultQuestions</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🗂️</span>Question Sets Explained</h2>
+    <ul>
+      <li><span class="emoji">🔹</span><strong>defaultQuestions</strong>: first screen choices (services).</li>
+      <li><span class="emoji">🔹</span><strong>softwareQuestions</strong>: questions for Custom Software & App Development.</li>
+      <li><span class="emoji">🔹</span><strong>websiteQuestions</strong>: questions for Website Development only.</li>
+    </ul>
+    <p>This separation ensures at the end you only process selected options for the chosen service. 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">↔️</span>Navigation Logic</h2>
+    <p>Make arrows clickable to move between questions:</p>
+    <ol>
+      <li>On click, <strong>clone</strong> the current questions array to avoid mutating state.</li>
+      <li>Set <code>active</code> to <code>false</code> on current question, and <code>true</code> on next/previous.</li>
+      <li>Update state with the new array to re-render the component. 🔄</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚠️</span>Why Clone State?</h2>
+    <p>React state must be immutable. Nested arrays/objects require deep copying to avoid mutating originals.</p>
+    <p>Simple shallow copies still reference inner objects, leading to unexpected changes.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>Using Lodash <code>cloneDeep</code></h2>
+    <ol>
+      <li>Install: <code>npm install --save lodash</code></li>
+      <li>Import: <code>import { cloneDeep } from 'lodash';</code></li>
+      <li>Clone: <code>const newQuestions = cloneDeep(currentQuestions);</code></li>
+    </ol>
+    <p>This ensures full deep copy of nested question objects. 🛡️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔢</span>Special Multiplier Question</h2>
+    <p>Question ID 6 (<em>"How many users do you expect?"</em>) uses <strong>multipliers</strong> instead of flat costs:</p>
+    <ul>
+      <li><code>0–10 users</code>: multiply total by <code>1.0</code></li>
+      <li><code>10–100 users</code>: multiply by <code>1.25</code> (+25%)</li>
+      <li><code>100+ users</code>: multiply by <code>1.5</code> (+50%)</li>
+    </ul>
+    <p>This reflects increasing project scope with more users. 📈</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🚚</span>Next Steps</h2>
+    <ol>
+      <li>Set up state: <code>const [questions, setQuestions] = useState(defaultQuestions);</code></li>
+      <li>Create <code>goNext</code> and <code>goBack</code> handlers using <code>cloneDeep</code>.</li>
+      <li>Attach handlers to arrow <code>&lt;IconButton&gt;</code> click events.</li>
+      <li>Test navigation: ensure only one question shows at a time.</li>
+      <li>Finally, when all answered, enable "Get Estimate" button to calculate total. 🎯</li>
+    </ol>
+  </div>
+
+</body>
+</html>

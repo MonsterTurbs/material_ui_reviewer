@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📋 Drawer &amp; Header Refactor - Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f7fa; margin: 0; padding: 20px; color: #333; }
+    h1 { text-align: center; color: #1976d2; margin-bottom: 20px; }
+    .container { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; }
+    .card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; }
+    .card h2 { margin-top: 0; display: flex; align-items: center; gap: 8px; color: #e65100; }
+    .card ul { padding-left: 20px; margin: 10px 0; }
+    .card li { margin-bottom: 8px; line-height: 1.4; }
+    code { background: #eee; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>🚀 Drawer &amp; Header Refactor - Study Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>✨ 1. Move Drawer Under App Bar</h2>
+      <ul>
+        <li>🔧 Add <code>className={classes.appBar}</code> to your <code>&lt;AppBar&gt;</code>.</li>
+        <li>📈 In your theme, set <code>appBar: { `zIndex: theme.zIndex.modal + 1` }</code>.</li>
+        <li>✅ Now the app bar sits on top of the drawer for a cleaner look.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📥 2. Push Drawer Items Down</h2>
+      <ul>
+        <li>➕ Insert a <code>&lt;div className={classes.toolbarMargin} /&gt;</code> at top of your drawer content.</li>
+        <li>🧱 This is the same spacer used for page content under the app bar.</li>
+        <li>👏 Drawer items now appear neatly below the toolbar.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🐛 3. Fix Console Errors</h2>
+      <ul>
+        <li>❌ Passing arrays to <code>&lt;ListItemText&gt;</code> classes caused warnings.</li>
+        <li>✅ Remove that ternary and only use <code>classes.drawItem</code> there.</li>
+        <li>✅ On the <code>&lt;ListItem&gt;</code>, use <code>classes={{ selected: classes.drawItemSelected }}</code> for selected styling.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔍 4. Style Selected Text Correctly</h2>
+      <ul>
+        <li>🖌️ In your styles, nest under <code>&amp; .Mui-selected .MuiListItemText-root</code> to give full opacity:</li>
+        <pre><code>drawItemSelected: {
+  '& .Mui-selected .MuiListItemText-root': {
+    opacity: 1
+  }
+},</code></pre>
+        <li>✨ Now selected items look bright and clear!</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔝 5. Adjust Menu Z-Index</h2>
+      <ul>
+        <li>⬆️ Raising the app bar z-index hid your popover menus.</li>
+        <li>⚡ Fix by adding <code>style={{ zIndex: 1302 }}</code> on your <code>&lt;Menu&gt;</code> component.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>#️⃣ 6. Use Unique Keys</h2>
+      <ul>
+        <li>🔑 Console warned about duplicate keys in map loops.</li>
+        <li>✅ Use backticks: <code>key={`item-${index}`}</code> for each <code>ListItem</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎉 Final Check</h2>
+      <ul>
+        <li>🔄 Resize your browser, open/close drawer, switch tabs, and refresh.</li>
+        <li>👍 Everything stays in sync and errors are gone!</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

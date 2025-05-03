@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Services Section - Study Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #1976d2;
+    }
+    .card ul {
+      margin: 10px 0;
+      padding-left: 20px;
+      color: #333;
+      line-height: 1.5;
+    }
+    .card p {
+      margin: 10px 0;
+      line-height: 1.5;
+      color: #333;
+    }
+    .card code {
+      display: block;
+      background: #f5f5f5;
+      padding: 8px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛠️ Building the Services Block</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>1. Mark the Section</h2>
+      <p>Add comments around your code so you can find each block easily:</p>
+      <code>&lt;!-- ----- Services Block ----- --&gt;</code>
+    </div>
+
+    <div class="card">
+      <h2>2. Wrap in a Grid Item & Container</h2>
+      <ul>
+        <li>Make a `<code>&lt;Grid item&gt;</code>` for the whole block.</li>
+        <li>Inside, add `<code>&lt;Grid container direction="row"&gt;</code>` to lay items side by side.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>3. Add Text Content</h2>
+      <p>Inside the first grid item:</p>
+      <code>
+        &lt;Typography variant="h4"&gt;Custom Software Development&lt;/Typography&gt;<br>
+        &lt;Typography variant="subtitle1"&gt;Save energy, save time, save money.&lt;/Typography&gt;<br>
+        &lt;Typography variant="subtitle1"&gt;Complete digital solutions from investigation to <span class="orange">celebration</span>.&lt;/Typography&gt;
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>4. Add “Learn More” Button</h2>
+      <p>Under the text, copy your Learn More button pattern:</p>
+      <code>
+        &lt;Button variant="outlined" className={classes.learnButton}&gt;<br>
+        &nbsp;&nbsp;&lt;span style={{marginRight:10}}&gt;Learn More&lt;/span&gt;<br>
+        &nbsp;&nbsp;&lt;ButtonArrow width={10} height={10} fill={theme.palette.common.blue} /&gt;<br>
+        &lt;/Button&gt;
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>5. Import and Place the Icon</h2>
+      <p>Next to the text item, add another grid item for the icon:</p>
+      <code>
+        &lt;img src={customSoftwareIcon} alt="Custom Software Icon" /&gt;
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>6. Style Titles & Text</h2>
+      <p>In your theme <code>theme.js</code>, configure:</p>
+      <code>
+        typography: {<br>
+        &nbsp;&nbsp;h4: { fontFamily: 'Raleway', fontSize: '1.75rem', fontWeight: 700, color: theme.palette.common.blue },<br>
+        &nbsp;&nbsp;subtitle1: { fontSize: '1.25rem', fontWeight: 300, color: '#868686' }<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>7. Highlight “Celebration” 🎉</h2>
+      <p>Wrap “celebration” in a span and give it special style:</p>
+      <code>
+        .specialText {<br>
+        &nbsp;&nbsp;fontFamily: 'Pacifico',<br>
+        &nbsp;&nbsp;color: theme.palette.common.orange<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>8. Centralize “Learn More” Styles</h2>
+      <p>Move repeated button styles into theme typography:</p>
+      <code>
+        typography: {<br>
+        &nbsp;&nbsp;learnButton: { fontSize: '0.9rem', height: 45, width:145, color: theme.palette.common.blue }<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>✅ Result</h2>
+      <p>You now have a neat services section:</p>
+      <ul>
+        <li>🗂️ Structured with grid containers/items</li>
+        <li>🖋️ Styled headings & text</li>
+        <li>🔗 Functional “Learn More” button</li>
+        <li>🎨 Custom icon aligned right</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

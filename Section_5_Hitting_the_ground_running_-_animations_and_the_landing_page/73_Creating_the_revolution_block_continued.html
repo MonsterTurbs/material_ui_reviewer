@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📘 Study Notes: Revolution Block</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #2563eb;
+    }
+    .card p {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 Study Notes: Revolution Block</h1>
+  <div class="container">
+    <div class="card">
+      <h2>⚡ Add Space Above the Block</h2>
+      <p>We set a <code>margin-top</code> of <strong>12m</strong> on the Revolution container so it doesn’t sit too close to the previous section. This keeps things neat!</p>
+    </div>
+
+    <div class="card">
+      <h2>✨ Style the Title</h2>
+      <p>Our title uses the <code>H3</code> Typography variant with:</p>
+      <ul>
+        <li>Font: <strong>Pacifico</strong> ✍️</li>
+        <li>Size: <strong>2.5rem</strong></li>
+        <li>Color: <strong>dark blue</strong></li>
+      </ul>
+      <p>Then we add <code>gutterBottom</code> to put a little gap under the title for breathing room.</p>
+    </div>
+
+    <div class="card">
+      <h2>📐 Responsive Padding</h2>
+      <p>On small screens, big padding can push our card off the sides. So we use a breakpoint to change padding:</p>
+      <ul>
+        <li><code>padding-top</code> & <code>padding-bottom</code>: <strong>8m</strong></li>
+        <li><code>padding-left</code> & <code>padding-right</code>: <strong>0</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Flush Corners on Mobile</h2>
+      <p>When squeezed on small screens, let’s remove the rounded corners and stretch full width:</p>
+      <ul>
+        <li><code>border-radius: 0</code></li>
+        <li><code>width: 100%</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>👍 Final Result</h2>
+      <p>The Revolution card now looks polished, floats nicely, and adapts perfectly on all devices. Great job! 🎉</p>
+    </div>
+  </div>
+</body>
+</html>

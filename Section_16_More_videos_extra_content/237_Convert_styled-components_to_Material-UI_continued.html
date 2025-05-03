@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Styled-Components → MUI Styled() Conversion</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p, .card ul { margin: 8px 0; }
+    code { display: block; background: #f4f4f4; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🧠 Think Component-first!</h2>
+    <p>Whenever possible, use MUI components (e.g. <code>TextField</code>, <code>Grid</code>) instead of raw HTML elements like <code>&lt;input&gt;</code> or <code>&lt;div&gt;</code>. This taps into MUI’s built-in theming, responsiveness, and layouts without extra work. 🤗</p>
+  </div>
+
+  <div class="card">
+    <h2>🔄 Convert Styled-Components → MUI <code>styled()</code></h2>
+    <ol>
+      <li><strong>Import:</strong> <code>import { styled } from '@mui/material/styles';</code></li>
+      <li><strong>Wrap Element:</strong>
+        <ul>
+          <li>HTML tag → string, e.g. <code>styled('input')</code></li>
+          <li>React component → direct reference, e.g. <code>styled(Button)</code></li>
+        </ul>
+      </li>
+      <li><strong>Convert Styles:</strong>
+        <ul>
+          <li>Drop <code>`.backticks`</code>, use an object: <code>styled('div')({ ... })</code></li>
+          <li>Change <code>kebab-case</code> → <code>camelCase</code> (e.g. <code>margin-bottom</code> → <code>marginBottom</code>)</li>
+          <li>Multiple values as string: <code>padding: '50px 20px'</code></li>
+          <li>Single numeric → number: <code>width: 400</code> (MUI adds <code>px</code>)</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>📱 Convert Media Queries to Theme Breakpoints</h2>
+    <p>Instead of raw CSS <code>@media</code>, use MUI’s <code>theme.breakpoints</code> inside <code>styled()</code>:</p>
+    <code>const Box = styled('div')(({ theme }) =&gt; ({
+  display: 'flex',
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+  },
+}));</code>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Style Props from Component Props</h2>
+    <p>Access props in <code>styled()</code> for dynamic colors or sizes:</p>
+    <code>const Badge = styled('span')(({ theme, color }) =&gt; ({
+  backgroundColor: color || theme.palette.primary.main,
+  padding: theme.spacing(1),
+}));
+
+// Usage: <Badge color="#f00">New!</Badge></code>
+  </div>
+
+  <div class="card">
+    <h2>🔑 Key Takeaways</h2>
+    <ul>
+      <li>Prefer MUI components over raw HTML for built-in features.</li>
+      <li><code>styled()</code> mirrors styled-components API with object syntax.</li>
+      <li>Use <code>theme</code> for breakpoints, shapes, spacing, and colors.</li>
+      <li>Pass props into <code>styled()</code> functions for dynamic styles.</li>
+    </ul>
+    <p>Now you’re ready to refactor your styled-components into a cohesive MUI styling system! 🚀</p>
+  </div>
+
+</body>
+</html>

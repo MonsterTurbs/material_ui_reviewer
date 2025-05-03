@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estimate Page Feedback & Validation Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🔔</span>1. Give User Feedback</h2>
+    <p>When sending the estimate, show a spinner and a message so the user knows what’s happening. 🕗</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>2. Import Components</h2>
+    <p>In <code>Estimate.js</code>, add imports:</p>
+    <pre><code>import Snackbar from '@material-ui/core/Snackbar';
+import CircularProgress from '@material-ui/core/CircularProgress';</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>3. Manage Loading & Alert State</h2>
+    <p>Copy from <code>Contact.js</code>:</p>
+    <pre><code>const [loading, setLoading] = useState(false);
+const [alert, setAlert] = useState({ open: false, message: '' });</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🚀</span>4. Show Spinner While Sending</h2>
+    <p>In <code>sendEstimate()</code>, before the Axios call do:</p>
+    <pre><code>setLoading(true);</code></pre>
+    <p>And in both <code>.then()</code> and <code>.catch()</code> blocks:</p>
+    <pre><code>setLoading(false);</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>5. Show Success or Failure</h2>
+    <p>On success, set alert and close dialog:</p>
+    <pre><code>setAlert({ open: true, message: 'Estimate placed successfully!' });
+setDialogOpen(false);</code></pre>
+    <p>On error, set alert:</p>
+    <pre><code>setAlert({ open: true, message: 'Error sending estimate.' });</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔲</span>6. Render Spinner in Button</h2>
+    <p>Inside the “Place Request” button:</p>
+    <pre><code>{loading
+  ? <CircularProgress size={30}/>
+  : <>
+      Place Request <img src={sendIcon} alt="Send"/>
+    </>
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🚫</span>7. Disable Until Valid</h2>
+    <p>Create an <code>estimateDisabled()</code> function to check for unanswered questions:</p>
+    <pre><code>const estimateDisabled = () => {
+  const empty = questions
+    .map(q => q.options.filter(o => o.selected))
+    .filter(arr => arr.length === 0);
+
+  // Website estimate: valid if only one empty (the first default question)
+  if (questions.length === 2 && empty.length === 1) return false;
+  // Default page only one question: stay disabled until service chosen
+  if (questions.length === 1) return true;
+  // Software estimate: valid if only one empty (the first default)
+  return !(questions.length > 2 && empty.length === 1);
+};</code></pre>
+    <p>Then on the “Get Estimate” button add: <code>disabled={estimateDisabled()}</code></p>
+  </div>
+
+</body>
+</html>

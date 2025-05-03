@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📘 Study Notes: iOS & Android App Development Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 10px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #e65100;
+      font-size: 1.2rem;
+    }
+    .card p {
+      margin: 10px 0;
+      line-height: 1.4;
+      color: #333;
+    }
+    .card code {
+      display: block;
+      background: #f5f5f5;
+      padding: 8px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+    .card ul {
+      padding-left: 20px;
+      margin: 10px 0;
+      color: #333;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚀 Adding iOS / Android App Section</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🔤 1. Rename Menu Item</h2>
+      <p>Change “Mobile App Development” to “iOS / Android App Development”:</p>
+      <code>
+// In Header.js menu options:
+{ name: "iOS / Android App Development", link: "/mobile-apps" }
+      </code>
+      <p>Also update in the footer links the same way.</p>
+    </div>
+
+    <div class="card">
+      <h2>📋 2. Copy Custom Software Block</h2>
+      <p>Use the Custom Software section as a template:</p>
+      <ul>
+        <li>Select the entire <code>&lt;Grid item&gt;…&lt;/Grid&gt;</code> for Custom Software.</li>
+        <li>Paste it right beneath to create the new section.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📥 3. Import the Mobile Icon</h2>
+      <p>Add at the top:</p>
+      <code>import MobileIcon from '../../assets/mobileIcon.svg';</code>
+    </div>
+
+    <div class="card">
+      <h2>✍️ 4. Update Text</h2>
+      <p>Change the headings and descriptions:</p>
+      <code>
+&lt;Typography variant="h4"&gt;iOS / Android App Development&lt;/Typography&gt;<br>
+&lt;Typography variant="subtitle1"&gt;Extend functionality…&lt;/Typography&gt;<br>
+&lt;Typography variant="subtitle1"&gt;Integrate your web experience…&lt;/Typography&gt;
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>🔀 5. Conditional Line Break</h2>
+      <p>Only on larger screens, insert a line break:</p>
+      <code>
+{/* inside JSX */}
+{"smallScreen ? null : <br />}  
+      </code>
+      <p>— ensures the text wraps nicely on desktop but stays on one line on mobile.</p>
+    </div>
+
+    <div class="card">
+      <h2>➡️ 6. Align Section Right / Center</h2>
+      <p>Push the block to the right on desktop, center on mobile:</p>
+      <code>
+&lt;Grid container<br>
+&nbsp;&nbsp;justify={matchesSM ? 'center' : 'flex-end'}<br>
+&gt;…&lt;/Grid&gt;
+      </code>
+      <p>Use <code>useMediaQuery(theme.breakpoints.down('sm'))</code> to set <code>matchesSM</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>🖼️ 7. Update Icon & Alt Text</h2>
+      <p>Swap in the new icon:</p>
+      <code>
+&lt;img src={MobileIcon}<br>
+&nbsp;&nbsp;alt="Mobile phone icon"<br>
+/&gt;
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>↔️ 8. Add Right Margin</h2>
+      <p>Give space on the right to match the left side:</p>
+      <code>
+{/* on the icon’s wrapper Grid item: */}
+style={{ marginRight: theme.spacing(5) }}
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>✅ Result</h2>
+      <ul>
+        <li>📱 Section title changed to iOS / Android</li>
+        <li>✅ New block appears on the right on desktop</li>
+        <li>↕️ Centers gracefully on mobile</li>
+        <li>👍 Balanced spacing on both sides</li>
+      </ul>
+      <p>All set! 🎉</p>
+    </div>
+
+  </div>
+</body>
+</html>

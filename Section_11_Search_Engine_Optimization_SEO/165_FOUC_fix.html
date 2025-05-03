@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next.js Migration Study Notes</title>
+  <style>
+    body { margin: 0; padding: 1rem; font-family: Arial, sans-serif; background: #f9f9f9; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 1rem; margin-bottom: 1rem; width: 100%; box-sizing: border-box; }
+    h3 { margin-top: 0; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h3>🖋️ Adding Fonts & Favicon</h3>
+    <p>• Copy Google Fonts link and favicon from your CRA <code>index.html</code> into <code>_document.js</code> in Next.js.</p>
+    <p>• Paste the <code>&lt;link&gt;</code> tags inside the <code>&lt;Head&gt;</code> section.</p>
+    <p>• Place <code>favicon.png</code> into Next.js <code>/public</code> and link to it.</p>
+  </div>
+
+  <div class="card">
+    <h3>🧹 Removing CssBaseline</h3>
+    <p>• <code>CssBaseline</code> from Material UI resets styling, but if your CRA project didn’t use it, remove it.</p>
+    <p>• Delete the <code>&lt;CssBaseline/&gt;</code> import and JSX in <code>_app.js</code>.</p>
+  </div>
+
+  <div class="card">
+    <h3>🚫 Resetting Body Margin</h3>
+    <p>• Browsers add default <code>margin: 8px</code> on <code>&lt;body&gt;</code>.</p>
+    <p>• In <code>_document.js</code>, add <code>&lt;body style="margin:0"&gt;</code> to remove the gap.</p>
+  </div>
+
+  <div class="card">
+    <h3>📦 Installing Axios</h3>
+    <p>• Next.js doesn’t include Axios by default.</p>
+    <p>• Run <code>npm install axios</code> to add it for HTTP requests.</p>
+  </div>
+
+  <div class="card">
+    <h3>🐞 Fixing Header Infinite Loop</h3>
+    <p>• In <code>header.js</code>, <code>useEffect</code> was setting state without guarding.</p>
+    <p>• Wrap the state-update in <code>if (value !== newValue)</code> so it only runs once.</p>
+  </div>
+
+  <div class="card">
+    <h3>⚙️ CSS <code>url()</code> Backticks</h3>
+    <p>• CSS URLs in JS need backticks: <code>backgroundImage: `url('/assets/bg.jpg')`</code> or quotes.</p>
+    <p>• Without them, you get <code>URL is not defined</code> errors.</p>
+  </div>
+
+  <div class="card">
+    <h3>🔀 Avoiding FOUC in Header</h3>
+    <p>• Next.js SSR doesn’t know screen size, so MUI media queries flash wrong layout.</p>
+    <p>• Wrap desktop tabs in <code>&lt;Hidden mdDown&gt;</code> and mobile drawer in <code>&lt;Hidden lgUp&gt;</code>.</p>
+  </div>
+
+  <div class="card">
+    <h3>✅ Verifying SSR with <code>curl</code></h3>
+    <p>• Run <code>curl -A "Googlebot/2.1" http://localhost:3000</code> to see what bots get.</p>
+    <p>• A blank CRA shows only JS stub; Next.js returns full HTML pre-rendered.</p>
+  </div>
+
+  <div class="card">
+    <h3>📂 Public Folder for Static Assets</h3>
+    <p>• Create <code>/public</code> for images and files.</p>
+    <p>• Access via <code>/assets/logo.svg</code> without JS imports, reducing bundle size.</p>
+  </div>
+
+  <div class="card">
+    <h3>🎉 Migration Summary</h3>
+    <ul>
+      <li>Copied UI folder into <code>/src/ui</code>.</li>
+      <li>Updated all image imports to use <code>/public/assets</code> URLs.</li>
+      <li>Replaced React Router <code>&lt;Link&gt;</code> with Next.js <code>&lt;Link href="..."&gt;</code>.</li>
+      <li>Fixed missing modules (<code>react-lottie</code>, MUI icons).</li>
+    </ul>
+    <p>✅ Now enjoy faster loads, SEO boost, and streamlined routing!</p>
+  </div>
+
+</body>
+</html>

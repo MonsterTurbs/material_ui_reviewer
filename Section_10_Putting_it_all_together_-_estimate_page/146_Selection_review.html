@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Selection Review Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f9f9f9; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">👀</span>Why Show Selected Options?</h2>
+    <p>We want to reassure users by listing the choices they made before confirming. This makes the estimate clear and trustworthy! 🤝</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📐</span>Layout in Dialog</h2>
+    <ul>
+      <li>Under <code>&lt;DialogContent&gt;</code>, split into two columns:</li>
+      <li>Left: contact form (name, email, phone, message).</li>
+      <li>Right: selection review with check marks and text.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔧</span>Grid Setup</h2>
+    <pre><code>&lt;Grid container&gt;
+  &lt;Grid item md={7}&gt;…form fields…&lt;/Grid&gt;
+  &lt;Grid item md={5}&gt;…check-list…&lt;/Grid&gt;
+&lt;/Grid&gt;</code></pre>
+    <p>Use <code>md</code> props so the two sides share space (7 + 5 = 12).</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✔️</span>Building the Check List</h2>
+    <ol>
+      <li>Wrap review items in a column container:</li>
+      <pre><code>&lt;Grid item&gt;
+  &lt;Grid container direction="column"&gt;…&lt;/Grid&gt;
+&lt;/Grid&gt;</code></pre>
+      <li>For each selected option, render:</li>
+      <pre><code>&lt;Grid container alignItems="center"&gt;
+  &lt;img src={checkIcon} alt="✔️" /&gt;
+  &lt;Typography&gt;Option text here&lt;/Typography&gt;
+&lt;/Grid&gt;</code></pre>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔄</span>Dynamic Rendering</h2>
+    <p>Map over your <code>questions</code> state, filter for <code>selected</code> options, and display each:</p>
+    <pre><code>{questions
+  .map(q =&gt; q.options.filter(o =&gt; o.selected))
+  .filter(arr =&gt; arr.length)
+  .flat()
+  .map((opt, i) =&gt; (
+    &lt;Grid container alignItems="center" key={i}&gt;
+      &lt;img src={checkIcon} alt="✔️" /&gt;
+      &lt;Typography&gt;{opt.title}&lt;/Typography&gt;
+    &lt;/Grid&gt;
+  ))}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Style Tips</h2>
+    <ul>
+      <li>Use consistent icon size (<code>className={classes.checkIcon}</code>).</li>
+      <li>Add spacing with <code>spacing</code> prop on Grid containers.</li>
+      <li>Color check-icon <span style="color:orange;">🟠</span> to match theme.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Result</h2>
+    <p>Now the dialog shows a nice review pane with check marks and option names—users can confirm at a glance! 🤩</p>
+  </div>
+
+</body>
+</html>

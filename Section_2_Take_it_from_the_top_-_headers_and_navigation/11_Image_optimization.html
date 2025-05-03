@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Optimization - Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      line-height: 1.8;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p, ul, code {
+      font-size: 16px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🖼️ Study Notes: Image Optimization in Web Development</h1>
+
+<div class="card">
+  <h2>🔍 Why Optimize Images?</h2>
+  <ul>
+    <li>Faster website loading speed</li>
+    <li>Better performance on mobile devices</li>
+    <li>Improves SEO and user experience</li>
+    <li>Reduces file size and saves bandwidth</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>📁 Image Types to Use</h2>
+  <ul>
+    <li><strong>SVG</strong> (Scalable Vector Graphics) – best for icons and simple graphics</li>
+    <li><strong>JPG / PNG</strong> – use only if SVG isn’t possible</li>
+  </ul>
+  <p>SVGs are <strong>scalable, small in file size</strong>, and <strong>customizable</strong> via code!</p>
+</div>
+
+<div class="card">
+  <h2>🛠️ Tools for Optimization</h2>
+  <ul>
+    <li><a href="https://tinyjpg.com" target="_blank">TinyJPG</a> – for JPG and PNG (drag and drop)</li>
+    <li><a href="https://jakearchibald.github.io/svgomg/" target="_blank">SVGOMG</a> – for SVGs</li>
+    <li><strong>Photoshop</strong> – Export using <code>File &gt; Export As</code> and adjust quality</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🧪 Example Results</h2>
+  <ul>
+    <li>Original JPG = 2.9MB</li>
+    <li>After TinyJPG = 688kB</li>
+    <li>After Photoshop = 325kB</li>
+  </ul>
+  <p>⚠️ Nearly 90% reduction without visible quality loss!</p>
+</div>
+
+<div class="card">
+  <h2>📈 Performance Insights with Google PageSpeed</h2>
+  <ul>
+    <li><a href="https://pagespeed.web.dev" target="_blank">Google PageSpeed Insights</a> helps you analyze your site's speed</li>
+    <li>Bad image practices can <strong>slow down your site</strong>, especially on mobile</li>
+    <li>Good image optimization = higher score and faster load</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>💡 Tips to Remember</h2>
+  <ul>
+    <li>Always use SVGs when possible</li>
+    <li>Run images through optimizers before using</li>
+    <li>Check quality after exporting to avoid distortion</li>
+    <li>Compare multiple methods (TinyJPG vs Photoshop)</li>
+    <li>Optimize all icons and illustrations in your project</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>✅ Summary</h2>
+  <p>Optimizing your images helps your site run fast, look great, and perform well across devices. Just follow these steps and you'll be on your way to building a high-performing app!</p>
+</div>
+
+</body>
+</html>

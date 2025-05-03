@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Notes: Improving “Add Project” Dialog 🎯</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Roboto, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 16px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 16px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      color: #1976d2;
+    }
+    .card p {
+      margin: 8px 0;
+      line-height: 1.5;
+      color: #333333;
+    }
+    pre {
+      background: #eee;
+      padding: 8px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Disable Unneeded Inputs for Website 🌐🚫</h2>
+    <p>When <code>service === 'website'</code>, disable complexity, users & platforms options so kids know they’re not required:</p>
+    <pre><code>&lt;FormControlLabel
+  control={…}
+  label="iOS"
+  disabled={service === 'website'}
+/&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>2. Switch Features List for Website 🛍️➡️🛒</h2>
+    <p>Use website-specific features (like Basic/Interactive/E-commerce) instead of mobile-app ones:</p>
+    <pre><code>let featureOptions = mobileOptions;
+if (service === 'website') {
+  featureOptions = websiteOptions;
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>3. Show “N/A” & Add $ in Table 💲❓</h2>
+    <p>For website entries, output <code>'N/A'</code> for complexity/users/platforms, and prepend <code>'$'</code> to totals:</p>
+    <pre><code>complexity = service==='website' ? 'N/A' : complexity;
+total = `$${total}`;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>4. Prevent Multiple Website Features 🚦</h2>
+    <p>Only one feature allowed for websites. Disable “Add” if &gt;1 selected:</p>
+    <pre><code>disabled={
+  service==='website'
+    ? features.length!==1
+    : /* regular validation */
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>5. Clear Features When Service Changes 🔄</h2>
+    <p>Reset <code>features</code> array whenever user picks a new service:</p>
+    <pre><code>&lt;RadioGroup onChange={e =&gt; {
+  setService(e.target.value);
+  setFeatures([]); // clear old features
+}}&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>6. Better UX, Happy Users 🥳</h2>
+    <p>These tweaks make the form clearer and prevent mistakes. Always guide users with disabled fields and sensible defaults! 👍</p>
+  </div>
+
+</body>
+</html>

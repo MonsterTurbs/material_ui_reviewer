@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Services Menu Implementation Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p, .card ul { margin: 8px 0; }
+    code { display: block; background: #f4f4f4; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <!-- Goal Card -->
+  <div class="card">
+    <h2>🎯 Goal</h2>
+    <p>Refactor the header’s Services menu to use Material-UI’s MenuList composition, so the popup appears neatly underneath the tab without covering it. 🌟</p>
+  </div>
+
+  <!-- Problem Card -->
+  <div class="card">
+    <h2>❌ Issue with Current Menu</h2>
+    <ul>
+      <li>The simple menu covers the Services tab when opened.</li>
+      <li>Misaligns the active tab indicator and breaks UX flow.</li>
+      <li>Still lists “Services” as a menu item rather than preserving the tab itself. 🚫</li>
+    </ul>
+  </div>
+
+  <!-- Components Needed -->
+  <div class="card">
+    <h2>🧩 Components to Use</h2>
+    <ul>
+      <li><strong>ClickAwayListener</strong>: Closes menu on outside click 🤚</li>
+      <li><strong>Popper</strong>: Positions popup under the tab 📍</li>
+      <li><strong>Grow</strong>: Adds smooth open/close animation 🌱</li>
+      <li><strong>Paper</strong>: Provides styled container for menu 📄</li>
+      <li><strong>MenuList &amp; MenuItem</strong>: Renders the list of services 📋</li>
+    </ul>
+  </div>
+
+  <!-- Implementation Steps -->
+  <div class="card">
+    <h2>🔧 Step-by-Step Implementation</h2>
+    <ol>
+      <li><strong>Import components</strong> at top of <code>Header.js</code>: <code>ClickAwayListener, Popper, Grow, Paper, MenuList</code>.</li>
+      <li><strong>Maintain state</strong>: use <code>const [openMenu, setOpenMenu] = useState(false);</code></li>
+      <li><strong>Anchor ref</strong>: <code>const anchorEl = useRef(null);</code> and attach via <code>ref={anchorEl}</code> to Services tab element.</li>
+      <li><strong>Trigger menu</strong>: On hover/click, toggle <code>openMenu</code> and set anchor element.</li>
+      <li><strong>Render Popper</strong>:
+        <code>&lt;Popper open={openMenu} anchorEl={anchorEl.current} transition&gt;</code>
+      </li>
+      <li><strong>Animate with Grow</strong>:
+        <code>&lt;Grow&gt;&lt;Paper&gt;…&lt;/Paper&gt;&lt;/Grow&gt;</code>
+      </li>
+      <li><strong>Wrap with ClickAwayListener</strong> to close on outside clicks:</li>
+      <li><strong>Menu content</strong>: Inside <code>&lt;Paper&gt;</code>, use <code>&lt;MenuList&gt;</code> and map existing <code>menuOptions.map(opt =&gt; &lt;MenuItem&gt;…)</code>.</li>
+    </ol>
+  </div>
+
+  <!-- Key Code Snippet -->
+  <div class="card">
+    <h2>💻 Key Code Example</h2>
+    <code>import { useRef, useState } from 'react';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Popper from '@material-ui/core/Popper';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import MenuList from '@material-ui/core/MenuList';
+
+function Header() {
+  const [openMenu, setOpenMenu] = useState(false);
+  const anchorEl = useRef(null);
+
+  return (
+    &lt;div&gt;
+      &lt;Tab ref={anchorEl} onMouseEnter={() =&gt; setOpenMenu(true)}&gt;Services&lt;/Tab&gt;
+      &lt;Popper open={openMenu} anchorEl={anchorEl.current} transition&gt;
+        &lt;Grow&gt;
+          &lt;ClickAwayListener onClickAway={() =&gt; setOpenMenu(false)}&gt;
+            &lt;Paper&gt;
+              &lt;MenuList onMouseLeave={() =&gt; setOpenMenu(false)} disablePadding&gt;
+                {menuOptions.map(opt =&gt; (
+                  &lt;MenuItem key={opt.label} onClick={opt.action}&gt;{opt.label}&lt;/MenuItem&gt;
+                ))}
+              &lt;/MenuList&gt;
+            &lt;/Paper&gt;
+          &lt;/ClickAwayListener&gt;
+        &lt;/Grow&gt;
+      &lt;/Popper&gt;
+    &lt;/div&gt;
+  );
+}</code>
+  </div>
+
+  <!-- Outcome -->
+  <div class="card">
+    <h2>🎉 Outcome</h2>
+    <p>The Services tab now remains visible, with a perfectly aligned, smoothly animated dropdown underneath—delivering a polished and intuitive navigation experience! 🌟</p>
+  </div>
+</body>
+</html>

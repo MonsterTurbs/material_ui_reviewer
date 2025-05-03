@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Manager Tool Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4faff; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 20px; margin: 10px 0; width: 100%; max-width: 700px; }
+    h2 { color: #1a3e5c; margin-top: 0; }
+    p, ul { color: #333; line-height: 1.5; padding-left: 20px; }
+    ul { list-style: inside; }
+    code { background: #eef6fb; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>📁 What is Our Second Project?</h2>
+    <p>We’re building a <strong>Project Manager</strong> tool to organize all the estimates from our website. It’s an internal app with tables, filters, and dialogs. 🗂️</p>
+  </div>
+
+  <div class="card">
+    <h2>🧩 Key Features</h2>
+    <ul>
+      <li>🔍 <strong>Search Box</strong>: Type to filter projects by name, service, or platform.</li>
+      <li>🔀 <strong>Switch Filters</strong>: Toggle services (Websites, Software, Mobile) on/off.</li>
+      <li>💵 <strong>Price Filter</strong>: Choose &gt;, &lt;, or = and show a chip with the selected range.</li>
+      <li>➕ <strong>Add Project</strong>: Click the plus icon to open a dialog and enter new project details.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📊 Table &amp; Controls</h2>
+    <ul>
+      <li>✅ <strong>Checkboxes</strong>: Select projects to delete, with an undo snack bar.</li>
+      <li>↕️ <strong>Sortable Columns</strong>: Click headers to sort A→Z or Z→A.</li>
+      <li>📑 <strong>Material UI Table</strong>: Shows project name, service, features, date, users, and total cost.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🗣️ Add Project Dialog</h2>
+    <ul>
+      <li>🗓️ <strong>Date Picker</strong>: Choose the project date using Material UI Pickers.</li>
+      <li>✏️ <strong>Text Fields</strong>: Enter project name and total cost.</li>
+      <li>🔘 <strong>Radio Groups</strong>: Select service, complexity, and user count.</li>
+      <li>📋 <strong>Select Dropdown</strong>: Pick features or platforms.</li>
+      <li>✅ <strong>Cancel</strong> &amp; <strong>Add</strong> buttons to close or save.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Layout Tips</h2>
+    <ul>
+      <li>📐 Use a <code>Grid container direction="column"</code> for main layout.</li>
+      <li>📦 Wrap each section (search, switches, filters, table) in <code>Grid item</code>.</li>
+      <li>↔️ For dialog, use a row container with three column items for form sections.</li>
+      <li>🎨 Input Adornments let you add icons inside TextFields (plus, filter symbols).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Next Steps</h2>
+    <p>Let’s start coding! In the next video, we’ll set up the header/footer and grid, then build each feature step by step. 🛠️</p>
+  </div>
+
+</body>
+</html>

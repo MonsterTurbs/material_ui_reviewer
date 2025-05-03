@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Notes: MUI Expansion Panel</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; line-height: 1.4; }
+    pre { background: #f4f4f4; padding: 8px; border-radius: 4px; font-family: monospace; overflow-x: auto; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🔍 What is an Expansion Panel?</h2>
+    <p>The Expansion Panel is a “collapsible” box that hides or shows content on demand. 📦</p>
+    <p>It helps keep your UI clean by showing just the title (summary) and letting you click to reveal details.</p>
+  </div>
+
+  <div class="card">
+    <h2>✨ Basic Structure</h2>
+    <p>There are three main pieces:</p>
+    <ul>
+      <li><strong>ExpansionPanel</strong>: The outer wrapper.</li>
+      <li><strong>ExpansionPanelSummary</strong>: Always-visible title area; click here to expand. 👆</li>
+      <li><strong>ExpansionPanelDetails</strong>: Content that appears when expanded. 🎉</li>
+    </ul>
+    <pre>&lt;ExpansionPanel&gt;
+  &lt;ExpansionPanelSummary expandIcon=&lt;ExpandMoreIcon /&gt;&gt;
+    Title Goes Here
+  &lt;/ExpansionPanelSummary&gt;
+  &lt;ExpansionPanelDetails&gt;
+    Hidden content goes here...
+  &lt;/ExpansionPanelDetails&gt;
+&lt;/ExpansionPanel&gt;</pre>
+  </div>
+
+  <div class="card">
+    <h2>📊 Controlled vs Uncontrolled</h2>
+    <p><strong>Uncontrolled</strong>: Just click and it toggles itself automatically.</p>
+    <p><strong>Controlled</strong>: You manage open/close in React state, like an accordion:</p>
+    <pre>const [expanded, setExpanded] = useState(false);
+
+&lt;ExpansionPanel
+  expanded={expanded === 'panel1'}
+  onChange={(e, isOpen) =&gt; setExpanded(isOpen ? 'panel1' : false)}
+&gt;...
+&lt;/ExpansionPanel&gt;</pre>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Customizing</h2>
+    <p>🔹 <strong>expandIcon</strong>: Swap the arrow icon.</p>
+    <p>🔹 <strong>disableRipple</strong>, <strong>disabled</strong>, etc.: Use any usual MUI props.</p>
+    <p>🔹 Put any React/MUI components inside <code>ExpansionPanelDetails</code>—not just text!</p>
+  </div>
+
+  <div class="card">
+    <h2>🎛️ Extra: ExpansionPanelActions</h2>
+    <p>Place action buttons at the bottom:</p>
+    <pre>&lt;ExpansionPanelActions&gt;
+  &lt;Button&gt;Cancel&lt;/Button&gt;
+  &lt;Button color="primary"&gt;Save&lt;/Button&gt;
+&lt;/ExpansionPanelActions&gt;</pre>
+  </div>
+
+  <div class="card">
+    <h2>👍 Beginner Tips</h2>
+    <ul>
+      <li>Keep summaries short—like headings. 📋</li>
+      <li>Use icons to hint at expand/collapse (e.g. <code>&lt;ExpandMoreIcon/&gt;</code>).</li>
+      <li>Accordions: control panels with state so only one opens at a time.</li>
+      <li>Great for FAQs, settings, mobile menus, and any place to hide extra info! 🤫</li>
+    </ul>
+  </div>
+
+</body>
+</html>

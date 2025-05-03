@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔧 Tweak Bodymovin Export – Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+    h1 { text-align: center; color: #1976d2; margin-bottom: 20px; }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; }
+    .card h2 { margin-top: 0; display: flex; align-items: center; gap: 8px; color: #e65100; }
+    .card p, .card ul { margin: 10px 0; line-height: 1.5; }
+    .card ul { padding-left: 20px; }
+    .card li { margin-bottom: 6px; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>🔧 Tweak Bodymovin JSON for React</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🎯 Goal</h2>
+      <p>Fix the exported <code>.json</code> so images are bundled in JavaScript, not referenced by URL. Even beginners can follow! 👶🚀</p>
+    </div>
+
+    <div class="card">
+      <h2>🗂️ 1. Locate Your Exported Files</h2>
+      <p>Find the folder with <code>Data.json</code> and its <code>images/</code> folder that Bodymovin created. 📁</p>
+    </div>
+
+    <div class="card">
+      <h2>✂️ 2. Copy JSON</h2>
+      <p>Open <code>Data.json</code> in your editor, select all, and copy it. We’ll paste it into a new JS file. 📋</p>
+    </div>
+
+    <div class="card">
+      <h2>📝 3. Create <code>data.js</code></h2>
+      <p>On your desktop (or project folder), create <code>data.js</code> and start with:</p>
+      <pre><code>export default {
+  /* paste JSON here */
+};</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🖼️ 4. Import Images</h2>
+      <p>At top of <code>data.js</code>, add imports for each image file:</p>
+      <pre><code>import img0 from './images/00001.png';
+import img1 from './images/00002.png';
+// etc...</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🔄 5. Replace URLs with Imports</h2>
+      <ul>
+        <li>In the JSON, find each <code>"u":"..."
+        </code> (URL) and change to <code>"u":""</code> (empty string).</li>
+        <li>Replace each <code>"p":"00001.png"</code> with the imported variable, e.g. <code>p: img0</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>💾 6. Final Export</h2>
+      <p>Your <code>data.js</code> should now <strong>import</strong> images and <strong>export</strong> the JSON data object. No external URLs! ✅</p>
+    </div>
+
+    <div class="card">
+      <h2>🗑️ 7. Clean Up</h2>
+      <p>Delete the old <code>Data.json</code> and <code>/images</code> in that folder; you now have <code>data.js</code> bundling everything. 🧹</p>
+    </div>
+
+    <div class="card">
+      <h2>🚀 8. Next Steps</h2>
+      <p>Import <code>data.js</code> into your React component and use a Lottie player to render the animation! 🎉</p>
+    </div>
+
+  </div>
+</body>
+</html>

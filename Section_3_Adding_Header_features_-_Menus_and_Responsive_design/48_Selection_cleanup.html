@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beginner-Friendly Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.2s;
+      width: 100%;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      font-size: 1.2em;
+      margin-top: 0;
+      color: #2a7ae2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <h1>Learn How We Refactored the Header</h1>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>💡 1. Why Refactor?</h2>
+      <ul>
+        <li>Remove duplicate & outdated <code>if/else</code> code.</li>
+        <li>Make the header code cleaner and faster.</li>
+        <li>Allow easy future changes by generalizing logic.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🗑️ 2. Remove Old Code</h2>
+      <ul>
+        <li>Found leftover <code>if/else</code> checks in the useEffect.</li>
+        <li>Deleted the entire old switch and if/else block.</li>
+        <li>Kept only the new, cleaner logic below.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🛣️ 3. Create Routes Array</h2>
+      <ul>
+        <li>Added a constant named <code>routes</code> as an array of objects.</li>
+        <li>Each object has:<br>
+          - <code>name</code>: label shown to the user<br>
+          - <code>link</code>: URL path<br>
+          - <code>activeIndex</code>: which tab to highlight<br>
+          - (optional) <code>selectedIndex</code>: which submenu to highlight
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📋 4. Combine Menu & Routes</h2>
+      <ul>
+        <li>Use JavaScript spread: <code>[ ...menuOptions, ...routes ]</code>.</li>
+        <li>Create one big list of everything to check.</li>
+        <li>Loop through it with <code>.forEach()</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔀 5. Generalized Switch</h2>
+      <ul>
+        <li>Inside <code>forEach</code>, use:<br>
+          <code>switch (window.location.pathname) { case `\${route.link}`: … }</code>
+        </li>
+        <li>Checks current URL and matches to each route’s <code>link</code>.</li>
+        <li>Calls <code>setValue</code> or <code>setSelectedIndex</code> if not already set.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔘 6. Active & Selected Index</h2>
+      <ul>
+        <li><code>activeIndex</code>: which top tab is active.</li>
+        <li><code>selectedIndex</code>: which submenu item is active (if any).</li>
+        <li>Both come from the route objects for explicit control.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⭐ 7. Benefits of This Approach</h2>
+      <ul>
+        <li>Much shorter code—old long switch is gone.</li>
+        <li>Easy to add new pages: just add to the <code>routes</code> array.</li>
+        <li>Reusability: use this same pattern in other projects.</li>
+        <li>Clear separation of data (route list) and logic (useEffect).</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

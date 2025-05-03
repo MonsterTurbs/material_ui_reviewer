@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Notes: Material UI Select Component 🍱</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Roboto, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 16px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 16px;
+      margin-bottom: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      color: #1976d2;
+    }
+    .card p {
+      margin: 8px 0;
+      line-height: 1.5;
+      color: #333333;
+    }
+    .emoji {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Select Component 🍱</h2>
+    <p>A <strong>Select</strong> lets users pick one or more options from a list. It’s perfect when you have many choices and want a dropdown.</p>
+  </div>
+
+  <div class="card">
+    <h2>Basic Single Select ✅</h2>
+    <p>Use the simple Select for exactly one choice. It shows the selected value in the input, and clicking it opens a menu of <code>&lt;MenuItem&gt;</code>s.</p>
+  </div>
+
+  <div class="card">
+    <h2>FormControl + InputLabel 🏷️</h2>
+    <p>Wrap your <code>&lt;Select&gt;</code> in a <code>&lt;FormControl&gt;</code> and add an <code>&lt;InputLabel&gt;</code>. Use the same <code>id</code> on both so the label floats correctly.</p>
+  </div>
+
+  <div class="card">
+    <h2>MenuItem List 📋</h2>
+    <p>Inside your <code>&lt;Select&gt;</code>, place one <code>&lt;MenuItem value="..."/&gt;</code> for each option. The <code>value</code> gets passed to your state <code>onChange</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2>Multiple Select 📝</h2>
+    <p>Add the <code>multiple</code> prop to allow picking more than one option. The value becomes an array of selected items. Great for “pick all that apply” questions.</p>
+  </div>
+
+  <div class="card">
+    <h2>Native Select 🌐</h2>
+    <p>Use the <code>native</code> prop for the browser’s built-in dropdown. It can feel more natural on mobile or simple forms, but has less styling control.</p>
+  </div>
+
+  <div class="card">
+    <h2>Styling & Variants 🎨</h2>
+    <p>You can switch between <code>outlined</code>, <code>filled</code>, or <code>standard</code> variants. Add <code>disabled</code> or <code>error</code> props to show different states.</p>
+  </div>
+
+  <div class="card">
+    <h2>Programmatic Control ⚙️</h2>
+    <p>You can control open/close by using the <code>open</code> prop and manage it in state, plus <code>onClose</code> and <code>onOpen</code> callbacks.</p>
+  </div>
+
+  <div class="card">
+    <h2>Grouped Options 🗂️</h2>
+    <p>If you have many items, use <code>&lt;ListSubheader&gt;</code> inside your menu to group related choices under headings.</p>
+  </div>
+
+  <div class="card">
+    <h2>Accessibility 🔒</h2>
+    <p>Always give your <code>&lt;Select id="my-select"&gt;</code> and its <code>&lt;InputLabel htmlFor="my-select"&gt;</code> matching IDs so screen readers announce them properly.</p>
+  </div>
+
+</body>
+</html>

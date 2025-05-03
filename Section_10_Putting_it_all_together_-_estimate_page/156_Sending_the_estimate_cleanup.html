@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estimate Button Enablement Logic Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.5;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25em;
+    }
+    .emoji {
+      font-size: 1.2em;
+      margin-right: 8px;
+    }
+    pre {
+      background: #f9f9f9;
+      padding: 12px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">📝</span>Review: Empty Selections</h2>
+    <p>For each question, we gather its selected options. If none are selected, that question counts as “unanswered.”</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔢</span>Count Unanswered</h2>
+    <pre><code>const empty = questions
+  .map(q => q.options.filter(o => o.selected))
+  .filter(arr => arr.length === 0);
+</code></pre>
+    <p><code>empty.length</code> then tells us how many questions remain unanswered.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🌐</span>Website Estimate Case</h2>
+    <p>When <code>questions.length === 2</code> (service + category), enable the button once the category is chosen (i.e. <code>empty.length === 1</code>).</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🖥️</span>Default Case</h2>
+    <p>When <code>questions.length === 1</code> (just service), keep the button disabled until a service is selected.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">💻</span>Software Estimate Case</h2>
+    <p>When <code>questions.length &gt; 2</code>, require:</p>
+    <ul>
+      <li><strong>At least one feature page answered</strong> (<code>empty.length &lt; 3</code>).</li>
+      <li><strong>Last question answered</strong> (the final options array has at least one <code>selected</code>).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Combined Logic</h2>
+    <pre><code>const estimateDisabled = () => {
+  const empty = questions
+    .map(q => q.options.filter(o => o.selected))
+    .filter(arr => arr.length === 0);
+
+  // Website: service + category
+  if (questions.length === 2 && empty.length === 1) return false;
+  // Default: only service
+  if (questions.length === 1) return true;
+  // Software: require at least one features page & final question answered
+  if (
+    questions.length > 2 &&
+    empty.length < 3 &&
+    questions[questions.length - 1]
+      .options.filter(o => o.selected).length > 0
+  ) {
+    return false;
+  }
+  // Otherwise keep disabled
+  return true;
+};</code></pre>
+    <p>Use <code>disabled={estimateDisabled()}</code> on your “Get Estimate” button so it only activates when the form is properly filled out. 🎯</p>
+  </div>
+
+</body>
+</html>

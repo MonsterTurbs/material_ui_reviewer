@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Notes: Website Development Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background-color: #f0f0f0;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 16px;
+      padding: 16px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+    .card p, .card li {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .card ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>📱 Page Overview</h2>
+    <p>We’re building the “iOS &amp; Android App Development” page. It’s like the other service pages: a header with arrows to hop between services, and below it three sections, each with an icon and some text. Super simple! 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>🔝 Header Section</h2>
+    <ul>
+      <li>Use a <strong>Grid container</strong> with <code>direction="column"</code>.</li>
+      <li>First row has three items:  
+        <ol>
+          <li>🔙 Back arrow (go to previous service)</li>
+          <li>📄 Text block (title + paragraphs)</li>
+          <li>🔜 Forward arrow (go to next service)</li>
+        </ol>
+      </li>
+      <li>Use Material UI’s <code>IconButton</code> wrapping an <code>img</code> for each arrow.</li>
+      <li>Typography:  
+        <ul>
+          <li><code>variant="h2"</code> for the big title</li>
+          <li><code>variant="body1"</code> for the description text</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔥 Main Content Row</h2>
+    <ul>
+      <li>Wrap in a <strong>Grid item container</strong> with <code>direction="row"</code>.</li>
+      <li>Three parts side by side:  
+        <ol>
+          <li>Left: text block (title &amp; paragraphs)</li>
+          <li>Center: Lottie animation</li>
+          <li>Right: text block (title &amp; paragraphs)</li>
+        </ol>
+      </li>
+      <li>Make them share the space until medium screens (<code>md</code> breakpoint), then stack on smaller.</li>
+      <li>Use responsive props:  
+        <ul>
+          <li><code>md</code> to share space</li>
+          <li><code>direction={matchesMd ? "column" : "row"}</code> to switch layout</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ Icon + Text Blocks</h2>
+    <ul>
+      <li>Another row: <code>Grid container direction="row"</code>.</li>
+      <li>Three icon blocks, each:  
+        <ol>
+          <li><strong>Grid item container direction="column"</strong></li>
+          <li>First item: <code>Typography variant="h4"</code> for the small title</li>
+          <li>Second item: <code>&lt;img&gt;</code> icon</li>
+        </ol>
+      </li>
+      <li>Center content with <code>alignItems="center"</code> and <code>justifyContent="center"</code>.</li>
+      <li>Make them share space until <code>md</code>, then stack and add spacing (<code>marginTop</code>). 📐</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>👉 Call to Action</h2>
+    <p>At the very bottom, add the <code>CallToAction</code> component for the free estimate button. It’s full-width and links to “/estimate”. 🎉</p>
+  </div>
+
+</body>
+</html>

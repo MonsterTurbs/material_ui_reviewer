@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📋 Material UI Menu Component - Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card ul {
+      color: #555;
+    }
+    .card ul {
+      padding-left: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .card li {
+      margin-bottom: 0.5rem;
+    }
+    code {
+      background: #eef;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📋 Material UI Menu Component - Study Notes</h1>
+
+    <div class="card">
+      <h2>❓ What is the Menu Component?</h2>
+      <p>The <strong>Menu</strong> component displays a pop-up list of options. It’s one of the most common UI elements in applications.</p>
+    </div>
+
+    <div class="card">
+      <h2>🧠 How It Works</h2>
+      <p>Material UI uses the <code>&lt;Menu&gt;</code> and <code>&lt;MenuItem&gt;</code> components to render menus. The menu appears anchored to a given element.</p>
+      <p>The <code>open</code> prop controls visibility: if <code>anchorEl</code> is not <code>null</code>, <code>open</code> is <code>true</code>, otherwise <code>false</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Key Props</h2>
+      <ul>
+        <li><code>anchorEl</code> - Element the menu is attached to</li>
+        <li><code>open</code> - Boolean flag to show or hide the menu</li>
+        <li><code>onClose</code> - Function called when the menu closes</li>
+        <li><code>keepMounted</code> - Keeps the menu in the DOM even when hidden</li>
+        <li><code>aria-controls</code> &amp; <code>aria-haspopup</code> - Accessibility attributes</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✅ Managing Selected Items</h2>
+      <p>To track which menu item is selected:</p>
+      <ol>
+        <li>Set up a state variable, e.g. <code>selectedIndex</code>.</li>
+        <li>Use <code>array.map</code> to render <code>&lt;MenuItem&gt;</code> components.</li>
+        <li>Add <code>selected={selectedIndex === index}</code> to each item.</li>
+        <li>Update <code>selectedIndex</code> in an <code>onClick</code> handler.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>💡 Use Case in Header</h2>
+      <p>In the app header, hover or click the <strong>Services</strong> tab to display menu options for subpages like <code>Custom Software</code>, <code>Mobile Apps</code>, and <code>Websites</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔜 Next Steps</h2>
+      <p>Next, implement the Material UI menu in the Services tab of the header, making it interactive and responsive.</p>
+    </div>
+  </div>
+</body>
+</html>

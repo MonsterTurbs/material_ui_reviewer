@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Notes: Next.js Tab Fix 🚀</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 1rem;
+      color: #333;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      width: 100%;
+    }
+    h2 {
+      margin-top: 0;
+      color: #1976d2;
+    }
+    p, ul {
+      margin: 0.5rem 0;
+      line-height: 1.5;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .emoji { font-size: 1.2em; vertical-align: middle; }
+    pre {
+      background: #f5f5f5;
+      padding: 0.5rem;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Card 1: Intro -->
+  <div class="card">
+    <h2>Fixing Slow Next.js Tabs <span class="emoji">🐢➡️🚀</span></h2>
+    <p>The old approach for highlighting the “active” menu tab was complex, caused slow‐downs after many route changes, and even broke the site. We’ll learn a simpler, faster method! 🎉</p>
+  </div>
+
+  <!-- Card 2: Problem with Old Code -->
+  <div class="card">
+    <h2>Why It Broke <span class="emoji">❌🐛</span></h2>
+    <ul>
+      <li>Many functions: <code>checkPath()</code>, a large `<code>useEffect</code>`, and router event handlers.</li>
+      <li>Switched over each URL in a big `switch` statement.</li>
+      <li>Handled forward/back browser buttons separately.</li>
+      <li>Likely caused infinite loops and memory leaks → site hung.</li>
+    </ul>
+  </div>
+
+  <!-- Card 3: New Approach Overview -->
+  <div class="card">
+    <h2>New, Simple Idea <span class="emoji">💡</span></h2>
+    <ul>
+      <li>Just read the browser’s current path once.</li>
+      <li>Find the matching route in our arrays (menu or main routes).</li>
+      <li>Return its stored index—no loops, no effects, no event listeners.</li>
+    </ul>
+  </div>
+
+  <!-- Card 4: Get Current Path -->
+  <div class="card">
+    <h2>1. Grab the Path <span class="emoji">🌐</span></h2>
+    <p>Next.js does server‐side rendering, so <code>window</code> may not exist. We guard against that:</p>
+    <pre>
+const path = typeof window !== 'undefined'
+  ? window.location.pathname
+  : null;
+    </pre>
+    <p>Now <code>path</code> is either the current URL (e.g. <code>"/services"</code>) or <code>null</code> on the server.</p>
+  </div>
+
+  <!-- Card 5: Find Active Route -->
+  <div class="card">
+    <h2>2. Find the Route <span class="emoji">🔍</span></h2>
+    <p>Use <code>Array.find()</code> on both your main <code>routes</code> and <code>menuOptions</code>:</p>
+    <pre>
+// search main routes
+const found = routes.find(({ link }) =&gt; link === path);
+
+// search menu options
+const menuFound = menuOptions.find(({ link }) =&gt; link === path);
+    </pre>
+    <p>If either matches, you have the right route object.</p>
+  </div>
+
+  <!-- Card 6: Return Its Index -->
+  <div class="card">
+    <h2>3. Return the Index <span class="emoji">📑</span></h2>
+    <p>Each route object carries its own index. Just:</p>
+    <pre>
+const activeIndex = () =&gt; {
+  if (found)      return found.activeIndex;
+  else if (menuFound) return menuFound.selectedIndex;
+  else              return null; // or a default
+};
+    </pre>
+    <p>No more complex logic, no <code>useEffect</code>, and no infinite loops.</p>
+  </div>
+
+  <!-- Card 7: Using It in JSX -->
+  <div class="card">
+    <h2>4. Hook Up the Tabs <span class="emoji">⚙️</span></h2>
+    <p>Pass the result into your Material‐UI Tabs component:</p>
+    <pre>
+&lt;Tabs
+  value={activeIndex()}
+  onChange={(_, newVal) =&gt; setValue(newVal)}
+&gt;
+  {routes.map(…)}
+&lt;/Tabs&gt;
+    </pre>
+    <p>Ties the highlighted tab directly to the URL—automatically updates on each render.</p>
+  </div>
+
+  <!-- Card 8: Benefits -->
+  <div class="card">
+    <h2>Why This Rocks 🏆</h2>
+    <ul>
+      <li><strong>Ultra-light</strong>—just one function call.</li>
+      <li><strong>No side-effects</strong>—no <code>useEffect</code> or event listeners.</li>
+      <li><strong>Instant feedback</strong> on route changes, even browser back/forward.</li>
+      <li><strong>Bug-proof</strong>—no infinite loops or memory leaks.</li>
+    </ul>
+  </div>
+
+  <!-- Card 9: Quick Recap -->
+  <div class="card">
+    <h2>Quick Recap <span class="emoji">🔄</span></h2>
+    <ol>
+      <li>Safely get <code>path</code> from <code>window.location</code>.</li>
+      <li><code>find()</code> the route in your arrays.</li>
+      <li>Return its stored index.</li>
+      <li>Plug into your Tabs’ <code>value</code>.</li>
+    </ol>
+    <p>Done—clean, fast, and maintainable! 🙌</p>
+  </div>
+
+  <!-- Card 10: Next Steps -->
+  <div class="card">
+    <h2>Next Steps ✨</h2>
+    <p>Try it out in your own Next.js + Material-UI project. Remove the old logic completely and enjoy the speed boost! 🚀</p>
+  </div>
+
+</body>
+</html>

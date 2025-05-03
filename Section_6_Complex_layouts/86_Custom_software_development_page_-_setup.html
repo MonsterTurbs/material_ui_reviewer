@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📒 Custom Software Dev Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f2f2f2;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    header p {
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📝 Custom Software Dev Page Study Notes</h1>
+    <p>Easy for kids & beginners! 🚀</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ File & Imports</h2>
+    <ul>
+      <li>Make a new file: <code>CustomSoftware.js</code> 📂</li>
+      <li>Import React, Grid, Typography, IconButton, Lottie, Link, makeStyles, useTheme, useMediaQuery 😊</li>
+      <li>Also import your back-arrow & forward-arrow icons from <code>/assets</code> 👈👉</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Hook Up Styles</h2>
+    <ul>
+      <li>Create <code>useStyles</code> with <code>makeStyles(theme =&gt; {{…}})</code> 🎨</li>
+      <li>Inside the component, call <code>const classes = useStyles()</code> ✅</li>
+      <li>Also get the theme & media query:  
+        <code>const theme = useTheme();  
+        const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));</code> 📏</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Main Grid Container</h2>
+    <ul>
+      <li>Wrap the whole page in:  
+        <code>&lt;Grid container direction="column"&gt;…&lt;/Grid&gt;</code> 🏗️</li>
+      <li>This stacks sections vertically.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Top Arrow + Text Section</h2>
+    <ul>
+      <li>Add a row container for nav:  
+        <code>&lt;Grid item container direction="row"&gt;…&lt;/Grid&gt;</code> ↔️</li>
+      <li>First item:  
+        <code>&lt;Grid item&gt;&lt;IconButton&gt;&lt;img src={backArrow}/&gt;&lt;/IconButton&gt;&lt;/Grid&gt;</code> 🔙</li>
+      <li>Middle item (column):  
+        • Title: <code>&lt;Typography variant="h2"&gt;Custom Software Development&lt;/Typography&gt;</code>  
+        • 3 paragraphs: <code>&lt;Typography variant="body1"&gt;…&lt;/Typography&gt;</code> 📄</li>
+      <li>Last item:  
+        <code>&lt;Grid item&gt;&lt;IconButton&gt;&lt;img src={forwardArrow}/&gt;&lt;/IconButton&gt;&lt;/Grid&gt;</code> 🔜</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Next Steps…</h2>
+    <p>✅ In the next video you'll:</p>
+    <ul>
+      <li>Style text & arrows with <code>classes</code> and <code>theme</code> 🎨</li>
+      <li>Hook up arrow clicks to navigate between service pages 🔗</li>
+      <li>Add responsive tweaks for mobile with <code>matchesSM</code> 📱</li>
+      <li>Implement the middle icon/animation & bottom sections next 🌟</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#777; margin-top:40px;">
+    Keep going—you’re doing great! 👏
+  </footer>
+
+</body>
+</html>

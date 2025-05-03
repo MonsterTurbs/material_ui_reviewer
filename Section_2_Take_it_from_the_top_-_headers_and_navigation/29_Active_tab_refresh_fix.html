@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Header Navigation Fix - Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .card h2 {
+      color: #1976d2;
+    }
+    .card ul {
+      padding-left: 1.5rem;
+    }
+    .highlight {
+      background-color: #fff8e1;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>📌 Fixing Active Tab Issue on Page Refresh</h2>
+      <ul>
+        <li>Problem: When the page is refreshed, the tab always highlights "Home" even if we're on another route like "/services".</li>
+        <li>Solution: Use <span class="highlight">useEffect</span> to detect the current URL and update the active tab accordingly.</li>
+        <li>Check <span class="highlight">window.location.pathname</span> and call <span class="highlight">setValue</span> based on the current path.</li>
+        <li>Add <span class="highlight">value</span> to the dependency array of <span class="highlight">useEffect</span> to avoid infinite updates.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔁 Example useEffect Setup</h2>
+      <pre class="highlight">
+useEffect(() => {
+  if (window.location.pathname === "/" && value !== 0) setValue(0);
+  else if (window.location.pathname === "/services" && value !== 1) setValue(1);
+  ...
+}, [value]);
+      </pre>
+    </div>
+
+    <div class="card">
+      <h2>🏠 Make the Logo a Link to Home</h2>
+      <ul>
+        <li>Wrap the logo <span class="highlight">&lt;img&gt;</span> in a Material UI <span class="highlight">&lt;Button&gt;</span>.</li>
+        <li>Add <span class="highlight">component=&#123;Link&#125;</span> and <span class="highlight">to="/"</span> to make it a link.</li>
+        <li>Add <span class="highlight">onClick=&#123;() =&gt; setValue(0)&#125;</span> to update the active tab when clicked.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>💄 Clean Styling for the Logo Button</h2>
+      <ul>
+        <li>Add <span class="highlight">className="classes.logoContainer"</span> to remove default padding and styling.</li>
+        <li>Style the class:
+          <pre class="highlight">
+logoContainer: {
+  padding: 0,
+  "&:hover": {
+    backgroundColor: "transparent"
+  }
+}
+          </pre>
+        </li>
+        <li>Add <span class="highlight">disableRipple</span> to the button to remove ripple effects.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✅ Result</h2>
+      <ul>
+        <li>Tabs reflect the current route on refresh.</li>
+        <li>Logo acts as a home button.</li>
+        <li>Navigation behavior now feels smooth and user-friendly.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

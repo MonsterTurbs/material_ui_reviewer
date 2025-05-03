@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Billing Policy Change Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Billing Policy Change 🔄</h2>
+    <p>
+      Firebase now requires the <strong>Blaze plan</strong> to deploy Cloud Functions, meaning you need
+      a payment method on file. 📋
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Blaze Plan Benefits 🔥</h2>
+    <p>
+      The Blaze plan includes all free usage from the Spark plan, so you won't incur charges unless you
+      exceed free limits. 👍
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Add a Payment Method 💳</h2>
+    <p>
+      To attach billing:
+    </p>
+    <code>
+      1. Go to Firebase console.<br>
+      2. Click the gear icon next to “Project Overview”.<br>
+      3. Select “Usage and billing”.<br>
+      4. Open the “Details &amp; settings” tab.<br>
+      5. Add your payment method.
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>4. Why Billing Is Required ❓</h2>
+    <ul>
+      <li>Prevents accidental overuse of resources.</li>
+      <li>Ensures you have a way to pay if you exceed free quotas.</li>
+      <li>Google handles everything securely—no hidden fees for basic course usage.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5. No Course Charges 📚</h2>
+    <p>
+      For our course demo usage, you stay within free limits. You only need billing on file; you won’t
+      be billed unless you go over. 😊
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>6. Questions? 🤔</h2>
+    <p>
+      If you run into any issues setting up billing, let us know. We're here to help and hope this
+      change isn't inconvenient!
+    </p>
+  </div>
+
+</body>
+</html>

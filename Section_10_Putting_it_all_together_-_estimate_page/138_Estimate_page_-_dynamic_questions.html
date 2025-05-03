@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Page Dynamic Rendering Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🔄</span>Dynamic Rendering Intro</h2>
+    <p>Instead of showing one fixed question, we will render questions from the <code>questions</code> state array. This lets us show different questions based on user actions! 🤩</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📝</span>Define <code>defaultQuestions</code></h2>
+    <p>At the top of <code>Estimate.js</code>, add:</p>
+    <pre><code>const defaultQuestions = [
+  {
+    id: 1,
+    title: "Which service are you interested in?",
+    active: true,
+    options: [ /* option objects */ ]
+  }
+];</code></pre>
+    <p>This array holds each question object, with <code>active</code> to mark which is visible.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔍</span>Filter Active Question</h2>
+    <p>Inside the JSX, use:</p>
+    <pre><code>{defaultQuestions
+  .filter(q => q.active)
+  .map((question, index) => (
+    <React.Fragment key={index}>…</React.Fragment>
+  ))}</code></pre>
+    <p>This finds the question with <code>active: true</code> and prepares to render it.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🏷️</span>Render Question Title & Subtitle</h2>
+    <p>Replace the hard-coded title with:</p>
+    <pre><code>&lt;Typography variant="h2" align="center"&gt;{question.title}&lt;/Typography&gt;</code></pre>
+    <p>For subtitles, add a second Typography:</p>
+    <pre><code>&lt;Typography variant="body1" align="center"&gt;{question.subtitle}&lt;/Typography&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔁</span>Map Over Options</h2>
+    <p>Inside the fragment, map <code>question.options</code> to render each choice:</p>
+    <pre><code>{question.options.map((option, i) => (
+  &lt;Grid item container direction="column" key={i}&gt;
+    &lt;Typography variant="h6" align="center"&gt;{option.title}&lt;/Typography&gt;
+    &lt;img src={option.icon} alt={option.iconAlt} className={classes.icon}/&gt;
+  &lt;/Grid&gt;
+))}</code></pre>
+    <p>This replaces the three hard-coded option blocks with dynamic ones! 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✔️</span>Verify Dynamic Content</h2>
+    <p>Test by changing question data or duplicating options to see immediate updates without editing JSX. This proves our dynamic setup works! ✅</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">➡️</span>Next Steps</h2>
+    <ul>
+      <li>Define more question objects in <code>defaultQuestions</code> (ID 2, 3, ...).</li>
+      <li>Implement navigation arrows: toggle <code>active</code> flags to move between questions.</li>
+      <li>Handle option selection: toggle <code>option.selected</code> when clicked.</li>
+      <li>Disable/enable "Get Estimate" button when all questions answered.</li>
+      <li>Calculate and display total cost from selected <code>option.cost</code>.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handling Price Filter Feedback Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 0.5em 0; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>✅ Testing Filter Logic</h2>
+    <p>Type a number and click the operator to see only matching rows:</p>
+    <ul>
+      <li>Enter <code>1300</code> with <code>&gt;</code> to see totals &gt; 1300.</li>
+      <li>Enter <code>1251</code> with <code>&gt;</code> to see totals &gt; 1251.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🐛 Fixing the “=” Bug</h2>
+    <p>Single <code>=</code> in JS means assignment, not comparison. Causes <code>Invalid left-hand assignment</code>.</p>
+    <p>Solution: if operator is <code>=</code>, convert to <code>===</code> for equality check:</p>
+    <pre><code>const opSymbol = (operator === '=') ? '===' : operator;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Re-evaluate on Operator Change</h2>
+    <p>Ensure filtering runs when clicking the operator button too:</p>
+    <ul>
+      <li>Add a <code>filterChange(newOp)</code> call alongside <code>setTotalFilter(newOp)</code> in the adornment’s <code>onClick</code>.</li>
+      <li><code>filterChange</code> mirrors <code>handleTotalFilter</code> but uses <code>newOp</code> and existing <code>filterPrice</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔄 Handle Clearing the Field</h2>
+    <p>When the input becomes empty, reset all rows to visible before re-applying other filters:</p>
+    <pre><code>if (!filterPrice) {
+  const allVisible = props.rows.map(r => ({ ...r, search: true }));
+  props.setRows(allVisible);
+  return;
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Summary of Logic</h2>
+    <ol>
+      <li>On input <code>onChange</code> or operator <code>onClick</code>, call filter function.</li>
+      <li>Inside filter:
+        <ol>
+          <li>Parse numbers: remove <code>$</code>, convert to float.</li>
+          <li>Choose correct comparator (<code>&gt;</code>, <code>&lt;</code>, <code>===</code>).</li>
+          <li>Use <code>eval</code> on string like <code>"1200>1250"</code> for truth.</li>
+          <li>Set each <code>row.search</code> based on result.</li>
+          <li>Update rows state with modified array.</li>
+        </ol>
+      </li>
+      <li>If input empty, set all <code>row.search = true</code>.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>💡 Next: Show Feedback</h2>
+    <p>Users need visible feedback when filters are active. In the next step, we’ll add Material-UI Chips or badges to display the current filter settings. 🚀</p>
+  </div>
+</body>
+</html>

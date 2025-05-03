@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔄 Fix Active Tab from Footer - Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+    h1 { text-align: center; color: #1976d2; margin-bottom: 20px; }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; color: #e65100; display: flex; align-items: center; gap: 8px; }
+    .card p, .card ul { margin: 10px 0; line-height: 1.5; }
+    .card ul { padding-left: 20px; }
+    .card li { margin-bottom: 6px; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>🔄 Fixing Active Tab from Footer</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>❓ Problem</h2>
+      <p>Clicking footer links navigates pages but doesn’t highlight the correct tab until you hover over the header. We need clicking to set the active tab right away! 🖱️➡️🏷️</p>
+    </div>
+
+    <div class="card">
+      <h2>🏗️ 1. Hoist State to <code>App.js</code></h2>
+      <ul>
+        <li>📋 Move <code>const [value, setValue] = useState(0)</code> and <code>const [selectedIndex, setSelectedIndex] = useState(0)</code> from <code>Header.js</code> into <code>App.js</code>.</li>
+        <li>🛠️ In <code>App.js</code>, import <code>useState</code> from React and paste those hooks above your <code>return</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📤 2. Pass Props to Header &amp; Footer</h2>
+      <ul>
+        <li>➕ In <code>App.js</code>, pass <code>value</code>, <code>setValue</code>, <code>selectedIndex</code>, and <code>setSelectedIndex</code> as props to &lt;Header&gt; and &lt;Footer&gt;.</li>
+        <li>🧩 Now both components share the same state!</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✏️ 3. Update <code>Header.js</code> to Use Props</h2>
+      <ul>
+        <li>🔄 Replace all local <code>value</code> and <code>setValue</code> calls with <code>props.value</code> and <code>props.setValue</code>.</li>
+        <li>🔄 Also update <code>selectedIndex</code> and <code>setSelectedIndex</code> to use <code>props.selectedIndex</code> and <code>props.setSelectedIndex</code>.</li>
+        <li>⚙️ Fix any <code>useEffect</code> dependencies to use <code>props.***</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✏️ 4. Update <code>Footer.js</code> with onClick</h2>
+      <ul>
+        <li>➡️ In your footer links, add <code>onClick={() => props.setValue(index)}</code> to each Grid item to set the active tab.</li>
+        <li>➡️ For services submenu links, also add <code>props.setSelectedIndex(n)</code> so the correct menu item highlights.</li>
+      </ul>
+      <p>🔗 Example: <code>&lt;Grid item component={Link} to="/services" onClick={() => props.setValue(1)}&gt;Services&lt;/Grid&gt;</code></p>
+    </div>
+
+    <div class="card">
+      <h2>✅ 5. Test Everything</h2>
+      <ul>
+        <li>🔄 Click footer links and see tabs update immediately.</li>
+        <li>🔄 Hover menu should still fix on refresh.</li>
+        <li>🔄 Refresh page to confirm active tab persists.</li>
+      </ul>
+      <p>🎉 All set! Footer navigation now syncs header state perfectly.</p>
+    </div>
+
+  </div>
+</body>
+</html>

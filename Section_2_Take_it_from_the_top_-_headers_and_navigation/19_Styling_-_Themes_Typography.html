@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Material UI - Typography Theme Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 40px;
+      background-color: #f8f9fa;
+      line-height: 1.8;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p, ul, code, pre {
+      font-size: 16px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    code, pre {
+      background: #f1f1f1;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: block;
+      margin-top: 10px;
+    }
+    .highlight {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📝 Typography Theming in Material UI</h1>
+
+<div class="card">
+  <h2>📚 What is Typography in Material UI?</h2>
+  <p>Typography controls all the text styles in your app like headings, body text, captions, buttons, etc. Material UI provides default variants like <code>h1</code> to <code>h6</code>, <code>subtitle1</code>, <code>body1</code>, <code>caption</code>, and more.</p>
+</div>
+
+<div class="card">
+  <h2>⚙️ Where to Customize It</h2>
+  <p>Inside your <code>theme.js</code> file, add a new object called <code>typography</code>:</p>
+  <pre><code>export default createMuiTheme({
+  typography: {
+    h3: {
+      fontWeight: 300
+    }
+  }
+});</code></pre>
+</div>
+
+<div class="card">
+  <h2>🖋️ How to Use Typography in Components</h2>
+  <p>Use the <code>&lt;Typography&gt;</code> component with the <code>variant</code> and <code>color</code> props:</p>
+  <pre><code>import Typography from '@material-ui/core/Typography';
+
+&lt;Typography variant="h3" color="secondary"&gt;
+  Arc Development
+&lt;/Typography&gt;</code></pre>
+</div>
+
+<div class="card">
+  <h2>🧠 Notes on Styling</h2>
+  <ul>
+    <li><code>variant="h3"</code> uses styles from theme.typography.h3</li>
+    <li><code>color="primary"</code> or <code>color="secondary"</code> pulls from theme.palette</li>
+    <li>You can also define <code>fontFamily</code>, <code>lineHeight</code>, etc. in the theme</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🔁 Inline Overrides</h2>
+  <p>If you want to change styles only for one instance, you can use inline styling (covered in the next lesson).</p>
+</div>
+
+<div class="highlight">
+  <strong>Next:</strong> Inline styling and how to override theme values directly in your components!
+</div>
+
+</body>
+</html>

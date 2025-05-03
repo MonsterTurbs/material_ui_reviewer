@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Style Tuning Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 0.5em 0; }
+    code { display: block; background: #f9f9f9; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <!-- Card 1 -->
+  <div class="card">
+    <h2>🔧 Tuning Edge Padding</h2>
+    <p>On extra-small screens, reduce side padding so content stretches closer to edges:</p>
+    <code>serviceContainer: {
+  [theme.breakpoints.down('xs')]: {
+    padding: '5px',
+  }
+}</code>
+    <p>This change gives more breathing room on tiny screens.</p>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <h2>↩️ Conditional Line Break</h2>
+    <p>Prevent a single hanging word by adding a break when extra-small:</p>
+    <code>{matchesXs && <br />}</code>
+    <p>Inject this before <code>Built for Speed</code> to split it nicely:</p>
+    <code>Speed{matchesXs && <br />}Built for Speed</code>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <h2>📐 Tighten Title Line Height</h2>
+    <p>On extra-small screens, shrink line height of section titles so words stay together:</p>
+    <code>&lt;Typography
+  style={{
+    lineHeight: matchesXs ? 1.1 : undefined,
+    marginBottom: matchesXs ? '0.5m' : undefined
+  }}
+&gt;iOS &amp; Android App Development&lt;/Typography&gt;</code>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card">
+    <h2>🔠 Adjust Font Size</h2>
+    <p>Also shrink the font slightly on extra-small to fit text on one line:</p>
+    <code>style={{ fontSize: matchesXs ? '2.25m' : undefined }}</code>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card">
+    <h2>📄 About Section Padding</h2>
+    <p>On extra-small, reduce padding around paragraphs:</p>
+    <code>rowContainer: {
+  [theme.breakpoints.down('xs')]: {
+    padding: '1m',
+  }
+}</code>
+    <p>This stretches text more comfortably for small devices.</p>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card">
+    <h2>✨ Outcome</h2>
+    <ul>
+      <li>Wider content area on tiny screens 🌠</li>
+      <li>Balanced line breaks prevent orphan words 🛑</li>
+      <li>Titles stay neat and readable 📏</li>
+      <li>About section feels less cramped ✍️</li>
+    </ul>
+  </div>
+</body>
+</html>

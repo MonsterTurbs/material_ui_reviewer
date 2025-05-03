@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Dialog &amp; Table Final Touches Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p, .card ul { margin: 8px 0; }
+    code { display: block; background: #f5f5f5; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🔽 More Space Under Complexity</h2>
+    <p>Add responsive bottom margin so the form doesn’t crowd on small screens:</p>
+    <code>sx={{
+  mb: matchesSm ? '50px' : undefined
+}}</code>
+  </div>
+
+  <div class="card">
+    <h2>📏 Uniform Field Widths</h2>
+    <p>Make text inputs &amp; selects the same width on mobile for a tidy layout:</p>
+    <ul>
+      <li><code>sx={{ width: matchesSm ? '250px' : undefined }}</code> on name field</li>
+      <li>Same on platforms select, date picker, total filter input, features select</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Clean Up Duplicated Margins</h2>
+    <p>Remove any extra <code>mt</code> styles on the platforms select to avoid misalignment, keeping only the main responsive margin on its wrapper.</p>
+  </div>
+
+  <div class="card">
+    <h2>🏷️ Restore Service Container Spacing</h2>
+    <p>Fix the service question block’s top margin on larger screens:</p>
+    <code>sx={{ mt: matchesSm ? undefined : '5m' }}</code>
+  </div>
+
+  <div class="card">
+    <h2>🗃️ Final Table Column Fix</h2>
+    <p>Prevent the “Features” column from collapsing by setting a fixed width so horizontal scroll works smoothly:</p>
+    <code>&lt;TableCell sx={{ width: '5m', minWidth: '2m' }}&gt;…&lt;/TableCell&gt;</code>
+  </div>
+
+  <div class="card">
+    <h2>🎉 Outcome</h2>
+    <ul>
+      <li>Dialog form fields line up neatly on mobile ✅</li>
+      <li>Complexity section has space below it 🛠️</li>
+      <li>All inputs &amp; selects share a consistent width 🖥️📱</li>
+      <li>“Features” column scrolls without breaking layout ↔️</li>
+    </ul>
+  </div>
+</body>
+</html>

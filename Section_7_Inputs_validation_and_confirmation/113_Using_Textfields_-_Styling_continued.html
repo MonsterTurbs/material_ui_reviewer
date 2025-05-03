@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Page Alignment Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. The Centering Problem 🤔</h2>
+    <p>
+      We tried <code>alignItems="center"</code> on a full-width container, but it wouldn’t move because 
+      the grid item already spans the entire width. 🚫
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Wrap Your Content 📦</h2>
+    <p>
+      Cut out the inner Contact Us section and wrap it in its own:
+    </p>
+    <pre><code>&lt;Grid item&gt;
+  &lt;Grid container direction="column"&gt;
+    …your Contact Us content…
+  &lt;/Grid&gt;
+&lt;/Grid&gt;</code></pre>
+    <p>This lets you center that wrapper without it already filling 100%. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Center the Send Button 📨</h2>
+    <p>
+      Turn the button’s wrapper into a container and add:
+    </p>
+    <pre><code>&lt;Grid item container justify="center"&gt;
+  &lt;Button variant="contained"&gt;Send Message&lt;/Button&gt;
+&lt;/Grid&gt;</code></pre>
+    <p>Your button now truly sits in the middle! 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Adjust Column Sizes 📐</h2>
+    <p>
+      To give more breathing room on large screens, change:
+    </p>
+    <pre><code>&lt;Grid item xl={3} lg={4}&gt;…&lt;/Grid&gt;
+&lt;Grid item xl={9} lg={8}&gt;…&lt;/Grid&gt;</code></pre>
+    <p>This keeps a 3/9 split on extra-large, and a 4/8 split on large. ✅</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Add Background Padding 🏞️</h2>
+    <p>
+      To push the background content up a bit, in your <code>classes.background</code> style:
+    </p>
+    <pre><code>paddingBottom: '10rem'</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>6. Tweak Text Margin ↔️</h2>
+    <p>
+      Reduce the left margin on your “Simple Software…” text:
+    </p>
+    <pre><code>marginLeft: '3rem'</code></pre>
+    <p>Now it sits nicely closer to the edge. 😉</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Add Spacing Around Contact Info ⏫⏬</h2>
+    <ul>
+      <li>Phone container: <code>marginTop: '2rem'</code></li>
+      <li>Email container: <code>marginBottom: '2rem'</code></li>
+      <li>Send button container: <code>marginTop: '2rem'</code></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>8. Ready for Responsive Design 📱💻</h2>
+    <p>
+      Now everything lines up nicely. Next, we'll add breakpoints to adjust layout on tablets and phones!
+    </p>
+  </div>
+
+</body>
+</html>

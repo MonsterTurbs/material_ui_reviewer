@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📘 Info & Contact Block Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: #1976d2;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="card">
+      <h2>1️⃣ Copy About Us Section</h2>
+      <ul>
+        <li>Copy the entire <code>&lt;GridItem&gt;</code> block for About Us.</li>
+        <li>Paste it right below to create the Contact Us section.</li>
+        <li>Change the title to “Contact Us” and subtitle to “Say hello! 👋”.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🖼️ Add Emoji with Accessibility</h2>
+      <ul>
+        <li>Wrap the emoji in a <code>&lt;span&gt;</code>:</li>
+        <li><code>&lt;span role="img" aria-label="waving hand"&gt;👋&lt;/span&gt;</code></li>
+        <li>This makes sure screen readers describe it as “waving hand”.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Fix Positioning Overlap</h2>
+      <ul>
+        <li>Both items had <code>position: absolute</code> and overlapped.</li>
+        <li>Wrap both grid items in one container.</li>
+        <li>Move <code>position: absolute</code> onto that container instead.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>↔️ Space & Alignment</h2>
+      <ul>
+        <li>About Us keeps <code>margin-left</code>; Contact Us uses <code>margin-right</code>.</li>
+        <li>Add the  small (sm) prop on both grid items → makes them <code>auto</code> width.</li>
+        <li>Set Contact Us <code>text-align: right</code> so it aligns within its half.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⬇️ Responsive Stacking</h2>
+      <ul>
+        <li>Import <code>useMediaQuery</code> and check <code>matchesXS</code> for extra-small screens.</li>
+        <li>On the wrapping container, set <code>direction={matchesXS ? "column" : "row"}</code>.</li>
+        <li>Center text when stacked: <code>textAlign={matchesXS ? "center" : undefined}</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔀 Margins & Spacing for Small Screens</h2>
+      <ul>
+        <li>Reduce side margins at small sizes: <code>margin (sm) ? "2rem" : "5rem"</code>.</li>
+        <li>Use nested ternary for Contact Us to remove margin on extra-small:  
+          <code>matchesXS ? 0 : (matchesSM ? "2rem" : "5rem")</code>
+        </li>
+        <li>Add <code>spacing={matchesXS ? 10 : 0}</code> on the container to separate stacked items.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✅ Result</h2>
+      <ul>
+        <li>On large screens, About Us & Contact Us each take 50% width and align left/right.</li>
+        <li>On the smallest screens, they stack vertically, centered, with proper spacing.</li>
+        <li>Your layout is now responsive and user-friendly! 🎉</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

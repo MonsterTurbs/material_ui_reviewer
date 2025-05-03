@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hero Buttons & Layout - Study Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #1976d2;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+      color: #333;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card code {
+      display: block;
+      background: #f5f5f5;
+      padding: 8px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center; color:#1976d2;">🎯 Hero Block Buttons & Layout</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🎯 Center the Buttons</h2>
+      <p>Make the two buttons sit neatly in the middle under your slogan.</p>
+      <code>&lt;Grid container justifyContent="center"&gt;…&lt;/Grid&gt;</code>
+    </div>
+
+    <div class="card">
+      <h2>🟠 Style the "Free Estimate" Button</h2>
+      <p>Use your theme's estimate typography and add bright orange background, round corners, and spacing.</p>
+      <code>
+        estimateButton: {<br>
+        &nbsp;&nbsp;...theme.typography.estimate,<br>
+        &nbsp;&nbsp;backgroundColor: theme.palette.common.orange,<br>
+        &nbsp;&nbsp;borderRadius: 50,<br>
+        &nbsp;&nbsp;height: 45,<br>
+        &nbsp;&nbsp;width: 145,<br>
+        &nbsp;&nbsp;marginRight: 40<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>👆 Add Hover Highlight</h2>
+      <p>Make the button light up when the user hovers, instead of turning gray.</p>
+      <code>
+        "&amp;:hover": {<br>
+        &nbsp;&nbsp;backgroundColor: theme.palette.secondary.light<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>🔵 Style the "Learn More" Button</h2>
+      <p>Give it blue border, blue text, round corners, and same size as the estimate button.</p>
+      <code>
+        learnButton: {<br>
+        &nbsp;&nbsp;borderColor: theme.palette.common.blue,<br>
+        &nbsp;&nbsp;color: theme.palette.common.blue,<br>
+        &nbsp;&nbsp;borderWidth: 2,<br>
+        &nbsp;&nbsp;borderRadius: 50,<br>
+        &nbsp;&nbsp,height: 45,<br>
+        &nbsp;&nbsp;width: 145,<br>
+        &nbsp;&nbsp;textTransform: 'none'<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>⬇️ Push Buttons Down</h2>
+      <p>Add a little space above the buttons so they’re not too close to the text.</p>
+      <code>
+        buttonContainer: {<br>
+        &nbsp;&nbsp;marginTop: '1rem'<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>🔳 Main Container Top Margin</h2>
+      <p>Give the whole hero block some breathing room from the top, adjusting for screen sizes:</p>
+      <code>
+        mainContainer: {<br>
+        &nbsp;&nbsp;marginTop: '5rem',<br>
+        &nbsp;&nbsp="[theme.breakpoints.down('md')]: { marginTop: '3rem' },",<br>
+        &nbsp;&nbsp"[theme.breakpoints.down('xs')]: { marginTop: '2rem' }"<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>📏 Prevent Overlap on Small Screens</h2>
+      <p>Ensure text and buttons stack before they get too squished.</p>
+      <code>
+        heroTextContainer: {<br>
+        &nbsp;&nbsp;minWidth: '21.5rem',<br>
+        &nbsp;&nbsp;marginLeft: '1rem',<br>
+        &nbsp;&nbsp"[theme.breakpoints.down('xs')]: { marginLeft: 0 }"<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>📐 Adjust Animation Width at Small Breakpoint</h2>
+      <p>Shrink the animation max width on small screens so it stays in balance.</p>
+      <code>
+        animation: {<br>
+        &nbsp;&nbsp;maxWidth: '50rem',<br>
+        &nbsp;&nbsp;minWidth: '21rem',<br>
+        &nbsp;&nbsp;marginTop: '2rem',<br>
+        &nbsp;&nbsp;marginLeft: '10%',<br>
+        &nbsp;&nbsp"[theme.breakpoints.down('sm')]: { maxWidth: '30rem' }"<br>
+        }
+      </code>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📒 Services Page Notes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      color: #666;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+    .card ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📝 Services Page – Animation & Sections</h1>
+    <p>Simple language + emojis, ready for PDF! 🎉</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ Fix Lottie Dimensions 📏</h2>
+    <ul>
+      <li>Use <code>style={{ maxHeight: 275, maxWidth: 275, minHeight: 250 }}</code> so animations aren’t clipped.</li>
+      <li>Adjust numbers by trial until full animation shows. 🔍</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Evenly Space Two Animations 🤹‍♂️</h2>
+    <ul>
+      <li>On the row container, set <code>justify="space-around"</code> to spread them horizontally.</li>
+      <li>Apply <code>md</code> prop on each animation’s <code>&lt;Grid item&gt;</code> so they stay side-by-side until the medium breakpoint.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Break to Column at Medium 🔄</h2>
+    <ul>
+      <li>Still side-by-side until medium; then switch to column to stack:</li>
+      <pre><code>direction={matchesMd ? 'column' : 'row'}</code></pre>
+      <li>Avoid overlap at awkward widths. 👍</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Add “Root Cause Analysis” Section 🌳</h2>
+    <ul>
+      <li>New row: <code>&lt;Grid item container direction="row"&gt;</code></li>
+      <li>Left item: image of roots (set height/width), then right item:
+        <ul>
+          <li><code>&lt;Typography align="center" variant="h4"&gt;…&lt;/Typography&gt;</code></li>
+          <li>Three <code>body1 paragraph</code> tags with <code>align="center"</code>.</li>
+        </ul>
+      </li>
+      <li>Center with <code>alignItems="center"</code> on the container.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Copy & Create “Automation” + “UX Design” Rows 🤖🎨</h2>
+    <ul>
+      <li>Duplicate the Digital-Docs/Scale grid item container.</li>
+      <li>For each:
+        <ul>
+          <li>Change title & paragraphs from design file.</li>
+          <li>Import new JSON:
+            <pre><code>import automationAnimation from '../animations/automationAnimation/data.js';</code></pre>
+            <pre><code>import uxAnimation from '../animations/uxAnimation/data.js';</code></pre>
+          </li>
+          <li>Copy Lottie options block, rename to <code>automationOptions</code> & <code>uxOptions</code>.</li>
+          <li>Paste animations into grid items, adjust <code>style</code> dims (maxHeight, maxWidth).</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6️⃣ Margin Buffers for Middle Sections 🌟</h2>
+    <ul>
+      <li>Add spacing above/below sections with:
+        <pre><code>style={{ marginTop: '20rem', marginBottom: '20rem' }}</code></pre>
+      </li>
+      <li>Makes page feel open and avoids clutter. 😊</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#555; margin-top:40px;">
+    🚀 You’re all set! Review responsiveness and finalize before PDF export. 🎨
+  </footer>
+
+</body>
+</html>

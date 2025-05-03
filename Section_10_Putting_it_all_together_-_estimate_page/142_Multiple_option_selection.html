@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Page Option Selection Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      border: 1px solid #ccc; 
+      border-radius: 8px; 
+      padding: 16px; 
+      margin-bottom: 16px; 
+      width: 100%; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    }
+    .card h2 { margin-top: 0; font-size: 1.25em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { 
+      background: #f4f4f4; 
+      padding: 2px 4px; 
+      border-radius: 4px; 
+      font-family: monospace; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🔘</span>Turn Options into Buttons</h2>
+    <p>Wrap each option Grid item with Material-UI’s <code>button</code> component:</p>
+    <pre><code>&lt;Grid item container component="button" ...&gt;…&lt;/Grid&gt;</code></pre>
+    <p>Override default button styles:</p>
+    <ul>
+      <li><code>display: grid;</code></li>
+      <li><code>textTransform: none;</code></li>
+      <li><code>maxWidth: '14rem'</code> for even layout.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>Set Up <code>handleSelect</code> Function</h2>
+    <ol>
+      <li>Clone state questions to avoid mutation:
+        <pre><code>const newQuestions = cloneDeep(questions);</code></pre>
+      </li>
+      <li>Find active question index:
+        <pre><code>const activeIndex = newQuestions.findIndex(q => q.active);</code></pre>
+      </li>
+      <li>Locate clicked option via its <code>id</code>:
+        <pre><code>const sel = newQuestions[activeIndex].options[id - 1];</code></pre>
+      </li>
+      <li>Toggle its <code>selected</code> property:
+        <pre><code>sel.selected = !sel.selected;</code></pre>
+      </li>
+      <li>Update state:
+        <pre><code>setQuestions(newQuestions);</code></pre>
+      </li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">👇</span>Attach <code>onClick</code> Handler</h2>
+    <p>Inside the mapped option Grid items:</p>
+    <pre><code>&lt;Grid item container
+  component="button"
+  onClick={() => handleSelect(option.id)}
+&gt;…&lt;/Grid&gt;</code></pre>
+    <p>Pass in <code>option.id</code> so the handler knows which to toggle.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Visual Feedback</h2>
+    <p>Use the <code>selected</code> flag to style the button:</p>
+    <pre><code>style={{
+  backgroundColor: option.selected ? theme.palette.common.orange : null,
+  borderRadius: 0
+}}</code></pre>
+    <p>Adding <code>borderRadius: 0</code> makes corners flush for a clean look.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Test Multiple Selection</h2>
+    <p>Click any feature option to see it highlight. Click again to toggle off. You can select many at once. 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⏭️</span>Next Steps</h2>
+    <p>Implement “select one” logic for questions with <code>subtitle: 'Select one'</code> so only a single option stays selected. 👆</p>
+  </div>
+
+</body>
+</html>

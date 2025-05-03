@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material UI Tabs - Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #1976d2;
+    }
+    .card p {
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+    .highlight {
+      background: #e3f2fd;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Material UI Tabs - Study Notes</h1>
+  <div class="container">
+    <div class="card">
+      <h2>🔍 What are Tabs?</h2>
+      <p>The <span class="highlight">Tabs</span> component is used to navigate between different sections or pages of your app.</p>
+      <p>You'll see it in the header as clickable links.</p>
+    </div>
+    <div class="card">
+      <h2>⚙️ Components</h2>
+      <p><span class="highlight">Tabs</span> - the container holding all tab items.</p>
+      <p><span class="highlight">Tab</span> - each individual tab item.</p>
+      <p><span class="highlight">label</span> - the text displayed on each tab.</p>
+    </div>
+    <div class="card">
+      <h2>🧠 State Management</h2>
+      <p>Use React's <span class="highlight">useState</span> hook to track the active tab.</p>
+      <p><span class="highlight">value</span> - the currently selected tab index.</p>
+      <p><span class="highlight">onChange</span> - the event handler called when a tab is clicked.</p>
+    </div>
+    <div class="card">
+      <h2>💡 How Does It Work?</h2>
+      <p>When you click a tab, the <span class="highlight">onChange</span> function updates the <span class="highlight">value</span>. That change activates the new tab.</p>
+    </div>
+    <div class="card">
+      <h2>✨ Tab Features</h2>
+      <p>✅ Wrapped Labels</p>
+      <p>✅ Disabled Tabs</p>
+      <p>✅ Full Width / Centered</p>
+      <p>✅ Scrollable Tabs</p>
+      <p>✅ Vertical Tabs</p>
+      <p>✅ Tabs with Icons</p>
+    </div>
+    <div class="card">
+      <h2>📌 Takeaway</h2>
+      <p>The <strong>Tabs</strong> component is a simple yet powerful tool in Material UI.</p>
+      <p>It works seamlessly with <strong>React Router</strong> for smooth navigation in your app.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Study Notes: Building the Contact Us Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Start with a Row Container 🔲</h2>
+    <p>This page has two side-by-side areas. Begin with:<br>
+      <code>&lt;Grid container direction="row" spacing={4}&gt;</code><br>
+    This lays out left (form) and right (info) sections horizontally. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Wrap Left Section for Alignment 🔧</h2>
+    <p>To center the form vertically, wrap it in an extra <code>Grid item</code> before the container:<br>
+      <code>&lt;Grid item&gt;<br>
+        &lt;Grid container direction="column" alignItems="center"&gt;...form here...&lt;/Grid&gt;<br>
+      &lt;/Grid&gt;</code><br>
+    This lets you use <code>alignItems</code> on the wrapper. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Add Page Title &amp; Intro 📞</h2>
+    <p>Inside the column container, add:<br>
+      <code>&lt;Grid item&gt;&lt;Typography variant="h2"&gt;Contact Us&lt;/Typography&gt;&lt;/Grid&gt;</code><br>
+      <code>&lt;Grid item&gt;&lt;Typography variant="body1" paragraph&gt;Have questions? We’re here to help!&lt;/Typography&gt;&lt;/Grid&gt;</code><br>
+    This shows the main heading and intro text. 📝</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Display Phone &amp; Email ⎆</h2>
+    <p>For each contact method, use a small row:<br>
+      <code>&lt;Grid item container alignItems="center" spacing={1}&gt;<br>
+        &lt;Grid item&gt;&lt;img src={phoneIcon} alt="phone" /&gt;&lt;/Grid&gt;<br>
+        &lt;Grid item&gt;&lt;Typography variant="body1"&gt;(123) 456-7890&lt;/Typography&gt;&lt;/Grid&gt;<br>
+      &lt;/Grid&gt;</code><br>
+    Repeat for email with <code>emailIcon</code>. 📧</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Build the Form Fields 🖊️</h2>
+    <p>Use Material-UI’s <code>TextField</code> inside a column container:<br>
+      <code>&lt;Grid item container direction="column" spacing={2}&gt;<br>
+        &lt;Grid item&gt;&lt;TextField label="Name" fullWidth required /&gt;&lt;/Grid&gt;<br>
+        &lt;Grid item&gt;&lt;TextField label="Email" type="email" fullWidth required /&gt;&lt;/Grid&gt;<br>
+        &lt;Grid item&gt;&lt;TextField label="Phone" type="tel" fullWidth /&gt;&lt;/Grid&gt;<br>
+      &lt;/Grid&gt;</code><br>
+    These fields handle validation and styling for you. 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Message Field &amp; Send Button ✉️</h2>
+    <p>Below the fields, add:<br>
+      <code>&lt;Grid item&gt;&lt;TextField label="Message" multiline rows={4} fullWidth /&gt;&lt;/Grid&gt;</code><br>
+      <code>&lt;Grid item&gt;&lt;Button variant="contained" color="primary"&gt;Send Message&lt;/Button&gt;&lt;/Grid&gt;</code><br>
+    Now users can type and submit their message. 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Create Sidebar Info Panel 📋</h2>
+    <p>On the right, use another <code>Grid item container</code> to show a special call-to-action:<br>
+      &lt;Grid item container direction="column" spacing={2}&gt;...text &amp; button...&lt;/Grid&gt;</p>
+    <p>This sits next to the form and invites action. 🤝</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Add Padding for Clean Look 🧼</h2>
+    <p>Give the form area extra white space:<br>
+      <code>style={{ padding: '4rem' }}</code><br>
+    This ensures it doesn’t crowd the header or footer. ✨</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Prepare Confirmation Dialog 💬</h2>
+    <p>After clicking “Send Message,” show a <code>Dialog</code> (modal):<br>
+      &lt;Dialog open={open} onClose={handleClose}&gt;...form recap &amp; confirm...&lt;/Dialog&gt;<br>
+    This asks users to verify their info before sending. 📦</p>
+  </div>
+
+  <div class="card">
+    <h2>10. Save &amp; Test ✅</h2>
+    <p>Save your code, refresh, and try resizing or submitting. Ensure the form looks good, is easy to use, and that the confirmation dialog works smoothly. Great job! 🎉</p>
+  </div>
+
+</body>
+</html>

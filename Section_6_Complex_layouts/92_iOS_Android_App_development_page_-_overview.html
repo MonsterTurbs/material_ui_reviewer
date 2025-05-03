@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📱 iOS/Android App Dev – Study Notes</title>
+  <style>
+    body {
+      margin: 0; padding: 20px;
+      background: #f0f4f8;
+      font-family: sans-serif;
+    }
+    header {
+      text-align: center; margin-bottom: 30px;
+    }
+    header h1 { margin: 0; font-size: 1.8rem; }
+    .card {
+      background: #fff; border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 16px; margin-bottom: 20px;
+      box-sizing: border-box; width: 100%;
+    }
+    .card h2 {
+      margin-top: 0; font-size: 1.2rem; color: #333;
+    }
+    .card ul {
+      margin: 10px 0 0 20px; padding: 0;
+    }
+    .card ul li {
+      margin-bottom: 8px; line-height: 1.4;
+    }
+    code {
+      background: #eef; padding: 2px 4px; border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📱 iOS & Android App Dev Page</h1>
+    <p>Simple layout breakdown! 🌟</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ Page Wrapper</h2>
+    <ul>
+      <li>One big container for everything:</li>
+      <li><code>&lt;Grid container direction="column"&gt;</code></li>
+      <li>Stacks each section top-to-bottom. 📚</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Top Navigation Row ↔️</h2>
+    <ul>
+      <li>Uses a row container:</li>
+      <li><code>&lt;Grid item container direction="row"&gt;</code></li>
+      <li>Contains three items:
+        <ul>
+          <li>◀️ Back arrow</li>
+          <li>📄 Text (title + description)</li>
+          <li>▶️ Forward arrow</li>
+        </ul>
+      </li>
+      <li>Text itself is a column:
+        <code>&lt;Grid container direction="column"&gt;</code>
+      </li>
+      <li>So lines of text stack nicely. 🆙⬇️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Main Content Sections</h2>
+    <ul>
+      <li>Below header, three side-by-side blocks:</li>
+      <li>Each block is:
+        <code>&lt;Grid item container direction="column"&gt;</code>
+      </li>
+      <li>Inside each:
+        <ul>
+          <li>🔸 A title: <code>&lt;Typography variant="h4"&gt;</code></li>
+          <li>🔸 A paragraph: <code>&lt;Typography variant="body1"&gt;</code></li>
+        </ul>
+      </li>
+      <li>The middle block swaps order:
+        <ul>
+          <li>Text → Animation → Text</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Feature Icons Row 🎨</h2>
+    <ul>
+      <li>A row of 4 icon cards:</li>
+      <li><code>&lt;Grid container direction="row" justify="space-around"&gt;</code></li>
+      <li>Each icon card is:
+        <code>&lt;Grid item container direction="column"&gt;</code>
+      </li>
+      <li>Inside:
+        <ul>
+          <li>🔹 Title (<code>h4</code>)</li>
+          <li>🔹 Image icon</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Mobile Responsiveness 📱</h2>
+    <ul>
+      <li>Hide arrows on phones:
+        <code>&lt;Hidden mdDown&gt;…&lt;/Hidden&gt;</code>
+      </li>
+      <li>Center text on small:
+        <code>align={matchesSm?'center':'left'}</code>
+      </li>
+      <li>Stack side-by-side blocks into columns:
+        <code>direction={matchesMd?'column':'row'}</code>
+      </li>
+      <li>Simple breakpoints keep it looking great!</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#777; margin-top:40px;">
+    ⭐ That’s the page! Save as PDF and you’re done. ⭐
+  </footer>
+</body>
+</html>

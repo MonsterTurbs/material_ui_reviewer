@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dialog Column & Styles Notes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #00695c;
+    }
+    p, ul {
+      color: #333;
+      line-height: 1.5;
+    }
+    ul { padding-left: 20px; }
+    code {
+      background: #eef6fb;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>💰 Total Field Setup</h2>
+    <ul>
+      <li>State for total: <code>const [total, setTotal] = useState('');</code></li>
+      <li>In Dialog column: add TextField with<br>
+        <code>value={total}</code>, <code>label="Total"</code>,<br>
+        <code>onChange={e => setTotal(e.target.value)}</code>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📐 Dialog Width & Grid Breakpoints</h2>
+    <ul>
+      <li>Make Dialog span nicely:<br>
+        <code>&lt;Dialog fullWidth maxWidth="md" ...&gt;</code>
+      </li>
+      <li>Align columns on one row until small screen:<br>
+        add <code>sm</code> prop to each grid item (same width)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Fix DatePicker Alignment</h2>
+    <p>Safari mismatch caused by default margin-top on inputs. Quick fix:</p>
+    <ul>
+      <li>Add <code style="display:inline;">style={{ marginTop: 16 }}</code> to the Grid item wrapping the KeyboardDatePicker.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🤸‍♀️ Distribute Columns Evenly</h2>
+    <ul>
+      <li>Wrap each "column" grid container inside a plain <code>Grid item</code>.</li>
+      <li>On the parent container, use:<br>
+        <code>&lt;Grid container justify="space-between"&gt;</code>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>💵 Add Dollar Sign Adornment</h2>
+    <p>Use InputAdornment at <strong>start</strong>:</p>
+    <pre><code>inputProps={{
+  startAdornment: (
+    &lt;InputAdornment position="start"&gt;${/* dollar */}&lt;/InputAdornment&gt;
+  )
+}}</code></pre>
+  </div>
+
+</body>
+</html>

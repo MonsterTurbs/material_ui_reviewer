@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Button Logic Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p, .card ul { margin: 8px 0; }
+    code { display: block; background: #f9f9f9; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🐞 The Problem</h2>
+    <p>The “Get Estimate” button sometimes enabled too early because our logic assumed one question never changed. We missed cases when feature questions span two pages. 😕</p>
+  </div>
+
+  <div class="card">
+    <h2>📋 Original <code>estimateDisabled</code> Logic</h2>
+    <p>We looked at unanswered questions and required <code>emptySelections.length &lt; 3</code> plus one special check. This failed when the first page’s feature question wasn’t answered but the second page was. ❌</p>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ New Approach Overview</h2>
+    <p>1️⃣ Treat the “features” question specially since it appears on two pages<br>
+    2️⃣ Handle all other questions in one go<br>
+    3️⃣ Combine both results to decide button state</p>
+  </div>
+
+  <div class="card">
+    <h2>1️⃣ Filter Out Feature Questions</h2>
+    <p>Remove both feature pages from the unanswered list so we can treat them separately:</p>
+    <code>const otherUnanswered = questions
+  .filter(q =&gt; q.title !== 'Which features do you expect to use?')
+  .filter(q =&gt; /* still unanswered */);
+</code>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Check Feature Pages</h2>
+    <p>Find both feature questions and count how many options are selected across them:</p>
+    <code>const featureQuestions = questions
+  .filter(q =&gt; q.title === 'Which features do you expect to use?');
+const featuresSelected = featureQuestions
+  .flatMap(q =&gt; q.options)
+  .filter(o =&gt; o.selected).length;
+</code>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Combine Checks</h2>
+    <p>Now button is enabled only if:</p>
+    <ul>
+      <li>No other questions are unanswered (<code>otherUnanswered.length === 0</code>)</li>
+      <li>At least one feature option is chosen (<code>featuresSelected &gt; 0</code>)</li>
+    </ul>
+    <code>const disabled = !(otherUnanswered.length === 0 && featuresSelected &gt; 0);</code>
+  </div>
+
+  <div class="card">
+    <h2>🎉 Final <code>estimateDisabled</code> Function</h2>
+    <code>function estimateDisabled() {
+  const otherUnanswered = questions
+    .filter(q =&gt; q.title !== 'Which features do you expect to use?')
+    .filter(q =&gt; !hasSelection(q));
+
+  const featuresSelected = questions
+    .filter(q =&gt; q.title === 'Which features do you expect to use?')
+    .flatMap(q =&gt; q.options)
+    .filter(o =&gt; o.selected).length;
+
+  return !(otherUnanswered.length === 0 && featuresSelected &gt; 0);
+}</code>
+  </div>
+
+  <div class="card">
+    <h2>💡 Why This Works</h2>
+    <ul>
+      <li>Other questions each live on one page, so filtering them is simple.</li>
+      <li>Feature question spans two pages; counting selections across both ensures it’s answered.</li>
+      <li>Combining both checks makes the button state accurate every time.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Tip</h2>
+    <p>Always watch for multi-page questions or special cases in your forms—they often need extra logic! 📝</p>
+  </div>
+</body>
+</html>

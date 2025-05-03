@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📒 Custom Software Page – Final Responsive Notes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f5f7fa;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+    .card ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛠️ Final Responsive Tweaks</h1>
+    <p>Easy study notes for the custom software page! 📄✨</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ Center Text on Mobile 📱➡️🌐</h2>
+    <ul>
+      <li>Detect small screens:
+        <code>const matchesSm = useMediaQuery(theme.breakpoints.down('sm'))</code>
+      </li>
+      <li>On every `<Typography>` add:
+        <pre><code>align={matchesSm ? 'center' : 'right'}</code></pre>
+      </li>
+      <li>Left-align large, center on phones.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Stack Icons & Animations on Mobile ↕️</h2>
+    <ul>
+      <li>On each icon/animation wrapper:
+        <pre><code>direction={matchesSm ? 'column' : 'row'}</code></pre>
+      </li>
+      <li>They’ll stay side-by-side on desktop, stack on phones.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Resize Root-Cause Icon 🌳🔍</h2>
+    <ul>
+      <li>Make its size smaller on phones:
+        <pre><code>
+style={{
+  height: matchesSm ? '300rem' : '450rem',
+  width:  matchesSm ? '300rem' : '450rem'
+}}
+        </code></pre>
+      </li>
+      <li>Keeps it centered and not too wide.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Adjust Side Padding for CTA Row 🚫⬅️➡️</h2>
+    <ul>
+      <li>On very small screens, shrink page side padding:
+        <pre><code>
+theme.breakpoints.down('sm'): {
+  paddingLeft: '1.5rem',
+  paddingRight: '1.5rem'
+}
+        </code></pre>
+      </li>
+      <li>Gives more room for content on phones.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Add Top & Bottom Gaps on xs 🏞️</h2>
+    <ul>
+      <li>Detect extra-small:  
+        <code>breakpoints.down('xs')</code></li>
+      <li>For header row:
+        <pre><code>marginTop: matchesXs ? '1rem' : '2rem'</code></pre>
+      </li>
+      <li>For very last row:
+        <pre><code>marginBottom: '2rem'</code></pre>
+      </li>
+      <li>Ensures breathing room everywhere.</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#555; margin-top:40px;">
+    🎉 That’s it – your page is fully responsive! Don’t forget to test at all sizes before exporting. 👍
+  </footer>
+</body>
+</html>

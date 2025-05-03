@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Material UI Tabs - Study Notes</title>
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h2 {
+      margin-top: 0;
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    p, ul {
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    ul li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+<h2>🔧 Setting Up Tabs in Material UI</h2>
+<p>Tabs let users navigate between different pages or sections of your app. Material UI offers a built-in <code>Tabs</code> component that's easy to use.</p>
+</div>
+<div class="card">
+<h2>📥 Step 1: Import Tabs and Tab</h2>
+<p>In your <code>Header.js</code>, add these imports:</p>
+<pre><code>import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';</code></pre>
+</div>
+<div class="card">
+<h2>🔩 Step 2: Add Tabs Inside the Toolbar</h2>
+<p>Wrap your tab items inside the <code>&lt;Tabs&gt;</code> container and use <code>&lt;Tab label="..." /&gt;</code> for each tab:</p>
+<ul>
+  <li>Home</li>
+  <li>Services</li>
+  <li>The Revolution</li>
+  <li>About Us</li>
+  <li>Contact Us</li>
+</ul>
+</div>
+<div class="card">
+<h2>📐 Step 3: Align Tabs to the Right</h2>
+<p>Apply a <code>margin-left: auto</code> style via your <code>tabContainer</code> class to push the tabs to the right side.</p>
+</div>
+<div class="card">
+<h2>🎨 Step 4: Customize Font and Style</h2>
+<p>Edit your <code>index.html</code> to include Google Fonts (e.g., Raleway). Then, in your <code>tab</code> style class, add:</p>
+<ul>
+  <li><code>fontFamily: 'Raleway'</code></li>
+  <li><code>textTransform: 'none'</code></li>
+  <li><code>fontWeight: 700</code></li>
+  <li><code>fontSize: '1rem'</code></li>
+  <li><code>minWidth: 10</code></li>
+  <li><code>marginLeft: 25</code></li>
+</ul>
+</div>
+<div class="card">
+<h2>🛠️ Step 5: Centralize Tab Styles in the Theme</h2>
+<p>In your <code>theme.js</code>, add a <code>tab</code> typography override:</p>
+<pre><code>typography: {
+  tab: {
+    fontFamily: 'Raleway',
+    textTransform: 'none',
+    fontWeight: 700,
+    fontSize: '1rem',
+  }
+}</code></pre>
+<p>Then spread <code>...theme.typography.tab</code> into your <code>tab</code> styles to inherit.</p>
+</div>
+<div class="card">
+<h2>🎉 Final Output</h2>
+<p>You now have styled tabs aligned on the right side of the header, fully integrated with your theme. The next step is to add navigation functionality and active tab indicators!</p>
+</div>
+</body>
+</html>

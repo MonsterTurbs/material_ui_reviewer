@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🦶 Building a Footer – Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+    h1 { text-align: center; color: #1976d2; margin-bottom: 20px; }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; display: flex; align-items: center; gap: 10px; color: #e65100; }
+    .card p, .card ul { margin: 10px 0; line-height: 1.5; }
+    .card ul { padding-left: 20px; }
+    .card li { margin-bottom: 8px; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>🦶 Building a Footer – Study Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🏗️ 1. Create the Footer File</h2>
+      <ul>
+        <li>📂 In <code>/ui</code>, make a new file named <code>Footer.js</code>.</li>
+        <li>✅ This will hold our footer component.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🛠️ 2. Import React &amp; makeStyles</h2>
+      <ul>
+        <li><code>import React from 'react';</code></li>
+        <li><code>import { makeStyles } from '@material-ui/core/styles';</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎨 3. Define Footer Styles</h2>
+      <ul>
+        <li>✅ Use <code>makeStyles(theme =&gt; ({{ footer: {{ backgroundColor: theme.palette.common.blue, width: '100%' }} }}));</code></li>
+        <li>📏 <strong>width: 100%</strong> makes the footer span the screen.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🧩 4. Build the Footer Component</h2>
+      <ul>
+        <li>🔧 Inside <code>Footer.js</code>:</li>
+        <li><code>const classes = useStyles();</code></li>
+        <li><code>return &lt;footer className=&#123;classes.footer&#125;&gt;Example Footer&lt;/footer&gt;;</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📦 5. Render Footer in App</h2>
+      <ul>
+        <li><code>import Footer from './ui/Footer';</code></li>
+        <li>🔽 Below your <code>&lt;Switch&gt;</code>, add <code>&lt;Footer /&gt;</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ 6. Remove Body Margin</h2>
+      <ul>
+        <li>📝 In <code>public/index.html</code>, set <code>&lt;body style="margin:0"&gt;</code>.</li>
+        <li>🖼️ Footer now touches both edges of the screen.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📏 7. Push Content to See Footer</h2>
+      <ul>
+        <li>📐 In your Home component, add a style like <code>&lt;div style=&#123;height: '2000px'&#125;&gt;</code> to create space.</li>
+        <li>🔍 Scroll down to confirm the footer sits at the bottom.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>➗ 8. Add the Black Slash Image</h2>
+      <ul>
+        <li><code>import footerAdornment from '../assets/FooterAdornment.svg';</code></li>
+        <li>🔳 Replace placeholder text with <code>&lt;img src=&#123;footerAdornment&#125; alt="black slash" className=&#123;classes.adornment&#125; /&gt;</code>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📐 9. Style the Adornment</h2>
+      <ul>
+        <li>🌈 Add <code>adornment</code> style: <code>width: '25em'</code>.</li>
+        <li>📱 Make it responsive: use <code>theme.breakpoints.down('md')</code> for <code>width: '21em'</code>, and <code>'xs'</code> for <code>'15em'</code>.</li>
+        <li>⬇️ Use <code>vertical-align: bottom</code> to flush to footer bottom.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔒 10. Fix Drawer Clipping</h2>
+      <ul>
+        <li>☝️ Footer was behind the drawer.</li>
+        <li><code>position: 'relative', zIndex: 1302</code> on <code>classes.footer</code> brings it above.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎉 11. Final Check</h2>
+      <ul>
+        <li>🔄 Resize window, open drawer—footer and header clip nicely.</li>
+        <li>📱 Test on your phone via local IP for a mobile preview.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💠 Material UI Grid System - Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #e65100;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 8px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>💠 Material UI Grid System - Study Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>✨ What is the Grid? ✨</h2>
+      <p>The Grid helps you place things neatly on the screen and makes them move or resize when the screen changes. It uses CSS Flexbox under the hood!</p>
+    </div>
+
+    <div class="card">
+      <h2>📦 Containers vs. Items</h2>
+      <ul>
+        <li>🧱 <strong>Container</strong>: Holds and spaces out <em>Items</em>.</li>
+        <li>📄 <strong>Item</strong>: A child inside a container. Your content goes here.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>↔️ Spacing &amp; the 8px Rule</h2>
+      <p>Use <code>spacing</code> on a <strong>Container</strong>. The number (0–10) multiplies by 8px.  For example:</p>
+      <pre><code>&lt;Grid container spacing={2}&gt; // 2×8px = 16px gaps&lt;/Grid&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🔢 12-Column Layout</h2>
+      <p>Each row has 12 columns. Give each <code>Item</code> a number (1–12) to say how many columns it spans:</p>
+      <ul>
+        <li>12 = full width (100%)</li>
+        <li>6 = half width (50%)</li>
+        <li>3 = quarter width (25%)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📱 Breakpoints &amp; Responsive</h2>
+      <ul>
+        <li><code>xs</code> (extra-small): mobile phones</li>
+        <li><code>sm</code> (small): tablets</li>
+        <li><code>md</code> (medium): small laptops</li>
+        <li><code>lg</code> (large): desktops</li>
+        <li><code>xl</code> (extra-large): big screens</li>
+      </ul>
+      <p>Set different column spans for each breakpoint:</p>
+      <pre><code>&lt;Grid item xs={12} sm={6} md={4}&gt; ... &lt;/Grid&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🛠️ Fixed vs. Fluid Layouts</h2>
+      <p>If you give only <code>xs</code>, your layout stays the same on all screens. To change on larger screens, add more breakpoints.</p>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Next Steps</h2>
+      <ul>
+        <li>Use Grid in your footer to arrange links in columns.</li>
+        <li>Adjust spacing and column sizes for different screen widths.</li>
+        <li>Combine with other components to build responsive pages!</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

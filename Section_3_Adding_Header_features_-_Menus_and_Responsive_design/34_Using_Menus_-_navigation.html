@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Material UI Menu Item Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f4f7;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      border-radius: 10px;
+      max-width: 800px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .card h2 {
+      color: #e67e22;
+    }
+    .card p {
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+    code {
+      background: #ecf0f1;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📚 Study Notes: Material UI - Menu Items as Links</h1>
+
+  <div class="card">
+    <h2>🔗 Turning Menu Items into Links</h2>
+    <p>To make each <code>MenuItem</code> navigate to a different page, we use the <code>component</code> prop and set it to <code>Link</code> from <code>react-router-dom</code>. We also use the <code>to</code> prop to define the route.</p>
+    <p>Example:</p>
+    <code>&lt;MenuItem component=&#123;Link&#125; to="/customsoftware"&gt;Custom Software Development&lt;/MenuItem&gt;</code>
+  </div>
+
+  <div class="card">
+    <h2>⚠️ Gotcha: Active Tab Not Updating</h2>
+    <p>Even though the content and URL update, the active tab doesn't change because we didn't update the state. To fix this, we update the <code>value</code> state when a menu item is clicked.</p>
+    <p>We use an arrow function:</p>
+    <code>
+      onClick={() =&gt; &#123;<br/>
+        &nbsp;&nbsp;handleClose();<br/>
+        &nbsp;&nbsp;setValue(1);<br/>
+      &#125;}
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>✅ Fixing the Navigation to Services Page</h2>
+    <p>We also want a way to navigate directly to the <code>/services</code> page. We add another <code>MenuItem</code> at the top for this purpose:</p>
+    <code>
+      &lt;MenuItem component=&#123;Link&#125; to="/services" onClick={() =&gt; &#123; handleClose(); setValue(1); &#125;}&gt;Services&lt;/MenuItem&gt;
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>💡 Summary</h2>
+    <ul>
+      <li>Use <code>component=&#123;Link&#125;</code> and <code>to</code> prop for routing with <code>MenuItem</code>.</li>
+      <li>Update active tab with <code>setValue()</code> in <code>onClick</code> to reflect current tab.</li>
+      <li>Add a separate menu item for the main Services page to improve navigation.</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material UI Table Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4faff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      color: #1a237e;
+      margin-top: 0;
+    }
+    p, ul {
+      color: #333;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+    ul { list-style: inside; }
+    code {
+      background: #eef6fb;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>📊 What Is a Material UI Table?</h2>
+    <p>A Table shows rows and columns of data clearly. It’s super flexible and perfect for lists, reports, or any data you want to display! 🤓</p>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Core Table Components</h2>
+    <ul>
+      <li><code>TableContainer</code>: Box that holds your table.</li>
+      <li><code>Table</code>: The main table element.</li>
+      <li><code>TableHead</code> &amp; <code>TableRow</code>: Header row with labels.</li>
+      <li><code>TableBody</code> &amp; <code>TableRow</code>: Your data rows.</li>
+      <li><code>TableCell</code>: Individual cells in head or body.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📝 Simple Table Example</h2>
+    <ul>
+      <li>Define a <code>rows</code> array of objects (e.g., name, calories, fat).</li>
+      <li>In your JSX:<br>
+        <code>&lt;TableContainer component=&#123;Paper&#125;&gt;
+  &lt;Table&gt;
+    &lt;TableHead&gt;
+      &lt;TableRow&gt;
+        &lt;TableCell&gt;Name&lt;/TableCell&gt;
+        ...
+      &lt;/TableRow&gt;
+    &lt;/TableHead&gt;
+    &lt;TableBody&gt;
+      &#123;rows.map(row =&gt; (
+        &lt;TableRow key=&#123;row.name&#125;&gt;
+          &lt;TableCell&gt;&#123;row.name&#125;&lt;/TableCell&gt;
+          ...
+        &lt;/TableRow&gt;
+      ))&#125;
+    &lt;/TableBody&gt;
+  &lt;/Table&gt;
+&lt;/TableContainer&gt;</code></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📏 Dense Table Option</h2>
+    <p>For a tighter look, add <code>size="small"</code> to your <code>&lt;Table&gt;</code>:</p>
+    <pre><code>&lt;Table size="small"&gt; ... &lt;/Table&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔀 Sorting &amp; Filtering</h2>
+    <p>Use the advanced example to:</p>
+    <ul>
+      <li>Click column headers to sort A→Z or Z→A. 🔠</li>
+      <li>Filter rows by category (e.g., only show "Websites"). 🔍</li>
+      <li>Map over data and update state to drive filters/sorting.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ Selection &amp; Deletion</h2>
+    <ul>
+      <li>Add checkboxes in each row to select items. ☑️</li>
+      <li>Show a toolbar or Snackbar with "Undo" to reverse deletions. ↩️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📑 Pagination &amp; Sticky Header</h2>
+    <ul>
+      <li>Use <code>TablePagination</code> for page controls. ⏭️</li>
+      <li>Set table container style for <code>stickyHeader</code> to keep headers in view. 📌</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🧩 Spanning &amp; Virtualization</h2>
+    <ul>
+      <li>Use <code>colSpan</code> or <code>rowSpan</code> on <code>TableCell</code> for merged cells. ↔️</li>
+      <li>For huge data sets (&gt;200 rows), consider <code>react-virtualized</code> to render only visible rows. 🚀</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Let’s Build!</h2>
+    <p>Now that we know the building blocks, let’s jump into code and make our Project Manager table interactive! 💻</p>
+  </div>
+
+</body>
+</html>

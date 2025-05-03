@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switch Filters Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 0.5em 0; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🎯 Goal</h2>
+    <p>Use toggle switches to filter table rows by type (Website, iOS, Android, Software) in a safe, clear way.</p>
+  </div>
+
+  <div class="card">
+    <h2>🔌 Pass Switch States</h2>
+    <p>From <code>Index.js</code>, send each switch value into <code>&lt;EnhancedTable&gt;</code> as props:</p>
+    <p><code>&lt;EnhancedTable<br>  websiteChecked={websiteChecked}<br>  iosChecked={iosChecked}<br>  androidChecked={androidChecked}<br>  softwareChecked={softwareChecked} /&gt;</code> ✔️</p>
+  </div>
+
+  <div class="card">
+    <h2>🚦 Create <code>switchFilters()</code></h2>
+    <p>Inside <code>EnhancedTable.js</code>, make a function to decide which rows to show:</p>
+    <p><code>const switchFilters = () =&gt; { /* logic here */ }</code> 🛠️</p>
+  </div>
+
+  <div class="card">
+    <h2>🌐 Filter Websites</h2>
+    <p>Get all rows with <code>service === 'website'</code> when <code>websiteChecked</code> is true:</p>
+    <p><code>const websites = props.rows.filter(r =&gt; websiteChecked ? r.service === 'website' : null);</code></p>
+  </div>
+
+  <div class="card">
+    <h2>📱 Filter iOS Apps</h2>
+    <p>Get rows where <code>platforms</code> includes <code>'iOS'</code> when <code>iosChecked</code>:</p>
+    <p><code>const iosApps = props.rows.filter(r =&gt; iosChecked ? r.platforms.includes('iOS') : null);</code></p>
+  </div>
+
+  <div class="card">
+    <h2>🤖 Filter Android Apps</h2>
+    <p>Similarly, for Android:</p>
+    <p><code>const androidApps = props.rows.filter(r =&gt; androidChecked ? r.platforms.includes('Android') : null);</code></p>
+  </div>
+
+  <div class="card">
+    <h2>💻 Filter Software</h2>
+    <p>And custom software projects:</p>
+    <p><code>const softwareApps = props.rows.filter(r =&gt; softwareChecked ? r.service === 'custom software' : null);</code></p>
+  </div>
+
+  <div class="card">
+    <h2>🔀 Combine Results</h2>
+    <p>If no switches are on, return all rows. Otherwise merge arrays uniquely:</p>
+    <p><code>if (!websiteChecked && !iosChecked && !androidChecked && !softwareChecked) return props.rows;</code><br>
+       <code>let combined = [...websites];</code><br>
+       <code>combined = combined.concat(iosApps.filter(r =&gt; !combined.includes(r)));</code><br>
+       <code>combined = combined.concat(androidApps.filter(r =&gt; !combined.includes(r)));</code><br>
+       <code>combined = combined.concat(softwareApps.filter(r =&gt; !combined.includes(r)));</code><br>
+       <code>return combined;</code></p>
+  </div>
+
+  <div class="card">
+    <h2>🔗 Hook into Table Render</h2>
+    <p>Replace row source with <code>switchFilters()</code> before search & sort:</p>
+    <p><code>{switchFilters().filter(r =&gt; r.search)...}</code></p>
+  </div>
+
+  <div class="card">
+    <h2>🎉 Result</h2>
+    <p>Rows now update instantly when toggling switches—only matching projects show up! 🚀</p>
+  </div>
+</body>
+</html>

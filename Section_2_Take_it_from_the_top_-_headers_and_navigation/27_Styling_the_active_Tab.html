@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material UI Tabs - Beginner Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h2 {
+      color: #1976d2;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    ul, ol {
+      padding-left: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    code {
+      background: #e0e0e0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    p {
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🎯 Lesson Goal</h2>
+    <p>Make the Material UI navigation tabs work so you can show which page is selected using the <code>value</code> and <code>onChange</code> props.</p>
+  </div>
+
+  <div class="card">
+    <h2>🧠 How Do Tabs Work?</h2>
+    <ul>
+      <li>The <code>&lt;Tabs&gt;</code> component uses a <code>value</code> prop to know which tab is active.</li>
+      <li>If <code>value=0</code>, the first tab is highlighted; <code>value=1</code> highlights the second, and so on.</li>
+      <li>To switch tabs, use React’s <code>useState</code> hook to track the <code>value</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Step-by-Step Code Walkthrough</h2>
+    <ol>
+      <li>Import <code>useState</code> from React:<br><code>import React, { useState } from 'react';</code></li>
+      <li>Set up state for the selected tab:<br><code>const [value, setValue] = useState(0);</code></li>
+      <li>Add <code>value</code> and <code>onChange</code> to <code>&lt;Tabs&gt;</code>:<br>
+        <pre><code>&lt;Tabs value={value} onChange={handleChange}&gt;
+  &lt;Tab label="Home" /&gt;
+  &lt;Tab label="Services" /&gt;
+  ...
+&lt;/Tabs&gt;</code></pre>
+      </li>
+      <li>Define the <code>handleChange</code> function:<br><code>const handleChange = (e, newValue) => setValue(newValue);</code></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>🧼 Bonus: Remove the Indicator Line</h2>
+    <p>To hide the underline under the active tab, set:</p>
+    <code>&lt;Tabs indicatorColor="primary" /&gt;</code>
+    <p>Since our background is also the primary color, the line becomes invisible!</p>
+  </div>
+
+  <div class="card">
+    <h2>✅ Results</h2>
+    <ul>
+      <li>Tab switching is now working ✔️</li>
+      <li>The app correctly tracks which tab is selected ✔️</li>
+      <li>We’re ready for React Router integration next! 🚀</li>
+    </ul>
+  </div>
+
+</body>
+</html>

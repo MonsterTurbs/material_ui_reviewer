@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Notes: Add-Project Logic 🚀</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Roboto, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 16px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 16px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      color: #1976d2;
+    }
+    .card p {
+      margin: 8px 0;
+      line-height: 1.5;
+      color: #333333;
+    }
+    pre {
+      background: #eee;
+      padding: 8px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Fix Misaligned Controls 🔧</h2>
+    <p>We moved the “Features” <code>&lt;Select&gt;</code> into the correct grid item so the “Users” radio group stays left-aligned while still right-justifying its column.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Add “Cancel” & “Add Project” Buttons 🎟️</h2>
+    <p>Under the dialog’s content, create a centered grid with two buttons:</p>
+    <pre><code>&lt;Grid container justify="center"&gt;
+  &lt;Grid item&gt;
+    &lt;Button color="primary"&gt;Cancel&lt;/Button&gt;
+  &lt;/Grid&gt;
+  &lt;Grid item&gt;
+    &lt;Button variant="contained" className={classes.button}&gt;
+      Add Project ➕
+    &lt;/Button&gt;
+  &lt;/Grid&gt;
+&lt;/Grid&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>3. Wire Up “Cancel” Functionality ❌</h2>
+    <p>Make the dialog close when “Cancel” is clicked:</p>
+    <pre><code>&lt;Button onClick={() =&gt; setDialogOpen(false)} …&gt;Cancel&lt;/Button&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>4. Create the <code>addProject()</code> Function 🛠️</h2>
+    <p>Under your state hooks, define:</p>
+    <pre><code>const addProject = () =&gt; {
+  // will fill in next…
+};</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>5. Update Table Rows State 📊</h2>
+    <p>Inside <code>addProject()</code>, append a new row to <code>rows</code> state using your <code>createData()</code> helper:</p>
+    <pre><code>setRows([
+  ...rows,
+  createData(
+    name,
+    dateString,
+    service,
+    featuresString,
+    complexity,
+    platformsString,
+    users,
+    total
+  )
+]);</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>6. Convert Arrays to Strings 🔗</h2>
+    <p>Your <code>features</code> and <code>platforms</code> are arrays. Turn them into comma-separated text:</p>
+    <pre><code>const featuresString  = features.join(', ');
+const platformsString = platforms.join(', ');</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>7. Close Dialog After Add ✔️</h2>
+    <p>Right after updating rows, close the dialog:</p>
+    <pre><code>setDialogOpen(false);</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>8. Format Date Object 📅</h2>
+    <p>Your date is a JS <code>Date</code> object. Format it as “MM/dd/yyyy” using <code>date-fns</code>:</p>
+    <pre><code>import { format } from 'date-fns';
+
+…  
+const dateString = format(date, 'MM/dd/yyyy');  
+// then pass dateString into createData()</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>9. Try It Out! 🚀</h2>
+    <p>1. Open dialog ➕<br>
+       2. Fill in all fields<br>
+       3. Click “Add Project”<br>
+       4. See your new row appear in the table!</p>
+    <p>Great job! 🎉 You now have a fully-working form that adds data to your Material UI table.</p>
+  </div>
+
+</body>
+</html>

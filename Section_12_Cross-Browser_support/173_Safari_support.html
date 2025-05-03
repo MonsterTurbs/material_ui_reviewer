@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safari Cross-Browser Fixes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5faff; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 15px; margin: 10px 0; width: 100%; max-width: 700px; }
+    h2 { color: #2c3e50; margin-top: 0; }
+    p, ul { color: #333; }
+    ul { padding-left: 20px; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🧐 What Happened in Safari?</h2>
+    <p>Safari won't show text inside an SVG when the SVG is used in an <code>&lt;img&gt;</code> tag. This made our header text disappear! 😲</p>
+  </div>
+
+  <div class="card">
+    <h2>🖼️ Inline SVG Fix</h2>
+    <ul>
+      <li>👉 Copy the SVG code and paste it directly into your React component instead of using <code>&lt;img src="Logo.svg"&gt;</code>.</li>
+      <li>👉 Add <code>className={classes.logo}</code> to the <code>&lt;svg&gt;</code> so styles still apply.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>💅 Fixing Styles in React</h2>
+    <ul>
+      <li>🤔 React doesn't allow CSS inside a normal <code>&lt;style&gt;</code> tag with braces.</li>
+      <li>💡 Wrap the CSS inside backticks and curly braces: <code>{`...CSS here...`}</code>.</li>
+      <li>✅ Remove unsupported quotes in <code>font-family</code> and add missing properties like <code>fontWeight</code> or <code>textTransform</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔄 React DOM Property Fixes</h2>
+    <ul>
+      <li>🚫 Change <code>class="..."</code> to <code>className="..."</code>.</li>
+      <li>🚫 Change <code>font-size="..."</code> to <code>fontSize="..."</code> (camelCase).</li>
+      <li>✔️ These small updates clear console errors and let React render correctly. ✅</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔤 Heading Consistency</h2>
+    <p>We switched some <code>&lt;h2&gt;</code> tags to <code>&lt;h1&gt;</code> so styles match and Safari shows the right size text. 📝</p>
+  </div>
+
+  <div class="card">
+    <h2>📱 Fixing Icon Overlap</h2>
+    <ul>
+      <li>🐛 In Safari, our Lottie icons were cut off at certain widths.</li>
+      <li>🔧 Reduce <code>maxWidth</code> at medium breakpoints (e.g., from 20rem to 15rem) and set explicit <code>height</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Restoring Grid Layout</h2>
+    <ul>
+      <li>⚙️ A style change turned our icon container from <code>display: grid</code> into <code>block</code>.</li>
+      <li>🔄 Add <code>style={{ display: 'grid' }}</code> back on the container to re-align icons. 🎯</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Key Takeaways</h2>
+    <ul>
+      <li>🔄 Always test your site in Safari (Mac + iOS) as well as Chrome.</li>
+      <li>🐛 Console errors often give clues (invalid DOM props).</li>
+      <li>⚙️ Small changes (inline SVG, props fixes, CSS tweaks) keep your site looking great everywhere!</li>
+    </ul>
+  </div>
+
+</body>
+</html>

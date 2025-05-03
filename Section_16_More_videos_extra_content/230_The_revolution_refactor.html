@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revolution Page Refactor Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 { margin-top: 0; font-size: 1.25em; }
+    .card p, .card ul { margin: 0.5em 0; }
+    code { background: #f9f9f9; padding: 4px 8px; border-radius: 4px; display: block; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>📄 Overview</h2>
+    <p>On the Revolution page, each step (Consultation, Mockup, etc.) used almost identical code: a title, some paragraphs, an icon, and a colored background. We refactored to avoid repeating that structure! ✨</p>
+  </div>
+
+  <div class="card">
+    <h2>🐞 The Problem</h2>
+    <ul>
+      <li>Every step had its own <code>&lt;Grid&gt;</code> and <code>&lt;Typography&gt;</code> code blocks.</li>
+      <li>Only differences were data: text, icon path, colors.</li>
+      <li>Lots of duplicate code makes updates tedious! 😣</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>💡 Refactor Idea</h2>
+    <p>Instead of copy-pasting each section, put all step details into one JavaScript array, then <em>map</em> over it to render each section with the same template. 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2>📝 Data Structure</h2>
+    <p>Create <code>revolutionSections.js</code> exporting an array of objects:</p>
+    <pre><code>export const sections = [
+  {
+    title: 'Consultation',
+    paragraphs: [
+      'We listen to your ideas…',
+      'Then we plan together…'
+    ],
+    icon: '/icons/handshake.svg',
+    iconAlt: 'Handshake',
+    maxWidth: '8rem',
+    bgColor: '#fafafa'
+  },
+  // …other steps…
+];</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔗 Template Mapping</h2>
+    <p>In <code>Revolution.js</code>, import sections and loop:</p>
+    <pre><code>import { sections } from '.../revolutionSections';
+
+function Revolution() {
+  return (
+    &lt;div&gt;
+      {sections.map(section =&gt; (
+        &lt;Grid
+          container
+          key={section.title}
+          style={{ backgroundColor: section.bgColor }}
+        &gt;
+          &lt;Typography&gt;{section.title}&lt;/Typography&gt;
+          {section.paragraphs.map(text =&gt; (
+            &lt;Typography key={text}&gt;{text}&lt;/Typography&gt;
+          ))}
+          &lt;img src={section.icon} alt={section.iconAlt}
+               style={{ maxWidth: section.maxWidth }} /&gt;
+        &lt;/Grid&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>👍 Benefits</h2>
+    <ul>
+      <li>Far less duplicate code! 🧹</li>
+      <li>Easy to add, remove, or reorder sections by editing the data array.</li>
+      <li>Consistent look and style across all steps.</li>
+      <li>Better maintainability and readability. 📚</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Next Steps</h2>
+    <p>Use this pattern whenever you spot repeating UI blocks—extract data and map it into a reusable template! 🌟</p>
+  </div>
+</body>
+</html>

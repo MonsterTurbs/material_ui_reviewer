@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📱 iOS & Android App Dev – Study Notes</title>
+  <style>
+    body {
+      margin: 0; padding: 20px;
+      background: #f0f4f8;
+      font-family: sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+      color: #333;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 16px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #2c3e50;
+    }
+    .card ul {
+      margin: 10px 0 0 20px;
+      padding: 0;
+    }
+    .card ul li {
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>📱 iOS & Android App Dev Page – Study Notes</h1>
+
+  <div class="card">
+    <h2>1️⃣ Create Component File</h2>
+    <ul>
+      <li>Make <code>mobileApps.js</code> inside <code>components/</code>. ✨</li>
+      <li>This file will hold our page code. 📁</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Add Imports & Hooks</h2>
+    <ul>
+      <li>Import React, Lottie, Grid, Typography, IconButton, Hidden. 📦</li>
+      <li>Import <code>useStyles</code>, <code>useTheme</code>, <code>useMediaQuery</code> from MUI. 🔧</li>
+      <li>Create <code>useStyles()</code> and  <code>theme = useTheme()</code>. 🎨</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Top Navigation Row</h2>
+    <ul>
+      <li>Copy header row from CustomSoftware page. 📋</li>
+      <li>Paste inside <code>&lt;Grid container direction="row"&gt;</code>. ↔️</li>
+      <li>Contains: back arrow, title + text, forward arrow. 🔙📝🔜</li>
+      <li>Use <code>&lt;Hidden mdDown&gt;</code> to hide arrows on mobile. 🤫</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Heading Text</h2>
+    <ul>
+      <li>Inside row, center text when small: use <code>justify</code> and <code>align="center"</code> via <code>matchesMd</code>. 📐</li>
+      <li>Title: <code>&lt;Typography variant="h2"&gt;</code>. 📣</li>
+      <li>Body: multiple <code>&lt;Typography variant="body1" paragraph&gt;</code>. 📄</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Integration Section</h2>
+    <ul>
+      <li>New <code>&lt;Grid item container direction="row"&gt;</code> under header. ➕</li>
+      <li>Left: text container (<code>column</code>) with title <code>h4</code> + 2 paragraphs. 📝</li>
+      <li>Middle: Lottie animation (<code>defaultOptions</code>). 🎞️</li>
+      <li>Right: text container (<code>column</code>) with title + paragraphs, right‑aligned. ↘️</li>
+      <li>Import animation JSON and set up <code>defaultOptions</code>. 📂</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6️⃣ Simultaneous Support</h2>
+    <ul>
+      <li>Copy Integration block. 📑</li>
+      <li>Swap order: animation on left, text on right. 🔄</li>
+      <li>Change titles & text using design copy‑paste. 🎨</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7️⃣ Feature Icons Row</h2>
+    <ul>
+      <li>Copy energy/time/money icons row code. 🔋⏱️💰</li>
+      <li>Adapt icons & labels for Mobile Apps: integration icons. 📲</li>
+      <li>Use <code>&lt;Grid container justify="space-around"&gt;</code>. 🏞️</li>
+      <li>Center on mobile: <code>direction={matchesSm? 'column':'row'}</code>, <code>alignItems='center'</code>. 📱</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>8️⃣ Call to Action</h2>
+    <ul>
+      <li>At page bottom, add <code>&lt;CallToAction setValue={props.setValue}/&gt;</code>. 🚀</li>
+      <li>Wrap rows in <code>.rowContainer</code> for side padding. 📐</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎉 You’re Done!</h2>
+    <p>Great job! 👏 Save this as PDF and review 🌟</p>
+  </div>
+
+</body>
+</html>

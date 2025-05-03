@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Services Menu Refactor</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p, .card ul { margin: 8px 0; }
+    code { display: block; background: #f9f9f9; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🎯 Goal</h2>
+    <p>Improve the “Services” menu so it pops <strong>underneath</strong> the tab and stays aligned, using Material-UI’s advanced <code>MenuList composition</code> example. 🍰</p>
+  </div>
+
+  <div class="card">
+    <h2>❌ Problem with SimpleMenu</h2>
+    <p>The current simple menu covers the Services tab and misaligns the active tab indicator. 😕</p>
+  </div>
+
+  <div class="card">
+    <h2>✨ MenuList Composition</h2>
+    <p>Material-UI’s MenuList example shows how to anchor the popup under the button without covering it. It uses:</p>
+    <ul>
+      <li><code>Popper</code> for positioning</li>
+      <li><code>Grow</code> transition for smooth animation</li>
+      <li><code>Paper</code> for the popup background</li>
+      <li><code>ClickAwayListener</code> to close when clicking outside</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔗 ClickAwayListener 🤚</h2>
+    <p>Wrap your menu so clicks outside it trigger <code>onClickAway</code>, closing the popup:</p>
+    <code>&lt;ClickAwayListener onClickAway={handleClose}&gt;
+  &lt;div&gt;…menu content…&lt;/div&gt;
+&lt;/ClickAwayListener&gt;</code>
+  </div>
+
+  <div class="card">
+    <h2>📦 Popper 📍</h2>
+    <p>Positions the menu near the anchor (the Services tab) without covering it:</p>
+    <code>&lt;Popper open={open} anchorEl={anchorRef.current} transition&gt;…&lt;/Popper&gt;</code>
+    <p>Use <code>anchorEl</code> ref to attach to the Services tab element.</p>
+  </div>
+
+  <div class="card">
+    <h2>📝 Paper 📄</h2>
+    <p>Wrap menu content in <code>Paper</code> for a card-like background and elevation:</p>
+    <code>&lt;Paper&gt;
+  &lt;MenuList&gt;…items…&lt;/MenuList&gt;
+&lt;/Paper&gt;</code>
+  </div>
+
+  <div class="card">
+    <h2>🎬 Grow Transition 🌱</h2>
+    <p>Add a smooth grow animation when the menu appears:</p>
+    <code>&lt;Grow in={open}&gt;
+  &lt;Paper&gt;…&lt;/Paper&gt;
+&lt;/Grow&gt;</code>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Implementation Steps 🛠️</h2>
+    <ol>
+      <li>Create a ref: <code>const anchorRef = useRef(null);</code></li>
+      <li>Attach it to the Services <code>&lt;Tab/&gt;</code> element via <code>ref={anchorRef}</code>.</li>
+      <li>Manage open state: <code>const [open, setOpen] = useState(false);</code></li>
+      <li>On hover/click, toggle <code>open</code> and set <code>anchorEl</code>.</li>
+      <li>Render <code>&lt;Popper&gt;</code> with <code>&lt;Grow&gt;</code> &gt; <code>&lt;Paper&gt;</code> &gt; <code>&lt;MenuList&gt;</code>.</li>
+      <li>Wrap in <code>&lt;ClickAwayListener&gt;</code> to close when clicking outside.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Result</h2>
+    <p>The menu now appears neatly below the Services tab, stays aligned, and closes on outside clicks—delivering a polished, intuitive navigation! 🎉</p>
+  </div>
+</body>
+</html>

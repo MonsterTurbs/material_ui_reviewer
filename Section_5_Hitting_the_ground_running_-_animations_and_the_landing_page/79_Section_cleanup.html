@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎓 Button Wiring & Cleanup Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 20px; }
+    header { text-align: center; margin-bottom: 30px; }
+    header h1 { margin: 0; font-size: 2rem; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 20px; margin-bottom: 20px; }
+    .card h2 { font-size: 1.5rem; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+    .card p { font-size: 1rem; line-height: 1.4; margin: 10px 0; }
+    .card code { background: #f0f0f0; padding: 2px 4px; border-radius: 4px; font-size: 0.9rem; }
+    .emoji { margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛠️ Button Wiring & Cleanup</h1>
+    <p>Easy-to-follow steps for hooking up buttons and fixing small bugs.</p>
+  </header>
+
+  <div class="card">
+    <h2>🔗 1. Hook up Header “Free Estimate”</h2>
+    <p>
+      In <code>Header.js</code>, add to the Estimate button:
+      <code>component={Link} to="/estimate"</code> and then
+      <code>onClick={() => { props.setValue(5); }}</code> to clear the active tab.  
+      Also update your refresh-fix <code>useEffect</code> switch to handle <code>'/estimate'</code>.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🏠 2. Wire Landing-Page Buttons</h2>
+    <p>
+      In <code>LandingPage.js</code> import:
+      <code>import { Link } from 'react-router-dom';</code>
+    </p>
+    <p>
+      Then for each button (Hero, Services, Revolution, Info, CTA), add:<br>
+      <code>component={Link} to="/your-route"</code><br>
+      e.g. Learn More → <code>to="/revolution"</code>, Estimate → <code>to="/estimate"</code>.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>📥 3. Pass State Props to Landing Page</h2>
+    <p>
+      In <code>App.js</code>, routes like:<br>
+      <code>&lt;Route path="/" component={LandingPage} /&gt;</code><br>
+      don’t accept props.  
+      Change to:  
+      <code>render={props =&gt; &lt;LandingPage {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} /&gt;}</code>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🐞 4. Quick Bug Fix: Routing & Active Tabs</h2>
+    <p>
+      After wiring, test each button.  
+      If clicking a button doesn’t update the tab, ensure you call<br>
+      <code>props.setValue(index)</code> in its <code>onClick</code> (e.g. <code>5</code> for Estimate).  
+      And handle that route in your header’s <code>useEffect</code>.
+    </p>
+  </div>
+
+  <footer style="text-align:center; margin-top:40px; color:#666;">
+    Happy coding! 🚀
+  </footer>
+</body>
+</html>

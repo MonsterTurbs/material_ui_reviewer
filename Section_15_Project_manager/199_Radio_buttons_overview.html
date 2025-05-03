@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radio Buttons Study Notes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #1976d2;
+    }
+    p, ul {
+      color: #333333;
+      line-height: 1.5;
+    }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    code {
+      background: #e8f0fe;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>📻 What Are Radio Buttons?</h2>
+    <ul>
+      <li>Allow selecting <strong>only one</strong> option from many.</li>
+      <li>Example: Choosing a service type (e.g., Custom Software, Website, Mobile App).</li>
+      <li>If you pick a new item, the old one automatically unchecks.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ Material UI Radio Setup</h2>
+    <ul>
+      <li><code>Radio</code>: the circle you click.</li>
+      <li><code>RadioGroup</code>: groups radios so only one can be checked.</li>
+      <li><code>FormControlLabel</code>: wraps a Radio + label text together neatly.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📝 Key Props for FormControlLabel</h2>
+    <ul>
+      <li><code>control={&lt;Radio /&gt;}</code> – what you’re wrapping.</li>
+      <li><code>label="Your Label"</code> – text shown next to the radio.</li>
+      <li><code>labelPlacement</code> (optional) – <code>start</code>, <code>end</code>, <code>top</code>, <code>bottom</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🚫 Disabled Radio Option</h2>
+    <ul>
+      <li>Add <code>disabled</code> prop to disable selection:</li>
+      <li><code>&lt;Radio disabled /&gt;</code> looks greyed out and unclickable.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Customizing & Examples</h2>
+    <ul>
+      <li>Change color, size, and styling via props or theme overrides.</li>
+      <li>Material UI docs show how to match your app’s look.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

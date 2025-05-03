@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎬 React Lottie – Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+    h1 { text-align: center; color: #1976d2; margin-bottom: 20px; }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; width: 100%; }
+    .card h2 { margin-top: 0; display: flex; align-items: center; gap: 8px; color: #e65100; }
+    .card p, .card ul { margin: 10px 0; line-height: 1.5; }
+    .card ul { padding-left: 20px; }
+    .card li { margin-bottom: 6px; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>🎬 React Lottie – Study Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🎯 Goal</h2>
+      <p>Learn how to render Bodymovin JSON animations in React using React Lottie. Even beginners can do it! 👶✨</p>
+    </div>
+
+    <div class="card">
+      <h2>📦 1. Install Package</h2>
+      <p>Run in terminal:</p>
+      <pre><code>npm install --save react-lottie</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ 2. Set Up Default Options</h2>
+      <p>Create an options object:</p>
+      <pre><code>const defaultOptions = {
+  loop: true,           // 🔁 repeat animation
+  autoplay: true,       // ▶️ start automatically
+  animationData: animationData,  // imported JSON
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice'
+  }
+};</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🚀 3. Render Animation</h2>
+      <p>Import and use the <code>&lt;Lottie /&gt;</code> component:</p>
+      <pre><code>import Lottie from 'react-lottie';
+import animationData from '../animations/landing/data.js';
+
+// inside render:
+&lt;Lottie
+  options={defaultOptions}
+  height="100%"
+  width="100%"
+/&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🛠️ 4. Integrate in App</h2>
+      <ul>
+        <li>Replace dummy component in <code>App.js</code> route <code>"/"</code> with your new <code>&lt;LandingPage /&gt;</code>.</li>
+        <li>Ensure you import your <code>LandingPage</code> correctly.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🧐 5. Inspect SVG</h2>
+      <p>The animation is rendered as <strong>SVG</strong>, giving you crisp, scalable graphics! 🖼️👍</p>
+    </div>
+
+    <div class="card">
+      <h2>💡 6. Tips</h2>
+      <ul>
+        <li>You can use fixed pixel values or percentages for <code>height</code>/`<code>width</code>`.</li>
+        <li>Toggle <code>loop</code> or <code>autoplay</code> as needed for different effects.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⚠️ 7. Note</h2>
+      <p>React Lottie may show a deprecation warning for old lifecycle methods. It still works, but future updates may fix this. ⏳</p>
+    </div>
+
+  </div>
+</body>
+</html>

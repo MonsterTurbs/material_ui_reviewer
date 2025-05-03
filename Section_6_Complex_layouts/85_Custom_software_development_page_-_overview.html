@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>🎓 Custom Software Dev Page Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    header p {
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      font-size: 1.3rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>💻 Custom Software Dev Page</h1>
+    <p>Beginner-friendly breakdown with emojis! 📚</p>
+  </header>
+
+  <div class="card">
+    <h2>🗂️ 1. Page Structure Overview</h2>
+    <p>
+      Our custom software page has three main parts stacked top to bottom (column):  
+      1️⃣ Top nav arrows + title & text  
+      2️⃣ Three feature icons (Save Energy/Time/Money)  
+      3️⃣ Two animations section  
+      4️⃣ Root cause analysis block  
+      5️⃣ Two more animations block  
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🚀 2. Main Wrapper</h2>
+    <ul>
+      <li>Use a <code>&lt;Grid container direction="column"&gt;</code> wrapping the entire page.</li>
+      <li>This stacks each section vertically.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⬅️➡️ 3. Top Nav & Text</h2>
+    <ul>
+      <li>Inside main column container, create a row container for arrows + text.</li>
+      <li>Grid items in this row:  
+        • Left arrow (image)  
+        • Text block (column container with H2 + paragraphs)  
+        • Right arrow (image)</li>
+      <li>Hide arrows on mobile with a Hidden component (MD down).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔧 4. Feature Icons Row</h2>
+    <ul>
+      <li>Create a <code>Grid container direction="row" justify="space-around"</code>.</li>
+      <li>Each feature (Energy, Time, Money) is its own item container:  
+        • A column container: title (H4) above icon (image).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🌳 5. Root Cause Analysis Block</h2>
+    <ul>
+      <li>One row container centered (<code>justify="center"</code>).</li>
+      <li>Single column container:  
+        • Tree image  
+        • Text block (H4 + paragraphs) stacked below</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎞️ 6. Two Animations Section</h2>
+    <ul>
+      <li>Row container with <code>justify="space-around"</code>.</li>
+      <li>First animation item:  
+        • Column container: text (H4 + paragraph) then Lottie animation.</li>
+      <li>Second animation item:  
+        • Column container: Lottie animation then text (H4 + paragraph).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>💡 7. Mobile Adjustments</h2>
+    <ul>
+      <li>Hide desktop arrows at MD and below.</li>
+      <li>Switch row→column for small screens:  
+        <code>direction={matchesSM ? "column" : "row"}</code>.</li>
+      <li>Center text & buttons on mobile:  
+        <code>justify={matchesSM ? "center" : "space-between"}</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎉 8. Executive Tweaks</h2>
+    <ul>
+      <li>Moved forward arrow next to paragraph for better UX.</li>
+      <li>Kept arrows hidden on mobile.</li>
+      <li>Made design decisions based on testing & consistency.</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#777; margin-top:40px;">
+    ✅ You’re ready to code this layout with Material UI’s Grid! 👍
+  </footer>
+
+</body>
+</html>

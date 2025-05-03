@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Confirmation & Contact Form Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">💬</span>Dialog & Contact Form Overview</h2>
+    <p>We’ll build a pop-up <code>&lt;Dialog&gt;</code> to confirm the estimate and show a contact form for name, email, phone, and message. 📬</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>Import Components</h2>
+    <ul>
+      <li><code>Dialog</code> &amp; <code>DialogContent</code> from <code>@material-ui/core</code></li>
+      <li><code>TextField</code> for form inputs</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔐</span>State for Dialog</h2>
+    <pre><code>const [dialogOpen, setDialogOpen] = useState(false);</code></pre>
+    <p>Controls whether the dialog is visible.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🚀</span>Open/Close Logic</h2>
+    <ul>
+      <li>Add <code>onClick={() =&gt; setDialogOpen(true)}</code> to <strong>Get Estimate</strong> button.</li>
+      <li>Render:</li>
+      <pre><code>&lt;Dialog open={dialogOpen} onClose={() =&gt; setDialogOpen(false)}&gt;…&lt;/Dialog&gt;</code></pre>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🗂️</span>Dialog Structure</h2>
+    <p>Inside <code>&lt;Dialog&gt;</code>:</p>
+    <ul>
+      <li><code>&lt;Grid container justify="center"&gt; &lt;Typography variant="h2" align="center"&gt;Estimate&lt;/Typography&gt; &lt;/Grid&gt;</code></li>
+      <li><code>&lt;DialogContent&gt;</code></li>
+      <ul>
+        <li>Grid container for contact form and future summary</li>
+      </ul>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✍️</span>Embed Contact Form</h2>
+    <p>Copy contact form fields from <code>Contact.js</code> into left column:</p>
+    <pre><code>&lt;Grid item container direction="column"&gt;
+  &lt;Grid item&gt;&lt;TextField label="Name" … /&gt;&lt;/Grid&gt;
+  &lt;Grid item&gt;&lt;TextField label="Email" … /&gt;&lt;/Grid&gt;
+  &lt;Grid item&gt;&lt;TextField label="Phone" … /&gt;&lt;/Grid&gt;
+  &lt;Grid item&gt;&lt;TextField label="Message" … multiline /&gt;&lt;/Grid&gt;
+&lt;/Grid&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔄</span>State & Handlers</h2>
+    <p>Import and initialize contact state above:</p>
+    <pre><code>const [name, setName] = useState('');
+const [email, setEmail] = useState('');
+const [phone, setPhone] = useState('');
+const [message, setMessage] = useState('');
+const handleChange = e => { setField(e.target.value); };</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Styles & Layout Fixes</h2>
+    <ul>
+      <li>Add message field style in <code>useStyles</code>:</li>
+      <pre><code>message: { width: '100%' },</code></pre>
+      <li>Tweak grid widths so form spans left half.</li>
+      <li>Add helper text below form:</li>
+      <pre><code>&lt;Typography variant="body1" paragraph&gt;
+Fill name, phone & email; we’ll get back to you with final pricing.
+&lt;/Typography&gt;</code></pre>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Preview & Next</h2>
+    <p>Now clicking <em>Get Estimate</em> pops up the dialog with working form fields. Next, calculate and show the price summary! 💰</p>
+  </div>
+
+</body>
+</html>

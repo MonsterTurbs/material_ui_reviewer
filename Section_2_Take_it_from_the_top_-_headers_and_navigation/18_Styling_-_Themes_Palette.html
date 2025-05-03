@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Material UI - Custom Palette Setup</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #f0f4f8;
+      line-height: 1.8;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p, ul, code, pre {
+      font-size: 16px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    code, pre {
+      background: #f4f4f4;
+      padding: 6px 10px;
+      border-radius: 4px;
+      display: block;
+      margin-top: 10px;
+    }
+    .highlight {
+      background-color: #e0f7fa;
+      border-left: 4px solid #00acc1;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎨 Study Notes: Customizing the Material UI Palette</h1>
+
+<div class="card">
+  <h2>🖌️ Goal</h2>
+  <p>Customize the colors in your React app using Material UI's <code>palette</code> object in the theme. We'll also connect our app to use those colors globally.</p>
+</div>
+
+<div class="card">
+  <h2>📋 Steps to Customize Palette</h2>
+  <ol>
+    <li>Open <code>theme.js</code> in your <code>UI</code> folder.</li>
+    <li>Create variables for your main brand colors.</li>
+    <li>Use those variables in the <code>palette</code> object.</li>
+    <li>Material UI will auto-generate <code>light</code> and <code>dark</code> shades.</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>💻 Sample Code</h2>
+  <pre><code>const arcBlue = "#0B72B9";
+const arcOrange = "#FFBA60";
+
+export default createMuiTheme({
+  palette: {
+    common: {
+      blue: `${arcBlue}`,
+      orange: `${arcOrange}`
+    },
+    primary: {
+      main: `${arcBlue}`
+    },
+    secondary: {
+      main: `${arcOrange}`
+    }
+  }
+});</code></pre>
+</div>
+
+<div class="card">
+  <h2>🎯 Why This Matters</h2>
+  <ul>
+    <li>You can reference <code>theme.palette.primary.main</code> anywhere in your components.</li>
+    <li>You only need to update the color in one place (inside <code>theme.js</code>).</li>
+    <li>Improves maintainability and consistency of your UI.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🔄 Applying to Components</h2>
+  <p>Example using AppBar:</p>
+  <pre><code>&lt;AppBar color="primary"&gt; // uses theme.palette.primary.main
+// or
+&lt;AppBar color="secondary"&gt; // uses theme.palette.secondary.main
+</code></pre>
+</div>
+
+<div class="card">
+  <h2>✅ Final Result</h2>
+  <p>Once connected, your AppBar or any Material UI component using theme colors will automatically reflect your custom palette.</p>
+</div>
+
+<div class="highlight">
+  <strong>Next Up:</strong> Typography! We'll learn how to style all your text using the theme too!
+</div>
+
+</body>
+</html>

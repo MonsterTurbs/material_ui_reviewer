@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Page Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. Add Input Fields 📝</h2>
+    <p>
+      Under the email grid, create a new <code>&lt;Grid item container&gt;</code> for inputs:
+      Name, Email, Phone & Message.
+    </p>
+  </div>
+  <div class="card">
+    <h2>2. One TextField per Grid Item 🔢</h2>
+    <ul>
+      <li>Wrap each <code>&lt;TextField label="Name" id="name" /&gt;</code> in its own <code>&lt;Grid item&gt;</code>.</li>
+      <li>Do the same for Email and Phone.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>3. Controlled Inputs 🎛️</h2>
+    <p>
+      Import <code>useState</code> from React.<br/>
+      Create state hooks:<br/>
+      <code>const [name, setName] = useState('');</code><br/>
+      Repeat for <code>email</code>, <code>phone</code>, and later <code>message</code>.
+    </p>
+  </div>
+  <div class="card">
+    <h2>4. Value & onChange 🔄</h2>
+    <p>
+      On each TextField, add:<br/>
+      <code>value={name}</code> and <br/>
+      <code>onChange={e => setName(e.target.value)}</code>.<br/>
+      Change to <code>email</code> and <code>phone</code> accordingly.
+    </p>
+  </div>
+  <div class="card">
+    <h2>5. Multiline Message Field 📧</h2>
+    <p>
+      Add a TextField for message with:<br/>
+      <code>multiline rows={10} placeholder="Your message..."</code><br/>
+      and link <code>value</code> & <code>onChange</code> to <code>message</code> state.
+    </p>
+  </div>
+  <div class="card">
+    <h2>6. Send Message Button 📨</h2>
+    <ul>
+      <li>Wrap a <code>&lt;Button variant="contained"&gt;</code> in a Grid item.</li>
+      <li>Inside, place <code>Send Message</code> text and an <code>&lt;img src={airplaneIcon} alt="send"/&gt;</code>.</li>
+      <li>Import airplane icon: <code>import airplaneIcon from "assets/send.svg";</code></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>7. Copy Call-to-Action Content 📋</h2>
+    <p>
+      Open <code>CallToAction.js</code>, copy inner grid items (text & button) into Contact.js under the large grid.<br/>
+      Also copy <code>estimateButton</code> & <code>learnButton</code> styles into Contact's Styles object.
+    </p>
+  </div>
+  <div class="card">
+    <h2>8. Center Vertically with Media Query 🎯</h2>
+    <ul>
+      <li>Import <code>useMediaQuery</code> from MUI: <code>import useMediaQuery from "@material-ui/core/useMediaQuery";</code></li>
+      <li>Create: <code>const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));</code></li>
+      <li>Import <code>ButtonArrow</code> and fix arrow icon.</li>
+      <li>To center CTA text/button vertically, add <code>alignItems="center"</code> on the container grid.</li>
+    </ul>
+  </div>
+</body>
+</html>

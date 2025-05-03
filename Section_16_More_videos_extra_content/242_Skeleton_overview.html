@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Notes: Skeleton Component</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 1rem;
+      margin: 6px 0;
+      line-height: 1.4;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🔍 What is a Skeleton?</h2>
+    <p>• A <strong>Skeleton</strong> is a placeholder shape (circle, rectangle, or line) shown while data is loading 😊</p>
+    <p>• It helps users see where content will appear instead of staring at a spinner 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2>📚 Variants &amp; Shapes</h2>
+    <p>• <code>variant="text"</code>: shows a line, like where a paragraph will go 📝</p>
+    <p>• <code>variant="rect"</code>: shows a rectangle, like an image or card 📦</p>
+    <p>• <code>variant="circle"</code>: shows a circle, like an avatar or icon ⚪️</p>
+  </div>
+
+  <div class="card">
+    <h2>✨ Animation Options</h2>
+    <p>• <code>animation="pulse"</code> (default) makes the skeleton softly fade in/out 🔄</p>
+    <p>• <code>animation="wave"</code> creates a left-to-right shimmer 🌊</p>
+    <p>• <code>animation={false}</code> disables animation for a static grey placeholder 🚫</p>
+  </div>
+
+  <div class="card">
+    <h2>💡 Practical Examples</h2>
+    <p>• <strong>YouTube Preview:</strong> Rectangle for video thumbnail + text lines for title &amp; details ▶️</p>
+    <p>• <strong>Social Post:</strong> Circle for avatar + several text lines for post content 👤📰</p>
+  </div>
+
+  <div class="card">
+    <h2>🔧 How to Use</h2>
+    <p>1. Import from the lab package:</p>
+    <pre><code>import Skeleton from '@mui/lab/Skeleton';</code></pre>
+    <p>2. Track loading state:</p>
+    <pre><code>const [loading, setLoading] = useState(true);</code></pre>
+    <p>3. Conditionally render:</p>
+    <pre><code>
+{loading ? (
+  &lt;Skeleton variant="rect" width={210} height={118} animation="wave" /&gt;
+) : (
+  &lt;img src="..." alt="Loaded" /&gt;
+)}
+    </code></pre>
+  </div>
+
+  <div class="card">
+    <h2>⚡️ Benefits</h2>
+    <p>• Makes UI feel faster and more polished 🚀</p>
+    <p>• Guides the eye to where content will appear 👀</p>
+    <p>• Reduces “loading spinner anxiety” by showing real layouts 🕗</p>
+  </div>
+
+  <div class="card">
+    <h2>👍 Tips</h2>
+    <p>• Match skeleton shapes/sizes to real content for best effect 🎨</p>
+    <p>• Keep animation subtle—don’t distract from loading flow ✨</p>
+    <p>• Use in lists, cards, avatars, text blocks—wherever data is delayed ⏳</p>
+  </div>
+
+</body>
+</html>

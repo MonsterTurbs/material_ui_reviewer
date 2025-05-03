@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services Menu Tuning Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card h2 { font-size: 1.3em; margin-top: 0; }
+    .card p, .card ul { margin: 8px 0; }
+    code { display: block; background: #f9f9f9; padding: 8px; border-radius: 4px; margin: 8px 0; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <!-- Card 1 -->
+  <div class="card">
+    <h2>🎯 What We're Improving</h2>
+    <p>Make the Services dropdown in our header feel smooth and clear ✨:<br>
+    • Remove the extra “Services” menu item 🗑️<br>
+    • Keep the Services tab visible when open 👁️‍🗨️<br>
+    • Highlight only real service links, not the parent tab 🛠️</p>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <h2>1️⃣ Remove Duplicate “Services” Item</h2>
+    <p>We no longer need a menu item for “Services” itself, because the tab stays visible:</p>
+    <code>// In <strong>menuOptions</strong> array
+// Remove the first entry named “Services”
+const menuOptions = [
+  // { name: 'Services', href: '/services' }  ← delete this
+  { name: 'Custom Software', href: '/services/software' },
+  { name: 'iOS/Android App', href: '/services/mobile' },
+  { name: 'Website Development', href: '/services/web' }
+];</code>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <h2>2️⃣ Turn Off Auto-Focus</h2>
+    <p>The menu was automatically focusing the first item, making it look “selected”.<br>
+    We disable this so nothing is highlighted on open:</p>
+    <code>&lt;MenuList
+  autoFocusItem={false}
+  ...
+&gt;…&lt;/MenuList&gt;</code>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card">
+    <h2>3️⃣ Update Selected Index</h2>
+    <p>Since we removed one item, our <code>selectedIndex</code> must match the three real links:</p>
+    <code>// Before: [0,1,2,3]<br>
+// Now: only [0,1,2] correspond to actual links<br>
+const selectedIdx = menuOptions.findIndex(opt =&gt; opt.href === currentPath);</code>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card">
+    <h2>4️⃣ Anchor &amp; Transform</h2>
+    <p>Place the popup under the tab and grow from top-left:</p>
+    <code>&lt;Popper placement="bottom-start" …&gt;
+  &lt;Grow style={{ transformOrigin: 'top left' }}&gt; … &lt;/Grow&gt;
+&lt;/Popper&gt;</code>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card">
+    <h2>5️⃣ Keep Menu Open on Hover</h2>
+    <p>Prevent it from closing when moving cursor from tab to menu:</p>
+    <ul>
+      <li><strong>Tab:</strong> add <code>onMouseLeave={() =&gt; setOpenMenu(false)}</code></li>
+      <li><strong>MenuList:</strong> add <code>onMouseOver={() =&gt; setOpenMenu(true)}</code></li>
+    </ul>
+  </div>
+
+  <!-- Card 7 -->
+  <div class="card">
+    <h2>✅ Final Testing</h2>
+    <ul>
+      <li>Hover tab → menu appears underneath ✅</li>
+      <li>Services tab stays visible ✅</li>
+      <li>No extra Services item in list ✅</li>
+      <li>Moving into menu keeps it open; leaving closes it ✅</li>
+      <li>Correct link is highlighted based on current page ✅</li>
+    </ul>
+  </div>
+
+  <!-- Card 8 -->
+  <div class="card">
+    <h2>🎉 Result</h2>
+    <p>Our header now offers a polished, intuitive Services dropdown that feels natural on hover and click! 🌟</p>
+  </div>
+</body>
+</html>

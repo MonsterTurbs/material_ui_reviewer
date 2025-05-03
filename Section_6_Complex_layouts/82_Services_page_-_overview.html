@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎓 Services Page Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+    .card ul {
+      margin: 10px 0 0 20px;
+      padding: 0;
+    }
+    .card ul li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🛠️ Services Page Overview</h1>
+    <p>Simple breakdown for kids or beginners, with fun emojis! 🚀</p>
+  </header>
+
+  <div class="card">
+    <h2>📄 1. Overall Wrapper</h2>
+    <p>The whole page lives inside a <strong>Grid container</strong> set to <code>direction="column"</code>.  
+    That stacks each big section (title, iOS block, Android block, etc.) top-to-bottom.</p>
+  </div>
+
+  <div class="card">
+    <h2>🔢 2. Main Sections</h2>
+    <p>Inside our column container we have 4 main <strong>Grid items</strong>:</p>
+    <ul>
+      <li>🌟 <strong>Title</strong> (“Our Services”)</li>
+      <li>📱 <strong>iOS &amp; Android Apps</strong></li>
+      <li>💻 <strong>Custom Software</strong></li>
+      <li>🌐 <strong>Website Development</strong></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>➡️ 3. Service Block Layout</h2>
+    <p>Each individual service block is a <strong>Grid container</strong> (default <code>row</code>):</p>
+    <ul>
+      <li><strong>Grid item:</strong> text on the left (title, subtitle, “Learn More” button) 📝</li>
+      <li><strong>Grid item:</strong> icon on the right (e.g. phone icon) 📷</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔠 4. Inside the Text Area</h2>
+    <p>That left-side text area is itself a <strong>Grid container</strong> with <code>direction="column"</code>:</p>
+    <ul>
+      <li>1️⃣ <strong>Grid item:</strong> title (<code>Typography variant="h4"</code>)</li>
+      <li>2️⃣ <strong>Grid item:</strong> subtitle (e.g. “Save time, save money”)</li>
+      <li>3️⃣ <strong>Grid item:</strong> second subtitle</li>
+      <li>4️⃣ <strong>Grid item:</strong> “Learn More” button</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ 5. Reuse &amp; Adjust</h2>
+    <p>Because it’s the same pattern on Home, just copy your Home’s service block component and:</p>
+    <ul>
+      <li>🖊️ Change icon &amp; texts</li>
+      <li>↔️ Adjust <code>justify</code> to left/right as needed</li>
+      <li>📱 Keep breakpoints for mobile stacking</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ 6. Ready to Code!</h2>
+    <p>With this map in hand, jump into your code editor and build each <code>&lt;Grid container&gt;</code> &amp; <code>&lt;Grid item&gt;</code> one by one.  
+    You’ve got this! 🌟</p>
+  </div>
+
+  <footer style="text-align:center; color:#777; margin-top:40px;">
+    Happy coding! 🎉
+  </footer>
+
+</body>
+</html>

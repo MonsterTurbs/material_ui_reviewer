@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Notes: About Us Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. Page Container 🗂️</h2>
+    <p>Wrap the whole page in a <code>&lt;Grid container direction="column"&gt;</code> so each section stacks top-to-bottom. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Title &amp; Mission ✨</h2>
+    <p>
+      • First <code>&lt;Grid item&gt;</code> holds <code>&lt;Typography variant="h2"&gt;About Us&lt;/Typography&gt;</code> (left-aligned title).<br>
+      • Next <code>&lt;Grid item container justify="center"&gt;</code> with <code>&lt;Typography variant="body1" align="center" style={{ fontStyle: 'italic' }}&gt;</code> for the mission statement. Center it on the page, but the text itself is centered too. 🎯
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. History Section 📜</h2>
+    <p>
+      • Create a row: <code>&lt;Grid item container direction="row"&gt;</code>.<br>
+      • Left side: <code>&lt;Grid item container direction="column"&gt;</code> with:<br>
+      &nbsp;&nbsp;- <code>&lt;Typography variant="h4"&gt;History&lt;/Typography&gt;</code><br>
+      &nbsp;&nbsp;- Multiple <code>&lt;Typography variant="body1" paragraph&gt;</code> paragraphs (copy your history text).<br>
+      • Right side: <code>&lt;Grid item&gt;&lt;img src={historyIcon} alt="history icon"/&gt;&lt;/Grid&gt;</code>. 🖼️
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>4. Team Section 🏆</h2>
+    <p>
+      • Use <code>&lt;Grid item container direction="column" alignItems="center"&gt;</code> to center content.<br>
+      • Add your name/title with <code>&lt;Typography variant="h4"&gt;</code>, then a bio line with <code>body1</code>.<br>
+      • Insert <code>&lt;Avatar src={yourPhoto} alt="Your Name" /&gt;</code> for a nice round image (e.g., your photo or dog pic). 🐶
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>5. Fun Facts Icons 🎉</h2>
+    <p>
+      • Under your bio, add a row: <code>&lt;Grid item container direction="row" justify="center"&gt;</code>.<br>
+      • For each fun fact (3 total):<br>
+      &nbsp;&nbsp;- Use <code>&lt;Grid item container direction="column"&gt;</code>.<br>
+      &nbsp;&nbsp;- First child: <code>&lt;img src={icon} alt="icon description"/&gt;</code>.<br>
+      &nbsp;&nbsp;- Second child: <code>&lt;Typography variant="caption"&gt;Caption text&lt;/Typography&gt;</code>.<br>
+      • Repeat for all three icons. 📊📷💡
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>6. Review & Export ✅</h2>
+    <p>Save your code, preview, and check alignment at different screen sizes. Congrats—you’ve mastered a complex About Us layout! 🚀</p>
+  </div>
+</body>
+</html>

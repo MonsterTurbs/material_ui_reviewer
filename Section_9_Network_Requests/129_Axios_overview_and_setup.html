@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Axios Integration Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. What Is Axios? 🤔</h2>
+    <p>
+      Axios is a JavaScript library to make HTTP requests easily in React.  
+      We’ll use it to call our Firebase function URL and send emails. 🚀
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Install Axios 📥</h2>
+    <p>
+      In your project root (not the functions folder), run:
+    </p>
+    <code>npm install axios</code>
+    <p>Now you can import it in your React code!</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Import &amp; Setup 🛠️</h2>
+    <p>
+      At the top of <code>Contact.js</code>, add:
+    </p>
+    <code>import axios from 'axios';</code>
+  </div>
+
+  <div class="card">
+    <h2>4. Create an onConfirm Function ✍️</h2>
+    <p>
+      Above your return statement, define:
+    </p>
+    <code>
+    const onConfirm = () => {<br>
+      // we’ll call Axios here<br>
+    };
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>5. Get Your Function URL 🔗</h2>
+    <ul>
+      <li>Open Firebase Console → Functions → copy your <em>sendMail</em> URL.</li>
+      <li>This is where Axios will send the GET request.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Call Axios.get() 🎉</h2>
+    <p>
+      Inside <code>onConfirm</code>, write:
+    </p>
+    <code>
+    axios.get('YOUR_FUNCTION_URL_HERE')<br>
+      .then(response =&gt; console.log(response))<br>
+      .catch(error =&gt; console.log(error));
+    </code>
+    <p>
+      This triggers your cloud function and logs the result. 👍
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>7. Test It! 🧪</h2>
+    <ul>
+      <li>Fill in name, email, phone, message on Contact page.</li>
+      <li>Click <strong>Send Message</strong> to open dialog.</li>
+      <li>Click <strong>Confirm</strong> to run <code>onConfirm</code>.</li>
+      <li>Open DevTools → Network tab to see the request and 200 status.</li>
+    </ul>
+    <p>
+      A 200 response and “Message sent successfully” means it worked! 📬
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>8. Next Steps 🏁</h2>
+    <p>
+      Now we’ll pass the actual form data as query params and show loading/success UI to the user.  
+      You’re on your way to a fully working contact form! 🎉
+    </p>
+  </div>
+
+</body>
+</html>

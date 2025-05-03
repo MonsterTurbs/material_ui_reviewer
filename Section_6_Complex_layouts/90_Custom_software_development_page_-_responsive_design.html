@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📒 Responsive Tweaks Notes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+    .card ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>⚙️ Responsive Fixes – Custom Software Page</h1>
+    <p>Easy steps with emojis, ready for PDF! 📄✨</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ Add Bottom Space Below Animations 📏</h2>
+    <ul>
+      <li>On the container wrapping “Automation” + “UX” icons, add:
+        <code>style={{ marginBottom: '10rem' }}</code>
+      </li>
+      <li>Gives breathing room before the footer.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Hide Arrows on Mobile 🤫</h2>
+    <ul>
+      <li>Wrap each arrow’s <code>&lt;Grid item&gt;</code> in:
+        <code>&lt;Hidden mdDown&gt;…&lt;/Hidden&gt;</code>
+      </li>
+      <li>They only show on desktop (md and up).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Center Header Text at md ⇩ 🖥️➡️📱</h2>
+    <ul>
+      <li>Detect medium-down with:
+        <code>const matchesMd = useMediaQuery(theme.breakpoints.down('md'))</code>
+      </li>
+      <li>On the top-row <code>&lt;Grid container&gt;</code>:
+        <pre><code>justify={matchesMd ? 'center' : undefined}</code></pre>
+      </li>
+      <li>And each title/paragraph:
+        <pre><code>align={matchesMd ? 'center' : undefined}</code></pre>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Stack Doc + Scale Sections at md ⇩ ⬆️</h2>
+    <ul>
+      <li>On their row container:
+        <pre><code>direction={matchesMd ? 'column' : 'row'}</code></pre>
+      </li>
+      <li>Align horizontally in column mode:
+        <pre><code>alignItems={matchesMd ? 'center' : undefined}</code></pre>
+      </li>
+      <li>Add bottom spacing only when stacked:
+        <pre><code>style={{ marginBottom: matchesMd ? '15rem' : 0 }}</code></pre>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Add Extra Gaps at xs ↕️📱</h2>
+    <ul>
+      <li>Detect small-down:
+        <code>const matchesSm = useMediaQuery(theme.breakpoints.down('sm'))</code>
+      </li>
+      <li>On each icon container (in column):
+        <pre><code>
+style={{
+  marginTop: matchesSm ? '10rem' : 0,
+  marginBottom: matchesSm ? '10rem' : 0
+}}
+        </code></pre>
+      </li>
+      <li>Prevents icons from sticking together on tiny screens.</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#555; margin-top:40px;">
+    🎉 All set! Test at different widths before export. 👍
+  </footer>
+
+</body>
+</html>

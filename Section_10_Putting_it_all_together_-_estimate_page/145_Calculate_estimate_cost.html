@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Cost Calculation Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      border: 1px solid #ccc; 
+      border-radius: 8px; 
+      padding: 16px; 
+      margin-bottom: 16px; 
+      width: 100%; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { 
+      background: #f4f4f4; 
+      padding: 2px 4px; 
+      border-radius: 4px; 
+      font-family: monospace; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🔢</span>Overview: Calculate Total</h2>
+    <p>Now that selection and navigation work, we need to <strong>crunch numbers</strong> and show the final estimate in the dialog. 💰</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📊</span>Step 1: Add <code>total</code> State</h2>
+    <pre><code>const [total, setTotal] = useState(0);</code></pre>
+    <p>Holds the computed estimate before display.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>Step 2: Define <code>getTotal</code> Function</h2>
+    <pre><code>const getTotal = () => {
+  let cost = 0;
+  // gather and total selected options...
+  setTotal(cost);
+};</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔍</span>Step 3: Get Selections</h2>
+    <p>Filter each question’s options for <code>selected === true</code>:</p>
+    <pre><code>const selections = questions
+  .map(q => q.options.filter(o => o.selected))
+  .filter(arr => arr.length > 0);
+</code></pre>
+    <p><em>Removes empty arrays from first question.&nbsp;📋</em></p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">➕</span>Step 4: Sum Flat Costs</h2>
+    <p>Add each option’s <code>cost</code> to <code>cost</code> variable:</p>
+    <pre><code>selections.forEach(opts =>
+  opts.forEach(opt => cost += opt.cost)
+);</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚖️</span>Step 5: Handle Multiplier</h2>
+    <p>Only for software estimates (<code>questions.length &gt; 2</code>):</p>
+    <pre><code>if (questions.length > 2) {
+  const userQ = questions
+    .filter(q => q.title === 'How many users do you expect?')[0];
+  const mul = userQ.options.filter(o => o.selected)[0].cost;
+  cost -= mul;          // remove added
+  cost *= mul;          // apply multiplier
+}
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔄</span>Step 6: Update State</h2>
+    <pre><code>setTotal(cost);</code></pre>
+    <p>Triggers re-render so UI shows new <code>total</code>. 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📢</span>Step 7: Trigger Calculation</h2>
+    <p>Call <code>getTotal()</code> when user clicks <em>Get Estimate</em>:</p>
+    <pre><code>&lt;Button onClick={() => { getTotal(); setDialogOpen(true); }}&gt;Get Estimate&lt;/Button&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Step 8: Display Total</h2>
+    <p>Inject into dialog text with formatting:</p>
+    <pre><code>&lt;Typography&gt;
+  Estimated cost: 
+  &lt;span className={classes.specialText}&gt;${total.toFixed(2)}&lt;/span&gt;
+&lt;/Typography&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Ready to Test!</h2>
+    <p>Pick options, click <em>Get Estimate</em>, and see the correct total. 🎉</p>
+  </div>
+
+</body>
+</html>

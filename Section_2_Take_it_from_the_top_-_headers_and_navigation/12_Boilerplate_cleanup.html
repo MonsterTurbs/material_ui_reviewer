@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Boilerplate Cleanup - Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      line-height: 1.8;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p, ul, code {
+      font-size: 16px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🧹 Study Notes: Cleaning Up the React Boilerplate</h1>
+
+<div class="card">
+  <h2>📁 Step 1: Prepare Your Project Files</h2>
+  <ul>
+    <li>Download and extract the <strong>Project One Files</strong> from the last lecture</li>
+    <li>Inside, find the <code>assets</code> and <code>animations</code> folders</li>
+    <li>Place both folders into your project's <code>src</code> (source) directory</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🧽 Step 2: Delete Unused Files</h2>
+  <p>Inside the <code>src</code> folder, delete the following files:</p>
+  <ul>
+    <li><code>App.css</code></li>
+    <li><code>App.test.js</code></li>
+    <li><code>logo.svg</code></li>
+    <li><code>index.css</code></li>
+    <li><code>serviceWorker.js</code></li>
+  </ul>
+  <p>Inside the <code>public</code> folder, delete:</p>
+  <ul>
+    <li><code>logo192.png</code></li>
+    <li><code>logo512.png</code></li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>📝 Step 3: Edit Files</h2>
+
+  <h3><code>App.js</code></h3>
+  <ul>
+    <li>Remove the header tag and everything inside it</li>
+    <li>Replace it with: <code>&lt;div&gt;hello&lt;/div&gt;</code></li>
+    <li>Remove import lines for deleted files (like logo and App.css)</li>
+  </ul>
+
+  <h3><code>index.js</code></h3>
+  <ul>
+    <li>Remove the import for <code>index.css</code></li>
+    <li>Remove the service worker import and code</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>⚙️ Step 4: Open the Project in Your Code Editor</h2>
+  <p>If you're using a terminal, run this command (example shown using Atom):</p>
+  <code>atom .</code>
+  <p>This opens the current directory in your code editor.</p>
+</div>
+
+<div class="card">
+  <h2>▶️ Step 5: Run the Project</h2>
+  <p>Back in your terminal, start the project:</p>
+  <code>npm start</code>
+  <p>A browser window will open showing: <strong>hello</strong></p>
+</div>
+
+<div class="card">
+  <h2>✅ All Set!</h2>
+  <p>Your project is now clean and ready to start fresh! In the next lesson, we’ll begin building the header. 🎉</p>
+</div>
+
+</body>
+</html>

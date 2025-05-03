@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Component Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">📁</span>New Component File</h2>
+    <p>Create a file named <code>Estimate.js</code> inside your <code>components</code> folder.</p>
+    <p>Make sure your development server is running (<code>npm start</code>).</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📥</span>Import Essentials</h2>
+    <ul>
+      <li><code>react</code> for building components.</li>
+      <li><code>react-lottie</code> for animations.</li>
+      <li><code>makeStyles</code> and <code>useTheme</code> from <code>@material-ui/core/styles</code>.</li>
+      <li>Material-UI components: <code>Grid</code>, <code>Typography</code>, <code>Button</code>, <code>IconButton</code>.</li>
+      <li>All option <strong>icons</strong> (import each image file now).</li>
+      <li>Animation JSON: <code>estimateAnimation/data.json</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Styles and Theme</h2>
+    <p>Define <code>useStyles</code> using <code>makeStyles(theme =&gt; ({}))</code> and get <code>theme</code> via <code>useTheme()</code>.</p>
+    <p>This sets up custom CSS-in-JS classes for this component.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>Component Structure</h2>
+    <p>Export a default function <code>Estimate</code>:</p>
+    <ul>
+      <li>Get <code>classes</code> from <code>useStyles()</code>.</li>
+      <li>Get <code>theme</code> from <code>useTheme()</code>.</li>
+      <li>Return a <code>&lt;Grid container direction="row"&gt;</code> structure.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🧩</span>Left Column (Animation)</h2>
+    <ul>
+      <li><code>&lt;Grid item container direction="column"&gt;</code></li>
+      <li>Child 1: <code>&lt;Typography variant="h2"&gt;Estimate&lt;/Typography&gt;</code> for title.</li>
+      <li>Child 2: <code>&lt;Lottie options={defaultOptions} animationData={estimateAnimation} style={{width: '100%', height: '100%'}}/&gt;</code></li>
+      <li>Paste default Lottie options below <code>theme</code> constant.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📝</span>Right Column (Question Preview)</h2>
+    <p>Before dynamic rendering, build one question manually:</p>
+    <ul>
+      <li><code>&lt;Grid item&gt; <code>&lt;Typography variant="h2" align="center" gutterBottom style={{fontWeight: 300}}&gt;Which service are you interested in?&lt;/Typography&gt;</code></li>
+      <li>Then wrap options in <code>&lt;Grid item container&gt;</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔧</span>Option Cards</h2>
+    <p>Each option:</p>
+    <ul>
+      <li><code>&lt;Grid item container direction="column" style={{maxWidth: '12rem'}}&gt;</code></li>
+      <li>Child: <code>&lt;Typography variant="h6" align="center"&gt;Custom Software Development&lt;/Typography&gt;</code></li>
+      <li>Child: <code>&lt;img src={softwareIcon} alt="Three floating screens"/&gt;</code></li>
+      <li>Copy-paste this container 3× and update title, <code>src</code>, and <code>alt</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🖌️</span>Update Theme for H6</h2>
+    <p>In <code>theme.js</code>, add an <code>h6</code> variant:</p>
+    <pre><code>h6: {
+  fontWeight: 500,
+  fontFamily: 'Railway',
+  color: 'arcBlue',
+},</code></pre>
+    <p>This styles all <code>variant="h6"</code> Typography.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🚀</span>Next Steps</h2>
+    <ul>
+      <li>Hook up <code>questions</code> state array and <code>active</code> logic.</li>
+      <li>Map over <code>questions</code> to render dynamically instead of manual preview.</li>
+      <li>Implement arrow functions to switch questions and update <code>selected</code> options.</li>
+      <li>Style option cards and layout for final design.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

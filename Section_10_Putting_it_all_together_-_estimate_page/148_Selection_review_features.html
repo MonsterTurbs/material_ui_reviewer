@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Features Review Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🎯</span>Goal: Show Features</h2>
+    <p>We want to list all extra features the user picked (GPS, photo/video, file transfer, etc.) so they can double-check before sending the request. ✅</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔧</span>Step 1: Copy <code>getPlatforms</code></h2>
+    <p>Duplicate your platforms code and adapt for features:</p>
+    <pre><code>const getFeatures = () => {
+  const newFeatures = [];
+  if (questions.length > 2) {
+    const featQ = questions
+      .filter(q => q.title === 'What features do you expect to use?')[0];
+    featQ.options
+      .filter(o => o.selected)
+      .forEach(o => newFeatures.push(o.title));
+  }
+  setFeatures(newFeatures);
+};</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">💾</span>Store in State</h2>
+    <p>Call <code>getFeatures()</code> when “Get Estimate” is clicked, just like <code>getPlatforms()</code>. This updates a <code>features</code> array in state. 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📋</span>Test Data</h2>
+    <p>Use <code>console.log(newFeatures)</code> first to verify it collects selected features correctly. You should see an array of strings. 🕵️‍♀️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📌</span>Render Condition</h2>
+    <p>In your dialog, show the features line only if <code>features.length &gt; 0</code>:</p>
+    <pre><code>{features.length &gt; 0 ? /* template string */ : null}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✍️</span>Template for Readable List</h2>
+    <p>Paste the provided template string (from your text file) between backticks. It handles commas and “and” for 1, 2, or 3+ items:</p>
+    <pre><code>{`
+with ${
+  features.length === 1
+    ? features[0]
+    : features.length === 2
+      ? `${features[0]} and ${features[1]}`
+      : features
+          .slice(0, -1)
+          .map(f => f + ', ')
+          .join('') + 'and ' + features.slice(-1)[0]
+}`}</code></pre>
+    <p>This prints:</p>
+    <ul>
+      <li>“with GPS”</li>
+      <li>“with GPS and Photo/Video”</li>
+      <li>“with GPS, Photo/Video, and File Transfer”</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✨</span>Result</h2>
+    <p>Your dialog now displays a clear sentence like:<br>
+      <em>“You want Custom Software Development for a Web application with GPS, Photo/Video, and File Transfer.”</em> 🎉</p>
+  </div>
+
+</body>
+</html>

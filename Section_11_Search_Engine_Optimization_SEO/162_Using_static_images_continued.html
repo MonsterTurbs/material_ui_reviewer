@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Next.js Migration Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 16px;
+      background: #f9f9f9;
+      line-height: 1.5;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 16px;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3em;
+    }
+    .card p {
+      margin: 8px 0;
+    }
+    .emoji {
+      font-size: 1.2em;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>Download Boilerplate</h2>
+    <p>• Go to Material UI docs → Guides → “Server Side Rendering” → Next.js example.</p>
+    <p>• Run the given <code>curl …</code> command to grab the starter code.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>Install &amp; Run</h2>
+    <p>• Inside the <code>next.js</code> folder, do:</p>
+    <p>  – <code>npm install</code></p>
+    <p>  – <code>npm run dev</code> (opens at <code>localhost:3000</code>)</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🗂️</span>File-System Routing</h2>
+    <p>• Place pages in <code>/pages</code>:</p>
+    <p>  – <code>index.js</code> → “/”</p>
+    <p>  – <code>about.js</code> → “/about”</p>
+    <p>  • Add <code>doctor.js</code> → “/doctor” automatically.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔗</span>Link Component</h2>
+    <p>• Use the boilerplate’s <code>src/Link.js</code> in place of React Router’s.</p>
+    <p>• Syntax: <code>&lt;Link href="/path"&gt;…&lt;/Link&gt;</code></p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Copy UI &amp; Theme</h2>
+    <p>• Copy your old <code>UI/</code> folder into <code>src/UI/</code>.</p>
+    <p>• Delete the boilerplate’s theme, update imports in <code>pages/_app.js</code> to <code>UI/theme.js</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📂</span>Static Assets (public/)</h2>
+    <p>• Create <code>public/assets/</code> for images and SVGs.</p>
+    <p>• Refer to them as <code>/assets/image.svg</code> in &lt;img&gt; tags—no JS import needed.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✏️</span>Rename Files</h2>
+    <p>• Remove spaces: e.g. <code>custom software icon.svg</code> → <code>custom-software.svg</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🗄️</span>Copy Assets Folder</h2>
+    <p>• Paste your old <code>assets/</code> into <code>public/assets/</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎞️</span>Animations Folder</h2>
+    <p>• Copy your <code>animations/</code> (JS/JSON files) into <code>src/animations/</code>.</p>
+    <p>• Don’t put JS here in <code>public/</code>; keep them processed by Webpack.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔄</span>Update Imports</h2>
+    <p>• In your pages, update all imports of images to <code>"/assets/…"</code>.</p>
+    <p>• Update component imports: e.g. <code>src/UI/ButtonArrow</code> instead of old paths.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Pages to Copy</h2>
+    <p>• Copy all your route components (about, contact, estimate, etc.) into <code>/pages</code>.</p>
+    <p>• Rename your <code>landingPage.js</code> → <code>index.js</code> for the home route.</p>
+  </div>
+
+</body>
+</html>

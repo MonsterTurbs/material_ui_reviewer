@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔧 Footer Grid Layout - Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e65100;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔧 Footer Grid Layout - Study Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>1. ➕ Import Grid</h2>
+      <p>In <code>Footer.js</code>, add:</p>
+      <pre><code>import Grid from '@material-ui/core/Grid';</code></pre>
+      <p>✅ Now you can use the Grid component!</p>
+    </div>
+
+    <div class="card">
+      <h2>2. 🚧 Wrap Links in a Container</h2>
+      <ul>
+        <li>At top of footer, before the image, add:</li>
+        <li><code>&lt;Grid container&gt;…&lt;/Grid&gt;</code></li>
+      </ul>
+      <p>This makes a grid container for your link items.</p>
+    </div>
+
+    <div class="card">
+      <h2>3. 🎯 Center Links</h2>
+      <p>To move links to the middle horizontally, use:</p>
+      <pre><code>&lt;Grid container justify="center"&gt;</code></pre>
+      <p>✨ Links now sit in the center of the footer!</p>
+    </div>
+
+    <div class="card">
+      <h2>4. 📐 Position Absolutely</h2>
+      <p>If your links sit under the slash image, make them float by adding a class:</p>
+      <pre><code>.mainContainer { position: absolute; top: 0; }</code></pre>
+      <p>✅ This lets links overlap the image just right.</p>
+    </div>
+
+    <div class="card">
+      <h2>5. 🎨 Style Link Text</h2>
+      <p>Give your links a friendly look:</p>
+      <pre><code>.link {
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+}</code></pre>
+      <p>🖌️ Now links look clean and readable.</p>
+    </div>
+
+    <div class="card">
+      <h2>6. 🏷️ Nest Columns</h2>
+      <ul>
+        <li>Each section (Home, Services, etc.) goes in its own column:</li>
+        <li><code>&lt;Grid item&gt;&lt;Grid container direction="column"&gt;…&lt;/Grid&gt;&lt;/Grid&gt;</code></li>
+      </ul>
+      <p>🗂️ Columns hold links stacked top-to-bottom.</p>
+    </div>
+
+    <div class="card">
+      <h2>7. ↔️ Add Spacing Between Columns</h2>
+      <p>Use the <code>spacing</code> prop on the outer container:</p>
+      <pre><code>&lt;Grid container spacing={2}&gt; … &lt;/Grid&gt;</code></pre>
+      <p>📏 Spacing of <code>2</code> means 2×8px = 16px gaps.</p>
+    </div>
+
+    <div class="card">
+      <h2>8. 🎉 Final Layout</h2>
+      <ul>
+        <li>🔄 Try resizing the window to see links stay centered.</li>
+        <li>🤖 Your footer now uses Grid for a flexible, neat layout!</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

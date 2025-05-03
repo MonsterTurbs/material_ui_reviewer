@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📘 Material UI Menu on Services Tab - Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 800px;
+    }
+    .card h2 {
+      color: #f57c00;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card ul {
+      padding-left: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .card p {
+      line-height: 1.6;
+      margin: 0.5rem 0;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 Material UI Menu on Services Tab</h1>
+
+  <div class="card">
+    <h2>🎯 Goal</h2>
+    <p>🛠️ Add a pop-up menu to the “Services” tab using Material UI’s <code>Menu</code> component. On hover, display links to:</p>
+    <ul>
+      <li>🔹 Custom Software Development</li>
+      <li>🔹 Mobile App Development</li>
+      <li>🔹 Website Development</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Setup</h2>
+    <ul>
+      <li>📥 Import <code>Menu</code> and <code>MenuItem</code> from Material UI.</li>
+      <li>🔧 Use React’s <code>useState</code> for <code>anchorEl</code> and open/close state.</li>
+      <li>➡️ Create <code>handleClick</code> to open the menu via event target.</li>
+      <li>❌ Create <code>handleClose</code> to close the menu.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔍 How It Works</h2>
+    <ul>
+      <li>🖱️ On hover (or click) of the Services tab, call <code>handleClick</code> via <code>onMouseOver</code> (or <code>onClick</code>).</li>
+      <li>📌 The menu is anchored to the tab via <code>anchorEl</code>.</li>
+      <li>👋 Use <code>MenuListProps={{ onMouseLeave: handleClose }}</code> to close when the mouse leaves.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>💡 Bonus Tips</h2>
+    <ul>
+      <li>🔐 Add <code>aria-owns</code> and <code>aria-haspopup</code> props for accessibility.</li>
+      <li>🆔 Link the menu ID to the tab via <code>id</code> props.</li>
+      <li>✨ Material UI auto-styles <code>MenuItem</code> hover and selected states.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ Result</h2>
+    <p>✅ Hovering over Services shows a clean pop-up menu of subpages. The menu closes on mouse leave, and the Services tab remains visible.</p>
+  </div>
+</body>
+</html>

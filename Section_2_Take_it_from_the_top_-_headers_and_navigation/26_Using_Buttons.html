@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material UI - Free Estimate Button (Study Notes)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #e65100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card ul {
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    .card code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+      font-family: monospace;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="card">
+      <h2>🎯 Goal</h2>
+      <p>🏷️ Add an orange <strong>"Free Estimate"</strong> button to the top-right of the header, matching the design mockup.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔢 Step 1: Import the Button</h2>
+      <p>📂 At the top of <code>Header.js</code>, import Material UI's Button component:</p>
+      <pre><code>import Button from '@material-ui/core/Button';</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>➕ Step 2: Add the Button</h2>
+      <p>⚙️ Place the button inside the <code>&lt;Toolbar&gt;</code>, just below the tabs:</p>
+      <pre><code>&lt;Button variant="contained" color="secondary"&gt;Free Estimate&lt;/Button&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Step 3: Style the Button</h2>
+      <p>🖌️ In your styles object, create a <code>button</code> class with:</p>
+      <ul>
+        <li>🔸 <code>borderRadius: '50px'</code></li>
+        <li>🔸 <code>marginLeft: '50px'</code> and <code>marginRight: '25px'</code></li>
+        <li>🔸 <code>fontFamily: 'Pacifico'</code>, <code>fontSize: '1rem'</code>, <code>textTransform: 'none'</code></li>
+        <li>🔸 <code>height: '45px'</code>, <code>color: 'white'</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📦 Step 4: Move Styles to Theme</h2>
+      <p>📦 In <code>theme.js</code>, add these under <code>typography.estimate</code>:</p>
+      <pre><code>estimate: {
+  fontFamily: 'Pacifico',
+  fontSize: '1rem',
+  textTransform: 'none',
+  color: 'white'
+}</code></pre>
+      <p>👉 Then use <code>...theme.typography.estimate</code> in your <code>button</code> style to inherit.</p>
+    </div>
+
+    <div class="card">
+      <h2>✅ Success!</h2>
+      <p>🎉 You now have a beautifully styled "Free Estimate" button in your header. Well done!</p>
+    </div>
+
+  </div>
+</body>
+</html>

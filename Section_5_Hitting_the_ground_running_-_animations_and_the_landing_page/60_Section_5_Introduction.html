@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏠 Landing Page Overview - Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e65100;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏠 Landing Page Overview - Study Notes</h1>
+  <div class="container">
+    <div class="card">
+      <h2>🎯 Goal</h2>
+      <p>Create a friendly, clear Home (landing) page that acts as a roadmap for the rest of the site and guides users to other pages. 🚀</p>
+    </div>
+
+    <div class="card">
+      <h2>🧩 Page Structure</h2>
+      <ul>
+        <li>1. <strong>Hero Block</strong> – Top section with an animation and headline to grab attention. 🎬</li>
+        <li>2. <strong>Services Block</strong> – Icons and short descriptions of services in a grid. 🛠️</li>
+        <li>3. <strong>Revolution Block</strong> – Floating card with text and background image. 🔄</li>
+        <li>4. <strong>Info Block</strong> – About &amp; Contact sections side-by-side with a background image. ℹ️</li>
+        <li>5. <strong>Call to Action</strong> – Banner encouraging free estimates, reused on many pages. 📞</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🛠️ Animation Setup</h2>
+      <p>We’ll export an animation (e.g., CPU passing hands) from After Effects, use a React animation library, then make it resize responsively. ✨</p>
+    </div>
+
+    <div class="card">
+      <h2>📐 Grid Layouts</h2>
+      <p>Each block uses Material UI’s Grid container/item props. Think:</p>
+      <ul>
+        <li><code>container</code> wraps all items.</li>
+        <li><code>item</code> defines each block or link.</li>
+        <li>Use <code>direction</code>, <code>justify</code>, <code>alignItems</code>, and <code>spacing</code> for layout.</li>
+      </ul>
+      <p>Grid helps align content and keep pages consistent and responsive. 📱💻</p>
+    </div>
+
+    <div class="card">
+      <h2>🔀 Responsive Tips</h2>
+      <ul>
+        <li>Use <code>Hidden</code> to show/hide blocks by screen size (e.g., hide footer links on mobile). 👀🙈</li>
+        <li>Apply breakpoints (<code>theme.breakpoints</code>) in styles for fonts, margins, and sizes. 📏</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✏️ Design Tweaks</h2>
+      <p>Feel free to adjust alignment or sizes from the design file if it improves clarity—trust your eye! 👀🎨</p>
+    </div>
+
+    <div class="card">
+      <h2>🎉 Next Steps</h2>
+      <p>With header &amp; footer ready, we’ll build each section on the Home page in code. Let’s dive into the hero block in the next video! 🔥</p>
+    </div>
+
+  </div>
+</body>
+</html>

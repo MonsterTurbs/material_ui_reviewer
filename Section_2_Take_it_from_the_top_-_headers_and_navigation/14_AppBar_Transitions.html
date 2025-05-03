@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AppBar Scroll Effect - Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      line-height: 1.8;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p, ul, code {
+      font-size: 16px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🧱 Study Notes: Adding Scroll Elevation to AppBar</h1>
+
+<div class="card">
+  <h2>📌 What Are We Doing?</h2>
+  <ul>
+    <li>We’re adding a subtle scroll effect to our AppBar (header)</li>
+    <li>It starts flat, and lifts (elevation) slightly when scrolling down</li>
+    <li>This adds a modern and polished feel to our layout</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🛠️ How to Do It (Steps)</h2>
+  <ol>
+    <li>Go to Material UI docs & find the <strong>Scroll trigger example</strong></li>
+    <li>Copy the <code>ElevationScroll</code> function</li>
+    <li>Paste it <strong>above your Header component</strong> in <code>Header.js</code></li>
+    <li>Remove the <code>PropTypes</code> and <code>window</code> references (we don’t need them)</li>
+    <li>Import <code>useScrollTrigger</code> from Material UI</li>
+    <li>Wrap your <code>&lt;AppBar /&gt;</code> with the new <code>ElevationScroll</code> component</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>⚙️ How It Works</h2>
+  <ul>
+    <li><code>useScrollTrigger()</code> is a React hook that listens to page scroll</li>
+    <li><code>disableHysteresis</code>: removes delay on scroll detection</li>
+    <li><code>threshold</code>: how far user must scroll before triggering effect</li>
+    <li>The function clones our AppBar with new elevation (0 = flat, 4 = elevated)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>👨‍💻 Testing the Effect</h2>
+  <p>Paste some filler text in <code>App.js</code> to test scrolling:</p>
+  <code>{Array.from(new Array(120)).map((_, index) =&gt; ( &lt;div key={index}&gt;Scroll down&lt;/div&gt; ))}</code>
+  <p>Result: when you scroll, AppBar gets subtle shadow/elevation.</p>
+</div>
+
+<div class="card">
+  <h2>🧹 Clean Up</h2>
+  <ul>
+    <li>Remove the extra text</li>
+    <li>Put back your original <code>hello</code> div</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>✅ Summary</h2>
+  <ul>
+    <li>You learned how to add a subtle scroll-based effect using <code>useScrollTrigger</code></li>
+    <li>Easy to set up using Material UI’s built-in example</li>
+    <li>Makes your app look more dynamic and professional</li>
+  </ul>
+</div>
+
+</body>
+</html>

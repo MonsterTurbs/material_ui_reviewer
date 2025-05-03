@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎓 Services Page Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      font-size: 1.3rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🛠️ Services Page Study Notes</h1>
+    <p>Easy steps for beginners, full-width cards & fun emojis! 🌟</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ Create File & Setup</h2>
+    <p>• In your <code>components</code> folder, make <strong>Services.js</strong> 📁<br/>
+       • Start React dev-server so you can preview as you code 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Add Basic Imports</h2>
+    <ul>
+      <li>Import <code>React</code>, <code>Link</code> from React-Router</li>
+      <li>Bring in Material UI hooks & components:<br/>
+          <code>makeStyles</code>, <code>useTheme</code>, <code>useMediaQuery</code>,<br/>
+          <code>Grid</code>, <code>Typography</code>, <code>Button</code></li>
+      <li>Create <code>useStyles</code> for your CSS‐in‐JS styling 🎨</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Copy & Paste Blocks</h2>
+    <p>• On your landing page you already built a “Services” block 🏗️<br/>
+       • Copy the three service sections (iOS/Android, Custom Software, Websites) – the whole<br/>
+         <code>&lt;Grid container&gt;…&lt;/Grid&gt;</code> snippet – into Services.js</p>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Hook into App.js</h2>
+    <ul>
+      <li>Import your new <code>Services</code> component in <code>App.js</code> 🔗</li>
+      <li>Replace the dummy `<Route>` for “/services” with a <code>render={props =&gt; &lt;Services {...props} /&gt;}</code></li>
+      <li>This makes the page actually show up at <code>/services</code> 🎉</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Import Missing Assets & Hooks</h2>
+    <ul>
+      <li>Bring in your three icons:<br/>
+        <code>import customIcon from "../assets/customSoftware.svg";</code><br/>
+        <code>import mobileIcon from "../assets/mobileApps.svg";</code><br/>
+        <code>import webIcon from "../assets/websiteIcon.svg";</code></li>
+      <li>Import <code>useTheme</code> & <code>useMediaQuery</code> to handle responsive tweaks 📱</li>
+      <li>Import your <code>ButtonArrow</code> helper for the “Learn More” arrows ➡️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6️⃣ Copy & Apply Styles</h2>
+    <p>• From your LandingPage styles, copy over:</p>
+    <ul>
+      <li><code>serviceContainer</code> (margins),</li>
+      <li><code>icon</code> spacing,</li>
+      <li><code>subtitle</code> text style,</li>
+      <li><code>specialText</code> (orange highlight),</li>
+      <li><code>learnButton</code> style 🎨</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7️⃣ Mirror Layout & Margins ↔️</h2>
+    <ul>
+      <li>Swap block order: bring “Custom Software” into the middle</li>
+      <li>For the right-side “Website” block, add <code>justify="flex-end"</code> above small size</li>
+      <li>Remove its <code>marginLeft</code> and add <code>marginRight</code> so it matches spacing</li>
+      <li>Use media queries (<code>matchesSmall</code>) to keep it responsive 📐</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#777; margin-top:40px;">
+    🚀 You’re all set! Now test at different screen sizes and celebrate your responsive grid skills! 🎉
+  </footer>
+
+</body>
+</html>

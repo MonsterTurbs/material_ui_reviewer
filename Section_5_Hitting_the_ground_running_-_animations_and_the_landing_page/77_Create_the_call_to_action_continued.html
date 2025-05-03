@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📢 Call to Action: Background & Layout Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 30px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #1976d2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>📋 Call to Action: Background & Layout Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🖼️ 1. Add Background Div</h2>
+      <ul>
+        <li>Above your main <code>&lt;Grid container&gt;</code>, insert:  
+          <code>&lt;div className={classes.background} /&gt;</code> 😊</li>
+        <li>This div will hold the desktop & mobile background images.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📥 2. Import Images</h2>
+      <ul>
+        <li>Import desktop image:  
+          <code>import background from 'assets/background.jpg'</code></li>
+        <li>Import mobile image:  
+          <code>import mobileBackground from 'assets/mobileBackground.jpg'</code> 📱</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎨 3. Define CSS Styles</h2>
+      <ul>
+        <li>In your <code>makeStyles</code> object, add:
+          <pre><code>background: {
+  backgroundImage: `url(${background})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  height: '60rem',
+},</code></pre>
+        </li>
+        <li>Under a mobile breakpoint, override:
+          <pre><code>[theme.breakpoints.down('md')]: {
+  backgroundImage: `url(${mobileBackground})`
+}</code></pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔄 4. Move Background to Container</h2>
+      <p>Instead of using an extra div, you can attach the <strong>background</strong> class directly to your main <code>&lt;Grid container&gt;</code>. Then remove any <code>position: absolute</code> on grid items to keep layout natural.</p>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ 5. Layout Buttons & Text</h2>
+      <ul>
+        <li>Wrap your heading and subtitle in one <code>Grid item</code>.</li>
+        <li>Wrap the “Free Estimate” <code>&lt;Button&gt;</code> in another <code>Grid item</code>.</li>
+        <li>Use <code>justify="space-between"</code> on the container to spread them apart.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎨 6. Style the Button</h2>
+      <ul>
+        <li>Extend your theme’s estimate style:</li>
+        <pre><code>estimateButton: {
+  ...theme.typography.estimate,
+  backgroundColor: theme.palette.common.orange,
+  borderRadius: 50,
+  height: '8rem',
+  width: '20.5rem',
+  marginRight: '5rem',
+  fontSize: '1.5rem'
+}</code></pre>
+        <li>Adjust <code>marginRight</code> so it doesn’t touch the screen edge 😊.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📏 7. Center Text Vertically</h2>
+      <p>Use <code>alignItems="center"</code> on the grid container (row direction) to move text into the vertical middle of the background.</p>
+    </div>
+
+    <div class="card">
+      <h2>📱 8. Responsive Check!</h2>
+      <ul>
+        <li>Resize the browser: at <code>md</code> breakpoint, mobile background should appear.</li>
+        <li>Ensure text & button stay readable and well-spaced on small screens.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✅ 9. Final Review</h2>
+      <ul>
+        <li>Background covers full container on desktop and mobile.</li>
+        <li>Text and button align with other page elements.</li>
+        <li>Everything remains clear, fun, and friendly—even for beginners! 🎉</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

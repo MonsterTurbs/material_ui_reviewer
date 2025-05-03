@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Material-UI Snackbar Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. What Is a Snackbar? 🔔</h2>
+    <p>
+      A Snackbar is a small message box that pops up to tell the user about something that happened,
+      like “Message sent!” or “Error occurred.” It appears briefly and then disappears automatically. 😊
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Basic Usage 📦</h2>
+    <p>
+      Import and render a Snackbar with just a message:
+    </p>
+    <code>
+import React, { useState } from 'react';<br>
+import Snackbar from '@material-ui/core/Snackbar';<br><br>
+function MyComponent() {<br>
+  const [open, setOpen] = useState(false);<br><br>
+  return (<br>
+    &lt;&gt;<br>
+      &lt;Button onClick={() =&gt; setOpen(true)}&gt;Show Message&lt;/Button&gt;<br>
+      &lt;Snackbar<br>
+        open={open}<br>
+        message="Hello from Snackbar!"<br>
+        onClose={() =&gt; setOpen(false)}<br>
+      /&gt;<br>
+    &lt;/&gt;<br>
+  );<br>
+}
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>3. Control Visibility &amp; Auto Hide ⏱️</h2>
+    <ul>
+      <li><code>open</code>: boolean state to show/hide.</li>
+      <li><code>onClose</code>: callback when it should close.</li>
+      <li><code>autoHideDuration={3000}</code>: milliseconds before it closes itself.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4. Add an Action Button 🎬</h2>
+    <p>
+      You can include buttons like “UNDO” or a close icon:
+    </p>
+    <code>
+&lt;Snackbar<br>
+  open={open}<br>
+  message="Deleted item"<br>
+  action={(<br>
+    &lt;Button color="secondary" size="small" onClick={handleUndo}&gt;<br>
+      UNDO<br>
+    &lt;/Button&gt;<br>
+  )}<br>
+  onClose={() =&gt; setOpen(false)}<br>
+/&gt;
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>5. Positioning the Snackbar 📍</h2>
+    <p>
+      Use <code>anchorOrigin</code> to choose where it appears:
+    </p>
+    <code>
+&lt;Snackbar<br>
+  open={open}<br>
+  message="Saved!"<br>
+  anchorOrigin={{<br>
+    vertical: 'bottom',<br>
+    horizontal: 'right'<br>
+  }}<br>
+  onClose={() =&gt; setOpen(false)}<br>
+/&gt;
+    </code>
+    <p>Options: <em>top/bottom</em> and <em>left/center/right</em>. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Change Transitions &amp; Styles 🎨</h2>
+    <ul>
+      <li><code>TransitionComponent={Slide}</code> or <code>Fade</code> for animations.</li>
+      <li>Customize colors via theme overrides or <code>ContentProps</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7. Next: Show Feedback on Send 📬</h2>
+    <p>
+      After sending email, trigger a success or error Snackbar so users know the result.  
+      In the next step, we’ll integrate this into our contact form! 🚀
+    </p>
+  </div>
+
+</body>
+</html>

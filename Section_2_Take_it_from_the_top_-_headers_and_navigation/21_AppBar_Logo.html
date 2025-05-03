@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material UI - Header Setup</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card h2 {
+      color: #1976d2;
+      margin-top: 0;
+    }
+    .card code {
+      background-color: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    pre {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>✅ Goal</h2>
+    <p>Place the company logo in the website header using Material UI and adjust its styling with the theme system.</p>
+  </div>
+
+  <div class="card">
+    <h2>📁 Step 1: Import the Logo</h2>
+    <p>Store your logo SVG file in the <code>/assets</code> folder and import it into the component:</p>
+    <pre><code>import logo from '../../assets/logo.svg';</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🖼️ Step 2: Add the Image to the Header</h2>
+    <pre><code>&lt;img src={logo} alt="Company Logo" className={classes.logo} /&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Step 3: Remove Default Padding</h2>
+    <p>Use the <code>disableGutters</code> prop on the <code>Toolbar</code> component:</p>
+    <pre><code>&lt;Toolbar disableGutters&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>📐 Step 4: Style the Logo</h2>
+    <p>Use <code>makeStyles</code> to set the logo height:</p>
+    <pre><code>logo: {
+  height: '7em'
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>📏 Step 5: Add Toolbar Margin</h2>
+    <p>Add bottom margin using the toolbar mixin:</p>
+    <pre><code>toolbarMargin: {
+  ...theme.mixins.toolbar,
+  marginBottom: '3em'
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>📋 Summary</h2>
+    <ul>
+      <li>Added the logo image using an <code>&lt;img&gt;</code> tag.</li>
+      <li>Removed default side padding with <code>disableGutters</code>.</li>
+      <li>Resized the logo using a custom style class.</li>
+      <li>Added spacing below the header with the <code>toolbarMargin</code> style.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

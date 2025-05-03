@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Material UI Inline Styling - Study Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #1976d2;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>📌 Introduction to Inline Styling</h2>
+      <p>
+        Inline styling is used when you want to apply custom styles to a specific component instead of using the theme. Material UI makes this easy using <code>makeStyles</code>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>🛠️ How It Works</h2>
+      <ul>
+        <li>Import <code>makeStyles</code> from <code>@material-ui/styles</code></li>
+        <li>Create a style hook using JavaScript object-style (camelCase props like <code>borderRadius</code>)</li>
+        <li>Call the hook inside your component to access classes</li>
+        <li>Use <code>className=&#123;classes.myStyle&#125;</code> to apply</li>
+      </ul>
+      <pre><code>const useStyles = makeStyles({
+  myButton: {
+    backgroundColor: "blue",
+    color: "white",
+    padding: "10px"
+  }
+});
+
+const MyComponent = () => {
+  const classes = useStyles();
+  return &lt;button className=&#123;classes.myButton&#125;&gt;Click Me&lt;/button&gt;
+}</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🧠 Bonus: Access Theme Inside Styles</h2>
+      <p>You can pass a function to <code>makeStyles</code> to access the theme object:</p>
+      <pre><code>const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+    marginTop: theme.mixins.toolbar.minHeight
+  }
+}));</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>✅ Real Use: Fixing Header Margin</h2>
+      <ul>
+        <li>The AppBar is fixed, so it overlays content</li>
+        <li>Use <code>theme.mixins.toolbar</code> to apply a margin/padding spacer</li>
+        <li>This avoids overlap and is the recommended Material UI fix</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📦 Summary</h2>
+      <ul>
+        <li><strong>Use inline styling</strong> with <code>makeStyles</code> when you want component-level styles</li>
+        <li>Use <code>theme</code> object to ensure consistency with Material UI design</li>
+        <li>Combine inline styles and themes for powerful design control</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

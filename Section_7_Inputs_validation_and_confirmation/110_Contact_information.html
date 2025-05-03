@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    .card p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. Container Direction: Column 📐</h2>
+    <p>
+      When you set <code>direction="column"</code>, the main axis is vertical. 
+      Using <code>justify="center"</code> will center your items from top to bottom. 😊
+    </p>
+  </div>
+  <div class="card">
+    <h2>2. Importing Icons 📱✉️</h2>
+    <p>
+      Under your other imports, add:
+      <code>import phoneIcon from "assets/phone.svg";</code> and
+      <code>import emailIcon from "assets/email.svg";</code>
+    </p>
+  </div>
+  <div class="card">
+    <h2>3. Adding Icon & Text Together 🔗</h2>
+    <p>
+      Inside your grid with <code>direction="column"</code>, add a new grid item container (default row):
+      <ul>
+        <li>Wrap the <code>&lt;img src={phoneIcon} alt="phone"/&gt;</code> in a <code>&lt;Grid item&gt;</code>.</li>
+        <li>Next to it, add a <code>&lt;Typography variant="body1"&gt;555-555-5555&lt;/Typography&gt;</code>.</li>
+      </ul>
+    </p>
+  </div>
+  <div class="card">
+    <h2>4. Spacing Between Icon & Text ↔️</h2>
+    <p>
+      To add a little gap, give the image a style:
+      <code style="display:block;">style={{ marginRight: "0.5rem" }}</code>
+    </p>
+  </div>
+  <div class="card">
+    <h2>5. Duplicating for Email 📧</h2>
+    <p>
+      Copy the phone grid items and:
+      <ul>
+        <li>Change the source to <code>emailIcon</code> and <code>alt="envelope"</code>.</li>
+        <li>Update the text to your email, e.g., <code>zachary@gmail.com</code>.</li>
+      </ul>
+    </p>
+  </div>
+  <div class="card">
+    <h2>6. Aligning Text & Icons Properly 🎯</h2>
+    <p>
+      If text is too big, reduce by adding <code>fontSize: "1rem"</code> in the style of your <code>Typography</code>.
+      <br/>
+      For the email icon, add <code>verticalAlign: "bottom"</code> so it lines up with the text baseline.
+    </p>
+  </div>
+  <div class="card">
+    <h2>7. Save & Preview 💾</h2>
+    <p>
+      Save your file and refresh. You should see your icons and text nicely centered and aligned.
+      <br/>
+      Next up: adding text fields in the form! 🚀
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Page Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">📄</span>Overview</h2>
+    <p>We are building the <strong>Estimate Page</strong> of the website. It has two sides:</p>
+    <ul>
+      <li><strong>Left:</strong> Title and animation (React Lottie).</li>
+      <li><strong>Right:</strong> Estimate calculator with questions and options.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔲</span>Page Layout</h2>
+    <p>Use a <code>Grid container</code> with <code>direction="row"</code>:</p>
+    <ul>
+      <li>Left <code>Grid item</code>: column direction for title and Lottie.</li>
+      <li>Right <code>Grid item</code>: column direction for the questions and buttons.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🧠</span>State Management</h2>
+    <p>Store questions in <code>state</code> as an array of objects. Each object is a question with its own details.</p>
+    <p>This lets React re-render when values change (like switching questions or selecting options).</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">❓</span>Question Object</h2>
+    <p>Each question has:</p>
+    <ul>
+      <li><code>id</code>: unique number (e.g., 1, 2, ...).</li>
+      <li><code>title</code>: the question text (e.g., "Which service are you interested in?").</li>
+      <li><code>active</code>: <code>true</code> if this question is showing.</li>
+      <li>Optional <code>subtitle</code>: extra hint (e.g., "Select one").</li>
+      <li><code>options</code>: an array of option objects.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔘</span>Option Object</h2>
+    <p>Each option inside a question has:</p>
+    <ul>
+      <li><code>id</code>: unique number.</li>
+      <li><code>title</code> and optional <code>subtitle</code>.</li>
+      <li><code>icon</code> path and <code>iconAlt</code>.</li>
+      <li><code>selected</code>: <code>true</code> if the user picked it.</li>
+      <li><code>cost</code>: number for price calculation (some start at 0).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">➡️ ⬅️</span>Navigation Arrows</h2>
+    <p>Arrows above the button change which question is <code>active</code>:</p>
+    <ul>
+      <li>Click <strong>Next</strong> arrow: set current question <code>active</code> to <code>false</code>, next to <code>true</code>.</li>
+      <li>Disable arrows at first or last question.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">💡</span>Calculate Estimate</h2>
+    <p>When all questions have a selected option:</p>
+    <ul>
+      <li>Enable "Get Estimate" button.</li>
+      <li>On click: gather all <code>selected</code> options, sum their <code>cost</code>.</li>
+      <li>Show total cost and selected choices.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📧</span>Confirmation & Sending</h2>
+    <p>After estimate is ready:</p>
+    <ul>
+      <li>Display contact form (reuse code from Contact Page).</li>
+      <li>Show summary of estimate with checkmarks and text.</li>
+      <li>Send data via cloud function (like Contact form).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎉</span>Congrats!</h2>
+    <p>Once this page is done, the core website is complete! Great job on getting this far! 🎊</p>
+  </div>
+
+</body>
+</html>

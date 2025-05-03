@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safari Cross-Browser: Extra Fixes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0faff;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      color: #1a3d6b;
+      margin-top: 0;
+    }
+    p, ul {
+      color: #333;
+      padding-left: 20px;
+    }
+    ul { list-style: inside emoji; }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🔄 Conditional Grid Display</h2>
+    <ul>
+      <li>Apply <code>display: grid</code> only at or below medium breakpoints.</li>
+      <li>Use: <code>style={{ display: matchesMedium ? 'grid' : undefined }}</code> ⚙️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🐛 Root Image Typo Fix</h2>
+    <p>Rename <code>assets/roots.svg</code> to <code>assets/root.svg</code> so the icon shows again. ✅</p>
+  </div>
+
+  <div class="card">
+    <h2>🗂️ Custom Software Layout</h2>
+    <ul>
+      <li>Wrap docs & data and scale sections in a grid at medium breakpoints.</li>
+      <li>Center items: <code>justifyContent: matchesMedium ? 'center' : 'space-between'</code>. 🎯</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Revolution Page Icon Fixes</h2>
+    <ul>
+      <li>Fix SVG typo: <code>iterate.svg</code> ➔ <code>iterate-icon.svg</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Review Icon Alignment</h2>
+    <ul>
+      <li>Avoid width percentages that shift centering.</li>
+      <li>Use <code style="display:inline-block;">style={{ maxWidth: '40rem' }}</code> for consistent sizing. 📐</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📞 Contact Page Icons</h2>
+    <p>Correct icon paths: <code>assets/phone.svg</code> &amp; <code>assets/email.svg</code> to restore the icons. ✉️📱</p>
+  </div>
+
+  <div class="card">
+    <h2>📐 Footer Spacing Fix</h2>
+    <ul>
+      <li>Grid spacing added 16px margin &gt;100% width.</li>
+      <li>Override each column: <code>style={{ margin: 0 }}</code> to remove extra gap. 🚫</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ Testing Tips</h2>
+    <ul>
+      <li>Test in Safari (Mac &amp; iOS) alongside Chrome. 🔍</li>
+      <li>Resize each page through all breakpoints.</li>
+      <li>Open console to catch DOM prop errors. 🛠️</li>
+    </ul>
+  </div>
+
+</body>
+</html>

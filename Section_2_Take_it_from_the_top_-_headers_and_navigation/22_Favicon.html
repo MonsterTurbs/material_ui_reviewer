@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fixing Console Errors - Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #1976d2;
+      font-size: 1.25rem;
+    }
+    .card code {
+      background-color: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.95em;
+    }
+    pre {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    ul, ol {
+      margin: 10px 0 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>📌 Objective</h2>
+    <p>Fix the console error related to <code>manifest.json</code> and clean up other parts of the project.</p>
+  </div>
+
+  <div class="card">
+    <h2>❌ Console Error</h2>
+    <p><strong>Problem:</strong> A console error indicates that <code>logo192.png</code> cannot be found.</p>
+    <p><strong>Cause:</strong> This error comes from the <code>manifest.json</code> file referencing an image we deleted.</p>
+  </div>
+
+  <div class="card">
+    <h2>✅ Step 1: Delete <code>manifest.json</code></h2>
+    <p>Remove the file <code>public/manifest.json</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2>✅ Step 2: Remove the Manifest Link in HTML</h2>
+    <p>Open <code>public/index.html</code> and remove this line:</p>
+    <pre><code>&lt;link rel="manifest" href="%PUBLIC_URL%/manifest.json" /&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>✅ Step 3: Change the Page Title</h2>
+    <p>In the same <code>index.html</code>, update the default app title:</p>
+    <pre><code>&lt;title&gt;Arc Development&lt;/title&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>✅ Step 4: Update the Favicon</h2>
+    <ol>
+      <li>Delete <code>favicon.ico</code> from the <code>public</code> folder.</li>
+      <li>Move <code>favicon.png</code> from the <code>assets</code> folder to <code>public</code>.</li>
+      <li>In <code>index.html</code>, update the link:
+        <pre><code>&lt;link rel="icon" href="%PUBLIC_URL%/favicon.png" /&gt;</code></pre>
+      </li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>🎉 Results</h2>
+    <ul>
+      <li>The console error is gone.</li>
+      <li>The page title in the browser has been updated.</li>
+      <li>The favicon has been updated as well.</li>
+      <li>We're now ready to add tabs and navigation!</li>
+    </ul>
+  </div>
+
+</body>
+</html>

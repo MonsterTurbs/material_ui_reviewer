@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🗄️ Material UI Drawer Guide</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 20px; color: #333; }
+    header { text-align: center; margin-bottom: 30px; }
+    header h1 { margin: 0; font-size: 2rem; }
+    header p { color: #555; }
+    .container { display: flex; flex-direction: column; gap: 20px; align-items: stretch; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; width: 100%; max-width: 800px; margin: 0 auto; }
+    .card h2 { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; margin-top: 0; }
+    .card p { line-height: 1.5; margin: 10px 0; }
+    .card code { background: #f0f0f0; padding: 2px 4px; border-radius: 4px; font-size: 0.9rem; }
+    .card pre { background: #f0f0f0; padding: 10px; border-radius: 4px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🗄️ Material UI Drawer Guide</h1>
+    <p>📝 Study notes on how to use the <code>&lt;Drawer&gt;</code> component in Material UI.</p>
+  </header>
+  <div class="container">
+
+    <div class="card">
+      <h2>❓ What Is a Drawer?</h2>
+      <p>🗂️ The <code>&lt;Drawer&gt;</code> is a sliding panel anchored to one side of the screen (left, right, top, or bottom) that you can toggle to display navigation or content.</p>
+    </div>
+
+    <div class="card">
+      <h2>⬇️ How to Import</h2>
+      <pre><code>// Standard Drawer
+import Drawer from '@material-ui/core/Drawer';
+
+// Swipeable Drawer for mobile
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>⚓ Key Props</h2>
+      <p>🔹 <code>anchor</code>: where the drawer appears (<code>'left'</code>, <code>'right'</code>, <code>'top'</code>, <code>'bottom'</code>).</p>
+      <p>🔹 <code>open</code>: boolean to control visibility.</p>
+      <p>🔹 <code>onClose</code>: function called to close the drawer.</p>
+    </div>
+
+    <div class="card">
+      <h2>💻 Basic Usage Example</h2>
+      <pre><code>&lt;Drawer
+  anchor="left"
+  open={isOpen}
+  onClose={() => setIsOpen(false)}
+&gt;
+  {/* Content goes here */}
+&lt;/Drawer&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>📱 Swipeable Drawer</h2>
+      <p>🔄 For mobile devices, use the swipeable version to enable swipe gestures for opening/closing:</p>
+      <pre><code>&lt;SwipeableDrawer
+  anchor="left"
+  open={isOpen}
+  onOpen={() => setIsOpen(true)}
+  onClose={() => setIsOpen(false)}
+&gt;
+  {/* Navigation items */}
+&lt;/SwipeableDrawer&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🗂️ Drawer Variants</h2>
+      <p>📝 <strong>Temporary:</strong> sits above content and closes on click-away.</p>
+      <p>📌 <strong>Persistent:</strong> remains open until toggled.</p>
+      <p>🔳 <strong>Mini Variant:</strong> shows icons only, expandable on hover or click.</p>
+      <p>📋 <strong>Permanent:</strong> always visible, typically used on desktop layouts.</p>
+    </div>
+
+    <div class="card">
+      <h2>📋 Next Steps: Drawer Content</h2>
+      <p>👉 In the next lesson, we'll implement a <code>&lt;List&gt;</code> with <code>&lt;ListItem&gt;</code> components inside the drawer for navigation.</p>
+    </div>
+  </div>
+</body>
+</html>

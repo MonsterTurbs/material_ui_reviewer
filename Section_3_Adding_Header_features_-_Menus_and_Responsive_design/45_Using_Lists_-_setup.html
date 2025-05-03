@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📘 Drawer Navigation Setup</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH1zT2uy4d6Kp/YkFZ3C1l1AdQzs5Z0E+5T3N6q4dc7Uu6K0Qb5yF1mZvA1MlJ3G9z6QJO3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 20px; color: #333; }
+    header { text-align: center; margin-bottom: 30px; }
+    header h1 { margin: 0; font-size: 2rem; }
+    header p { color: #555; }
+    .container { display: flex; flex-direction: column; gap: 20px; align-items: stretch; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; width: 100%; }
+    .card h2 { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; margin-top: 0; }
+    .card p { line-height: 1.5; margin: 10px 0; }
+    .card pre { background: #f0f0f0; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    .card code { font-size: 0.9rem; }
+    .interactive i { margin-right: 8px; color: #1976d2; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-drawer"></i> Drawer Navigation Setup</h1>
+    <p>📝 Easy steps to replace the example drawer with real navigation using Material UI List.</p>
+  </header>
+  <div class="container">
+
+    <div class="card">
+      <h2><i class="fas fa-arrow-down"></i> 1. Import List Components</h2>
+      <p class="interactive"><i class="fas fa-code"></i>👉 Import into your <code>Header.js</code>:</p>
+      <pre><code>import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import BuildIcon from '@material-ui/icons/Build';
+import SyncAltIcon from '@material-ui/icons/SyncAlt';
+import InfoIcon from '@material-ui/icons/Info';
+import ContactMailIcon from '@material-ui/icons/ContactMail';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';</code></pre>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-pencil-alt"></i> 2. Replace Drawer Content</h2>
+      <p class="interactive"><i class="fas fa-edit"></i>✂️ Inside the <code>&lt;SwipeableDrawer&gt;</code>, remove the <em>Example Drawer</em> text and add:</p>
+      <pre><code>&lt;List disablePadding&gt;
+  {/* Each route as a ListItem with an icon */}
+&lt;/List&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-link"></i> 3. Make Items Links</h2>
+      <p class="interactive"><i class="fas fa-link"></i>🔗 Use <code>component="a"</code> and <code>href</code> props to create links:</p>
+      <pre><code>&lt;ListItem button component="a" href="/" divider onClick={() =&gt; setOpenDrawer(false)}&gt;
+  &lt;HomeIcon className={classes.listIcon} /&gt;
+  &lt;ListItemText disableTypography&gt;Home&lt;/ListItemText&gt;
+&lt;/ListItem&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-list-ul"></i> 4. List the Routes</h2>
+      <p class="interactive"><i class="fas fa-list"></i>🗂️ Add a <code>ListItem</code> for each route:</p>
+      <pre><code>const routes = [
+  { path: '/', label: 'Home', icon: &lt;HomeIcon /&gt; },
+  { path: '/services', label: 'Services', icon: &lt;BuildIcon /&gt; },
+  { path: '/revolution', label: 'Revolution', icon: &lt;SyncAltIcon /&gt; },
+  { path: '/about', label: 'About Us', icon: &lt;InfoIcon /&gt; },
+  { path: '/contact', label: 'Contact', icon: &lt;ContactMailIcon /&gt; },
+  { path: '/freeestimate', label: 'Free Estimate', icon: &lt;AttachMoneyIcon /&gt; }
+];
+
+&lt;List disablePadding&gt;
+  {routes.map(({ path, label, icon }, i) =&gt; (
+    &lt;ListItem
+      key={i}
+      button
+      component="a"
+      href={path}
+      divider
+      onClick={() =&gt; setOpenDrawer(false)}
+    &gt;
+      &lt;span className="interactive"&gt;{icon}&lt;/span&gt;
+      &lt;ListItemText disableTypography&gt;{label}&lt;/ListItemText&gt;
+    &lt;/ListItem&gt;
+  ))}
+&lt;/List&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-eraser"></i> 5. Disable Default Styles</h2>
+      <p class="interactive"><i class="fas fa-slash"></i>🚫 Add props to remove default padding and typography:</p>
+      <pre><code>&lt;List disablePadding&gt;...
+&lt;ListItemText disableTypography&gt;...
+</code></pre>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-minus"></i> 6. Add Dividers</h2>
+      <p class="interactive"><i class="fas fa-minus"></i>➗ Use the <code>divider</code> prop on each <code>&lt;ListItem&gt;</code> for clear separation.</p>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-times"></i> 7. Close Drawer on Click</h2>
+      <p class="interactive"><i class="fas fa-times"></i>🔒 Prevent the drawer from staying open by adding an <code>onClick</code> handler:</p>
+      <pre><code>onClick={() =&gt; setOpenDrawer(false)}</code></pre>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-check-circle"></i> 8. Test Your Navigation</h2>
+      <p class="interactive"><i class="fas fa-check"></i>✅ In your browser: resize the window, click the menu icon, and select each link to verify routing and automatic drawer closing.</p>
+    </div>
+
+  </div>
+</body>
+</html>

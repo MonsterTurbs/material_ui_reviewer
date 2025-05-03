@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Setup Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Create Firebase Project 🔥</h2>
+    <p>
+      • Go to <code>firebase.google.com</code> and sign in with your Google account.<br>
+      • Click <strong>Create a project</strong>, name it “Material UI Course”, disable Analytics, and finish setup. 🎉
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Install Firebase CLI 🛠️</h2>
+    <p>
+      Open your terminal and run:
+    </p>
+    <code>npm install -g firebase-tools</code>
+    <p>
+      This gives you the <code>firebase</code> command anywhere. 🚀
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Log In to Firebase 🪪</h2>
+    <p>
+      In terminal, run:
+    </p>
+    <code>firebase login</code>
+    <p>
+      • Allow anonymous error reporting.<br>
+      • A browser window opens—pick your Google account and grant permissions.<br>
+      • Back in terminal you’ll see “success logged in as …”. ✅
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>4. Initialize Functions 🚧</h2>
+    <p>
+      In your project folder:
+    </p>
+    <code>firebase init</code>
+    <p>
+      • Select <code>Functions</code> feature.<br>
+      • Choose your existing “Material UI Course” project.<br>
+      • Pick <strong>JavaScript</strong> and enable ESLint.<br>
+      • Agree to install dependencies. 📦
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>5. Explore the Functions Folder 📂</h2>
+    <p>
+      • A new <code>functions/</code> folder appears.<br>
+      • Open <code>functions/index.js</code>—it has initial boilerplate and deploy instructions. 👀
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>6. Configure Firebase Admin & Functions ⚙️</h2>
+    <p>
+      In <code>functions/index.js</code>, add:
+    </p>
+    <code>
+    const functions = require('firebase-functions');<br>
+    const admin = require('firebase-admin');<br>
+    const config = functions.config();<br>
+    admin.initializeApp();
+    </code>
+    <p>
+      This links your code to Firebase services. 🔗
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>7. Ready to Deploy & Extend 🚀</h2>
+    <ul>
+      <li>Next: install and configure NodeMailer inside <code>functions/</code>.</li>
+      <li>Write your email-sending function.</li>
+      <li>Deploy with <code>firebase deploy --only functions</code>.</li>
+      <li>Call your Cloud Function URL from the front-end to send emails. ✉️</li>
+    </ul>
+  </div>
+
+</body>
+</html>

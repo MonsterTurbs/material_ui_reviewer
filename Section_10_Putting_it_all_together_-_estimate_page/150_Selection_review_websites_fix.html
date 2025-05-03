@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estimate Website Selection Fix Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      border: 1px solid #ccc; 
+      border-radius: 8px; 
+      padding: 16px; 
+      margin-bottom: 16px; 
+      width: 100%; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { 
+      background: #f4f4f4; 
+      padding: 2px 4px; 
+      border-radius: 4px; 
+      font-family: monospace; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🧹</span>Clear Old Selections on Service Change</h2>
+    <p>Inside <code>handleSelect</code> switch for services, after setting <code>service</code>, reset all other states so old answers don’t carry over:</p>
+    <pre><code>setPlatforms([]);\nsetFeatures([]);\nsetCustomFeatures('');\nsetCategory('');\nsetUsers('');</code></pre>
+    <p>This empties previous array/string states whenever user picks a different service. 🚫🔄</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔍</span>Extract Website Category</h2>
+    <p>Create <code>getCategory</code> to find which website type was chosen:</p>
+    <pre><code>const getCategory = () => {\n  if (questions.length === 2) {\n    const catQ = questions.filter(q =&gt; q.title ===\n      'Which type of website are you wanting?')[0];\n    const sel = catQ.options.filter(o =&gt; o.selected)[0];\n    setCategory(sel.title);\n  }\n};</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📦</span>Store in State</h2>
+    <p>Call <code>getCategory()</code> along with other getters on “Get Estimate” click. This updates the <code>category</code> string. 💾</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">💡</span>Render Website Review</h2>
+    <p>Replace dummy check‐line with dynamic text that handles “a” vs “an”:</p>
+    <pre><code>{\`\nYou want \${category === 'Basic website'\n    ? 'a Basic website.'\n    : \`an \${category}.\`\n\`}</code></pre>
+    <p>This displays “You want a Basic website.” or “You want an E-commerce website.” 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🧪</span>Test Both Flows</h2>
+    <p>• Software path: test existing check-lines still work.<br/>
+• Website path: pick Basic/E-commerce/Interactive &rarr; Get Estimate.<br/>
+Check text reads correctly. 🔄✅</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎉</span>Finish!</h2>
+    <p>Now both software and website estimates show accurate selection reviews. Ready for final styling and backend! 🚀</p>
+  </div>
+
+</body>
+</html>

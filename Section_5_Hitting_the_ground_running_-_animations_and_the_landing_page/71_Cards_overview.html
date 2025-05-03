@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📘 Study Notes: Material UI Card Component</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.5;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #1976d2;
+      font-size: 1.3rem;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    .card code {
+      display: block;
+      background: #eef2f5;
+      padding: 10px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="card">
+      <h2>📦 What is a Card?</h2>
+      <p>A <strong>Card</strong> is a box that holds related content and actions about one topic. It’s like a little “card” that groups things together neatly! 😊</p>
+    </div>
+
+    <div class="card">
+      <h2>🧩 Basic Card Structure</h2>
+      <ul>
+        <li><code>&lt;Card&gt;</code> – the outer box.</li>
+        <li><code>&lt;CardContent&gt;</code> – where you put your text, images, or anything describing the subject.</li>
+        <li><code>&lt;CardActions&gt;</code> – buttons or links at the bottom for actions like “Learn More.”</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✨ Extra Card Features</h2>
+      <ul>
+        <li><code>&lt;CardHeader&gt;</code> – adds a header with title, subtitle, and optional avatar or icon.</li>
+        <li><code>&lt;CardMedia&gt;</code> – displays an image or media inside the card with proper styling.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔍 How It Works (Example)</h2>
+      <p>See this pattern:</p>
+      <code>
+&lt;Card&gt;<br>
+  &lt;CardHeader title="My Title" subheader="Subtitle" /&gt;<br>
+  &lt;CardMedia image="photo.jpg" title="Nice Photo" /&gt;<br>
+  &lt;CardContent&gt;<br>
+    &lt;Typography&gt;Some description here…&lt;/Typography&gt;<br>
+  &lt;/CardContent&gt;<br>
+  &lt;CardActions&gt;<br>
+    &lt;Button&gt;Learn More&lt;/Button&gt;<br>
+  &lt;/CardActions&gt;<br>
+&lt;/Card&gt;
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>💡 Why Use Cards?</h2>
+      <ul>
+        <li>🔧 <strong>Pre-styled</strong>: You get nice padding, shadows, and layout automatically.</li>
+        <li>⚙️ <strong>Flexible</strong>: Add headers, images, actions, and more by mixing sub-components.</li>
+        <li>📱 <strong>Responsive</strong>: Works well across different screen sizes.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Takeaway</h2>
+      <p>With Material UI’s Card components, you can quickly build neat “cards” to display any content—text, images, buttons—all in one place! 🚀</p>
+    </div>
+
+  </div>
+</body>
+</html>

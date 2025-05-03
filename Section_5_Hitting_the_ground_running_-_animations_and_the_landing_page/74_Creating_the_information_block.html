@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🌐 Info Block Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #1976d2;
+      font-size: 1.4rem;
+    }
+    .card p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="card">
+      <h2>🏁 Final Section: Info Block</h2>
+      <p>This is the last roadmap piece on the home page. It guides you to the “About Us” and “Contact Us” pages! ℹ️</p>
+    </div>
+
+    <div class="card">
+      <h2>📐 Layout Structure</h2>
+      <ul>
+        <li>Outer <strong>grid item</strong> ➡️ holds the whole block with a background image.</li>
+        <li>Inside, a <strong>grid container</strong> with <code>direction="row"</code> splits into two columns:</li>
+        <ul>
+          <li>Left column: About Us section.</li>
+          <li>Right column: Contact Us section.</li>
+        </ul>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🖼️ Background Image</h2>
+      <p>We use a CSS class <code>.info-background</code> on a <code>&lt;div&gt;</code> to:</p>
+      <ul>
+        <li>Set <code>background-image: url(...)</code> 🎨</li>
+        <li>Give it a fixed <code>height: 80rem</code> so it shows up properly.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📦 About Us Section</h2>
+      <ul>
+        <li><strong>Grid item</strong> with <code>position: absolute</code> to sit on top of the image.</li>
+        <li>Inside: a column container with:</li>
+        <ul>
+          <li><code>&lt;Typography variant="h2"&gt;About Us&lt;/Typography&gt;</code> 📝</li>
+          <li><code>&lt;Typography variant="subtitle2"&gt;Let’s get personal.&lt;/Typography&gt;</code> 💬</li>
+          <li>A “Learn More” button with white text and border 🔗</li>
+        </ul>
+        <li>We add <code>margin-left: 5rem</code> and use <code>alignItems="center"</code> to center vertically.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📦 Contact Us Section</h2>
+      <ul>
+        <li>Same structure as About Us, but with contact text:</li>
+        <ul>
+          <li><code>&lt;Typography variant="h2"&gt;Contact Us&lt;/Typography&gt;</code> ✉️</li>
+          <li><code>&lt;Typography variant="subtitle2"&gt;Say hello!&lt;/Typography&gt;</code> 👋</li>
+          <li>A white “Learn More” button 🔗</li>
+        </ul>
+        <li>Also positioned absolutely and centered the same way.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Positioning & Spacing</h2>
+      <ul>
+        <li><code>position: absolute</code> on both columns to layer them over the background.</li>
+        <li><code>alignItems="center"</code> to vertically center inside the row container.</li>
+        <li><code>margin-left</code> adds padding from the edge so text isn’t flush.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Button Styling</h2>
+      <ul>
+        <li>Wrap each button in its own grid item so it doesn’t stretch full width.</li>
+        <li>Override styles:</li>
+        <ul>
+          <li>Text color: <code>white</code> 🤍</li>
+          <li>Border color: <code>white</code> 🤍</li>
+        </ul>
+        <li>Keep the same padding and size for consistency.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

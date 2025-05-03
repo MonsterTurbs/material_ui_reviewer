@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Adding CORS to Firebase Function Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Recap: Email Sent Successfully 🎉</h2>
+    <p>
+      You fixed the env-var typo and your function sent the test email! Now let’s make sure future
+      front-end calls won’t get blocked. 🛡️
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. What Is CORS? ✈️</h2>
+    <p>
+      <strong>C</strong>ross-<strong>O</strong>rigin <strong>R</strong>esource <strong>S</strong>haring
+      prevents websites from calling APIs on other domains by default.  
+      We need to enable it so our app (localhost) can talk to Firebase (cloud). 🌐
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Install the CORS Helper 📥</h2>
+    <p>
+      In your <code>functions/</code> folder, run:
+    </p>
+    <code>npm install --save cors</code>
+    <p>This adds a simple middleware to allow cross-domain calls. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Require &amp; Configure CORS 🔧</h2>
+    <p>
+      At the top of <code>functions/index.js</code>, add:
+    </p>
+    <code>
+    const cors = require('cors')({ origin: true });
+    </code>
+    <p>
+      <em>origin: true</em> means “allow any origin” — perfect for development.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>5. Wrap Your Function with CORS 🛡️</h2>
+    <p>
+      Change your export to use the CORS wrapper:
+    </p>
+    <code>
+    exports.sendMail = functions.https.onRequest((req, res) =&gt; {<br>
+      cors(req, res, () =&gt; {<br>
+        // … your transporter.sendMail(...) here …<br>
+      });<br>
+    });
+    </code>
+    <p>
+      Now every request runs through CORS first, then sends email. ✅
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>6. Ready for Front-End 🚀</h2>
+    <p>
+      With CORS in place, your React app can call the function URL without “blocked by CORS” errors.
+      Next → hook up the front-end <code>fetch()</code> call and test! 🌟
+    </p>
+  </div>
+
+</body>
+</html>

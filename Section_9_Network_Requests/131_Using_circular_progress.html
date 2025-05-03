@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circular Progress Integration Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Import Spinner Component 📦</h2>
+    <p>
+      At the top of <code>Contact.js</code>, add:
+    </p>
+    <code>import CircularProgress from '@material-ui/core/CircularProgress';</code>
+  </div>
+
+  <div class="card">
+    <h2>2. Track Loading State 🎛️</h2>
+    <p>
+      Under your inputs’ state, create:
+    </p>
+    <code>const [loading, setLoading] = useState(false);</code>
+    <p>Starts as <code>false</code>—no spinner by default.</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Show Spinner on Request ⏳</h2>
+    <p>
+      Inside your <code>onConfirm</code> function, at the very top:
+    </p>
+    <code>setLoading(true);</code>
+    <p>This displays the spinner when the user clicks “Confirm.”</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Hide Spinner &amp; Clear Form 🧹</h2>
+    <p>
+      In the <code>.then()</code> of your Axios call, wrap actions in braces:
+    </p>
+    <code>
+    setLoading(false);<br>
+    setOpen(false);<br>
+    setName('');<br>
+    setEmail('');<br>
+    setPhone('');<br>
+    setMessage('');
+    </code>
+    <p>
+      In <code>.catch()</code>, also <code>setLoading(false)</code> to hide spinner on errors.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>5. Extract Button Contents 🔄</h2>
+    <p>
+      Cut the button’s text and icon, then above your return define:
+    </p>
+    <code>
+    const buttonContents = (<br>
+      &lt;&gt;Send Message&lt;/&gt;<br>
+      &lt;img src={airplaneIcon} alt="send"/&gt;<br>
+    </>);
+    </code>
+    <p>This makes it easy to swap in spinner later.</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Conditional Render Spinner vs. Text 🎛️</h2>
+    <p>
+      In your Send button inside the dialog, replace contents with:
+    </p>
+    <code>
+    {loading ? &lt;CircularProgress size={30}/&gt; : buttonContents}
+    </code>
+    <p>
+      Shows spinner (size 30) when <code>loading</code> is <code>true</code>, otherwise shows text & icon.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>7. Test It! 🧪</h2>
+    <ul>
+      <li>Fill in the form and open the dialog.</li>
+      <li>Click “Confirm” → spinner appears on the button.</li>
+      <li>After the request finishes, dialog closes and fields clear.</li>
+      <li>Check your inbox—you should receive the email. 📬</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>8. Next: User Feedback ➡️</h2>
+    <p>
+      Clearing the form alone might confuse users. In the next step, we’ll add a success or error message
+      (using Material-UI’s Snackbar/Alert) so people know their message was sent! 😊
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NodeMailer Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. What Is NodeMailer? 📦</h2>
+    <p>
+      NodeMailer is a popular Node.js package that lets us send emails easily from our server code.
+      We just set up a transporter, define message details, and call <code>sendMail()</code>. 🚀
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Install &amp; Import 📥</h2>
+    <p>
+      First, install in your functions folder:
+    </p>
+    <code>npm install nodemailer</code>
+    <p>
+      Then import it at the top of your <code>index.js</code>:
+    </p>
+    <code>const nodemailer = require('nodemailer');</code>
+  </div>
+
+  <div class="card">
+    <h2>3. Create a Transporter 🚚</h2>
+    <p>
+      A transporter tells NodeMailer how to send your mail (SMTP, Gmail, etc.). Example:
+    </p>
+    <code>
+    const transporter = nodemailer.createTransport({  
+      host: 'smtp.example.com',  
+      port: 587,  
+      secure: false,           // true for port 465  
+      auth: {  
+        user: 'you@example.com',  
+        pass: 'yourpassword'  
+      }  
+    });
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>4. Define Mail Options 📝</h2>
+    <p>
+      Specify who, what, and how your email looks:
+    </p>
+    <code>
+    const mailOptions = {  
+      from: '"Your Name" <you@example.com>',  
+      to: 'recipient@example.com',  
+      subject: 'Hello from NodeMailer!',  
+      text: 'Plain text body…',  
+      html: '&lt;b&gt;HTML body…&lt;/b&gt;'  
+    };
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>5. Send the Email 📧</h2>
+    <p>
+      Finally, call <code>sendMail()</code> and handle the result:
+    </p>
+    <code>
+    transporter.sendMail(mailOptions, (error, info) =&gt; {  
+      if (error) {  
+        console.error('Error:', error);  
+      } else {  
+        console.log('Message sent:', info.messageId);  
+      }  
+    });
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>6. Key Points ✅</h2>
+    <ul>
+      <li>Install <code>nodemailer</code> and require it in your code.</li>
+      <li>Create a <code>transporter</code> with your email service settings.</li>
+      <li>Define <code>mailOptions</code> including from, to, subject, and body.</li>
+      <li>Use <code>transporter.sendMail()</code> to actually send the email.</li>
+      <li>Check for errors and log success messages.</li>
+    </ul>
+    <p>And that’s all it takes to send emails with NodeMailer! 🎉</p>
+  </div>
+
+</body>
+</html>

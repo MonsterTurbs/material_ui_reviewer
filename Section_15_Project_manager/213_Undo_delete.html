@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undo Delete with Snackbar Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 0.5em 0; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 4px; }
+    button.code-btn { font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🔔 Import Components</h2>
+    <p>Bring in the Snackbar and Button from Material&nbsp;UI:</p>
+    <p><code>import Snackbar from '@material-ui/core/Snackbar';</code><br>
+       <code>import Button from '@material-ui/core/Button';</code> 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Set Up Alert State</h2>
+    <p>Create state for showing messages:</p>
+    <p><code>const [alert, setAlert] = React.useState({</code><br>
+       <code>  open: false,</code><br>
+       <code>  color: '#f3232f',</code><br>
+       <code>  message: 'Row deleted'</code><br>
+       <code>});</code> 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>📋 Paste Snackbar UI</h2>
+    <p>Reuse your existing Snackbar JSX with these props:</p>
+    <p><code>&lt;Snackbar<br>
+       open={alert.open}<br>
+       message={alert.message}<br>
+       autoHideDuration={4000}<br>
+       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}<br>
+       onClose={() => setAlert({ ...alert, open: false })}<br>
+       ContentProps={{ style: { backgroundColor: alert.color } }}<br>
+       action={/* Undo button here */}<br>
+     /&gt;</code> 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>🗑️ Trigger Snackbar on Delete</h2>
+    <p>In your <code>handleDelete</code> function, after hiding rows, do:</p>
+    <p><code>setAlert({ ...alert, open: true });</code> 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>↩️ Add Undo Button</h2>
+    <p>Give your Snackbar an <code>action</code> prop:</p>
+    <p><code>action={&lt;Button style={{ color: '#fff' }} onClick={handleUndo}&gt;Undo&lt;/Button&gt;}</code> 🎈</p>
+  </div>
+
+  <div class="card">
+    <h2>🧠 Track Deleted Rows</h2>
+    <p>Store which rows were hidden so you can restore them:</p>
+    <p><code>const [undoRows, setUndoRows] = React.useState([]);</code><br>
+       Inside <code>handleDelete</code> before alert:<br>
+       <code>setUndoRows(selected);</code> 📝</p>
+  </div>
+
+  <div class="card">
+    <h2>🔄 Implement <code>handleUndo</code></h2>
+    <p>Restore <code>search=true</code> on each deleted row:</p>
+    <p><code>function handleUndo() {</code><br>
+       <code>  setAlert({ ...alert, open: false });</code><br>
+       <code>  const newRows = [...rows];</code><br>
+       <code>  const redo = [...undoRows];</code><br>
+       <code>  redo.forEach(row =&gt; row.search = true);</code><br>
+       <code>  Array.prototype.push.apply(newRows, redo);</code><br>
+       <code>  setRows(newRows);</code><br>
+       <code>  setUndoRows([]);</code><br>
+       <code>}</code> 🌟</p>
+  </div>
+
+  <div class="card">
+    <h2>✅ Result</h2>
+    <p>You’ll see a red Snackbar saying “Row deleted” with an Undo button. Clicking Undo brings rows back! 🎉</p>
+  </div>
+</body>
+</html>

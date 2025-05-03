@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Call-To-Action &amp; Animation Spacing Tuning</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { 
+      border: 1px solid #ccc; border-radius: 8px; padding: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;
+      width: 100%; box-sizing: border-box;
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 0.5em 0; }
+    code { display: block; background: #f9f9f9; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>✏️ Tighten Call-To-Action Line Height</h2>
+    <p>On small screens, reduce space between lines so phrases stick together:</p>
+    <code>&lt;Typography
+  style={{ lineHeight: matchesSm ? 1.1 : undefined }}
+&gt;Simple Software, Revolutionary Results&lt;/Typography&gt;</code>
+  </div>
+
+  <div class="card">
+    <h2>↩️ Add Conditional Line Break</h2>
+    <p>Insert an extra break only on small screens to space statements nicely:</p>
+    <code>Simple Software<br />
+{matchesSm && <br />}Revolutionary Results</code>
+  </div>
+
+  <div class="card">
+    <h2>📏 Add Sub-Title Spacing</h2>
+    <p>Use the <code>gutterBottom</code> prop to add a little gap below the subtitle:</p>
+    <code>&lt;Typography gutterBottom&gt;Take advantage of the 21st century&lt;/Typography&gt;</code>
+  </div>
+
+  <div class="card">
+    <h2>🔠 Shrink Font Size Conditionally</h2>
+    <p>Tiny screens can use a smaller font so words don’t wrap oddly:</p>
+    <code>style={{ fontSize: matchesSm ? '1.25rem' : '1.5rem' }}</code>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Space Out Animations</h2>
+    <p>Give each section’s animation breathing room with responsive margins:</p>
+    <code>&lt;Grid item
+  style={{ marginBottom: matchesSm ? '2m' : undefined }}
+&gt;
+  &lt;LottieAnimation /&gt;
+&lt;/Grid&gt;</code>
+    <p>Add <code>marginTop</code> for sections where the animation follows text.</p>
+  </div>
+
+  <div class="card">
+    <h2>🌟 Final Touch</h2>
+    <p>These tweaks make headlines crisp, calls-to-action clear, and animations flow with space—giving your mobile UI a polished feel! 🚀</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Analytics Account Setup Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+    p, ul {
+      color: #444444;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+    ul {
+      list-style: inside;
+    }
+    code {
+      background: #eef2f7;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🛠️ Step 1: Go to Google Analytics</h2>
+    <ul>
+      <li>🔍 Visit <a href="https://analytics.google.com">analytics.google.com</a></li>
+      <li>🔐 Sign in with your Google account (or create one).</li>
+      <li>🖱️ Click “Start measuring.”</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📝 Step 2: Create Your Account &amp; Property</h2>
+    <ul>
+      <li>📛 Account Name: e.g., <code>Material-UI-Course</code></li>
+      <li>🌐 Property (Website) Name: e.g., <code>Arc Development</code></li>
+      <li>🔗 Enter your site URL (use <code>http</code> or <code>https</code>).</li>
+      <li>🌍 Select industry category and time zone.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔢 Step 3: Get Your Tracking ID</h2>
+    <p>After setup, copy the <strong>Tracking ID</strong> (e.g., <code>G-XXXXXXXXXX</code>).</p>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Step 4: Explore Analytics Dashboard</h2>
+    <ul>
+      <li>📊 Home: Page views, active users, top pages.</li>
+      <li>⏱️ Real-Time: Live user count &amp; page views.</li>
+      <li>🌍 Audience: Who your users are (location, device).</li>
+      <li>🚀 Acquisition: Where users come from (search, social).</li>
+      <li>🔧 Behavior: What users do (page views, events).</li>
+      <li>🏆 Conversions: Track goals (e.g., “Estimate requested”).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✨ Step 5: Install &amp; Initialize in Next.js</h2>
+    <ul>
+      <li>📦 Install package: <code>npm install react-ga</code></li>
+      <li>📄 In <code>_app.js</code>:</li>
+      <li>```js
+import ReactGA from 'react-ga';
+ReactGA.initialize('G-XXXXXXXXXX');
+      ```</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⏭️ Next Steps</h2>
+    <p>In the next video, learn how to send <code>pageview</code> and <code>event</code> calls to GA! 🎥</p>
+  </div>
+
+</body>
+</html>

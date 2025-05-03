@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0.5em; background: #f9f9f9; }
+    .card { background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1em; padding: 1em; }
+    h2 { margin-top: 0; font-size: 1.2rem; color: #333; }
+    p { margin: 0.5em 0; line-height: 1.4; }
+    .emoji { font-size: 1.2em; margin-right: 0.3em; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2><span class="emoji">📘</span>What is a Title Tag?</h2>
+    <p>Every HTML page has a <strong>&lt;title&gt;</strong> element in its head that tells browsers and search engines what the page is about.</p>
+    <p>It appears in browser tabs and search engine listings (the clickable headline).</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">❓</span>Why Good Titles Matter</h2>
+    <p><strong>1. Search Results:</strong> Your title shows up as the main link in Google or Bing (SERP).</p>
+    <p><strong>2. Browser Tabs:</strong> Users see this text in their tabs—helpful for easy navigation.</p>
+    <p><strong>3. SEO Importance:</strong> Title tags are one of the top on-page ranking factors after page content.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✔️</span>3 Rules for Great Titles</h2>
+    <p><strong>Short & Sweet:</strong> Keep ~60 characters. Too long &amp; it gets <em>cut off…</em></p>
+    <p><strong>Include Core Keywords:</strong> Use the main topic (e.g. "Custom Software Estimate").</p>
+    <p><strong>Be Compelling:</strong> Give users a reason to click (e.g. "Free", "Top", "Fast").</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🛠️</span>Implementing in Next.js</h2>
+    <p>Use Next.js's <code>&lt;Head&gt;</code> component in each page:</p>
+    <pre><code>import Head from 'next/head';
+
+export default function About() {
+  return (
+    <>
+      <Head>
+        <title key="title">About Us – Team & History | Ark Development</title>
+      </Head>
+      {/* page content */}
+    </>
+  );
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🏷️</span>Real Example Titles</h2>
+    <p><strong>Home:</strong> Custom Software, Mobile Apps & Websites | Ark Development</p>
+    <p><strong>Contact:</strong> Contact Us | Ark Development</p>
+    <p><strong>Estimate:</strong> Free Custom Software Estimate | Ark Development</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎉</span>Key Takeaway</h2>
+    <p>Good titles boost SEO and click rates. Practice makes perfect—keep them concise, keyword-rich, and enticing! 🌟</p>
+  </div>
+</body>
+</html>

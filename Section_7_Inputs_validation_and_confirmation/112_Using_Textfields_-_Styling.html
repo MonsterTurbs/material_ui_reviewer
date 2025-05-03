@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Input Styling Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Why Theme Overrides? 🎨</h2>
+    <p>
+      Instead of styling each <code>TextField</code> one by one, we’ll override the default MUI components in <code>theme.js</code>.  
+      This makes all inputs share the same look automatically! ✨
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Add an <code>overrides</code> Section 🛠️</h2>
+    <p>
+      In <code>theme.js</code>, after your <code>typography</code> block, add:
+    </p>
+    <pre><code>overrides: {
+  /* your overrides go here */
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>3. Style the Labels 🏷️</h2>
+    <p>
+      Copy the MUI class name for the label (from the API docs), then:
+    </p>
+    <pre><code>overrides: {
+  MuiInputLabel: {
+    root: {
+      color: 'arcBlue',
+      fontSize: '1rem',
+    },
+  },
+  …
+}</code></pre>
+    <p>All your field labels will now be blue and sized correctly! 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Style the Underline 🔽</h2>
+    <p>
+      Override the base input styles for the “before” state and disable unwanted hover/focus colors:
+    </p>
+    <pre><code>overrides: {
+  MuiInput: {
+    underline: {
+      '&:before': {
+        borderBottom: \`2px solid \${theme.palette.common.blue}\`,
+      },
+      '&:hover:not($disabled):not($focused):not($error):before': {
+        borderBottom: \`2px solid \${theme.palette.common.blue}\`,
+      },
+    },
+  },
+  …
+}</code></pre>
+    <p>Now the default, hover, and focused underlines stay your chosen blue! 💙</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Special Message Box ✉️</h2>
+    <p>
+      For the large multiline <code>message</code> field, wrap it in its own class:
+    </p>
+    <pre><code>&lt;TextField
+  className={classes.message}
+  multiline rows={10}
+  placeholder="Type your message…"
+  InputProps={{ disableUnderline: true }}
+  value={message}
+  onChange={e =&gt; setMessage(e.target.value)}
+/&gt;</code></pre>
+    <p>And in your styles:</p>
+    <pre><code>message: {
+  border: \`2px solid \${theme.palette.common.blue}\`,
+  marginTop: '1.25rem',
+  borderRadius: '5px',
+},</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>6. Send Button Styling 📨</h2>
+    <p>
+      Give your send button its own class and extend your estimate style:
+    </p>
+    <pre><code>sendButton: {
+  ...theme.typography.estimate,
+  borderRadius: '50px',
+  height: '45px',
+  width: '245px',
+  fontSize: '1rem',
+  backgroundColor: theme.palette.common.orange,
+  '&:hover': {
+    backgroundColor: theme.palette.secondary.light,
+  },
+},</code></pre>
+    <p>Don’t forget a little icon spacing:</p>
+    <pre><code>&lt;img src={airplaneIcon} style={{ marginLeft: '1rem' }} /&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>7. Limit Input Width 📏</h2>
+    <p>
+      To keep fields from stretching too far, add a <code>maxWidth</code> on their Grid wrappers:
+    </p>
+    <pre><code>&lt;Grid item style={{ maxWidth: '20rem' }}&gt;…&lt;/Grid&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>8. Be Careful with <code>alignItems</code> 📐</h2>
+    <p>
+      Centering everything with <code>alignItems="center"</code> in a column layout can misalign some items.  
+      We’ll refine horizontal centering in the next step. 😉
+    </p>
+  </div>
+
+</body>
+</html>

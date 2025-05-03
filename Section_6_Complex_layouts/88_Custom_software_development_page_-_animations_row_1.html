@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📒 Custom Software Dev Notes – Animations Row</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f8;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🖥️ Custom Software Dev Notes – Animations Row</h1>
+    <p>Easy steps with emojis! 🌟</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ Update “Scale” Animation 🎨</h2>
+    <ul>
+      <li>Original pie-chart Lottie was flickering – replaced with a new smooth animation.</li>
+      <li>Design tweak: use a fresh “scale” animation that loops cleanly.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Add New Grid Row for Animations ➕</h2>
+    <ul>
+      <li>Under the existing icons row, insert:
+        <pre><code>&lt;Grid item container direction="row"&gt;…&lt;/Grid&gt;</code></pre>
+      </li>
+      <li>This wraps two blocks: “Digital Documents & Data” and “Scale”.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Build “Digital Documents & Data” Block 📄</h2>
+    <ul>
+      <li><code>&lt;Grid item container direction="column"&gt;</code> to stack title + paragraphs.</li>
+      <li>Use three `<code>&lt;Typography variant="body1" paragraph&gt;…&lt;/Typography&gt;</code>` for text.</li>
+      <li>Import text from the design file to keep content accurate.</li>
+      <li>Limit width: add <code>className={classes.itemContainer}</code> with <code>maxWidth: '40em'</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Import & Configure Lottie Animations 📦</h2>
+    <ul>
+      <li>Copy your <code>defaultOptions</code> block from LandingPage to CustomSoftware.js.</li>
+      <li>Import JSON data:
+        <pre><code>import documentsAnimation from '../animations/documentsAnimation/data.js';</code></pre>
+      </li>
+      <li>Use them:
+        <pre><code>const documentsOptions = { animationData: documentsAnimation, loop: true, autoplay: true, rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } };</code></pre>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Insert Lottie into Grid 🖼️</h2>
+    <ul>
+      <li>Next to text block, add:
+        <pre><code>&lt;Grid item md&gt;
+  &lt;Lottie options={documentsOptions} isStopped={true} /&gt;
+&lt;/Grid&gt;</code></pre>
+      </li>
+      <li>Use <code>md</code> prop on each `<code>Grid item</code>` so they sit side-by-side until medium screen.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6️⃣ Mirror for “Scale” Section 🔄</h2>
+    <ul>
+      <li>Copy the entire “Documents” item and paste below.</li>
+      <li>Swap order: place the `<code>Grid item</code>` with Lottie first, then the text container.</li>
+      <li>Import your new scale JSON:
+        <pre><code>import scaleAnimation from '../animations/scaleAnimation/data.js';</code></pre>
+      </li>
+      <li>Create <code>const scaleOptions = { …, animationData: scaleAnimation }</code> and use in Lottie.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7️⃣ Style Lottie Dimensions ⚙️</h2>
+    <ul>
+      <li>Adjust so your animations don’t get cut off:</li>
+      <pre><code>&lt;Lottie
+  options={…}
+  style={{
+    maxHeight: 325,
+    maxWidth: 275
+  }}
+/&gt;</code></pre>
+      <li>Experiment with values until the full animation shows. 🔍</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>8️⃣ Align “Scale” Text to Right ↪️</h2>
+    <ul>
+      <li>For headings/parags in the second block, add:
+        <pre><code>&lt;Typography align="right" …/&gt;</code></pre>
+      </li>
+      <li>Keeps your text flush to the right of the row. 📐</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#777; margin-top:40px;">
+    🎉 You’ve set up the animation row! Next: animate interactivity & finish remaining blocks. 🚀
+  </footer>
+
+</body>
+</html>

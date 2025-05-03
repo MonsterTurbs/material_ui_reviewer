@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📘 Study Notes: Website Development Section</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 10px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #e65100;
+      font-size: 1.2rem;
+    }
+    .card p, .card li {
+      color: #333;
+      line-height: 1.4;
+    }
+    .card code {
+      display: block;
+      background: #f5f5f5;
+      padding: 8px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+    .card ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌐 Adding Website Development Section</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>📥 1. Import the Website Icon</h2>
+      <p>Bring in the new icon from your assets folder:</p>
+      <code>import WebsiteIcon from '../../assets/websiteIcon.svg';</code>
+    </div>
+
+    <div class="card">
+      <h2>📋 2. Copy the Template Block</h2>
+      <p>Reuse your Custom Software block as a starting point:</p>
+      <code>// Select and copy the entire &lt;Grid item&gt;…&lt;/Grid&gt; for Custom Software</code>
+    </div>
+
+    <div class="card">
+      <h2>📝 3. Paste & Rename</h2>
+      <ul>
+        <li>Paste it under the iOS / Android block.</li>
+        <li>Change the comment to <code>Websites Block</code>.</li>
+        <li>Update the heading text: <strong>Website Development</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✍️ 4. Update Descriptions</h2>
+      <p>Change the two subtitle lines:</p>
+      <code>
+&lt;Typography variant="subtitle1"&gt;Reach more, discover more, sell more&lt;/Typography&gt;<br>
+&lt;Typography variant="subtitle1"&gt;Optimized for search engines, built for speed&lt;/Typography&gt;
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>🖼️ 5. Swap in the New Icon</h2>
+      <p>Update the image tag:</p>
+      <code>
+&lt;img src={WebsiteIcon} alt="Website icon" /&gt;
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>💾 6. Save & Verify</h2>
+      <p>🔄 After saving, check that the new section appears correctly on desktop:</p>
+      <ul>
+        <li>The Websites block sits on the right side.</li>
+        <li>Text and button on the left match the template.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📱 7. Test Responsiveness</h2>
+      <p>Shrink the browser to mobile size:</p>
+      <ul>
+        <li>Ensure all sections stack vertically and center.</li>
+        <li>Icons and text remain legible and spaced nicely.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>✅ Result</h2>
+      <ul>
+        <li>✅ Website Development section added!</li>
+        <li>📐 Looks balanced on both desktop and mobile.</li>
+        <li>🎨 Consistent styling with other service blocks.</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

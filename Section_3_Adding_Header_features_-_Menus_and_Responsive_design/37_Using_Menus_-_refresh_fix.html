@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✅ Fixing Tab & Menu State on Refresh (Material UI)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f4f6;
+      padding: 40px;
+      color: #1f2937;
+    }
+    h1 {
+      text-align: center;
+      color: #1d4ed8;
+      margin-bottom: 30px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .card h2 {
+      font-size: 18px;
+      color: #2563eb;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #e2e8f0;
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+    .highlight {
+      background-color: #eff6ff;
+      padding: 8px;
+      border-radius: 6px;
+      margin: 10px 0;
+      font-size: 15px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✅ Fixing Tab & Menu State on Page Refresh</h1>
+
+  <div class="cards">
+
+    <div class="card">
+      <h2>🔍 Problem</h2>
+      <ul>
+        <li>🔄 When you refresh the page, the active tab always resets to Home (0).</li>
+        <li>🌐 But you're still on the correct URL and page content.</li>
+        <li>❌ The selected menu item (e.g., Mobile App) also disappears.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🛠️ Solution</h2>
+      <p class="highlight">Use <code>useEffect()</code> with a <code>switch(window.location.pathname)</code> to set the correct tab and menu item on refresh.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔁 Sample Switch Logic</h2>
+      <pre class="highlight"><code>switch (window.location.pathname) {
+  case "/":
+    if (value !== 0) setValue(0);
+    setSelectedIndex(0);
+    break;
+  case "/services":
+    if (value !== 1) setValue(1);
+    setSelectedIndex(0);
+    break;
+  case "/custom-software":
+    if (value !== 1) setValue(1);
+    setSelectedIndex(1);
+    break;
+  // ...etc.
+}</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🧠 Explanation</h2>
+      <ul>
+        <li><code>value</code> → tracks which tab is active</li>
+        <li><code>selectedIndex</code> → tracks which menu item is selected</li>
+        <li>We update them using <code>setValue()</code> and <code>setSelectedIndex()</code></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⚠️ Don’t Forget <code>break</code></h2>
+      <p>Always include <code>break</code> in each <code>case</code> block to prevent fall-through!</p>
+    </div>
+
+    <div class="card">
+      <h2>✨ Results</h2>
+      <ul>
+        <li>✔️ After refresh, the active tab and selected menu item stay correct</li>
+        <li>✔️ Navigation remains consistent on any route</li>
+        <li>✔️ The app feels more polished and professional</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📌 Tip</h2>
+      <ul>
+        <li>🔗 Use the browser URL to track state</li>
+        <li>⚙️ Don’t set tab/menu index without conditions → this can cause loops</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📱 Next: Responsive Design</h2>
+      <p>😅 When the screen is small, does the layout break? Don’t worry—next we'll cover how to use Material UI’s responsive system to adjust your header!</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Notes: Building the Revolution Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. Make the File 📁</h2>
+    <p>Create a new file <code>Revolution.js</code> inside your <code>components</code> folder. This will hold your Revolution page code. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Import Stuff 📥</h2>
+    <p>At the top of <code>Revolution.js</code>, import React, <code>makeStyles</code>, <code>useTheme</code>, <code>Grid</code>, and <code>Typography</code> from Material‑UI. This gives you the tools to build and style. 🛠️</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Setup Styles & Component 🎨</h2>
+    <p>Use <code>makeStyles(theme =&gt; ({ ... }))</code> to define your <code>useStyles</code> hook. Export a function component <code>Revolution</code>, get <code>classes</code> & <code>theme</code>, and return a <code>&lt;Grid container direction="column"&gt;</code>. 💅</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Add Page Title 🏷️</h2>
+    <p>Inside the grid, add <code>&lt;Grid item&gt;&lt;Typography variant="h2"&gt;The Revolution&lt;/Typography&gt;&lt;/Grid&gt;</code>. Then in <code>App.js</code>, import <code>Revolution</code> and replace the dummy route to render your new component. 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Style the Title ✍️</h2>
+    <p>Give the title a special font.<br><code>&lt;Typography className={classes.rowContainer} style={{ fontFamily: 'Pacifica' }} ...&gt;</code><br>Add <code>classes.rowContainer</code> (copied from Custom Software page) and <code>marginTop: '2m'</code> for spacing. 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Vision Section 🔭</h2>
+    <p>Under the title, add:<br>
+      <code>&lt;Grid item container direction="row" className={classes.rowContainer}&gt;</code><br>
+      • Left: <code>&lt;Grid item lg&gt;&lt;img src={vision} alt="mountain through binoculars"/&gt;&lt;/Grid&gt;</code><br>
+      • Right: <code>&lt;Grid item container direction="column" lg&gt;</code> with an <code>H4</code> subtitle and five <code>body1</code> paragraphs (copy from design file). 📄</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Share and Center Space ⚖️</h2>
+    <p>On both grid items, add <code>lg</code> so they split evenly on large screens. Use <code>alignItems="center"</code> on the row container to center icon vertically. Give text & images a <code>maxWidth: '40m'</code> and image a <code>marginRight: '5m'</code>. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Left‑Right Swap for Tech 💻</h2>
+    <p>Copy the entire Vision row and paste under it. In the new block:<br>
+      • Swap text to the left and animation on right.<br>
+      • Change title to "Technology" and paste its paragraphs.<br>
+      • Remove any <code>align="right"</code>. 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Add Lottie Animation 🎥</h2>
+    <p>Import Lottie and your <code>defaultOptions</code> constant from Landing page. Replace <code>&lt;img&gt;</code> with:<br>
+      <code>&lt;Lottie options={defaultOptions} isStopped /&gt;</code><br>
+      Give it <code>maxWidth: '40m'</code> and <code>margin: 0</code>. Set row justify to <code>flex-end</code>. 🌟</p>
+  </div>
+
+  <div class="card">
+    <h2>10. Final Tweaks & Test 📱</h2>
+    <p>Save and refresh! Check large and small screens. Items should share space on big, stack on mobile, and stay nicely centered with good spacing. Responsive design done! 🎉</p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Notes: Mobile Apps Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h2 { margin-top: 0; }
+    ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Resize Animation 🎬</h2>
+    <ul>
+      <li>Use <code>style={{ maxWidth: '20em' }}</code> on your <code>&lt;Lottie&gt;</code> to keep it from getting too big.</li>
+      <li>Choose a size that fits all screen widths nicely.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Build Icons Row 🔧</h2>
+    <ul>
+      <li>Create a <code>&lt;Grid container direction="row"&gt;</code>.</li>
+      <li>For each icon, use <code>&lt;Grid item container direction="column" md&gt;</code> to stack title and image.</li>
+      <li>Import icons like: <code>import Swiss from './assets/swiss.svg'</code>.</li>
+      <li>Use <code>&lt;Typography variant="h4"&gt;</code> for titles and <code>&lt;img src={Swiss}/&gt;</code> for icons.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Make It Responsive 📐</h2>
+    <ul>
+      <li>Use <code>useMediaQuery(theme.breakpoints.down('md'))</code> and <code>down('sm')</code>.</li>
+      <li>Change row layouts: <code>direction={matchesMd ? 'column' : 'row'}</code>.</li>
+      <li>Center items: <code>justify={matchesMd ? 'center' : undefined}</code>, <code>alignItems</code>, and <code>textAlign</code>.</li>
+      <li>Add spacing with <code>marginTop</code>, <code>marginBottom</code> when stacked.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Add Call to Action 📢</h2>
+    <ul>
+      <li>Import and place your <code>&lt;CallToAction setValue={props.setValue}/&gt;</code> at the bottom.</li>
+      <li>Wrap rows in <code>className="rowContainer"</code> to manage padding.</li>
+      <li>Adjust padding only for smallest screens using breakpoints.</li>
+    </ul>
+  </div>
+</body>
+</html>

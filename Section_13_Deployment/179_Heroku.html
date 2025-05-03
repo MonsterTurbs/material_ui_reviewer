@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heroku Deployment Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+    p, ul {
+      color: #555555;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+    ul {
+      list-style: inside;
+    }
+    code {
+      background: #eef2f7;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🚀 What is Heroku?</h2>
+    <p>Heroku is a cloud platform (launched in 2007) that makes it easy to <strong>deploy</strong> and scale web apps. It handles billions of requests daily! 🌐</p>
+  </div>
+
+  <div class="card">
+    <h2>👍 Why Choose Heroku?</h2>
+    <ul>
+      <li>🔒 Strong security and easy scaling from small to huge traffic.</li>
+      <li>⚙️ Low-config setup—no server management needed.</li>
+      <li>💰 Free tier available for learning and small projects.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✏️ Step 1: Sign Up</h2>
+    <ul>
+      <li>1️⃣ Go to <a href="https://heroku.com">Heroku.com</a> and click “Sign Up”.</li>
+      <li>2️⃣ Enter your <strong>name</strong>, <strong>email</strong>, and choose role (e.g., student).</li>
+      <li>3️⃣ Select your country and primary language (<code>Node.js</code> for this project).</li>
+      <li>4️⃣ Confirm your email and set a password. ✅</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔧 Step 2: Create a New App</h2>
+    <ul>
+      <li>📥 Log into the Heroku Dashboard.</li>
+      <li>➕ Click “New” &gt; “Create new app”.</li>
+      <li>🆔 Name it (lowercase, dashes instead of spaces), choose region, and create. 🌍</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Step 3: Configure Buildpack</h2>
+    <p>In your app's Settings tab, add the <strong>Node.js</strong> buildpack so Heroku knows how to build your Next.js app.</p>
+  </div>
+
+  <div class="card">
+    <h2>💻 Step 4: Install &amp; Login via CLI</h2>
+    <ul>
+      <li>📥 Install the <code>Heroku CLI</code> from their website.</li>
+      <li>💬 Run <code>heroku login</code> in your terminal and follow prompts. 🔑</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📁 Step 5: Prepare Your Project</h2>
+    <ul>
+      <li>📂 Duplicate your project folder if you also deploy elsewhere.</li>
+      <li>📂 <code>cd</code> into your project directory.</li>
+      <li>🔧 Initialize git: <code>git init</code>.</li>
+      <li>🔗 Add Heroku remote: <code>heroku git:remote -a your-app-name</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📝 Step 6: Update <code>package.json</code></h2>
+    <ul>
+      <li>🔄 In <code>"scripts"</code>, change <code>"start"</code> to <code>"next start -p $PORT"</code> so Heroku uses its port.</li>
+      <li>➕ Add <code>"heroku-postbuild": "npm run build"</code> for automatic production build. 🏗️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🚢 Step 7: Deploy! 🛳️</h2>
+    <ul>
+      <li><code>git add .</code></li>
+      <li><code>git commit -m "initial commit"</code></li>
+      <li><code>git push heroku master</code></li>
+      <li>🎉 Your app builds and goes live at <code>https://your-app-name.herokuapp.com</code>!</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ Step 8: Verify &amp; Test</h2>
+    <ul>
+      <li>🌐 Open your live URL.</li>
+      <li>✉️ Test forms (Contact Us), buttons, and any features to ensure everything works. 🛠️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Quick Recap</h2>
+    <ul>
+      <li>🚀 Sign up and create an app on Heroku.</li>
+      <li>🔧 Configure Node.js buildpack.</li>
+      <li>💻 Install Heroku CLI and login.</li>
+      <li>📁 Initialize git, connect remote.</li>
+      <li>🔄 Update scripts, deploy with <code>git push</code>.</li>
+      <li>✅ Check your live site! 🎉</li>
+    </ul>
+  </div>
+
+</body>
+</html>

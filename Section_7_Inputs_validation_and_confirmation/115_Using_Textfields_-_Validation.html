@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Input Validation Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Show an Error State 🚨</h2>
+    <p>
+      Add the <code>error</code> prop to a TextField:<br>
+      <code>&lt;TextField error /&gt;</code><br>
+      This turns the outline red to show something’s wrong! ❌
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Display Helper Text ℹ️</h2>
+    <p>
+      Use <code>helperText</code> to explain the error:<br>
+      <code>&lt;TextField error helperText="Please enter a name" /&gt;</code><br>
+      Shows friendly instructions under the field. 😊
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Track Error Messages in State 🧠</h2>
+    <p>
+      Create two pieces of state to hold any error messages:<br>
+      <code>const [emailHelper, setEmailHelper] = useState('');</code><br>
+      <code>const [phoneHelper, setPhoneHelper] = useState('');</code><br>
+      Empty string = no error, any text = show error! ✍️
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>4. One OnChange Handler 🔄</h2>
+    <p>
+      Make a single function to check input as it changes:
+    </p>
+    <pre><code>const onChange = (e) =&gt; {
+  const { id, value } = e.target;
+  let valid;
+  switch(id) {
+    case 'email':
+      setEmail(value);
+      valid = /…your email regex…/.test(value);
+      setEmailHelper(valid ? '' : 'Invalid email');
+      break;
+    case 'phone':
+      setPhone(value);
+      valid = /…your phone regex…/.test(value);
+      setPhoneHelper(valid ? '' : 'Invalid phone');
+      break;
+    default:
+      break;
+  }
+};</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>5. Attach Handler & Props 🎯</h2>
+    <ul>
+      <li>Add <code>onChange={onChange}</code> to both Email & Phone fields.</li>
+      <li>Set <code>error={emailHelper.length &gt; 0}</code> and <code>helperText={emailHelper}</code> on Email.</li>
+      <li>Do the same with <code>phoneHelper</code> on Phone.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6. Watch It Work! 🎉</h2>
+    <p>
+      - Type a wrong email &rarr; field turns red and shows “Invalid email.”<br>
+      - Fix it &rarr; red outline and helper text disappear!<br>
+      - Same for phone numbers. 👍
+    </p>
+  </div>
+
+</body>
+</html>

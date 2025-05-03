@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎓 Landing Page Button & Cleanup Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card p {
+      font-size: 1rem;
+      line-height: 1.4;
+      margin: 10px 0;
+    }
+    .card code {
+      background: #f0f0f0;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .emoji {
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🛠️ Landing Page Buttons & Cleanup</h1>
+    <p>Simple steps for wiring buttons, setting active tabs, and fixing little bugs!</p>
+  </header>
+
+  <div class="card">
+    <h2>🔢 1. Add onClick to Hero “Estimate”</h2>
+    <p>In <code>LandingPage.js</code>, for the Hero block’s Estimate button:</p>
+    <p><code>onClick={() => props.setValue(5)}</code>  
+    (5 clears the active tab)</p>
+    <p><em>Remember:</em> wrap it in an arrow function so it only fires on click.</p>
+  </div>
+
+  <div class="card">
+    <h2>🔄 2. Wire All “Learn More” Links</h2>
+    <p>Copy that same <code>onClick</code> handler to every Learn More button:</p>
+    <ul>
+      <li>Revolution → <code>props.setValue(2)</code></li>
+      <li>Services (Custom Software) → <code>props.setValue(1); props.setSelectedIndex(1)</code></li>
+      <li>iOS & Android → <code>props.setValue(1); props.setSelectedIndex(2)</code></li>
+      <li>Website Dev → <code>props.setValue(1); props.setSelectedIndex(3)</code></li>
+      <li>About Us → <code>props.setValue(3)</code></li>
+      <li>Contact Us → <code>props.setValue(4)</code></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📨 3. Pass setValue to CallToAction</h2>
+    <p>In <code>LandingPage.js</code>, when rendering your CallToAction component:</p>
+    <p><code>&lt;CallToAction setValue={props.setValue} /&gt;</code></p>
+    <p>Then inside <code>CallToAction.js</code> add <code>props</code> and use <code>onClick={() => props.setValue(2)}</code> for its Learn More, and <code>props.setValue(5)</code> for its Estimate button.</p>
+  </div>
+
+  <div class="card">
+    <h2>🐞 4. Fix Info-Block Click Glitch</h2>
+    <p>The “About Us” buttons sometimes needed two clicks because we used <code>position: absolute</code> on that grid item.  
+    Fix: remove the extra absolute-div and instead apply the background class to the grid container. No more weird jumps! 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>🚫 5. Remove Horizontal Scroll Bug</h2>
+    <p>If your page ever scrolls sideways, inspect the elements covering >100% width.  
+    In our Info block, replace the <code>spacing</code> on the grid container (which adds extra pixels) with a simple <code>margin-bottom</code> on the inner item when stacked:</p>
+    <pre><code>margin-bottom: {matchesXX ? '10rem' : '0'}</code></pre>
+  </div>
+
+  <footer style="text-align:center; color:#666; margin-top:40px;">
+    You did it! 🎉 Go celebrate your polished landing page! 🚀
+  </footer>
+
+</body>
+</html>

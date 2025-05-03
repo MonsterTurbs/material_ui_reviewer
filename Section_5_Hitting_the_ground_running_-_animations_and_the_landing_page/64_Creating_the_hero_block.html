@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Block - Study Notes</n  <style>
+    body { font-family: Arial, sans-serif; background: #f5f7fa; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #1976d2; }
+    .container { display: flex; flex-direction: column; gap: 20px; }
+    .card { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+             padding: 20px; width: 100%; }
+    .card h2 { margin-top: 0; color: #2c3e50; }
+    .card p { margin: 10px 0; line-height: 1.5; }
+    .card code { background: #e0e0e0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>🎬 Hero Block - Study Notes</h1>
+  <div class="container">
+    <div class="card">
+      <h2>💡 What is the Hero Block?</h2>
+      <p>The hero block is the top part of the home page. It grabs attention with a cool animation and a catchy slogan!</p>
+    </div>
+
+    <div class="card">
+      <h2>🧩 Step 1: Import Grid</h2>
+      <p>We use the <code>Grid</code> component from Material UI to help arrange items nicely. Add:</p>
+      <p><code>import Grid from '@material-ui/core/Grid';</code></p>
+    </div>
+
+    <div class="card">
+      <h2>📐 Step 2: Main Container (Column)</h2>
+      <p>Create a big grid container with <code>direction="column"</code> so each section (hero, services, etc.) stacks vertically.</p>
+    </div>
+
+    <div class="card">
+      <h2>➡️ Step 3: Hero Row</h2>
+      <p>Inside the hero block, make another grid container with <code>direction="row"</code> to place text on the left and animation on the right.</p>
+    </div>
+
+    <div class="card">
+      <h2>📝 Step 4: Add Slogan Text</h2>
+      <p>In the first grid item, put your slogan:</p>
+      <p>"Bringing West Coast Technology<br>to the Midwest"</p>
+    </div>
+
+    <div class="card">
+      <h2>🎬 Step 5: Insert Animation</h2>
+      <p>In the second grid item, include your Lottie animation component:</p>
+      <p><code>&lt;Lottie options={{...}} height="100%" width="100%"/&gt;</code></p>
+    </div>
+
+    <div class="card">
+      <h2>🔘 Step 6: Add Buttons</h2>
+      <p>Under the slogan, create a small grid container for buttons:</p>
+      <ul>
+        <li><strong>Free Estimate</strong> (filled button)</li>
+        <li><strong>Learn More</strong> (outlined button with arrow)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>➡️ Step 7: Button Arrow Icon</h2>
+      <p>Use the custom <code>ButtonArrow</code> component for a neat arrow inside the "Learn More" button:</p>
+      <p><code>&lt;ButtonArrow width={15} height={15} fill="currentColor" /&gt;</code></p>
+    </div>
+
+    <div class="card">
+      <h2>✅ Review</h2>
+      <p>You now have a skeleton for the hero block! Next step: style it to match the design and make it responsive. 🖥️📱</p>
+    </div>
+  </div>
+</body>
+</html>

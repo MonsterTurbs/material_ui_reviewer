@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material UI List Component Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 20px; }
+    header { text-align: center; margin-bottom: 30px; }
+    header h1 { margin: 0; font-size: 2rem; }
+    header p { color: #555; }
+    .container { display: flex; flex-direction: column; gap: 20px; align-items: stretch; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; width: 100%; max-width: 800px; margin: 0 auto; }
+    .card h2 { font-size: 1.5rem; margin-top: 0; }
+    .card p { line-height: 1.5; margin: 10px 0; }
+    .card pre { background: #f0f0f0; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    .card code { font-size: 0.9rem; background: #f0f0f0; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📋 Material UI List Component</h1>
+    <p>Simple and beginner-friendly guide to using the List component in Material UI.</p>
+  </header>
+  <div class="container">
+    <div class="card">
+      <h2>📋 What is List?</h2>
+      <p>The <code>&lt;List&gt;</code> component displays a vertical list of items—each item can include icons, text, or actions.</p>
+    </div>
+
+    <div class="card">
+      <h2>📥 How to Import</h2>
+      <pre><code>import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🏗️ Basic List Structure</h2>
+      <p>A simple list example:</p>
+      <pre><code>&lt;List&gt;
+  &lt;ListItem button&gt;
+    &lt;ListItemText primary="Inbox" /&gt;
+  &lt;/ListItem&gt;
+&lt;/List&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Adding Icons</h2>
+      <p>Place an icon before the text:</p>
+      <pre><code>&lt;ListItem button&gt;
+  &lt;ListItemIcon&gt;
+    &lt;InboxIcon /&gt;
+  &lt;/ListItemIcon&gt;
+  &lt;ListItemText primary="Inbox" /&gt;
+&lt;/ListItem&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🔎 Dense Variant</h2>
+      <p>Use the <code>dense</code> prop to reduce spacing:</p>
+      <pre><code>&lt;List dense&gt; ... &lt;/List&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🔘 Secondary Action</h2>
+      <p>Add an action (e.g., delete button) on the right:</p>
+      <pre><code>&lt;ListItem
+  secondaryAction={
+    &lt;IconButton edge="end" onClick={handleDelete}&gt;
+      &lt;DeleteIcon /&gt;
+    &lt;/IconButton&gt;
+  }
+&gt;
+  ...
+&lt;/ListItem&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>✅ Selected Item</h2>
+      <p>Track which item is selected using the <code>selected</code> prop:</p>
+      <pre><code>&lt;ListItem selected={activeIndex === i}&gt; ... &lt;/ListItem&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>📂 Nested List</h2>
+      <p>Use <code>&lt;Collapse&gt;</code> for nested items:</p>
+      <pre><code>&lt;ListItem button onClick={toggleOpen}&gt;Parent&lt;/ListItem&gt;
+&lt;Collapse in={open}&gt;
+  &lt;List disablePadding&gt;
+    &lt;ListItem button className={classes.nested}&gt;Child&lt;/ListItem&gt;
+  &lt;/List&gt;
+&lt;/Collapse&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>👤 Avatars in List</h2>
+      <p>You can also use an <code>Avatar</code> inside <code>&lt;ListItemIcon&gt;</code>:</p>
+      <pre><code>&lt;ListItemIcon&gt;
+  &lt;Avatar&gt;A&lt;/Avatar&gt;
+&lt;/ListItemIcon&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>↪️ Inset List Text</h2>
+      <p>Add left indentation using the <code>inset</code> prop:</p>
+      <pre><code>&lt;ListItemText inset primary="Nested Item" /&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🪟 Virtualized List</h2>
+      <p>For large lists, use <code>react-window</code> with <code>&lt;List&gt;</code> for virtualization.</p>
+    </div>
+
+    <div class="card">
+      <h2>🚀 Next Steps</h2>
+      <p>Integrate this List into your Drawer for mobile navigation.</p>
+    </div>
+  </div>
+</body>
+</html>

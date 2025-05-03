@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Material UI Pickers Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 { color: #1565c0; margin-top: 0; }
+    p, ul { color: #333; line-height: 1.6; }
+    ul { padding-left: 20px; }
+    code {
+      background: #eef6fb;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>📅 What Are Material UI Pickers?</h2>
+    <p>Pickers let users choose dates or times with a nice calendar/clock UI instead of typing! 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>📦 1. Install Packages</h2>
+    <ul>
+      <li>Run <code>npm install @material-ui/pickers</code> to get the picker components.</li>
+      <li>Run <code>npm install date-fns</code> for date handling utilities. 📆</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🛡️ 2. Wrap with Provider</h2>
+    <p>In your top-level (e.g. <code>_app.js</code>), wrap UI with:</p>
+    <pre><code>import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from 'date-fns';
+
+&lt;MuiPickersUtilsProvider utils=&#123;DateFnsUtils&#125;&gt;
+  &lt;App /&gt;
+&lt;/MuiPickersUtilsProvider&gt;
+</code></pre>
+    <p>📍 This makes pickers work anywhere inside.</p>
+  </div>
+
+  <div class="card">
+    <h2>🗓️ 3. Use the DatePicker</h2>
+    <p>Import and add a date picker in your component:</p>
+    <pre><code>import { DatePicker } from '@material-ui/pickers';
+
+const [selectedDate, setSelectedDate] = useState(new Date());
+
+&lt;DatePicker
+  label="Pick a date"
+  value=&#123;selectedDate&#125;
+  onChange=&#123;date =&gt; setSelectedDate(date)&#125;
+  animateYearScrolling
+/&gt;</code></pre>
+    <p>Now clicking opens a calendar! 🗓️</p>
+  </div>
+
+  <div class="card">
+    <h2>⏰ 4. Other Picker Types</h2>
+    <ul>
+      <li><code>TimePicker</code> for selecting times ⏱️</li>
+      <li><code>DateTimePicker</code> combines date & time 🕒</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎨 5. Theming & Styles</h2>
+    <p>Pickers use your Material UI theme colors automatically. 🔵</p>
+  </div>
+
+  <div class="card">
+    <h2>🚀 6. Try It Out!</h2>
+    <ul>
+      <li>Restart your app (<code>npm run dev</code>).</li>
+      <li>Place a picker, pick a date or time, and watch state update! 🥳</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Page Selection Function Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; font-size: 1.25em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>Setting up State</h2>
+    <ul>
+      <li>Import <code>useState</code>: <code>import React, { useState } from 'react';</code></li>
+      <li>Initialize state with questions array:</li>
+    </ul>
+    <pre><code>const [questions, setQuestions] = useState(defaultQuestions);</code></pre>
+    <p>This lets us update which question is active and re-render.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📋</span>Define <code>nextQuestion</code> Function</h2>
+    <ol>
+      <li>Clone current state to avoid mutation: 
+        <pre><code>const newQuestions = cloneDeep(questions);</code></pre>
+      </li>
+      <li>Find the index of the active question:
+        <pre><code>const activeIndex = newQuestions.findIndex(q =&gt; q.active);</code></pre>
+      </li>
+      <li>Compute next index:
+        <pre><code>const nextIndex = activeIndex + 1;</code></pre>
+      </li>
+      <li>Toggle flags:
+        <pre><code>newQuestions[activeIndex].active = false;
+newQuestions[nextIndex].active = true;</code></pre>
+      </li>
+      <li>Update state:
+        <pre><code>setQuestions(newQuestions);</code></pre>
+      </li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⬅️</span>Define <code>previousQuestion</code> Function</h2>
+    <ol>
+      <li>Clone and find active index (same as next).</li>
+      <li>Compute previous index:
+        <pre><code>const prevIndex = activeIndex - 1;</code></pre>
+      </li>
+      <li>Toggle flags for movement backward:</li>
+      <pre><code>newQuestions[activeIndex].active = false;
+newQuestions[prevIndex].active = true;</code></pre>
+      <li>Update state with <code>setQuestions(newQuestions);</code></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔘</span>Wrap Arrows & Attach Handlers</h2>
+    <ul>
+      <li>Wrap arrow images in Material-UI <code>&lt;IconButton&gt;</code>.</li>
+      <li>Add <code>onClick</code>:
+        <pre><code>&lt;IconButton onClick={previousQuestion}&gt;...&lt;/IconButton&gt;
+&lt;IconButton onClick={nextQuestion}&gt;...&lt;/IconButton&gt;</code></pre>
+      </li>
+      <li>Adjust image size/style as needed.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🐞</span>Debugging Tips</h2>
+    <ul>
+      <li>Ensure you map over <code>questions</code>, not <code>defaultQuestions</code>.</li>
+      <li>Check index bounds before accessing <code>newQuestions[nextIndex]</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔒</span>Prevent Out-of-Bounds</h2>
+    <p>Disable arrows at ends:</p>
+    <pre><code>const activeIndex = questions.findIndex(q =&gt; q.active);
+&lt;IconButton disabled={activeIndex === 0} onClick={previousQuestion}&gt;...&lt;/IconButton&gt;
+&lt;IconButton disabled={activeIndex === questions.length - 1} onClick={nextQuestion}&gt;...&lt;/IconButton&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎉</span>Result</h2>
+    <p>Now clicking arrows moves between questions dynamically, updating UI in real-time! 🚀</p>
+  </div>
+
+</body>
+</html>

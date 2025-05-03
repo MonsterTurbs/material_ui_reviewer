@@ -1,0 +1,7 @@
+Please do the following:
+
+- Create study notes for this transcript that even a child or beginner can understand, and include emojis.  
+- Provide them in an `.html` file so they can be saved as PDF.  
+- Lay them out cleanly in a card-style format, with each card spanning the full width, ready for PDF export.
+
+ 

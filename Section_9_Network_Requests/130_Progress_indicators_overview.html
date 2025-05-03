@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Progress Indicator Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Why Show Progress? ⏳</h2>
+    <p>
+      When we wait for something (like sending an email), users need to know the app is working.  
+      Progress indicators tell them “please wait” so they don’t wonder what’s happening. 😊
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Circular Spinner (Indeterminate) 🔄</h2>
+    <p>
+      Use Material-UI’s simple component:
+    </p>
+    <code>&lt;CircularProgress /&gt;</code>
+    <p>
+      It spins forever until your task finishes. Perfect for unknown wait times!
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Change Color &amp; Size 🎨</h2>
+    <ul>
+      <li><code>color="primary"</code> (default) or <code>color="secondary"</code>.</li>
+      <li><code>size={40}</code> makes it bigger: <code>&lt;CircularProgress size={40} /&gt;</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4. Determinate Mode 📊</h2>
+    <p>
+      If you know progress percent, use:
+    </p>
+    <code>
+      &lt;CircularProgress variant="determinate" value={progress} /&gt;
+    </code>
+    <p>
+      You control <code>progress</code> (0–100) to show how much is done.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>5. Linear Bars ➖</h2>
+    <p>
+      A line instead of a circle! Choose indeterminate or determinate:
+    </p>
+    <code>&lt;LinearProgress /&gt;  (indeterminate)</code>  
+    <code>&lt;LinearProgress variant="determinate" value={50} /&gt;</code>
+  </div>
+
+  <div class="card">
+    <h2>6. Advanced Linear Styles ➡️⬜</h2>
+    <ul>
+      <li><code>variant="buffer"</code> shows two bars (buffered progress).</li>
+      <li><code>variant="query"</code> for a different animation style.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7. How to Use in Code 📝</h2>
+    <p>
+      In your React component, track a <code>loading</code> state:
+    </p>
+    <code>
+    {loading && &lt;CircularProgress size={30} /&gt;}
+    </code>
+    <p>
+      Set <code>loading = true</code> before Axios request, then <code>loading = false</code> in <code>.then()</code> or <code>.catch()</code>.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>8. Next Steps 🚀</h2>
+    <p>
+      Let’s add this spinner to our Contact page so users see it while the email is sending! 👍
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hero Block Styling - Study Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #1976d2;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+      color: #333;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card code {
+      display: block;
+      background: #f5f5f5;
+      padding: 5px;
+      border-radius: 4px;
+      margin: 5px 0;
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center; color:#1976d2;">📚 Hero Block Styling Guide</h1>
+  <div class="container">
+    
+    <div class="card">
+      <h2>⚙️ Align Animation Right</h2>
+      <p>Use the <code>justifyContent="flex-end"</code> prop on the Grid container (direction="row") to push the animation all the way to the right edge.</p>
+      <code>&lt;Grid container justifyContent="flex-end" …&gt;</code>
+    </div>
+    
+    <div class="card">
+      <h2>↕️ Center Text Vertically</h2>
+      <p>To center the text and buttons with the animation, add <code>alignItems="center"</code> on the same Grid container.</p>
+      <code>&lt;Grid container alignItems="center" …&gt;</code>
+    </div>
+
+    <div class="card">
+      <h2>✍️ Use Typography for Text</h2>
+      <p>Replace a plain <code>&lt;div&gt;</code> with Material UI’s <code>&lt;Typography&gt;</code> component for better styling. Center text with <code>align="center"</code> and make it large with <code>variant="h2"</code>.</p>
+      <code>&lt;Typography variant="h2" align="center"&gt;Your Slogan&lt;/Typography&gt;</code>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Customize H2 in Theme</h2>
+      <ul>
+        <li><strong>fontFamily:</strong> 'Raleway'</li>
+        <li><strong>fontWeight:</strong> 700</li>
+        <li><strong>fontSize:</strong> 2.5rem</li>
+        <li><strong>color:</strong> theme.palette.primary.main</li>
+        <li><strong>lineHeight:</strong> 1.5</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📐 Responsive Layout with Grid</h2>
+      <p>Give each Grid item the <code>sm</code> prop (no number) to auto-size horizontally until below small screens, where they stack vertically:</p>
+      <code>&lt;Grid item sm&gt;…&lt;/Grid&gt;</code>
+    </div>
+
+    <div class="card">
+      <h2>📏 Constrain Animation Size</h2>
+      <p>Apply a CSS class to the animation wrapper to limit its size:</p>
+      <code>
+        .animation {<br>
+        &nbsp;&nbsp;max-width: 50rem;<br>
+        &nbsp;&nbsp;min-width: 21rem;<br>
+        &nbsp;&nbsp;margin-top: 2rem;<br>
+        &nbsp;&nbsp;margin-left: 10%;<br>
+        }
+      </code>
+    </div>
+
+    <div class="card">
+      <h2>🔀 REM (M) vs Percentage (%)</h2>
+      <ul>
+        <li>🌟 <strong>REM (e.g. 2rem)</strong> gives a constant gap across devices.</li>
+        <li>📊 <strong>Percentage (e.g. 10%)</strong> scales the gap with screen width.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

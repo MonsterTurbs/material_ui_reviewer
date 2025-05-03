@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sending Estimate Email Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">☁️</span>1. Update Cloud Function Params</h2>
+    <p>Destructure all estimate fields from <code>req.query</code> in <code>functions/index.js</code> so you can access:</p>
+    <ul>
+      <li><code>total, service, platforms, features</code></li>
+      <li><code>customFeatures, users, category</code></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔀</span>2. Branch on Estimate vs. Message</h2>
+    <p>In your function, check <code>if (total)</code>:</p>
+    <ul>
+      <li><strong>If no <code>total</code>:</strong> handle a simple contact message (existing code).</li>
+      <li><strong>If <code>total</code> present:</strong> handle and format estimate email.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📧</span>3. Compose Estimate Email</h2>
+    <p>Inside <code>if (total)</code>, compose <code>mailOptions</code> based on type:</p>
+    <ul>
+      <li><em>Website estimate</em> (when <code>category</code> exists): include <code>service, total, category</code>.</li>
+      <li><em>Software estimate</em>: include <code>service, total, platforms, features, customFeatures, users</code>.</li>
+    </ul>
+    <p>Use different <code>subject</code> and HTML <code>&lt;p&gt;</code> blocks for each case.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⛅</span>4. Deploy Cloud Function</h2>
+    <p>Run <code>firebase deploy --only functions</code> to push your updated function so it handles estimate queries. 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🛠️</span>5. Import Axios in Frontend</h2>
+    <p>In <code>estimate.js</code>, import Axios at the top:</p>
+    <pre><code>import axios from 'axios';</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>6. Define <code>sendEstimate</code> Function</h2>
+    <p>Create a function to POST all state values to your Cloud Function endpoint:</p>
+    <pre><code>const sendEstimate = () => {
+  axios.post('https://us-central1-<your-project>.cloudfunctions.net/sendMail', null, {
+    params: { 
+      name, email, phone, message,
+      service, platforms, features,
+      customFeatures, users, category, total 
+    }
+  })
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+};</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔘</span>7. Hook Up the Button</h2>
+    <p>Add <code>onClick={sendEstimate}</code> to your “Place Request” button so clicking it triggers the email send.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>8. Test & Verify</h2>
+    <ol>
+      <li>Fill out estimate form fully and click “Get Estimate”.</li>
+      <li>Enter your own email/phone to test receipt.</li>
+      <li>Check console for success message.</li>
+      <li>Confirm you receive two emails: confirmation &amp; estimate details.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✨</span>Next: UI Feedback</h2>
+    <p>After sending, show a spinner and snackbar so users know the estimate was sent successfully. 🎉</p>
+  </div>
+
+</body>
+</html>

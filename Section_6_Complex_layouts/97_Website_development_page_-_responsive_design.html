@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Notes: Website Development Page - Part 2</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <!-- Ecommerce Section -->
+  <div class="card">
+    <h2>Repeat for eCommerce 🛒</h2>
+    <p>Copy the entire <code>Grid item container</code> (row) you made for Analytics and paste it again. Change the title to "eCommerce", swap in the <code>ecommerce</code> image, update the <code>alt</code> text to "world outline made of dollar signs", and remove the custom margin. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>Add Paragraphs for eCommerce 📝</h2>
+    <p>Open the design file, copy the two eCommerce sentences, and paste each inside its own <code>&lt;Typography paragraph&gt;</code> component. This puts the right text on the page. 📄</p>
+  </div>
+
+  <div class="card">
+    <h2>Align to the Right ➡️</h2>
+    <p>On the eCommerce row container, add <code>justify="flex-end"</code> to move it to the right side. Center the title with <code>alignItems="center"</code> on the icon row and adjust paragraph spacing with <code>marginLeft: '1m'</code>. ✨</p>
+  </div>
+
+  <!-- Outreach Section -->
+  <div class="card">
+    <h2>Add Outreach Section 📣</h2>
+    <p>Copy the eCommerce row, paste under it, change title to "Outreach", image to <code>outreach</code>, and <code>alt</code> to "megaphone". Remove previous style, add <code>marginLeft: '1m'</code> on the text wrapper, and paste the Outreach paragraph from the design file. 🎤</p>
+  </div>
+
+  <!-- SEO Section -->
+  <div class="card">
+    <h2>Add SEO Section 🔍</h2>
+    <p>Copy the Outreach row, paste below, change to "Search Engine Optimization"<br> (use a <code>&lt;br&gt;</code> to stack words), set image to <code>SEO</code> with <code>alt="website standing on winners podium"</code>. Paste three sentences as <code>&lt;Typography paragraph&gt;</code>. 🌐</p>
+  </div>
+
+  <!-- Spacing Improvements -->
+  <div class="card">
+    <h2>Improve Spacing ✨</h2>
+    <p>On each section's row container, add styles: <code>marginTop: '15m'</code> and <code>marginBottom: '15m'</code>. This adds white space for readability. 🧹</p>
+  </div>
+
+  <!-- Responsive Design -->
+  <div class="card">
+    <h2>Make It Responsive 📱</h2>
+    <p>Use <code>const matchesSM = useMediaQuery(theme.breakpoints.down('sm'))</code>. For each row container, set <code>direction={matchesSM ? 'column' : 'row'}</code>.<br>
+       For paragraphs, add <code>align={matchesSM ? 'center' : undefined}</code>. Replace <code>marginLeft: '1m'</code> with <code>matchesSM ? 0 : '1m'</code>. Now the layout shifts nicely on small screens. 🔄</p>
+  </div>
+
+  <!-- Title Centering -->
+  <div class="card">
+    <h2>Center Titles on Small 📐</h2>
+    <p>Add the same <code>align={matchesSM ? 'center' : undefined}</code> to each section title <code>&lt;Typography variant="h4"&gt;</code>. This keeps titles centered when the layout stacks. 👍</p>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="card">
+    <h2>Add Call to Action Button 📣</h2>
+    <p>Import <code>CallToAction</code> from your UI folder:<br>
+       <code>import CallToAction from './UI/CallToAction';</code><br>
+       At the bottom of the page, add:<br>
+       <code>&lt;Grid item&gt;<br>
+         &lt;CallToAction setValue={props.setValue} /&gt;<br>
+       &lt;/Grid&gt;</code><br>
+       This adds a responsive button inviting users to act! 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>Great Job! 🎉</h2>
+    <p>You’ve now repeated and refined the layout for all service icons, made spacing clean, ensured responsiveness, and added a call to action. Your Website Development page is complete and ready! 🌟</p>
+  </div>
+</body>
+</html>

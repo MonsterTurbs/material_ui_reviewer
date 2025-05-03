@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🙈 Hiding Footer Links – Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e65100;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>🙈 Hiding Footer Links Responsively</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🧩 What is the Hidden Component?</h2>
+      <p>The <code>Hidden</code> component from Material UI lets you show or hide anything based on screen size (breakpoints). Perfect for making responsive sites without writing custom CSS media queries!</p>
+    </div>
+
+    <div class="card">
+      <h2>📥 Step 1: Import Hidden</h2>
+      <p>At the top of <code>Footer.js</code>, add:</p>
+      <pre><code>import Hidden from '@material-ui/core/Hidden';</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🔀 Step 2: Wrap Your Grid</h2>
+      <p>Wrap the entire footer grid in a <code>&lt;Hidden mdDown&gt;…&lt;/Hidden&gt;</code> tag to hide it on medium (md) screens and smaller:</p>
+      <pre><code>&lt;Hidden mdDown&gt;
+  &lt;Grid container spacing={2}&gt;
+    … your link columns …
+  &lt;/Grid&gt;
+&lt;/Hidden&gt;</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🔍 mdDown Explained</h2>
+      <ul>
+        <li><strong>mdDown</strong> hides content on <em>medium</em> and <em>small</em> screens (and below).</li>
+        <li>Links appear on large screens but disappear on tablets &amp; phones.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📱 See It in Action</h2>
+      <p>1. Save and refresh your app.<br>2. Resize the browser: links show on wide screens, vanish on narrow ones.<br>3. Drawer navigation still works on mobile!</p>
+    </div>
+
+    <div class="card">
+      <h2>💡 Why Use Hidden?</h2>
+      <ul>
+        <li>✅ Keeps mobile footer clean &amp; simple.</li>
+        <li>✅ Uses existing breakpoint system—no extra CSS needed.</li>
+        <li>✅ Great for toggling any UI piece by device size.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔜 Next Steps</h2>
+      <p>We’ll now add social media icons only for mobile footers using another <code>Hidden</code> wrapper set to <code>lgUp</code> (show on large &amp; up) or similar. Stay tuned!</p>
+    </div>
+
+  </div>
+</body>
+</html>

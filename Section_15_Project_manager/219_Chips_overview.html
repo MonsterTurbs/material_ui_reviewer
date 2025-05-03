@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Material-UI Chips Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p, .card ul, .card ol { margin: 8px 0; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>💡 What Are Chips?</h2>
+    <p>Chips are compact elements that represent inputs, attributes, or actions—think of little tags you can add or remove! 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>📥 Importing Chips</h2>
+    <p>Bring in the core component and any extras:</p>
+    <pre><code>import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
+import FaceIcon from '@material-ui/icons/Face';</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Basic Usage</h2>
+    <p>Render a simple chip with text:</p>
+    <pre><code>&lt;Chip label="Example Chip" /&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Variants &amp; Props</h2>
+    <ul>
+      <li><code>variant="outlined"</code> for a border-only style.</li>
+      <li><code>size="small"</code> or default <code>size="medium"</code>.</li>
+      <li><code>color</code>: <code>default</code>, <code>primary</code>, <code>secondary</code>.</li>
+      <li><code>disabled</code> to gray out.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>👤 Avatars &amp; Icons</h2>
+    <p>Add a circle avatar or icon:</p>
+    <pre><code>&lt;Chip
+  avatar=&lt;Avatar&gt;A&lt;/Avatar&gt;
+  label="With Avatar"
+/&gt;
+&lt;Chip
+  icon=&lt;FaceIcon /&gt;
+  label="With Icon"
+/&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>❌ Deletable Chips</h2>
+    <p>Add <code>onDelete</code> to show an "X" and handle removal:</p>
+    <pre><code>&lt;Chip
+  label="Removable"
+  onDelete={() =&gt; console.log('Deleted!')}
+/&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔄 Clickable Chips</h2>
+    <p>Use <code>onClick</code> for action when chip is clicked:</p>
+    <pre><code>&lt;Chip
+  label="Click Me"
+  onClick={() =&gt; alert('Chip clicked!')}
+/&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>📊 Dynamic Rendering</h2>
+    <p>Render multiple chips from an array:</p>
+    <pre><code>const data = ["Apple", "Banana", "Cherry"];
+return (
+  data.map(item =&gt; (
+    &lt;Chip key={item} label={item} onDelete={() =&gt; remove(item)} /&gt;
+  ))
+);</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Component API</h2>
+    <p>For all props (like <code>clickable</code>, <code>avatar</code>, custom delete icon), check the API tab under Chips in the Material-UI docs.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎉 Next Step</h2>
+    <p>Use chips to display active filters—show users exactly which filters are applied in your table! 🚀</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Environment Setup - Material UI + React</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      line-height: 1.8;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    p, ul, code {
+      font-size: 16px;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 5px 0;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🚀 Study Notes: Setting Up Your React + Material UI Project</h1>
+
+<div class="card">
+  <h2>📦 Step 1: Check Your Node.js Version</h2>
+  <p>In your terminal, run:</p>
+  <code>node -v</code>
+  <p>If you're not using version <strong>10.16.3</strong> or later, go to <a href="https://nodejs.org">nodejs.org</a> and download the latest version.</p>
+</div>
+
+<div class="card">
+  <h2>🛠️ Step 2: Create a New React App</h2>
+  <p>Use NPX to start a new React project:</p>
+  <code>npx create-react-app arc-development</code>
+  <p>This sets up all the files needed to build a React app.</p>
+</div>
+
+<div class="card">
+  <h2>📁 Step 3: Navigate to the Project Folder</h2>
+  <code>cd arc-development</code>
+  <p>Now you're inside the project folder and ready to add more tools!</p>
+</div>
+
+<div class="card">
+  <h2>🧭 Step 4: Install React Router</h2>
+  <p>This lets us switch between pages in our app:</p>
+  <code>npm install --save react-router-dom</code>
+  <p>Ignore warnings about TypeScript — it's not required for this course.</p>
+</div>
+
+<div class="card">
+  <h2>🎨 Step 5: Install Material UI</h2>
+  <p>Install the core Material UI library:</p>
+  <code>npm install --save @material-ui/core</code>
+  <p>Also, add the Roboto font to your HTML:</p>
+  <code>&lt;link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"&gt;</code>
+</div>
+
+<div class="card">
+  <h2>💻 Step 6: Open the Project in Your Code Editor</h2>
+  <p>Use any editor like Atom, VS Code, or Sublime. Open the <code>index.html</code> file in the <code>public</code> folder and add the Roboto font link.</p>
+</div>
+
+<div class="card">
+  <h2>🔘 Step 7: Add a Test Material UI Button</h2>
+  <p>In <code>App.js</code>, import and use a button to test if everything works:</p>
+  <code>import Button from '@material-ui/core/Button';</code>
+  <p>Add inside the return:</p>
+  <code>&lt;Button variant="contained"&gt;Click me&lt;/Button&gt;</code>
+</div>
+
+<div class="card">
+  <h2>▶️ Step 8: Run the Project</h2>
+  <p>Go back to your terminal and start the server:</p>
+  <code>npm start</code>
+  <p>Your browser should open and show the "Click me" button with the Material UI ripple effect.</p>
+</div>
+
+<div class="card">
+  <h2>🎉 You're Ready!</h2>
+  <p>Congrats! Your setup is done and your first Material UI project is running. Let's keep going to build more amazing things! 👨‍💻👩‍💻</p>
+</div>
+
+</body>
+</html>

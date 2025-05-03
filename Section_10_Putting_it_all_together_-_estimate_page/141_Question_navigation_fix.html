@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Page Disable Navigation Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; font-size: 1.25em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🚫</span>Problem: Out-of-Bounds Navigation</h2>
+    <p>If the user clicks back on the first question or forward past the last, navigation breaks and nothing renders. We need to prevent that. ⚠️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔧</span>Add <code>disabled</code> Prop</h2>
+    <p>Wrap both <code>&lt;IconButton&gt;</code> arrows with a <code>disabled</code> attribute that calls a function to decide when to block clicks.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📝</span>Define <code>navigationPreviousDisabled</code></h2>
+    <pre><code>const navigationPreviousDisabled = () => {
+  const current = questions.filter(q => q.active)[0];
+  return current.id === 1;
+};</code></pre>
+    <p>This returns <code>true</code> if on the very first question (ID 1), disabling "Back". 👈</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📝</span>Define <code>navigationNextDisabled</code></h2>
+    <pre><code>const navigationNextDisabled = () => {
+  const current = questions.filter(q => q.active)[0];
+  const last = questions[questions.length - 1];
+  return current.id === last.id;
+};</code></pre>
+    <p>This blocks "Next" when on the last question, using the ID of the final element. 👉</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Render Disabled Icons</h2>
+    <pre><code>&lt;IconButton disabled={navigationPreviousDisabled()} onClick={previousQuestion}&gt;
+  &lt;img src={navigationPreviousDisabled() ? backArrowDisabled : backArrow} /&gt;
+&lt;/IconButton&gt;
+
+&lt;IconButton disabled={navigationNextDisabled()} onClick={nextQuestion}&gt;
+  &lt;img src={navigationNextDisabled() ? forwardArrowDisabled : forwardArrow} /&gt;
+&lt;/IconButton&gt;</code></pre>
+    <p>Switch between normal and gray icons based on disabled state for better UX. 🎨</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Result</h2>
+    <p>Now users cannot navigate past the first or last question. Buttons gray out and clicks do nothing. Navigation is stable! 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⏭️</span>Next Step</h2>
+    <p>With navigation solid, the next step is adding click handlers to select options so choices toggle <code>selected: true</code>. ✅</p>
+  </div>
+
+</body>
+</html>

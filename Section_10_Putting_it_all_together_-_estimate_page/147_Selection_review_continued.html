@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Platforms Review Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🎯</span>Goal: Show Platforms</h2>
+    <p>We want to list the platforms (Web, iOS, Android) the user picked, so they can confirm their choices before finalizing the estimate. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🛠️</span>Step 1: Create <code>getPlatforms</code></h2>
+    <p>Under <code>getTotal</code>, add a new function:</p>
+    <pre><code>const getPlatforms = () => {
+  const newPlatforms = [];
+  if (questions.length > 2) {
+    const platQ = questions
+      .filter(q => q.title === 'Which platforms do you need supported?')[0];
+    platQ.options
+      .filter(o => o.selected)
+      .forEach(o => newPlatforms.push(o.title));
+  }
+  setPlatforms(newPlatforms);
+};</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">💾</span>Store in State</h2>
+    <p>Call <code>getPlatforms()</code> alongside <code>getTotal()</code> when the user clicks “Get Estimate”. This updates the <code>platforms</code> state array. 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📌</span>Step 2: Conditional Render</h2>
+    <p>In your review dialog, only show the platforms line if any were chosen:</p>
+    <pre><code>{platforms.length > 0 ? /* show template string */ : null}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✍️</span>Step 3: Friendly Sentence</h2>
+    <p>Use a template string with nested <code>?:</code> checks to pick “a” or “an” and join multiple platforms:</p>
+    <pre><code>{`
+You want ${service} for ${
+  platforms.includes('Web application') && platforms.length === 1
+    ? 'a Web application'
+    : platforms.includes('Web application') && platforms.length > 1
+      ? `a Web application and an ${platforms[1]}`
+      : platforms.length === 1
+        ? `an ${platforms[0]}`
+        : platforms.length === 2
+          ? `an ${platforms[0]} and an ${platforms[1]}`
+          : 'a Web, an iOS, and an Android application'
+}
+`}</code></pre>
+    <p>This handles all combos: one, two, or three platforms with correct “a/an” grammar. 📝</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✨</span>Result</h2>
+    <p>The dialog now says for example:<br>
+    <em>“You want Custom Software Development for a Web application and an Android application.”</em> ✅</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⏭️</span>Next Step</h2>
+    <p>Use a similar approach to list selected features under the “Features” questions. 🌟</p>
+  </div>
+
+</body>
+</html>

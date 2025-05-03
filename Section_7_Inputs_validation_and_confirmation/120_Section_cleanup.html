@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dialog Final Touches Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Keep Dialog on Top 🚀</h2>
+    <p>
+      If on mobile your dialog is hidden behind the AppBar, add a z-index style:
+    </p>
+    <code>
+    &lt;Dialog  
+      style={{ zIndex: 1302 }}  
+      …  
+    &gt;
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>2. Smaller Send Button on Small Screens 📏</h2>
+    <p>
+      In your Styles object, override the sendButton size at <code>sm</code>:
+    </p>
+    <code>
+    [theme.breakpoints.down('sm')]: {  
+      sendButton: {  
+        height: '40px',  
+        width: '225px'  
+      }  
+    }
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>3. Stack Buttons Vertically on Tiny Screens ↕️</h2>
+    <p>
+      Change the button container’s direction based on <code>matchesSM</code>:
+    </p>
+    <code>
+    &lt;Grid  
+      container  
+      direction={matchesSM ? 'column' : 'row'}  
+      alignItems="center"  
+    &gt;…&lt;/Grid&gt;
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>4. Full-Screen Dialog on Extra Small 📱</h2>
+    <p>
+      Detect extra-small screens with:
+    </p>
+    <code>const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));</code>
+    <p>
+      Then on your Dialog:
+    </p>
+    <code>
+    &lt;Dialog  
+      fullScreen={matchesXS}  
+      open={open}  
+      onClose={() => setOpen(false)}  
+      style={{ zIndex: 1302 }}  
+    &gt;…&lt;/Dialog&gt;
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>5. Make Message Field Full-Width on XS 🔄</h2>
+    <p>
+      On the Grid item wrapping the message TextField, use:
+    </p>
+    <code>
+    &lt;Grid item  
+      style={{ maxWidth: matchesXS ? '100%' : '20rem' }}  
+    &gt;…&lt;/Grid&gt;
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>6. Avoid Horizontal Scrolling 🚫</h2>
+    <p>
+      When you stack direction to <code>'column'</code> on small screens, all content stays centered—
+      no sideways scroll! 😊
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>7. Test on Real Devices ✅</h2>
+    <ul>
+      <li>Use browser devtools device emulator (e.g. Galaxy S5) to verify.</li>
+      <li>Ensure no elements get cut off and spacing looks good.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner Study Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f9fc;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            margin-bottom: 15px;
+        }
+        .emoji {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container py-5">
+    <h2 class="mb-4">📚 Beginner-Friendly Study Notes 📚</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>🔍 What Are We Doing?</h5>
+            <p>We're making a search box to help us quickly find projects in our table!</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>✨ Step 1: Creating the Search Box</h5>
+            <p>We added a new state (like memory) called <strong>search</strong> to store what users type into the search box.</p>
+            <p><code>const [search, setSearch] = useState("");</code></p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>✏️ Step 2: Connecting the Text Field</h5>
+            <p>Our search box now listens for changes. Whenever we type something, it updates our <strong>search</strong> state.</p>
+            <p><code>onChange={handleSearch}</code></p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>🧐 Step 3: How Does the Search Work?</h5>
+            <p>Each project is checked to see if it matches what we typed. Projects that match our search stay visible, others hide.</p>
+            <p>We look at every piece of data in each row to find matches!</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>🔄 Step 4: Managing Visibility with States</h5>
+            <p>We add a special <strong>search</strong> property (true/false) to each project to track if it matches the search.</p>
+            <p>Projects that match = <strong>true</strong> ✅, Projects that don't match = <strong>false</strong> ❌</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>📖 Step 5: Checking Each Project</h5>
+            <p>We use JavaScript methods <code>map()</code> and <code>filter()</code> to see if any data includes our search word.</p>
+            <p>If it does, we set the project's search property to true.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>🎛 Step 6: Showing the Results</h5>
+            <p>Only projects with <strong>search: true</strong> are displayed in the table.</p>
+            <p>This lets users see matching projects immediately as they type!</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>📌 Example Searches:</h5>
+            <ul>
+                <li>Typing "Bill" finds the row with "Bill Gates".</li>
+                <li>Typing "GPS" shows the project with the GPS feature.</li>
+                <li>Typing "custom software" filters projects offering this service.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5>🎉 Final Result:</h5>
+            <p>A working search box that helps users quickly find projects based on any data!</p>
+            <p>Fast, easy, and helpful! 🚀</p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

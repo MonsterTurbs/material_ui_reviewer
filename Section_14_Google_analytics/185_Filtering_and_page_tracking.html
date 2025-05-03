@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics Filters &amp; Pageview Tracking Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7faff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 700px;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+    p, ul {
+      color: #444444;
+      line-height: 1.6;
+      padding-left: 20px;
+    }
+    ul {
+      list-style: inside;
+    }
+    code {
+      background: #eef2f7;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🔍 Why Filter Analytics Data?</h2>
+    <p>When you test your site, your own visits can skew the numbers. Filters let you <strong>exclude</strong> your IP from reports so you see only real user data. 🚫👤</p>
+  </div>
+
+  <div class="card">
+    <h2>⚠️ Filters are Destructive</h2>
+    <ul>
+      <li>Once data is filtered out, it’s <strong>permanently removed</strong>—you can’t get it back.</li>
+      <li>Create multiple <strong>Views</strong> to protect raw data:</li>
+      <ul>
+        <li><strong>Raw Data View</strong>: No filters, stores all data.</li>
+        <li><strong>Test View</strong>: Add &amp; verify filters here first.</li>
+        <li><strong>Master View</strong>: Apply approved filters for your main reports.</li>
+      </ul>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ Setting Up a Filter to Exclude Your IP</h2>
+    <ol>
+      <li>Go to <strong>Admin &gt; View &gt; Filters</strong>.</li>
+      <li>Click <code>Add Filter</code> &gt; Name: <code>Exclude Home Traffic</code>.</li>
+      <li>Type: <code>Exclude</code> &gt; Filter Field: <code>IP Address</code>.</li>
+      <li>Pattern: your home IP (search “what is my IP”).</li>
+      <li>Save &amp; test in the <strong>Test View</strong>.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>✅ Verify Your Filter</h2>
+    <ul>
+      <li>Switch to <strong>Test View</strong>—you should see <code>0 active users</code> when you browse.</li>
+      <li>Check <strong>Raw Data View</strong>—your visits still appear here.</li>
+      <li>Once confirmed, apply filter to <strong>Master View</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📄 Sending Pageviews in React</h2>
+    <p>Use <code>react-ga</code> to track each page view only once:</p>
+    <pre><code>// in Header.js (or _app.js)
+import React, { useState, useEffect } from 'react';
+import ReactGA from 'react-ga';
+
+function Header() {
+  const [previousURL, setPreviousURL] = useState('');
+
+  useEffect(() => {
+    const current = window.location.pathname + window.location.search;
+    if (previousURL !== current) {
+      setPreviousURL(current);
+      ReactGA.pageview(current);
+    }
+  }, [previousURL]);
+
+  // ...rest of header
+}
+</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Quick Recap</h2>
+    <ul>
+      <li>⚠️ Filters permanently remove data—always test first!</li>
+      <li>🔄 Use three views: Raw, Test, Master.</li>
+      <li>🚫 Exclude your IP to avoid skewed metrics.</li>
+      <li>📄 Track pageviews in React with <code>react-ga</code> and state check.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

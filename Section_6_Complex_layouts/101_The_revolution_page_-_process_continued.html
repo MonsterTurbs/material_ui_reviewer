@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Notes: Building the Revolution Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. Make the File 📁</h2>
+    <p>Create a new file <code>Revolution.js</code> inside your <code>components</code> folder. This will hold your Revolution page code. 😊</p>
+  </div>
+  <div class="card">
+    <h2>2. Import Stuff 📥</h2>
+    <p>At the top of <code>Revolution.js</code>, import React, <code>makeStyles</code>, <code>useTheme</code>, <code>Grid</code>, and <code>Typography</code> from Material-UI. This gives you the tools to build and style the page. 🛠️</p>
+  </div>
+  <div class="card">
+    <h2>3. Setup Styles & Component 🎨</h2>
+    <p>Use <code>makeStyles(theme =&gt; ({ ... }))</code> to define your <code>useStyles</code> hook. Export a component <code>Revolution</code>, get <code>classes</code> &amp; <code>theme</code>, and return a <code>&lt;Grid container direction="column"&gt;</code>. 💅</p>
+  </div>
+  <div class="card">
+    <h2>4. Add Page Title 🏷️</h2>
+    <p>Inside the grid, add:<br><code>&lt;Grid item&gt;&lt;Typography variant="h2"&gt;The Revolution&lt;/Typography&gt;&lt;/Grid&gt;</code><br>Then in <code>App.js</code>, import and render <code>Revolution</code> instead of the dummy. 🚀</p>
+  </div>
+  <div class="card">
+    <h2>5. Style the Title ✍️</h2>
+    <p>Give the title a special font and spacing:<br><code>style={{ fontFamily: 'Pacifica', marginTop: '2m' }} className={classes.rowContainer}</code>. This matches the design. 🎉</p>
+  </div>
+  <div class="card">
+    <h2>6. Vision Section 🔭</h2>
+    <p>Add a row for Vision:<br><code>&lt;Grid item container direction="row" className={classes.rowContainer}&gt;</code><br>• Left: <code>&lt;Grid item lg&gt;&lt;img src={vision} alt="mountain through binoculars"/&gt;&lt;/Grid&gt;</code><br>• Right: <code>&lt;Grid item container direction="column" lg&gt;</code> with a <code>H4</code> subtitle and five <code>body1</code> paragraphs. 📄</p>
+  </div>
+  <div class="card">
+    <h2>7. Share & Center Space ⚖️</h2>
+    <p>Add <code>lg</code> to both grid items so they split space equally on large screens. Use <code>alignItems="center"</code> on the row to center the icon vertically. Give text &amp; icon <code>maxWidth: '40m'</code> and icon a <code>marginRight: '5m'</code>. 👍</p>
+  </div>
+  <div class="card">
+    <h2>8. Swap for Technology 💻</h2>
+    <p>Copy the Vision row and paste below. Swap text to left, animation to right. Change title to “Technology” and paste its paragraphs. Remove any <code>align="right"</code>. 🎉</p>
+  </div>
+  <div class="card">
+    <h2>9. Add Lottie Animation 🎥</h2>
+    <p>Import Lottie and <code>defaultOptions</code>. Replace the <code>&lt;img&gt;</code> with:<br><code>&lt;Lottie options={defaultOptions} isStopped style={{ maxWidth: '40m', margin: 0 }} /&gt;</code><br>Then set row <code>justify="flex-end"</code>. 🌟</p>
+  </div>
+  <div class="card">
+    <h2>10. Final Tweaks & Test 📱</h2>
+    <p>Save and refresh! Check large &amp; small screens. Items share space on big, stack on mobile. Responsive basics done! 🎉</p>
+  </div>
+
+  <!-- Process Section -->
+  <div class="card">
+    <h2>11. Add Process Title 📝</h2>
+    <p>Under the last grid item, add:<br><code>&lt;Grid item container direction="row" className={classes.rowContainer} justify="center"&gt;<br>&nbsp;&nbsp;&lt;Grid item&gt;&lt;Typography variant="h4" gutterBottom&gt;Process&lt;/Typography&gt;&lt;/Grid&gt;<br>&lt;/Grid&gt;</code><br>This centers the Process heading. 🎯</p>
+  </div>
+  <div class="card">
+    <h2>12. Create Consultation Block 🤝</h2>
+    <p>Below the title, add another <code>Grid item container direction="row" className={classes.rowContainer}</code>. Inside:</p>
+    <p>• A <code>Grid item container direction="column" lg&gt;</code> for text, with:<br>
+       - <code>&lt;Typography variant="h4" gutterBottom&gt;Consultation&lt;/Typography&gt;</code><br>
+       - Three <code>&lt;Typography variant="body1" paragraph&gt;</code> paragraphs (copy from design file). 📝</p>
+  </div>
+  <div class="card">
+    <h2>13. Style Colors &amp; Background 🎨</h2>
+    <p>Make title black: <code>style={{ color: '#000000' }}</code>. Paragraphs white: <code>style={{ color: '#FFFFFF' }}</code>. On the row container, add:<br><code>style={{ backgroundColor: '#B3B3B3', height: '90m' }}</code> for the gray block. 🚧</p>
+  </div>
+  <div class="card">
+    <h2>14. Adjust Spacing &amp; Width 📐</h2>
+    <p>Add <code>style={{ marginTop: '5m' }}</code> to the title and <code>style={{ maxWidth: '20m' }}</code> to paragraphs so text has room to breathe. ✂️</p>
+  </div>
+  <div class="card">
+    <h2>15. Add Icon 🖼️</h2>
+    <p>Next to the text column, add:<br><code>&lt;Grid item lg&gt;&lt;img src={consultation} alt="handshake"/&gt;&lt;/Grid&gt;</code><br>Import the icon:<br><code>import consultation from './assets/consultation-icon.svg';</code>. 🤝</p>
+  </div>
+  <div class="card">
+    <h2>16. Share Space &amp; Align Icon ⚖️</h2>
+    <p>Add <code>lg</code> props so text &amp; icon share space. Use <code>style={{ alignSelf: 'center' }}</code> on the icon's grid item to center it vertically without moving the text. Perfect! 👍</p>
+  </div>
+  <div class="card">
+    <h2>17. Next: Responsive Design 📱</h2>
+    <p>All process steps built! In the next video, use <code>useMediaQuery</code> and theme breakpoints to stack blocks on mobile and keep it looking great everywhere. 🚀</p>
+  </div>
+
+  <!-- Additional Process Steps -->
+  <div class="card">
+    <h2>18. Import Remaining Step Icons 📥</h2>
+    <p>Under your <code>consultation</code> import, add:<br>
+      <code>import mockup from './assets/mockup-icon.svg';<br>
+      import review from './assets/review-icon.svg';<br>
+      import design from './assets/design-icon.svg';<br>
+      import build from './assets/build-icon.svg';<br>
+      import launch from './assets/launch-icon.svg';<br>
+      import maintain from './assets/maintain-icon.svg';<br>
+      import iterate from './assets/iterate-icon.svg';</code><br>
+    These icons represent each process step. 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2>19. Duplicate Consultation Block 🔁</h2>
+    <p>Copy the entire <code>Grid item container</code> used for Consultation and paste it below. You'll create one block each for <strong>Mockup, Review, Design, Build, Launch, Maintain,</strong> and <strong>Iterate</strong>. 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2>20. Customize Each Block ✏️</h2>
+    <p>In each new block:<br>
+      - Change the title (e.g., <code>Mockup</code>)<br>
+      - Swap <code>src</code> to the correct icon and update <code>alt</code> text (e.g., "basic website design outline")<br>
+      - Copy in the matching paragraphs from the design file<br>
+    This sets up all step descriptions. 📝</p>
+  </div>
+
+  <div class="card">
+    <h2>21. Assign Background Colors 🎨</h2>
+    <p>On each <code>rowContainer</code>, adjust the style:<br>
+      - Mockup: <code>backgroundColor: '#FF7373'</code><br>
+      - Review: <code>backgroundColor: '#39B54A'</code><br>
+      - Design: <code>backgroundColor: '#A67C52'</code><br>
+      - Build: <code>backgroundColor: '#FBB03B'</code><br>
+      - Launch: <code>backgroundColor: '#C1272D'</code><br>
+      - Maintain: <code>backgroundColor: '#8E45C2'</code><br>
+      - Iterate: <code>backgroundColor: '#29ABE2'</code><br>
+    Give each section its unique color and set a fixed height if needed. 🎨</p>
+  </div>
+
+  <div class="card">
+    <h2>22. Save & Verify ✅</h2>
+    <p>Save your code and refresh the page. Scroll through each process step to confirm titles, icons, text, and background colors all look correct. You’ve completed the Process section! 🎉</p>
+  </div>
+
+</body>
+</html>

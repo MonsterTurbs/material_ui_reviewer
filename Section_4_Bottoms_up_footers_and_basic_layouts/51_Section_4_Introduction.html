@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📌 Footer Setup &amp; Grid - Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+    h1 { text-align: center; margin-bottom: 20px; color: #1976d2; }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .card h2 { margin-top: 0; color: #e65100; display: flex; align-items: center; gap: 10px; }
+    .card p { line-height: 1.5; margin: 10px 0; }
+    .card ul { padding-left: 20px; margin: 10px 0; }
+    .card li { margin-bottom: 8px; line-height: 1.4; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <h1>🦶 Website Footer Setup - Study Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h2>🔍 What Is a Footer?</h2>
+      <p>A footer sits at the bottom of a website and usually has links to every page, plus extra info or icons. It stays visible at the bottom, just like a header stays at the top!</p>
+    </div>
+
+    <div class="card">
+      <h2>🎨 Footer Design Elements</h2>
+      <ul>
+        <li>➖ A black slash image (matches the header logo).</li>
+        <li>📋 A column of page links (About, Services, Contact, etc.).</li>
+        <li>🔗 Social media icons on the right (open apps on mobile!).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Step 1: Basic &lt;footer&gt; Element</h2>
+      <p>1️⃣ Add the HTML <code>&lt;footer&gt;</code> tag to your page.<br>2️⃣ Inside it, place a container div for your content.</p>
+    </div>
+
+    <div class="card">
+      <h2>✨ Step 2: Style & Add the Slash</h2>
+      <p>🎨 Use CSS to give your footer a background and padding.<br>➕ Add the slash image on the left using an <code>&lt;img&gt;</code> tag.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔲 Step 3: Lay Out Links with Grid</h2>
+      <p>📐 Import Material UI’s <code>Grid</code> component.<br>2️⃣ Create a grid container and place each link in its own grid item so they stack in a neat column.</p>
+    </div>
+
+    <div class="card">
+      <h2>📱 Step 4: Add Social Icons</h2>
+      <p>🔗 Use Material UI icons (Facebook, Twitter, etc.) in a grid item on the right.<br>⚙️ Make them clickable links that open the correct app on mobile.</p>
+    </div>
+
+    <div class="card">
+      <h2>📐 Step 5: Make Footer Responsive</h2>
+      <p>🤫 On small screens, hide the link list and show only social icons.<br>🛠️ Use Material UI’s <code>Hidden</code> component to hide items at <code>sm</code> and below.</p>
+    </div>
+
+    <div class="card">
+      <h2>🎉 Final Tips</h2>
+      <ul>
+        <li>✅ Test resizing the window to see your footer adapt.</li>
+        <li>✅ Check console for any errors after changes.</li>
+        <li>🚀 You now have a clean, responsive footer with links and social icons!</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

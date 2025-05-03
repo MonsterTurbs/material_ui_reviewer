@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>🎓 Services Page Spacing & Alignment Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    header p {
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      font-size: 1.3rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🔧 Services Page: Spacing & Alignment Fixes</h1>
+    <p>Easy steps—even a kid can follow! 🧒👶</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ Tweak Top Margin</h2>
+    <p>Originally we had <code>margin-top: 12M</code> on <code>.serviceContainer</code>.  
+       Change it to <code>10M</code> for a tighter top space:</p>
+    <pre><code>.serviceContainer { margin-top: 10M; }</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Section-Specific Top Spacing</h2>
+    <p>The first block still sat too far down. Override just that one:</p>
+    <pre><code>&lt;Grid container
+  className={classes.serviceContainer}
+  style={{ marginTop: '5M' }}
+&gt; ...</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Add Bottom Padding for Last Block</h2>
+    <p>The Website section was pressed up against the footer. Add bottom margin:</p>
+    <pre><code>&lt;Grid container
+  className={classes.serviceContainer}
+  style={{ marginBottom: '10M' }}
+&gt; ...</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Responsive Top Margin on Mobile 🤏</h2>
+    <p>On small screens, shrink that 5M down to 1M:</p>
+    <pre><code>style={{
+  marginTop: matchesSM ? '1M' : '5M'
+}}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Equalize Text-Block Widths for Alignment 📐</h2>
+    <p>Give each text container a fixed width (35M) so both line up, but only on desktop:</p>
+    <pre><code>style={{
+  textAlign: 'left',
+  width: matchesSM ? undefined : '35M'
+}}</code></pre>
+  <p>Copy into both the iOS block and Website block’s text‐wrapper.</p>
+  </div>
+
+  <div class="card">
+    <h2>6️⃣ Match Icon Widths 🔗</h2>
+    <p>Because the icons differ in natural size, force both to <code>250M</code>:</p>
+    <pre><code>&lt;img
+  src={mobileIcon}
+  style={{ width: '250M' }}
+/&gt;</code></pre>
+    <p>Do the same for the website icon.</p>
+  </div>
+
+  <div class="card">
+    <h2>7️⃣ Add “Services” Heading</h2>
+    <ul>
+      <li>Insert a `<Grid item>` with `<Typography variant="h2">Services</Typography>` above the blocks</li>
+      <li>Give it left margin (<code>5M</code>) on desktop, none on mobile</li>
+      <li>Center text on mobile with `<Typography align="center">`</li>
+      <li>Adjust top margin (e.g. 2M desktop → 1M mobile) via media query</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#777; margin-top:40px;">
+    🚀 All set! Now your Services page has perfect, consistent spacing and alignment. 🎉
+  </footer>
+
+</body>
+</html>

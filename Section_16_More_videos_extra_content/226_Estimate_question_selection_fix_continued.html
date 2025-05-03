@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimate Button Logic Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p, .card ul { margin: 8px 0; }
+    code { display: block; background: #f9f9f9; padding: 8px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🐞 The Problem</h2>
+    <p>The “Get Estimate” button could turn on too early because we treated a two-page question like one. 🤔</p>
+  </div>
+
+  <div class="card">
+    <h2>🔍 Testing Feature Selections</h2>
+    <p>We added <code>console.log(featuresSelected)</code> to peek at selections:</p>
+    <ul>
+      <li>Initially empty: <code>[]</code> on entering custom software. 🚫</li>
+      <li>After choosing one feature on page 1: <code>[Array(1), Array(0)]</code>. 👍</li>
+      <li>After choosing on page 2 too: <code>[Array(1), Array(1)]</code>. ✅</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Keep Only Non-Empty Arrays</h2>
+    <p>We chained another filter to drop empty arrays:</p>
+    <code>const featuresSelected =
+  featureQuestions
+    .map(q =&gt; q.options.filter(o =&gt; o.selected))
+    .filter(arr =&gt; arr.length &gt; 0);
+console.log(featuresSelected);</code>
+    <p>Now <code>featuresSelected</code> is an array of arrays that have at least one selection. 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2>📋 Other Questions Check</h2>
+    <p>Separate out all other (single-page) questions to ensure they’re answered:</p>
+    <code>const otherUnanswered = questions
+  .filter(q =&gt; q.title !== 'Which features do you expect to use?')
+  .filter(q =&gt; !hasSelection(q));</code>
+  </div>
+
+  <div class="card">
+    <h2>⚖️ Final Button Logic</h2>
+    <p>Enable button only when:</p>
+    <ul>
+      <li>No other questions left (<code>otherUnanswered.length === 0</code>)</li>
+      <li>At least one feature chosen (<code>featuresSelected.length &gt; 0</code>)</li>
+    </ul>
+    <code>return !(otherUnanswered.length === 0 && featuresSelected.length &gt; 0);</code>
+  </div>
+
+  <div class="card">
+    <h2>🔬 Testing Scenarios</h2>
+    <p>Verify behavior:</p>
+    <ul>
+      <li>Skip page 1 feature, answer page 2 → button stays off. 🚫</li>
+      <li>Answer any feature page → button turns on. 🎉</li>
+      <li>Remove feature selection → button turns off again. 🔄</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>💡 Why It Works</h2>
+    <p>By treating the two-page feature question separately and checking all others in one go, we ensure the button only activates once all info is in. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Pro Tip</h2>
+    <p>Watch out for multi-page questions in forms—they often need special handling like this! 📝</p>
+  </div>
+</body>
+</html>

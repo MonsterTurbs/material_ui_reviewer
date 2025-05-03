@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Responsive Contact Page Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Stack Inputs & Full Width 🏗️</h2>
+    <p>
+      On the Grid container wrapping your inputs, add <code>direction="column"</code>.  
+      Then on each <code>TextField</code>, add <code>fullWidth</code> so they fill the wrapper.  
+      Now they stack and center correctly.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Detect Medium Breakpoint 📏</h2>
+    <p>
+      Above your component, create:<br/>
+      <code>const matchesMD = useMediaQuery(theme.breakpoints.down('md'));</code>  
+      This lets you switch layout when the screen is medium or smaller.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Switch to Column on MD ↔️➡️⬇️</h2>
+    <pre><code>&lt;Grid container
+  className={classes.background}
+  direction={matchesMD ? 'column' : 'row'}
+&gt;…&lt;/Grid&gt;</code></pre>
+    <p>All background content stacks on medium screens! 📱</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Center Text at MD 🔠</h2>
+    <p>
+      For your headings/subtitles, add:<br/>
+      <code>align={matchesMD ? 'center' : undefined}</code>  
+      This centers the text only when stacked.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>5. Mobile Background Image 📲</h2>
+    <p>
+      In your <code>classes.background</code> style, use a breakpoint override:
+    </p>
+    <pre><code>[theme.breakpoints.down('md')]: {
+  backgroundImage: \`url(\${mobileBackground})\`
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>6. Vertical Centering on MD ⬆️⬇️</h2>
+    <p>
+      When stacked, add:<br/>
+      <code>justify={matchesMD ? 'center' : undefined}</code>  
+      to push content to the vertical middle.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>7. Add Vertical Margins on MD ↕️</h2>
+    <ul>
+      <li>On your Contact wrapper Grid:  
+        <code>style={{ margin: matchesMD ? '5rem 0' : '0' }}</code></li>
+      <li>On each TextField Grid item:  
+        <code>style={{ marginBottom: '0.5rem' }}</code></li>
+    </ul>
+    <p>Gives breathing room when stacked! 🌬️</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Input Font & Color Override 🎨</h2>
+    <p>
+      In <code>theme.js</code> under <code>overrides</code>, add:
+    </p>
+    <pre><code>MuiInput: {
+  root: {
+    color: '#444',
+    fontWeight: 300
+  },
+  underline: { … } // your existing underline overrides
+}</code></pre>
+    <p>Your typed text now matches your theme. 🖋️</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Responsive Top Margin 🏞️</h2>
+    <p>
+      Tweak <code>marginTop</code> on your outer Grid with a nested ternary:<br/>
+      <code>
+        matchesSM ? '1rem' : matchesMD ? '5rem' : 0
+      </code><br/>
+      This ensures consistent spacing on small & medium screens.
+    </p>
+  </div>
+
+</body>
+</html>

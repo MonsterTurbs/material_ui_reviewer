@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✨ Custom Software Dev Notes (Part 2)</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f8;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      color: #555;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+    .card p, .card ul {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .card ul li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📒 Custom Software Dev Notes – Part 2</h1>
+    <p>Simple steps even a beginner can follow! 🌟</p>
+  </header>
+
+  <div class="card">
+    <h2>1️⃣ Limit Paragraph Width</h2>
+    <ul>
+      <li>Add <code>className={classes.heading}</code> on your text container. 📏</li>
+      <li>In <code>useStyles</code>, set <code>heading: { maxWidth: '40em' }</code> so lines don’t stretch too far. ✂️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2️⃣ Center the Arrows</h2>
+    <ul>
+      <li>Wrap each arrow’s <code>&lt;Grid item&gt;</code> in <code>className={classes.arrowContainer}</code>. 🎯</li>
+      <li>Style it with <code>marginTop: '0.5em'</code> to vertically align with the title. ↕️</li>
+      <li>Remove the hover background on the arrow buttons by adding <code>backgroundColor: 'transparent'</code>. 🚫🎨</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3️⃣ Fix Text Variant in Theme</h2>
+    <ul>
+      <li>Oops! If <code>body1</code> isn’t defined, add it back in <code>theme.js</code>:</li>
+      <pre><code>body1: { fontSize: '1.25rem', color: '#444', fontWeight: 300 }</code></pre>
+      <li>Ensures your paragraphs look correct. ✅</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>4️⃣ Add Page Padding & Border Alignment</h2>
+    <ul>
+      <li>On the main grid container, add <code>className={classes.mainContainer}</code>. 🏠</li>
+      <li>Give it padding:  
+        <code>{`padding: '2em 5em 10em'`}</code> to keep content off the edges. 📐</li>
+      <li>Shift the left arrow into the padding by styling its container:  
+        <code>marginRight: '1em', marginLeft: '-3.5em'</code>. ↩️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5️⃣ Wire Up Arrow Navigation</h2>
+    <ul>
+      <li>Use React-Router’s <code>component={Link}</code> & <code>to="/…" </code> on each <code>&lt;IconButton&gt;</code>. 🔗</li>
+      <li>Also call <code>props.setSelectedIndex(…)</code> in <code>onClick</code> to keep your menu highlighted. 🎛️</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6️⃣ Layout the Three Icons Row</h2>
+    <ul>
+      <li>Wrap icons in a <code>Grid item container direction="row"</code>. 🧩</li>
+      <li>Each icon block:  
+        <code>&lt;Grid item container direction="column" md&gt;…&lt;/Grid&gt;</code>  
+        • <code>md</code> makes them share width until medium breakpoint. 📱➡️🖥️</li>
+      <li>Limit their width with <code>style={{maxWidth: '40em'}}</code> so they don’t stretch too far. 📏</li>
+      <li>Center them with <code>justify="center"</code> & <code>alignItems="center"</code>. 🎯</li>
+      <li>Add <code>marginTop: '1.5em', marginBottom: '2em'</code> around the row for breathing room. 🌬️</li>
+    </ul>
+  </div>
+
+  <footer style="text-align:center; color:#777; margin-top:40px;">
+    🚀 You’ve shaped up the Hero & Icons! Next: finish animations & process blocks. 👍
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Next.js Migration Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.5; }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 { margin-top: 0; font-size: 1.4em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code { font-family: monospace; background: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🚀</span>Next.js Boilerplate Setup</h2>
+    <p>1. In Material-UI docs → Guides → Server Side Rendering, scroll to “Next.js Example.”<br>
+    2. Copy the shown <code>curl</code> command and run it to download the starter code. 📥</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">⚙️</span>Install &amp; Run Dev Server</h2>
+    <p>Inside the new <code>next.js</code> folder:<br>
+    • <code>npm install</code> to fetch dependencies<br>
+    • <code>npm run dev</code> to start at <code>localhost:3000</code> 🖥️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🗂️</span>File-System Routing</h2>
+    <p>Put pages in <code>/pages</code>:<br>
+    • <code>pages/index.js</code> → “/”<br>
+    • <code>pages/about.js</code> → “/about”<br>
+    Add <code>doctor.js</code> → “/doctor” automatically—no extra router! 📁</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔗</span>Link Component</h2>
+    <p>Use the boilerplate’s <code>src/Link.js</code> instead of React Router. Pass <code>href="/path"</code> like a normal link. 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">📂</span>Copy UI Folder</h2>
+    <p>Copy your old <code>UI/</code> folder into <code>src/UI/</code>. Remove the boilerplate theme and update imports in <code>pages/_app.js</code> to <code>UI/theme.js</code>. ✂️</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🌐</span>Static Assets in <code>public/</code></h2>
+    <p>Create a <code>public/</code> folder. Inside it, put an <code>assets/</code> subfolder. Reference images as:</p>
+    <p><code>&lt;img src="/assets/my-image.svg" /&gt;</code>—served directly, no JS import. 📂</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✏️</span>Rename Filenames</h2>
+    <p>Remove spaces: e.g. <code>custom software icon.svg</code> → <code>custom-software.svg</code>. Avoid URL issues. 🚧</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">💾</span>Copy Assets</h2>
+    <p>Copy your old <code>assets/</code> folder into <code>public/assets/</code>. Now <code>/assets/…</code> paths work in both browser &amp; server. 📤</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎞️</span>Animations Folder</h2>
+    <p>Copy your <code>animations/</code> (JS files) into <code>src/animations/</code>, not <code>public/</code>—so Babel/Webpack still process them. 📦</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🛠️</span>Update Component Imports</h2>
+    <p>In pages, replace any UI imports from <code>"../UI/..."</code> paths, updating to <code>"../src/UI/..."</code>. Also change image imports to static URLs under <code>/assets/…</code>. 🔧</p>
+  </div>
+
+</body>
+</html>

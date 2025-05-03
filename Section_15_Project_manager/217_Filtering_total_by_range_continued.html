@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Price Filter Logic Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 0.5em 0; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🎨 Style Updates</h2>
+    <p>Add a <code>.totalFilter</code> class for bigger operator icons:</p>
+    <pre><code>.totalFilter {
+  font-size: 2rem;
+  color: theme.palette.common.orange;
+}</code></pre>
+    <p>Fix CSS props (<code>cursor</code> &amp; <code>pointer</code>) to enable proper hover styles.</p>
+  </div>
+
+  <div class="card">
+    <h2>🔤 Placeholder &amp; Start Adornment</h2>
+    <p>Give user a hint and a dollar sign:</p>
+    <pre><code>&lt;TextField
+  placeholder="Enter a price to filter"
+  InputProps={{
+    startAdornment: (
+      &lt;InputAdornment position="start" className={classes.dollarSign}&gt;$&lt;/InputAdornment&gt;
+    ),
+    endAdornment: (
+      &lt;InputAdornment position="end" className={classes.totalFilter} onClick={cycleOp}&gt;{op}&lt;/InputAdornment&gt;
+    )
+  }}
+/&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ State for Filter Value</h2>
+    <p>Store the user input:</p>
+    <pre><code>const [filterPrice, setFilterPrice] = React.useState('');</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>✏️ Bind Value &amp; Change</h2>
+    <p>Connect input to state and handler:</p>
+    <pre><code>&lt;TextField
+  value={filterPrice}
+  onChange={handleTotalFilter}
+  ...
+/&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ <code>handleTotalFilter</code> Logic</h2>
+    <p>Parse values, build expression, and update row visibility:</p>
+    <pre><code>function handleTotalFilter(event) {
+  const value = event.target.value;
+  setFilterPrice(value);
+  if (!value) return;  // skip if empty
+
+  const newRows = props.rows.map(row =&gt; {
+    // remove “$” and parse numbers
+    const totalNum = parseFloat(row.total.slice(1));
+    const filterNum = parseFloat(value);
+    // build dynamic expression, e.g. "1200>1100"
+    const expr = `${filterNum}${op}${totalNum}`;
+    // eval returns true/false
+    row.search = eval(expr) ? true : false;
+    return row;
+  });
+
+  props.setRows(newRows);
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>⚠️ Note on <code>eval</code></h2>
+    <p><code>eval</code> runs JS code from a string. Use carefully and ensure inputs are sanitized to avoid risks.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎉 Next Steps</h2>
+    <p>Now the table updates as you type and toggle operators. In the next video, test edge cases and refine UI feedback!</p>
+  </div>
+</body>
+</html>

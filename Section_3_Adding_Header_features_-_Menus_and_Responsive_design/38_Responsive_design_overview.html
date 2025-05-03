@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📱 Responsive Design - Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f5f7fa;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #007BFF;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 100%;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #007BFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+    .card ul li {
+      margin-bottom: 8px;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📱 Responsive Design - Study Notes</h1>
+  <div class="container">
+
+    <div class="card">
+      <h3>💡 What Is Responsive Design?</h3>
+      <ul>
+        <li>🌐 A way to build websites that look great on any screen size.</li>
+        <li>⚙️ Uses fluid grids, media queries, and flexible images.</li>
+        <li>📱 Ideal for mobile, tablet, and desktop.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🧱 Design Types</h3>
+      <ul>
+        <li>🔒 <strong>Fixed:</strong> Layout remains the same, without adjusting to screen size.</li>
+        <li>🖥️ <strong>Adaptive:</strong> Different style sheets apply based on the device.</li>
+        <li>🔄 <strong>Responsive:</strong> A single layout that automatically adjusts to any screen.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🛠️ Best Practices</h3>
+      <ul>
+        <li>📏 Use relative units (<code>%, em, rem, vh, vw</code>).</li>
+        <li>🎛️ Use media queries to adjust styles at different breakpoints.</li>
+        <li>🔍 Test on various screen sizes and devices.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🎯 Goals</h3>
+      <ul>
+        <li>👍 Looks great on any screen size.</li>
+        <li>🔄 Adapts smoothly to both landscape and portrait modes.</li>
+        <li>⚡ Real-time resizing without breaking the layout.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

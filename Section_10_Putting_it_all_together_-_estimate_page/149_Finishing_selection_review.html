@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estimate Custom Features & Users Review Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .emoji { font-size: 1.2em; margin-right: 8px; }
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2><span class="emoji">🛠️</span>Step 1: Add <code>getCustomFeatures</code></h2>
+    <p>Under your <code>getFeatures</code> function, duplicate and adapt to pull the custom‐features selection:</p>
+    <pre><code>const getCustomFeatures = () => {
+  const newCustom = [];
+  if (questions.length > 2) {
+    const cfQ = questions
+      .filter(q =&gt; q.title === 'What type of custom features do you expect to need?')[0];
+    cfQ.options
+      .filter(o =&gt; o.selected)
+      .map(o =&gt; o.title)
+      .forEach(t => newCustom.push(t));
+  }
+  setCustomFeatures(newCustom);
+};</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">💾</span>Store in State</h2>
+    <p>Call <code>getCustomFeatures()</code> alongside <code>getTotal()</code> and <code>getFeatures()</code> when “Get Estimate” is clicked. This updates your <code>customFeatures</code> array state. 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🔢</span>Handle “Users” Selection</h2>
+    <p>Reuse the logic that pulled the multiplier cost, but grab the <code>title</code> instead of <code>cost</code>:</p>
+    <pre><code>const userQ = questions
+  .filter(q =&gt; q.title === 'How many users do you expect?')[0];
+setUsers(userQ.options.filter(o =&gt; o.selected)[0].title);</code></pre>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">🎨</span>Render Third Check Line</h2>
+    <p>In your dialog’s third check spot, replace the dummy text with:</p>
+    <pre><code>{`
+The custom features will be of ${customFeatures[0].toLowerCase()},
+and the project will be used by about ${users}.
+`}</code></pre>
+    <p>This shows “low complexity” (or medium/high) and “about 10–100 users”, etc. 👥</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="emoji">✅</span>Test the Flow</h2>
+    <p>1. Select some custom features (low/medium/high complexity).<br/>
+    2. Pick a users range (0–10, 10–100, 100+).<br/>
+    3. Click “Get Estimate” to see:<br/>
+      <em>You want Custom Software Development …<br/>
+      with GPS, Photo/Video, and File Transfer.<br/>
+      The custom features will be of low complexity,<br/>
+      and the project will be used by about 100+ users.</em> 🎉</p>
+  </div>
+
+</body>
+</html>

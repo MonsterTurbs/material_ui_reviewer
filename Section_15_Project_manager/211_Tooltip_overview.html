@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material UI Tooltip Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 0.5em 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>💡 What is a Tooltip?</h2>
+    <p>A tooltip is a small box that shows helpful text when you hover over, focus on, or tap an element.</p>
+  </div>
+
+  <div class="card">
+    <h2>👆 How to Add a Tooltip</h2>
+    <p>Wrap any component (like an icon button) inside the <code>&lt;Tooltip&gt;</code> component.</p>
+    <p>Use the <code>title</code> prop to set the text you want to show.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Placement Options</h2>
+    <p>You can choose from 12 positions (top, bottom, left, right, and their variations) to place the tooltip exactly where you need it.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Custom Styles</h2>
+    <p>Use CSS (e.g., background color, opacity, borders) to style your tooltip via the <code>classes</code> prop.</p>
+    <p>You still pass your styles through the <code>title</code> prop!</p>
+  </div>
+
+  <div class="card">
+    <h2>➡️ Arrow Prop</h2>
+    <p>Add the <code>arrow</code> prop to show a small arrow pointing to the element.</p>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Trigger Events</h2>
+    <p>Tooltips can open on <strong>hover</strong>, <strong>focus</strong>, <strong>touch</strong>, or <strong>click</strong>.</p>
+    <p>You can disable specific events using props like <code>disableHoverListener</code>.</p>
+  </div>
+
+  <div class="card">
+    <h2>🔄 Controlled Tooltips</h2>
+    <p>You can control when a tooltip opens by using the <code>open</code>, <code>onOpen</code>, and <code>onClose</code> props in your component logic.</p>
+  </div>
+
+  <div class="card">
+    <h2>📐 Width Customization</h2>
+    <p>The default max width is 300px. Change or disable it via the <code>classes.tooltip</code> prop to fit longer text.</p>
+  </div>
+
+  <div class="card">
+    <h2>🖱️ Interactive Tooltips</h2>
+    <p>Use the <code>interactive</code> prop to keep the tooltip open when you hover over it, allowing extra content inside.</p>
+  </div>
+
+  <div class="card">
+    <h2>🚫 Disabled Elements</h2>
+    <p>Wrap disabled buttons in a <code>&lt;span&gt;</code> to enable tooltips on them (disabled elements don’t fire events).</p>
+  </div>
+
+  <div class="card">
+    <h2>✨ Transitions & Delays</h2>
+    <p>Choose between <code>Grow</code>, <code>Fade</code>, or <code>Zoom</code> transitions via the <code>TransitionComponent</code> prop.</p>
+    <p>Set <code>enterDelay</code> and <code>leaveDelay</code> for custom timing (e.g., appear after 500ms, disappear after 200ms).</p>
+  </div>
+</body>
+</html>

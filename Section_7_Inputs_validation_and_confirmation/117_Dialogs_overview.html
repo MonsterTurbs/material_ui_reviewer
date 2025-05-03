@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Material-UI Dialog Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. What Is a Dialog? 💬</h2>
+    <p>
+      A Dialog is a pop-up window that grabs your focus and dims the background.  
+      It asks the user to make a choice or confirm something before returning. ✔️
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Control Dialog Visibility 🎛️</h2>
+    <p>
+      Use React state to show or hide the Dialog:
+    </p>
+    <code>
+    const [open, setOpen] = useState(false);  
+    // open = true → dialog appears  
+    // open = false → dialog closes  
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>3. Open & Close Props 🔑</h2>
+    <p>
+      On the <code>&lt;Dialog&gt;</code> component, set two props:  
+      <ul>
+        <li><code>open={open}</code> → controls visibility</li>
+        <li><code>onClose={() =&gt; setOpen(false)}</code> → handles closing</li>
+      </ul>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>4. Basic Dialog Structure 🏗️</h2>
+    <p>
+      A simple confirmation dialog uses these sub-components:
+    </p>
+    <code>
+    &lt;Dialog open={open} onClose={…}&gt;  
+      &lt;DialogTitle&gt;Confirm Info&lt;/DialogTitle&gt;  
+      &lt;DialogContent&gt;  
+        &lt;DialogContentText&gt;  
+          “Are these details correct?”  
+        &lt;/DialogContentText&gt;  
+      &lt;/DialogContent&gt;  
+      &lt;DialogActions&gt;  
+        &lt;Button onClick={…}&gt;Cancel&lt;/Button&gt;  
+        &lt;Button onClick={…}&gt;Send&lt;/Button&gt;  
+      &lt;/DialogActions&gt;  
+    &lt;/Dialog&gt;
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>5. Show User Data Inside 📝</h2>
+    <p>
+      Inside <code>DialogContentText</code>, display their typed info:
+    </p>
+    <code>
+    {`Name: ${name}`}<br>
+    {`Email: ${email}`}<br>
+    {`Phone: ${phone}`}<br>
+    {`Message: ${message}`}
+    </code>
+  </div>
+
+  <div class="card">
+    <h2>6. Handle Actions ✅❌</h2>
+    <ul>
+      <li><strong>Cancel</strong>: <code>onClick={() =&gt; setOpen(false)}</code></li>
+      <li><strong>Send</strong>:  
+        validate/send data, then <code>setOpen(false)</code>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7. Fancy Transitions & Full-Screen 🤩</h2>
+    <p>
+      • Use a <code>TransitionComponent</code> (e.g. Slide) for animations.  
+      • Add <code>fullScreen={matchesSM}</code> to make dialog cover small screens.  
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>8. Why Use Dialogs? 🌟</h2>
+    <ul>
+      <li>Grabs user attention</li>
+      <li>Prevents accidental submits</li>
+      <li>Provides clear choices (Cancel vs Send)</li>
+    </ul>
+    <p>Dialogs help users confirm their action before finalizing. 👍</p>
+  </div>
+
+</body>
+</html>

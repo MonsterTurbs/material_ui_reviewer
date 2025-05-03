@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Notes: Building the About Us Team Section</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. Create Team Section Container 👥</h2>
+    <p>Under the History section, add a new container:<br>
+      <code>&lt;Grid item container direction="column" className={classes.rowContainer}&gt;</code><br>
+    This will stack all Team items vertically. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Add 'Team' Title 🏷️</h2>
+    <p>Inside the container, add:<br>
+      <code>&lt;Grid item&gt;&lt;Typography variant="h4" gutterBottom align="center"&gt;Team&lt;/Typography&gt;&lt;/Grid&gt;</code><br>
+    This centers the 'Team' heading with space below. ✨</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Add Name &amp; Founder Bio 📝</h2>
+    <p>Add your introduction paragraphs:<br>
+      <code>&lt;Grid item&gt;&lt;Typography variant="body1" paragraph align="center"&gt;My name is Zachary Reese, Founder.&lt;/Typography&gt;&lt;/Grid&gt;</code><br>
+      <code>&lt;Grid item&gt;&lt;Typography variant="body1" paragraph align="center"&gt;I started coding when I was nine years old.&lt;/Typography&gt;&lt;/Grid&gt;</code><br>
+    Both are centered. 📄</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Import Avatar &amp; Images 📥</h2>
+    <p>At top of <code>About.js</code>, import:<br>
+      <code>import Avatar from '@material-ui/core/Avatar';<br>
+      import profile from './assets/founder.jpeg';<br>
+      import yearbook from './assets/yearbook.jpg';<br>
+      import puppy from './assets/puppy.jpg';</code><br>
+    Avatar creates a circular image container. 🎨</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Display Profile Avatar 🐶</h2>
+    <p>Add your picture:<br>
+      <code>&lt;Grid item&gt;&lt;Avatar alt="Founder" src={profile} className={classes.avatar} /&gt;&lt;/Grid&gt;</code><br>
+    In styles, add:<br>
+      <code>avatar: { width: '25m', height: '25m' }</code> in <code>useStyles</code>. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Center Team Content 🎯</h2>
+    <p>On the <code>Grid container direction="column"</code>, add:<br>
+      <code>alignItems="center"</code><br>
+    This centers avatar and text horizontally. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Create Fun Fact Row 📊</h2>
+    <p>Under bio, add a row:<br>
+      <code>&lt;Grid item container direction="row" className={classes.rowContainer}&gt;</code><br>
+    This holds Yearbook, Bio Text, and Puppy blocks side by side. 🔄</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Yearbook Block 📖</h2>
+    <p>Add Yearbook image &amp; caption:<br>
+      <code>&lt;Grid item container direction="column" lg&gt;<br>
+        &lt;img src={yearbook} alt="yearbook page about founder" style={{ width: '100%', maxWidth: '700px' }} /&gt;<br>
+        &lt;Typography variant="caption"&gt;A page from my sophomore yearbook&lt;/Typography&gt;<br>
+      &lt;/Grid&gt;</code></p>
+  </div>
+
+  <div class="card">
+    <h2>9. Bio Text Block 🗒️</h2>
+    <p>Add your biography text:<br>
+      <code>&lt;Grid item lg&gt;<br>
+        &lt;Typography variant="body1" paragraph align="center" style={{ maxWidth: '45m', padding: '1.25m' }}&gt;Your bio paragraph here.&lt;/Typography&gt;<br>
+      &lt;/Grid&gt;</code></p>
+  </div>
+
+  <div class="card">
+    <h2>10. Puppy Block 🐕</h2>
+    <p>Add puppy image &amp; caption:<br>
+      <code>&lt;Grid item container direction="column" lg alignItems="flex-end"&gt;<br>
+        &lt;img src={puppy} alt="grey spotted puppy" style={{ width: '100%', maxWidth: '700px' }} /&gt;<br>
+        &lt;Typography variant="caption"&gt;My miniature dapple dachshund Sterling&lt;/Typography&gt;<br>
+      &lt;/Grid&gt;</code></p>
+  </div>
+
+  <div class="card">
+    <h2>11. Share Space with <code>lg</code> 🚀</h2>
+    <p>Add <code>lg</code> to Yearbook, Bio, Puppy blocks so they split evenly on larger screens. 📐</p>
+  </div>
+
+  <div class="card">
+    <h2>12. Customize Caption Style 🎨</h2>
+    <p>In <code>theme.js</code>, update <code>caption</code> variant:<br>
+      <code>caption: { fontSize: '1rem', fontWeight: 300, color: '#555' }</code><br>
+    This styles all captions consistently. ✨</p>
+  </div>
+
+  <div class="card">
+    <h2>13. Save &amp; Verify ✅</h2>
+    <p>Save your changes, refresh the browser, and resize the window to ensure everything is centered, spaced well, and responsive. Well done! 🎉</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canonical Tag Study Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 700px;
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            padding-left: 20px;
+            color: #444;
+        }
+        pre {
+            background-color: #f4f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>🧐 What is a Canonical Tag?</h2>
+    <p>It tells search engines which version of your webpage is the "real" one. 🌟</p>
+</div>
+
+<div class="card">
+    <h2>❓ Why Do We Need It?</h2>
+    <ul>
+        <li>🔍 Prevents duplicate content problems.</li>
+        <li>✅ Makes sure the right page shows up in search results.</li>
+        <li>📉 Avoids hurting your SEO ranking.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🌐 Example of Canonical URLs</h2>
+    <p>Different URLs, same website:</p>
+    <ul>
+        <li>🔗 <code>https://google.com</code></li>
+        <li>🔗 <code>http://google.com</code></li>
+        <li>🔗 <code>https://www.google.com</code></li>
+    </ul>
+    <p>Canonical tag picks just one as the main version!</p>
+</div>
+
+<div class="card">
+    <h2>⚙️ Adding a Canonical Tag in HTML</h2>
+    <pre>
+&lt;link rel="canonical" href="https://yourwebsite.com/page"&gt;
+    </pre>
+    <p>Put this tag in the <code>&lt;head&gt;</code> section of your page.</p>
+</div>
+
+<div class="card">
+    <h2>🔑 Key Attribute for Canonical Tag (optional)</h2>
+    <pre>
+&lt;link rel="canonical" href="https://yourwebsite.com/page" key="canonical"&gt;
+    </pre>
+    <p>This helps avoid duplicates in special setups (like Next.js).</p>
+</div>
+
+<div class="card">
+    <h2>✅ Best Practices for Canonical Tags</h2>
+    <ul>
+        <li>🌟 Always use absolute URLs (start with <code>https://</code>).</li>
+        <li>🌟 Keep it consistent across all pages.</li>
+        <li>🌟 Regularly check and update if your URL structure changes.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>📈 Quick Recap</h2>
+    <ul>
+        <li>📌 Prevents duplicate content.</li>
+        <li>🔗 Clarifies the main URL for search engines.</li>
+        <li>💡 Boosts your SEO effectiveness.</li>
+    </ul>
+</div>
+
+</body>
+</html>

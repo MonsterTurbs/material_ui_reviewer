@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase & Cloud Functions Study Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+    .card p, .card ul {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    code {
+      background: #eef0f3;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. What Is Firebase? 🔥</h2>
+    <p>
+      Firebase is owned by Google and gives us ready-made backend services—like databases, authentication,
+      and cloud functions—without managing servers. 😊
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>2. Serverless = No Server Hassle 🚀</h2>
+    <p>
+      “Serverless” means you don’t set up or maintain servers. You just call Firebase’s API, and Google
+      handles all the infrastructure behind the scenes. 🎉
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>3. Cloud Functions Explained ☁️🔧</h2>
+    <p>
+      A Cloud Function is a tiny piece of code hosted at a URL. When you make a GET request to that URL,
+      your function runs in the cloud. Perfect for single tasks like sending an email! 📧
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>4. How We’ll Use It 🛠️</h2>
+    <ul>
+      <li>Deploy our “send email” code as a Cloud Function URL.</li>
+      <li>Front-end sends form data as query strings to that URL.</li>
+      <li>Function reads data and sends the email via NodeMailer.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5. Passing Data via Query Strings 🔗</h2>
+    <p>
+      We attach our form values to the URL, for example:
+    </p>
+    <code>
+      https://us-central1-myapp.cloudfunctions.net/sendEmail?name=John&email=john@example.com&phone=5551234&message=Hello
+    </code>
+    <p>The function picks these up and uses them to compose the email. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Why This Is Awesome 🌟</h2>
+    <ul>
+      <li>No server to configure or update.</li>
+      <li>Scalable—Firebase auto-scales for you.</li>
+      <li>Secure—credentials stay hidden on the backend.</li>
+      <li>Simple—just write one function for your task.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7. Next Steps 🚀</h2>
+    <p>
+      1. Set up a Firebase project and enable Cloud Functions.<br>
+      2. Write and deploy your “sendEmail” function.<br>
+      3. Test by calling the URL with form data.<br>
+      4. Connect your Contact page to this URL.  
+      Let’s dive in! 🎬
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Table Setup Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7fcff; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 20px; margin: 10px 0; width: 100%; max-width: 700px; }
+    h2 { color: #1c2833; margin-top: 0; }
+    p, ul { color: #333; line-height: 1.6; padding-left: 20px; }
+    ul { list-style: inside; }
+    code { background: #eef6fb; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🏗️ 1. Import Table Components</h2>
+    <ul>
+      <li><code>Table</code>, <code>TableBody</code>, <code>TableHead</code>, <code>TableRow</code>, <code>TableCell</code> from <code>@material-ui/core</code>.</li>
+      <li><code>TableContainer</code> &amp; <code>Paper</code> for wrapping your table.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ 2. Create Data Helper</h2>
+    <p>Function to build each row object:</p>
+    <pre><code>function createData(name, date, service, features, complexity, platforms, users, total) {
+  return { name, date, service, features, complexity, platforms, users, total };
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ 3. Rows in State</h2>
+    <p>Keep rows in React state so UI updates on change:</p>
+    <pre><code>const [rows, setRows] = useState([]);</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>📋 4. Build the Table</h2>
+    <pre><code>&lt;TableContainer component=&#123;Paper&#125;&gt;
+  &lt;Table&gt;
+    &lt;TableHead&gt;
+      &lt;TableRow&gt;
+        &lt;TableCell&gt;Name&lt;/TableCell&gt;
+        &lt;TableCell&gt;Date&lt;/TableCell&gt;
+        &lt;!-- Add Service, Features, etc. --&gt;
+      &lt;/TableRow&gt;
+    &lt;/TableHead&gt;
+    &lt;TableBody&gt;
+      &#123;rows.map((row, i) =&gt; (
+        &lt;TableRow key=&#123;i&#125;&gt;
+          &lt;TableCell&gt;&#123;row.name&#125;&lt;/TableCell&gt;
+          &lt;TableCell&gt;&#123;row.date&#125;&lt;/TableCell&gt;
+          &lt;!-- Add other data cells --&gt;
+        &lt;/TableRow&gt;
+      ))&#125;
+    &lt;/TableBody&gt;
+  &lt;/Table&gt;
+&lt;/TableContainer&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🎨 5. Add Filter Icon</h2>
+    <ul>
+      <li>Import <code>FilterList</code> from <code>@material-ui/icons/FilterList</code>.</li>
+      <li>Place inside a <code>Grid item container justify="flex-end"</code> above the table.</li>
+      <li>Use <code>style&#123;{ fontSize: 50, marginRight: '5rem' }&#125;</code> for sizing &amp; spacing.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🔧 6. Spacing Tweaks</h2>
+    <ul>
+      <li>Add <code>style&#123;{ marginTop: '5rem' }&#125;</code> to the <code>Grid item</code> wrapping <code>TableContainer</code>.</li>
+      <li>Increase the search plus icon size: <code>fontSize=30</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>✅ 7. Test It!</h2>
+    <ul>
+      <li>Run <code>npm run dev</code> &amp; go to <code>localhost:3000</code>.</li>
+      <li>See your empty table and filter icon ready for data. 🚀</li>
+    </ul>
+  </div>
+
+</body>
+</html>

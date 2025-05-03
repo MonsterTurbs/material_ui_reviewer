@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Notes: Expansion Panel Selection Styling</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 1rem;
+      margin: 6px 0;
+      line-height: 1.4;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>🎯 Main Goal</h2>
+    <p>• Show how to style the “Services” expansion panel tab as “selected” when on the Services page. ✅</p>
+    <p>• Use Material UI’s <code>makeStyles</code> hook to read React props inside styles! 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>🔑 Passing Props into <code>useStyles</code></h2>
+    <p>1. In your component, gather props (e.g. <code>value</code> for current tab index).</p>
+    <p>2. Call your hook with those props: <br><code>const classes = useStyles(props);</code> 🙌</p>
+    <p>3. Inside <code>makeStyles</code>, receive them:</p>
+    <p><code>makeStyles((theme) =&gt; (props) =&gt; ({ /* …styles… */ }))</code> or simply destructure <code>({ value })</code>. 🔧</p>
+  </div>
+
+  <div class="card">
+    <h2>🎨 Conditionally Styling the Summary</h2>
+    <p>• To darken “Services” when <code>value === 1</code>:</p>
+    <pre><code>expansionSummary: {
+  backgroundColor: props =&gt; props.value === 1
+    ? 'rgba(0,0,0,0.14)'
+    : 'inherit',
+},</code></pre>
+    <p>• “Inherit” keeps the normal look when not selected. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>💡 Highlighting the Text</h2>
+    <p>• Brighten the label text only if selected:</p>
+    <pre><code>listItemText: {
+  opacity: props =&gt; props.value === 1 ? 1 : undefined,
+},</code></pre>
+    <p>• Full opacity (<code>1</code>) makes it stand out! ✨</p>
+  </div>
+
+  <div class="card">
+    <h2>🛠️ Small Tweaks</h2>
+    <p>• Add hover effect on summary:</p>
+    <pre><code>'&:hover': {
+  backgroundColor: 'rgba(0,0,0,0.08)',
+},</code></pre>
+    <p>• Override default selected borders if needed (e.g. remove extra lines). 🚫</p>
+  </div>
+
+  <div class="card">
+    <h2>📏 Adjusting Panel Width</h2>
+    <p>• Break long labels onto two lines for cleaner layout:</p>
+    <pre><code>
+{route.name
+  .split(' ')
+  .filter(w =&gt; w !== 'development')
+  .join(' ')}
+<br/>
+<span style="font-size:0.75rem;">development</span>
+    </code></pre>
+    <p>• Keeps dropdown narrow and tidy. 📐</p>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Final Result</h2>
+    <p>• “Services” tab now shows a darker background and bold text when you’re on the Services page. 🤩</p>
+    <p>• All tabs still work, and mobile menu looks polished! 📱✨</p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Notes: Finishing the About Us Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Simulate Screen Sizes 📱</h2>
+    <p>On smaller screens, layout breaks. We need to add media queries. Let’s import:<br>
+      <code>import useMediaQuery from '@material-ui/core/useMediaQuery';</code><br>
+    Then inside <code>About.js</code> add:<br>
+      <code>const matchesMD = useMediaQuery(theme.breakpoints.down('md'));</code><br>
+    This tells us when the screen is medium or smaller. 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Stack History Section on Small 🤸</h2>
+    <p>Find the History row container:<br>
+      <code>&lt;Grid item container direction={matchesMD ? 'column' : 'row'} ...&gt;</code><br>
+    This stacks the text and icon on narrow screens. 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Center Content When Stacked 🔄</h2>
+    <p>Add <code>alignItems={matchesMD ? 'center' : undefined}</code> on the same container so items center when stacked. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Center History Text 📄</h2>
+    <p>On each <code>Typography</code> in History, add:<br>
+      <code>align={matchesMD ? 'center' : undefined}</code><br>
+    This centers headings and paragraphs on small screens. ✨</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Center Team Blocks 🚂</h2>
+    <p>Wrap Yearbook, Bio, Puppy in a row:<br>
+      <code>&lt;Grid container justify={matchesMD ? 'center' : undefined} ...&gt;</code><br>
+    Then for Yearbook &amp; Puppy containers, add:<br>
+      <code>alignItems={matchesMD ? 'center' : 'flex-end'}</code><br>
+    This ensures proper centering and right-alignment on large screens. 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Add Spacing Between Sections 🌟</h2>
+    <p>Give breathing room:<br>
+      • Mission statement: <code>style={{ marginTop: '3m' }}</code><br>
+      • History section: <code>style={{ marginTop: '10m', marginBottom: '10m' }}</code><br>
+      • Footer call-to-action wrapper: <code>style={{ marginBottom: '15m' }}</code><br>
+    Spacing makes it feel clean! 🧹</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Hide &amp; Reorder Bio Text 🔀</h2>
+    <p>On small screens, move the bio text above the Yearbook image:<br>
+      • Import Hidden:<br>
+        <code>import Hidden from '@material-ui/core/Hidden';</code><br>
+      • Wrap bio <code>Grid item</code> in <code>&lt;Hidden mdDown&gt;</code> to hide on small.<br>
+      • Paste that block inside <code>&lt;Hidden lgUp&gt;</code> before Yearbook to show on small.<br>
+    This reorders content responsively! 🎉</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Responsive Avatar & History Image 🖼️</h2>
+    <p>Ensure images stay proportional:<br>
+      • Avatar style:<br>
+        <code>[theme.breakpoints.down('sm')]: { width: '20m', height: '20m' }</code><br>
+        plus <code>maxWidth: '300px', maxHeight: '300px'</code><br>
+      • History icon:<br>
+        <code>style={{ maxHeight: matchesMD ? '200px' : '22m' }}</code><br>
+    Now images adapt without overflow. 🌈</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Adjust Call to Action & Title ✔️</h2>
+    <p>• Center &amp; margin the About title:<br>
+      <code>align={matchesMD ? 'center' : undefined}</code> and<br>
+      <code>style={{ marginTop: matchesMD ? '1m' : '2m' }}</code>.<br>
+      • At bottom, add:<br>
+        <code>&lt;Grid item&gt;&lt;CallToAction setValue={props.setValue} /&gt;&lt;/Grid&gt;</code><br>
+    Done! Your page is fully responsive and polished. 🌟</p>
+  </div>
+
+</body>
+</html>

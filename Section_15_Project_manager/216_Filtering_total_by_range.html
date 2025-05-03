@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Price Range Filter Study Notes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.2em; }
+    .card p { margin: 0.5em 0; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🎯 Goal</h2>
+    <p>Add a custom price range filter to the table so users can filter estimates by &lt;, &gt;, or = values.</p>
+  </div>
+
+  <div class="card">
+    <h2>➕ Import Components</h2>
+    <p>Bring in necessary Material‑UI parts:</p>
+    <p><code>import Menu from '@material-ui/core/Menu';</code><br>
+       <code>import MenuItem from '@material-ui/core/MenuItem';</code><br>
+       <code>import TextField from '@material-ui/core/TextField';</code><br>
+       <code>import InputAdornment from '@material-ui/core/InputAdornment';</code> 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Setup Menu State</h2>
+    <p>Create state for menu positioning and open/close:</p>
+    <p><code>const [anchorEl, setAnchorEl] = React.useState(null);</code><br>
+       <code>const [menuOpen, setMenuOpen] = React.useState(false);</code> 🔧</p>
+  </div>
+
+  <div class="card">
+    <h2>👆 Handle Click & Close</h2>
+    <p>Copy or write functions to open/close menu:</p>
+    <pre><code>function handleClick(event) {
+  setAnchorEl(event.currentTarget);
+  setMenuOpen(true);
+}
+function handleClose() {
+  setAnchorEl(null);
+  setMenuOpen(false);
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>📥 Add Menu JSX</h2>
+    <p>Under your icon button, paste:</p>
+    <pre><code>&lt;Menu
+  anchorEl={anchorEl}
+  open={menuOpen}
+  onClose={handleClose}
+&gt;
+  &lt;MenuItem&gt;
+    &lt;TextField
+      type="number"
+      placeholder="Enter price"
+      InputProps={{
+        endAdornment: (
+          &lt;InputAdornment position="end" onClick={handleOpCycle} style={{ cursor: 'pointer' }}&gt;
+            &lt;span&gt;{op}&lt;/span&gt;
+          &lt;/InputAdornment&gt;
+        )
+      }}
+    /&gt;
+  &lt;/MenuItem&gt;
+&lt;/Menu&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔄 Cycle Operator State</h2>
+    <p>Create state and function to toggle &gt;, &lt;, =:</p>
+    <pre><code>const [op, setOp] = React.useState('&gt;');
+function handleOpCycle() {
+  setOp(prev =&gt; prev === '>' ? '<' : prev === '<' ? '=' : '>');
+}</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>🔢 TextField Type</h2>
+    <p>Use <code>type="number"</code> so only digits can be entered:</p>
+    <p>This ensures simple input validation for price.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎉 Next Steps</h2>
+    <p>We now have a menu pop-up with a number input and an operator button. In the next step, wire up the filter function to apply this operator and value to the table rows. 🚀</p>
+  </div>
+</body>
+</html>

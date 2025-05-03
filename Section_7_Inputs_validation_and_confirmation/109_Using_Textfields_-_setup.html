@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Study Notes: Setting Up Contact Us Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; width: 100%; box-sizing: border-box; }
+    .card h2 { margin-top: 0; font-size: 1.3em; }
+    .card p { margin: 8px 0; }
+    code { background: #eef; padding: 2px 4px; border-radius: 4px; font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>1. Create &amp; Wire Up <code>Contact.js</code> 📁</h2>
+    <p>
+      • In <code>components</code>, add <code>Contact.js</code>.<br>
+      • In <code>App.js</code>, <code>import Contact from './components/Contact';</code><br>
+      • Replace dummy route with <code>&lt;Route path="/contact" render={() =&gt; &lt;Contact /&gt;} /&gt;</code>.<br>
+    Now the page is ready to load! 🚀</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Import Core Tools 📥</h2>
+    <p>At the top of <code>Contact.js</code>, import:<br>
+      <code>import React from 'react';<br>
+      import { Link } from 'react-router-dom';<br>
+      import { makeStyles, useTheme } from '@material-ui/core/styles';<br>
+      import Grid from '@material-ui/core/Grid';<br>
+      import Typography from '@material-ui/core/Typography';<br>
+      import Button from '@material-ui/core/Button';<br>
+      import TextField from '@material-ui/core/TextField';</code><br>
+    These give you layout, text, buttons, and form inputs. 🛠️</p>
+  </div>
+
+  <div class="card">
+    <h2>3. Setup Styles &amp; Theme 🎨</h2>
+    <p>
+      • Define <code>useStyles = makeStyles(theme =&gt; ({ background: { ... } }))</code>.<br>
+      • In the <code>Contact</code> function, get <code>classes = useStyles()</code> and <code>theme = useTheme()</code>.<br>
+      • Return <code>&lt;Grid container direction="row" spacing={4}&gt;</code> to start the layout. 😊</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Add Left Column Container 🔲</h2>
+    <p>
+      • Wrap the form area:<br>
+        <code>&lt;Grid item&gt;<br>
+        &nbsp;&nbsp;&lt;Grid container direction="column" spacing={2}&gt;<br>
+        &nbsp;&nbsp;&nbsp;...form &amp; info here...<br>
+        &nbsp;&nbsp;&lt;/Grid&gt;<br>
+        &lt;/Grid&gt;</code><br>
+      This lets us use <code>alignItems</code> or <code>justify</code> on the wrapper later. 🎯</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Add Title &amp; Intro Text 🏷️</h2>
+    <p>
+      Inside the column container, add:<br>
+      <code>&lt;Grid item&gt;&lt;Typography variant="h2"&gt;Contact Us&lt;/Typography&gt;&lt;/Grid&gt;</code><br>
+      <code>&lt;Grid item&gt;&lt;Typography variant="body1" paragraph style={{ color: theme.palette.common.blue, lineHeight:1 }}&gt;Have questions? We’re here to help!&lt;/Typography&gt;&lt;/Grid&gt;</code><br>
+      Set text color and line height. ✏️</p>
+  </div>
+
+  <div class="card">
+    <h2>6. Import &amp; Style Background 🌄</h2>
+    <p>
+      • Import image:<br>
+        <code>import background from '../assets/background.jpg';</code><br>
+      • Copy styles from Landing page:<br>
+        <code>background: { backgroundImage: `url(${background})`, backgroundSize:'cover', height:'60m' }</code> in <code>useStyles</code>.<br>
+      • Later apply class <code>classes.background</code> to right column. 🎨</p>
+  </div>
+
+  <div class="card">
+    <h2>7. Add Background Column &amp; Split Grid 🔀</h2>
+    <p>
+      • After left <code>Grid item</code>, add:<br>
+        <code>&lt;Grid item className={classes.background}&gt;&lt;/Grid&gt;</code><br>
+      • Use <code>lg={3}</code> on left and <code>lg={9}</code> on background to split 3/9 columns.<br>
+      • Now form uses 1/4 width, background uses 3/4. 📐</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Preview &amp; Adjust 🔍</h2>
+    <p>Save and refresh. The text and background should share the row space correctly (3:9 ratio). Resize to confirm it stays balanced. 👍</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Next Steps ➡️</h2>
+    <p>Now that structure is set, next we’ll build the actual form fields, apply validation, and make everything functional. Stay tuned! 🚀</p>
+  </div>
+
+</body>
+</html>

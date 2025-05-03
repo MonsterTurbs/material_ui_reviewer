@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Study Notes: Radio Buttons</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    .card { width: 100%; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+    h2 { margin-top: 0; }
+    code { background: #eee; padding: 2px 4px; border-radius: 4px; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>1. What are Radio Buttons? 🤔🔘</h2>
+    <p>Radio buttons let you pick <strong>one</strong> choice out of many. When you click one, any other turns off. Perfect for questions like "Which service?"</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Importing in React 🛠️</h2>
+    <p>First, bring in the components from Material UI at the top of your file:</p>
+    <pre><code>import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>3. Setting Up State 📋</h2>
+    <p>Use React <code>useState</code> to keep track of the selected value:</p>
+    <pre><code>const [service, setService] = useState('');</code></pre>
+    <p>Pass <code>value</code> and <code>onChange</code> to the group:</p>
+    <pre><code>&lt;RadioGroup
+  value={service}
+  onChange={e => setService(e.target.value)}
+&gt; ... &lt;/RadioGroup&gt;</code></pre>
+  </div>
+
+  <div class="card">
+    <h2>4. Adding Labels & Accessibility 🏷️</h2>
+    <p>Wrap each <code>Radio</code> in a <code>FormControlLabel</code> to add text labels and keep it accessible:</p>
+    <pre><code>&lt;FormControlLabel
+  value="website"
+  label="Website"
+  control={&lt;Radio /&gt;} 
+/&gt;</code></pre>
+    <p>This shows the label next to the button and helps screen readers.</p>
+  </div>
+
+  <div class="card">
+    <h2>5. Styling & Alignment 🎨</h2>
+    <p>You can customize spacing and look by wrapping your radio set in a <code>&lt;Grid&gt;</code> or using CSS:</p>
+    <ul>
+      <li>Use <code>labelPlacement="start"</code> to put labels on the left.</li>
+      <li>Wrap in <code>&lt;Grid container spacing={2}&gt;</code> for even gaps.</li>
+      <li>Override classes in your theme for colors or font weights.</li>
+    </ul>
+    <p>Example override to thin labels:</p>
+    <pre><code>overrides: {
+  MuiFormControlLabel: {
+    label: { fontWeight: 300 }
+  }
+}</code></pre>
+  </div>
+</body>
+</html>
