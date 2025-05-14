@@ -5,89 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Course Menu Loader</title>
   <style>
+    :root {
+      --header-height: 3rem;
+      --footer-height: 3rem;
+      --sidebar-width: 260px;
+      --sidebar-collapsed-width: 0;
+      --primary: #007bff;
+      --accent: #28a745;
+      --bg: #f7f7f7;
+      --fg: #333;
+      --highlight: #e0e0e0;
+      --shadow: rgba(0,0,0,0.1);
+    }
+
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      display: flex;
-      height: 100vh;
       font-family: Arial, sans-serif;
+      color: var(--fg);
+      overflow-y: auto;
+      height: 100vh;
+    }
+
+    /* Header */
+    #page-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;          /* center text */
+      font-size: 1.1rem;
+      z-index: 100;
+      box-shadow: 0 2px 4px var(--shadow);
+    }
+
+    /* Next button */
+    #next-btn {
+      position: fixed;
+      bottom: 1rem; right: 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 4px var(--shadow);
+      z-index: 100;
+    }
+    #next-btn:disabled {
+      background: #aaa;
+      cursor: default;
+      box-shadow: none;
     }
 
     /* Toggle button */
     #toggle-btn {
       position: fixed;
-      top: 1rem;
+      top: calc(var(--header-height)/2 - 1rem);
       left: 1rem;
-      z-index: 1000;
-      background: #007bff;
+      background: var(--primary);
       color: white;
       border: none;
       padding: 0.5rem;
       font-size: 1.2rem;
       border-radius: 4px;
       cursor: pointer;
+      z-index: 101;
+      box-shadow: 0 2px 4px var(--shadow);
     }
 
-    nav {
-      width: 260px;
-      background: #f7f7f7;
-      overflow-y: auto;
+    /* Container sits under header/above footer */
+    .container {
+      display: flex;
+      margin-top: var(--header-height);
+      margin-bottom: var(--footer-height);
+      transition: margin-left 0.3s;
+    }
+    body.nav-collapsed .container {
+      margin-left: var(--sidebar-collapsed-width);
+    }
+    body:not(.nav-collapsed) .container {
+      margin-left: var(--sidebar-width);
+    }
+
+    /* Sidebar styling */
+    #sidebar {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: var(--sidebar-width);
+      background: white;
       border-right: 1px solid #ddd;
       padding: 1rem;
-      transition: width 0.3s ease, padding 0.3s ease;
+      overflow: auto;
+      box-shadow: 2px 0 6px var(--shadow);
+      transition: width 0.3s, padding 0.3s;
     }
-    /* collapsed state */
-    nav.collapsed {
-      width: 0;
+    #sidebar.collapsed {
+      width: var(--sidebar-collapsed-width);
       padding: 0;
       border: none;
-      overflow: hidden;
+      box-shadow: none;
     }
-
-    nav h2 {
-      margin: 1rem 0 0.5rem;
+    #sidebar h2 {
+      margin: 0 0 0.5rem;
       font-size: 1rem;
+      color: var(--primary);
       border-bottom: 1px solid #ccc;
-      padding-bottom: 0.2rem;
+      padding-bottom: 0.3rem;
     }
-    nav ul {
+    #menu {
       list-style: none;
+      margin: 0;
       padding: 0;
-      margin: 0 0 1rem;
     }
-    nav li {
-      padding: 0.4rem 0.6rem;
-      cursor: pointer;
+    #menu li {
+      padding: 0.6rem 0.8rem;
+      margin: 0.2rem 0;
       border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
     }
-    nav li:hover {
-      background: #e0e0e0;
+    #menu li:hover {
+      background: var(--highlight);
     }
-    nav li.active {
-      background: #ccc;
+    #menu li.active {
+      background: var(--primary);
+      color: white;
     }
 
-    main {
+    /* Content area */
+    #content {
       flex: 1;
-      padding: 1rem;
-      overflow-y: auto;
-      transition: margin-left 0.3s ease;
-    }
-    /* shift main when nav is open/closed */
-    body.nav-collapsed main {
-      margin-left: 0;
-    }
-    body:not(.nav-collapsed) main {
-      margin-left: 260px;
+      padding: 1.5rem;
+      background: var(--bg);
     }
   </style>
 </head>
 <body class="nav-collapsed">
 
-  <!-- toggle button -->
+  <div id="page-header">Select a topic…</div>
   <button id="toggle-btn">☰</button>
 
-  <nav id="sidebar" class="collapsed">
-    <h2>Section 1: Introduction</h2>
+  <div class="container">
+    <aside id="sidebar" class="collapsed">
+      <h2>Section 1: Introduction</h2>
     <ul id="menu">
       <li data-file="Section_1_Introduction/1_Welcome.html">1. Welcome</li>
       <li data-file="Section_1_Introduction/2_Why_material-UI.html">2. Why material‑UI</li>
@@ -367,39 +432,48 @@
       <li data-file="Section_16_More_videos_extra_content/246_Better_Active_tab_approach.html">246. Better Active tab approach</li>
       <li data-file="Section_16_More_videos_extra_content/247_Better_Active_tab_approach_continued.html">247. Better Active tab approach continued</li>
     </ul>
-  </nav>
+    </aside>
 
-  <main id="content">
-    <p>Select a menu item to load its HTML here.</p>
-  </main>
+    <main id="content">
+      <p>Select a menu item to load its HTML here.</p>
+    </main>
+  </div>
+
+  <button id="next-btn" disabled>Next →</button>
 
   <script>
-    const sidebar = document.getElementById('sidebar');
+    const body      = document.body;
+    const sidebar   = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('toggle-btn');
-    const body = document.body;
+    const header    = document.getElementById('page-header');
+    const menuItems = Array.from(document.querySelectorAll('#menu li'));
+    const content   = document.getElementById('content');
+    const nextBtn   = document.getElementById('next-btn');
 
     toggleBtn.addEventListener('click', () => {
       const isCollapsed = sidebar.classList.toggle('collapsed');
       body.classList.toggle('nav-collapsed', isCollapsed);
     });
 
-    // existing menu‐click handler
-    const menu = document.getElementById('menu');
-    const content = document.getElementById('content');
-    menu.addEventListener('click', e => {
-      if (e.target.tagName !== 'LI') return;
-      menu.querySelectorAll('li').forEach(li => li.classList.remove('active'));
-      e.target.classList.add('active');
-      const file = e.target.getAttribute('data-file');
-      fetch(file)
-        .then(res => {
-          if (!res.ok) throw new Error('File "' + file + '" not found');
-          return res.text();
-        })
+    function loadItem(idx) {
+      if (idx < 0 || idx >= menuItems.length) return;
+      menuItems.forEach(li => li.classList.remove('active'));
+      const li = menuItems[idx];
+      li.classList.add('active');
+      header.textContent = li.textContent;
+      fetch(li.dataset.file)
+        .then(r => r.ok ? r.text() : Promise.reject('File not found'))
         .then(html => content.innerHTML = html)
-        .catch(err => content.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`);
-    });
-  </script>
+        .catch(e => content.innerHTML = `<p style="color:red;">Error: ${e}</p>`);
+      nextBtn.disabled = idx === menuItems.length - 1;
+      nextBtn.dataset.currentIndex = idx;
+    }
 
+    menuItems.forEach((li,i) => li.addEventListener('click', () => loadItem(i)));
+    nextBtn.addEventListener('click', () => loadItem(+nextBtn.dataset.currentIndex + 1));
+
+    // auto-load first:
+    // loadItem(0);
+  </script>
 </body>
 </html>
