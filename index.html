@@ -11,13 +11,38 @@
       height: 100vh;
       font-family: Arial, sans-serif;
     }
+
+    /* Toggle button */
+    #toggle-btn {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
     nav {
       width: 260px;
       background: #f7f7f7;
       overflow-y: auto;
       border-right: 1px solid #ddd;
       padding: 1rem;
+      transition: width 0.3s ease, padding 0.3s ease;
     }
+    /* collapsed state */
+    nav.collapsed {
+      width: 0;
+      padding: 0;
+      border: none;
+      overflow: hidden;
+    }
+
     nav h2 {
       margin: 1rem 0 0.5rem;
       font-size: 1rem;
@@ -40,16 +65,28 @@
     nav li.active {
       background: #ccc;
     }
+
     main {
       flex: 1;
       padding: 1rem;
       overflow-y: auto;
+      transition: margin-left 0.3s ease;
+    }
+    /* shift main when nav is open/closed */
+    body.nav-collapsed main {
+      margin-left: 0;
+    }
+    body:not(.nav-collapsed) main {
+      margin-left: 260px;
     }
   </style>
 </head>
-<body>
+<body class="nav-collapsed">
 
-  <nav>
+  <!-- toggle button -->
+  <button id="toggle-btn">☰</button>
+
+  <nav id="sidebar" class="collapsed">
     <h2>Section 1: Introduction</h2>
     <ul id="menu">
       <li data-file="Section_1_Introduction/1_Welcome.html">1. Welcome</li>
@@ -337,9 +374,18 @@
   </main>
 
   <script>
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const body = document.body;
+
+    toggleBtn.addEventListener('click', () => {
+      const isCollapsed = sidebar.classList.toggle('collapsed');
+      body.classList.toggle('nav-collapsed', isCollapsed);
+    });
+
+    // existing menu‐click handler
     const menu = document.getElementById('menu');
     const content = document.getElementById('content');
-
     menu.addEventListener('click', e => {
       if (e.target.tagName !== 'LI') return;
       menu.querySelectorAll('li').forEach(li => li.classList.remove('active'));
