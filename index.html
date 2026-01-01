@@ -1,479 +1,915 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Course Menu Loader</title>
+
   <style>
-    :root {
+    :root{
       --header-height: 3rem;
-      --footer-height: 3rem;
-      --sidebar-width: 260px;
-      --sidebar-collapsed-width: 0;
-      --primary: #007bff;
+      --footer-height: 3.25rem;
+      --sidebar-width: 320px;
+
+      --primary: #0b57d0;
       --accent: #28a745;
+
       --bg: #f7f7f7;
-      --fg: #333;
-      --highlight: #e0e0e0;
-      --shadow: rgba(0,0,0,0.1);
+      --panel: #ffffff;
+      --fg: #222;
+      --muted: #666;
+
+      --highlight: #eef3ff;
+      --active: #0b57d0;
+      --shadow: rgba(0,0,0,0.12);
+      --border: #e6e6e6;
+      --focus: #1a73e8;
     }
 
     * { box-sizing: border-box; }
-    body {
+    html, body { height: 100%; }
+    body{
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color: var(--fg);
-      overflow-y: auto;
-      height: 100vh;
+      background: var(--bg);
+      overflow: hidden; /* we manage scrolling areas */
     }
 
     /* Header */
-    #page-header {
+    #page-header{
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--header-height);
       background: var(--primary);
-      color: white;
+      color: #fff;
+      display: grid;
+      grid-template-columns: 3rem 1fr 8rem;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 6px var(--shadow);
+    }
+
+    #toggle-btn{
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-left: .25rem;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 1.25rem;
+      cursor: pointer;
+      border-radius: .5rem;
+    }
+    #toggle-btn:focus-visible{
+      outline: 3px solid rgba(255,255,255,.75);
+      outline-offset: 2px;
+    }
+    #header-title{
+      text-align: center;
+      font-weight: 700;
+      padding: 0 .5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #header-meta{
+      text-align: right;
+      padding-right: .75rem;
+      font-size: .85rem;
+      opacity: .95;
+      white-space: nowrap;
+    }
+
+    /* Sidebar */
+    #sidebar{
+      position: fixed;
+      top: var(--header-height);
+      bottom: var(--footer-height);
+      left: 0;
+      width: var(--sidebar-width);
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      box-shadow: 2px 0 10px var(--shadow);
+      z-index: 900;
+      transform: translateX(-100%);
+      transition: transform .22s ease;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
+    }
+
+    body:not(.nav-collapsed) #sidebar{
+      transform: translateX(0);
+    }
+
+    .sidebar-top{
+      padding: .75rem .75rem .5rem;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .sidebar-title{
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: .5rem;
+    }
+    #search{
+      width: 100%;
+      padding: .6rem .65rem;
+      border: 1px solid var(--border);
+      border-radius: .6rem;
+      outline: none;
+      font-size: .95rem;
+    }
+    #search:focus{
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px rgba(26,115,232,.18);
+    }
+    #search-meta{
+      margin-top: .4rem;
+      font-size: .85rem;
+      color: var(--muted);
+      min-height: 1.1rem;
+    }
+
+    .sidebar-scroll{
+      overflow: auto;
+      padding: .5rem .5rem 1rem;
+    }
+
+    details.section{
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      background: #fff;
+      margin: .5rem 0;
+      overflow: hidden;
+    }
+    details.section > summary{
+      cursor: pointer;
+      list-style: none;
+      padding: .65rem .75rem;
+      font-weight: 800;
+      color: #1f1f1f;
+      background: #fafafa;
+      border-bottom: 1px solid var(--border);
+      outline: none;
+    }
+    details.section > summary::-webkit-details-marker { display: none; }
+    details.section[open] > summary{ background: #f3f6ff; }
+
+    ul.menu{
+      list-style: none;
+      padding: .35rem;
+      margin: 0;
+    }
+    .menu li{
+      padding: .55rem .6rem;
+      margin: .15rem 0;
+      border-radius: .6rem;
+      cursor: pointer;
+      transition: background .15s ease;
+      line-height: 1.25;
+    }
+    .menu li:hover{ background: var(--highlight); }
+    .menu li.active{
+      background: var(--active);
+      color: #fff;
+    }
+    .menu li.hidden{ display: none; }
+
+    /* Backdrop (mobile overlay) */
+    #backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+      z-index: 850;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease;
+    }
+    body:not(.nav-collapsed) #backdrop{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Content */
+    #content{
+      position: fixed;
+      top: var(--header-height);
+      bottom: var(--footer-height);
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      transition: left .22s ease;
+    }
+    body:not(.nav-collapsed) #content{
+      left: var(--sidebar-width);
+    }
+
+    #viewer{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    /* Footer */
+    #page-footer{
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      height: var(--footer-height);
+      background: #fff;
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -2px 8px var(--shadow);
+      z-index: 1000;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem .75rem;
+    }
+
+    .footer-left{
       display: flex;
       align-items: center;
-      justify-content: center;          /* center text */
-      font-size: 1.1rem;
-      z-index: 100;
-      box-shadow: 0 2px 4px var(--shadow);
+      gap: .5rem;
+      min-width: 0;
+    }
+    #counter{
+      font-weight: 700;
+      color: #111;
+      white-space: nowrap;
+    }
+    #current-path{
+      color: var(--muted);
+      font-size: .85rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 520px;
     }
 
-    /* Next button */
-    #next-btn {
-      position: fixed;
-      bottom: 1rem; right: 1rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 2px 4px var(--shadow);
-      z-index: 100;
-    }
-    #next-btn:disabled {
-      background: #aaa;
-      cursor: default;
-      box-shadow: none;
-    }
-
-    /* Toggle button */
-    #toggle-btn {
-      position: fixed;
-      top: calc(var(--header-height)/2 - 1rem);
-      left: 1rem;
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.5rem;
-      font-size: 1.2rem;
-      border-radius: 4px;
-      cursor: pointer;
-      z-index: 101;
-      box-shadow: 0 2px 4px var(--shadow);
-    }
-
-    /* Container sits under header/above footer */
-    .container {
+    .footer-right{
       display: flex;
-      margin-top: var(--header-height);
-      margin-bottom: var(--footer-height);
-      transition: margin-left 0.3s;
-    }
-    body.nav-collapsed .container {
-      margin-left: var(--sidebar-collapsed-width);
-    }
-    body:not(.nav-collapsed) .container {
-      margin-left: var(--sidebar-width);
+      justify-content: flex-end;
+      align-items: center;
+      gap: .5rem;
     }
 
-    /* Sidebar styling */
-    #sidebar {
-      position: absolute;
-      top: 0; left: 0; bottom: 0;
-      width: var(--sidebar-width);
-      background: white;
-      border-right: 1px solid #ddd;
-      padding: 1rem;
-      overflow: auto;
-      box-shadow: 2px 0 6px var(--shadow);
-      transition: width 0.3s, padding 0.3s;
-    }
-    #sidebar.collapsed {
-      width: var(--sidebar-collapsed-width);
-      padding: 0;
-      border: none;
-      box-shadow: none;
-    }
-    #sidebar h2 {
-      margin: 0 0 0.5rem;
-      font-size: 1rem;
-      color: var(--primary);
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3rem;
-    }
-    #menu {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    #menu li {
-      padding: 0.6rem 0.8rem;
-      margin: 0.2rem 0;
-      border-radius: 4px;
+    .btn{
+      border: 1px solid var(--border);
+      background: #fff;
+      color: #111;
+      padding: .55rem .75rem;
+      border-radius: .65rem;
       cursor: pointer;
-      transition: background 0.2s;
+      font-weight: 700;
     }
-    #menu li:hover {
-      background: var(--highlight);
+    .btn:hover{ background: #f6f6f6; }
+    .btn:disabled{
+      opacity: .55;
+      cursor: default;
     }
-    #menu li.active {
-      background: var(--primary);
-      color: white;
+    .btn.primary{
+      border-color: transparent;
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn.primary:hover{ filter: brightness(.97); }
+
+    /* Responsive: sidebar overlays on mobile */
+    @media (max-width: 860px){
+      :root{ --sidebar-width: min(88vw, 340px); }
+      body:not(.nav-collapsed) #content{ left: 0; }
+      #sidebar{ box-shadow: 6px 0 18px var(--shadow); }
+      #header-meta{ display: none; }
+      #page-footer{
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: .5rem .75rem;
+      }
+      .footer-right{ justify-content: flex-start; }
+      #current-path{ max-width: 100%; }
     }
 
-    /* Content area */
-    #content {
-      flex: 1;
-      padding: 1.5rem;
-      background: var(--bg);
+    /* Small accessibility nicety */
+    @media (prefers-reduced-motion: reduce){
+      #sidebar, #content, #backdrop{ transition: none; }
     }
   </style>
 </head>
+
 <body class="nav-collapsed">
+  <header id="page-header">
+    <button id="toggle-btn" aria-label="Toggle sidebar" title="Toggle sidebar (Ctrl+B)">☰</button>
+    <div id="header-title">Select a topic…</div>
+    <div id="header-meta" title="Keyboard: ←/→ for Prev/Next, Ctrl+K Search">Ready</div>
+  </header>
 
-  <div id="page-header">Select a topic…</div>
-  <button id="toggle-btn">☰</button>
+  <div id="backdrop" aria-hidden="true"></div>
 
-  <div class="container">
-    <aside id="sidebar" class="collapsed">
-      <h2>Section 1: Introduction</h2>
-    <ul id="menu">
-      <li data-file="Section_1_Introduction/1_Welcome.html">1. Welcome</li>
-      <li data-file="Section_1_Introduction/2_Why_material-UI.html">2. Why material‑UI</li>
-      <li data-file="Section_1_Introduction/3_Course_overview.html">3. Course overview</li>
-      <li data-file="Section_1_Introduction/4_Course_requirements.html">4. Course requirements</li>
-      <li data-file="Section_1_Introduction/5_Important_MUI_Update_info.html">5. Important – MUI Update info</li>
-      <li data-file="Section_1_Introduction/6_Environment_setup.html">6. Environment setup</li>
-      <li data-file="Section_1_Introduction/7_Project_files_and_resources.html">7. Project files and resources</li>
+  <aside id="sidebar" aria-label="Course navigation">
+    <div class="sidebar-top">
+      <div class="sidebar-title">Course Menu</div>
+      <input id="search" type="search" placeholder="Search lessons (Ctrl+K)..." autocomplete="off" />
+      <div id="search-meta"></div>
+    </div>
 
-      <h2>Section 2: Take it from the top - headers and navigation</h2>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/8_Section_2_Introduction.html">8. Section 2 Introduction</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/9_Project_overview.html">9. Project overview</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/10_Project_overview_continued.html">10. Project overview continued</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/11_Image_optimization.html">11. Image optimization</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/12_Boilerplate_cleanup.html">12. Boilerplate cleanup</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/13_The_AppBar_Component.html">13. The AppBar Component</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/14_AppBar_Transitions.html">14. AppBar Transitions</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/15_Important_fix.html">15. Important fix</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/16_Styling_-_Themes_setup.html">16. Styling – Themes setup</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/17_Styling_-_Themes_default_Theme.html">17. Styling – Themes default Theme</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/18_Styling_-_Themes_Palette.html">18. Styling – Themes Palette</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/19_Styling_-_Themes_Typography.html">19. Styling – Themes Typography</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/20_Styling_-_Inline.html">20. Styling – Inline</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/21_AppBar_Logo.html">21. AppBar Logo</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/22_Favicon.html">22. Favicon</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/23_Tabs_overview.html">23. Tabs overview</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/24_Using_Tabs.html">24. Using Tabs</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/25_Buttons_overview.html">25. Buttons overview</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/26_Using_Buttons.html">26. Using Buttons</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/27_Styling_the_active_Tab.html">27. Styling the active Tab</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/28_Navigation_with_React_Router.html">28. Navigation with React Router</li>
-      <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/29_Active_tab_refresh_fix.html">29. Active tab refresh fix</li>
+    <div class="sidebar-scroll">
+      <details class="section" open>
+        <summary>Section 1: Introduction</summary>
+        <ul class="menu">
+          <li data-file="Section_1_Introduction/1_Welcome.html">1. Welcome</li>
+          <li data-file="Section_1_Introduction/2_Why_material-UI.html">2. Why material-UI</li>
+          <li data-file="Section_1_Introduction/3_Course_overview.html">3. Course overview</li>
+          <li data-file="Section_1_Introduction/4_Course_requirements.html">4. Course requirements</li>
+          <li data-file="Section_1_Introduction/5_Important_MUI_Update_info.html">5. Important – MUI Update info</li>
+          <li data-file="Section_1_Introduction/6_Environment_setup.html">6. Environment setup</li>
+          <li data-file="Section_1_Introduction/7_Project_files_and_resources.html">7. Project files and resources</li>
+        </ul>
+      </details>
 
-      <h2>Section 3: Adding Header features - Menus and Responsive design</h2>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/30_Section_3_Introduction.html">30. Section 3 Introduction</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/31_Menus_overview.html">31. Menus overview</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/32_Menus_overview_continued.html">32. Menus overview continued</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/33_Using_Menus_-_setup.html">33. Using Menus – setup</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/34_Using_Menus_-_navigation.html">34. Using Menus – navigation</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/35_Using_Menus_-_styling.html">35. Using Menus – styling</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/36_Using_Menus_-_selection.html">36. Using Menus – selection</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/37_Using_Menus_-_refresh_fix.html">37. Using Menus – refresh fix</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/38_Responsive_design_overview.html">38. Responsive design overview</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/39_Responsive_design_continued.html">39. Responsive design continued</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/40_Responsive_units_clarification_--_which_to_use.html">40. Responsive units clarification – which to use</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/41_Using_media_queries.html">41. Using media queries</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/42_Drawers_overview.html">42. Drawers overview</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/43_Using_Drawers.html">43. Using Drawers</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/44_Lists_overview.html">44. Lists overview</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/45_Using_Lists_-_setup.html">45. Using Lists – setup</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/46_Using_Lists_-_styling.html">46. Using Lists – styling</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/47_Using_Lists_-_selection.html">47. Using Lists – selection</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/48_Selection_cleanup.html">48. Selection cleanup</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/49_Section_cleanup_continued.html">49. Section cleanup continued</li>
-      <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/50_Clipped_AppBar.html">50. Clipped AppBar</li>
+      <details class="section">
+        <summary>Section 2: Take it from the top - headers and navigation</summary>
+        <ul class="menu">
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/8_Section_2_Introduction.html">8. Section 2 Introduction</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/9_Project_overview.html">9. Project overview</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/10_Project_overview_continued.html">10. Project overview continued</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/11_Image_optimization.html">11. Image optimization</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/12_Boilerplate_cleanup.html">12. Boilerplate cleanup</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/13_The_AppBar_Component.html">13. The AppBar Component</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/14_AppBar_Transitions.html">14. AppBar Transitions</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/15_Important_fix.html">15. Important fix</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/16_Styling_-_Themes_setup.html">16. Styling – Themes setup</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/17_Styling_-_Themes_default_Theme.html">17. Styling – Themes default Theme</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/18_Styling_-_Themes_Palette.html">18. Styling – Themes Palette</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/19_Styling_-_Themes_Typography.html">19. Styling – Themes Typography</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/20_Styling_-_Inline.html">20. Styling – Inline</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/21_AppBar_Logo.html">21. AppBar Logo</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/22_Favicon.html">22. Favicon</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/23_Tabs_overview.html">23. Tabs overview</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/24_Using_Tabs.html">24. Using Tabs</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/25_Buttons_overview.html">25. Buttons overview</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/26_Using_Buttons.html">26. Using Buttons</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/27_Styling_the_active_Tab.html">27. Styling the active Tab</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/28_Navigation_with_React_Router.html">28. Navigation with React Router</li>
+          <li data-file="Section_2_Take_it_from_the_top_-_headers_and_navigation/29_Active_tab_refresh_fix.html">29. Active tab refresh fix</li>
+        </ul>
+      </details>
 
-      <h2>Section 4: Bottoms up! footers and basic layouts</h2>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/51_Section_4_Introduction.html">51. Section 4 Introduction</li>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/52_Footer_setup.html">52. Footer setup</li>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/53_Grid_overview.html">53. Grid overview</li>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/54_Grid_overview_continued.html">54. Grid overview continued</li>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/55_Using_Grids_-_setup.html">55. Using Grids – setup</li>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/56_Using_Grids_-_navigation.html">56. Using Grids – navigation</li>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/57_Active_tab_footer_refactor.html">57. Active tab footer refactor</li>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/58_Responsive_Grids.html">58. Responsive Grids</li>
-      <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/59_Social_media_icons.html">59. Social media icons</li>
+      <details class="section">
+        <summary>Section 3: Adding Header features - Menus and Responsive design</summary>
+        <ul class="menu">
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/30_Section_3_Introduction.html">30. Section 3 Introduction</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/31_Menus_overview.html">31. Menus overview</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/32_Menus_overview_continued.html">32. Menus overview continued</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/33_Using_Menus_-_setup.html">33. Using Menus – setup</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/34_Using_Menus_-_navigation.html">34. Using Menus – navigation</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/35_Using_Menus_-_styling.html">35. Using Menus – styling</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/36_Using_Menus_-_selection.html">36. Using Menus – selection</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/37_Using_Menus_-_refresh_fix.html">37. Using Menus – refresh fix</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/38_Responsive_design_overview.html">38. Responsive design overview</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/39_Responsive_design_continued.html">39. Responsive design continued</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/40_Responsive_units_clarification_--_which_to_use.html">40. Responsive units clarification – which to use</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/41_Using_media_queries.html">41. Using media queries</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/42_Drawers_overview.html">42. Drawers overview</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/43_Using_Drawers.html">43. Using Drawers</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/44_Lists_overview.html">44. Lists overview</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/45_Using_Lists_-_setup.html">45. Using Lists – setup</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/46_Using_Lists_-_styling.html">46. Using Lists – styling</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/47_Using_Lists_-_selection.html">47. Using Lists – selection</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/48_Selection_cleanup.html">48. Selection cleanup</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/49_Section_cleanup_continued.html">49. Section cleanup continued</li>
+          <li data-file="Section_3_Adding_Header_features_-_Menus_and_Responsive_design/50_Clipped_AppBar.html">50. Clipped AppBar</li>
+        </ul>
+      </details>
 
-      <h2>Section 5: Hitting the ground running - animations and the landing page</h2>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/60_Section_5_Introduction.html">60. Section 5 Introduction</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/61_Animation_export_and_bodymmoving.html">61. Animation export and bodymmoving</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/62_Animation_configuration.html">62. Animation configuration</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/63_React-lottie.html">63. React-lottie</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/64_Creating_the_hero_block.html">64. Creating the hero block</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/65_Styling_the_hero_block.html">65. Styling the hero block</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/66_Styling_the_hero_block_continued.html">66. Styling the hero block continued</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/67_Creating_the_services_block_-_custom_software.html">67. Creating the services block – custom software</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/68_Creating_the_services_block-_custom_software_continued.html">68. Creating the services block – custom software continued</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/69_Creating_the_services_block_-_iOS_Mobile_App_development.html">69. Creating the services block – iOS/Mobile App development</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/70_Creating_the_services_block_-_website_development.html">70. Creating the services block – website development</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/71_Cards_overview.html">71. Cards overview</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/72_Creating_the_revolution_block.html">72. Creating the revolution block</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/73_Creating_the_revolution_block_continued.html">73. Creating the revolution block continued</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/74_Creating_the_information_block.html">74. Creating the information block</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/75_Creating_the_information_block_continued.html">75. Creating the information block continued</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/76_Creating_the_call_to_action.html">76. Creating the call to action</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/77_Create_the_call_to_action_continued.html">77. Create the call to action continued</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/78_Finishing_the_call_to_action.html">78. Finishing the call to action</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/79_Section_cleanup.html">79. Section cleanup</li>
-      <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/80_Section_cleanup_continued.html">80. Section cleanup continued</li>
+      <details class="section">
+        <summary>Section 4: Bottoms up! footers and basic layouts</summary>
+        <ul class="menu">
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/51_Section_4_Introduction.html">51. Section 4 Introduction</li>
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/52_Footer_setup.html">52. Footer setup</li>
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/53_Grid_overview.html">53. Grid overview</li>
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/54_Grid_overview_continued.html">54. Grid overview continued</li>
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/55_Using_Grids_-_setup.html">55. Using Grids – setup</li>
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/56_Using_Grids_-_navigation.html">56. Using Grids – navigation</li>
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/57_Active_tab_footer_refactor.html">57. Active tab footer refactor</li>
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/58_Responsive_Grids.html">58. Responsive Grids</li>
+          <li data-file="Section_4_Bottoms_up_footers_and_basic_layouts/59_Social_media_icons.html">59. Social media icons</li>
+        </ul>
+      </details>
 
-      <h2>Section 6: Complex layouts</h2>
-      <li data-file="Section_6_Complex_layouts/81_Section_Introduction.html">81. Section Introduction</li>
-      <li data-file="Section_6_Complex_layouts/82_Services_page_-_overview.html">82. Services page – overview</li>
-      <li data-file="Section_6_Complex_layouts/83_Services_page_-_setup.html">83. Services page – setup</li>
-      <li data-file="Section_6_Complex_layouts/84_Services_page_-_responsive_setup.html">84. Services page – responsive setup</li>
-      <li data-file="Section_6_Complex_layouts/85_Custom_software_development_page_-_overview.html">85. Custom software development page – overview</li>
-      <li data-file="Section_6_Complex_layouts/86_Custom_software_development_page_-_setup.html">86. Custom software development page – setup</li>
-      <li data-file="Section_6_Complex_layouts/87_Custom_software_development_page_-_middle_icons.html">87. Custom software development page – middle icons</li>
-      <li data-file="Section_6_Complex_layouts/88_Custom_software_development_page_-_animations_row_1.html">88. Custom software development page – animations row 1</li>
-      <li data-file="Section_6_Complex_layouts/89_Custom_software_development_page_-_row_2.html">89. Custom software development page – row 2</li>
-      <li data-file="Section_6_Complex_layouts/90_Custom_software_development_page_-_responsive_design.html">90. Custom software development page – responsive design</li>
-      <li data-file="Section_6_Complex_layouts/91_Custom_software_development_page_-_responsive_design_continued.html">91. Custom software development page – responsive design continued</li>
-      <li data-file="Section_6_Complex_layouts/92_iOS_Android_App_development_page_-_overview.html">92. iOS/Android App development page – overview</li>
-      <li data-file="Section_6_Complex_layouts/93_iOS_Android_App_development_page_-_setup.html">93. iOS/Android App development page – setup</li>
-      <li data-file="Section_6_Complex_layouts/94_iOS_Android_App_development_page_-_responsive_design.html">94. iOS/Android App development page – responsive design</li>
-      <li data-file="Section_6_Complex_layouts/95_Website_development_page_-_overview.html">95. Website development page – overview</li>
-      <li data-file="Section_6_Complex_layouts/96_Website_development_page_-_setup.html">96. Website development page – setup</li>
-      <li data-file="Section_6_Complex_layouts/97_Website_development_page_-_responsive_design.html">97. Website development page – responsive design</li>
-      <li data-file="Section_6_Complex_layouts/98_The_revolution_page_-_overview.html">98. The revolution page – overview</li>
-      <li data-file="Section_6_Complex_layouts/99_The_revolution_page_-_technology_and_vision.html">99. The revolution page – technology and vision</li>
-      <li data-file="Section_6_Complex_layouts/100_The_revolution_page_-_process.html">100. The revolution page – process</li>
-      <li data-file="Section_6_Complex_layouts/101_The_revolution_page_-_process_continued.html">101. The revolution page – process continued</li>
-      <li data-file="Section_6_Complex_layouts/102_The_revolution_page_-_responsive_design.html">102. The revolution page – responsive design</li>
-      <li data-file="Section_6_Complex_layouts/103_About_us_page_-_overview.html">103. About us page – overview</li>
-      <li data-file="Section_6_Complex_layouts/104_About_us_page_-_setup.html">104. About us page – setup</li>
-      <li data-file="Section_6_Complex_layouts/105_About_us_page_-_team.html">105. About us page – team</li>
-      <li data-file="Section_6_Complex_layouts/106_About_us_page_-_responsive_design.html">106. About us page – responsive design</li>
+      <details class="section">
+        <summary>Section 5: Hitting the ground running - animations and the landing page</summary>
+        <ul class="menu">
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/60_Section_5_Introduction.html">60. Section 5 Introduction</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/61_Animation_export_and_bodymmoving.html">61. Animation export and bodymmoving</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/62_Animation_configuration.html">62. Animation configuration</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/63_React-lottie.html">63. React-lottie</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/64_Creating_the_hero_block.html">64. Creating the hero block</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/65_Styling_the_hero_block.html">65. Styling the hero block</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/66_Styling_the_hero_block_continued.html">66. Styling the hero block continued</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/67_Creating_the_services_block_-_custom_software.html">67. Creating the services block – custom software</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/68_Creating_the_services_block-_custom_software_continued.html">68. Creating the services block – custom software continued</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/69_Creating_the_services_block_-_iOS_Mobile_App_development.html">69. Creating the services block – iOS/Mobile App development</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/70_Creating_the_services_block_-_website_development.html">70. Creating the services block – website development</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/71_Cards_overview.html">71. Cards overview</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/72_Creating_the_revolution_block.html">72. Creating the revolution block</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/73_Creating_the_revolution_block_continued.html">73. Creating the revolution block continued</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/74_Creating_the_information_block.html">74. Creating the information block</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/75_Creating_the_information_block_continued.html">75. Creating the information block continued</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/76_Creating_the_call_to_action.html">76. Creating the call to action</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/77_Create_the_call_to_action_continued.html">77. Create the call to action continued</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/78_Finishing_the_call_to_action.html">78. Finishing the call to action</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/79_Section_cleanup.html">79. Section cleanup</li>
+          <li data-file="Section_5_Hitting_the_ground_running_-_animations_and_the_landing_page/80_Section_cleanup_continued.html">80. Section cleanup continued</li>
+        </ul>
+      </details>
 
-      <h2>Section 7: Inputs, validation and confirmation</h2>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/107_Section_7_Introduction.html">107. Section 7 Introduction</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/108_Textfield_overview.html">108. Textfield overview</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/109_Using_Textfields_-_setup.html">109. Using Textfields – setup</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/110_Contact_information.html">110. Contact information</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/111_Using_Textfields_-_State_controlled_values.html">111. Using Textfields – State controlled values</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/112_Using_Textfields_-_Styling.html">112. Using Textfields – Styling</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/113_Using_Textfields_-_Styling_continued.html">113. Using Textfields – Styling continued</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/114_Using_Textfields_-_Responsive_design.html">114. Using Textfields – Responsive design</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/115_Using_Textfields_-_Validation.html">115. Using Textfields – Validation</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/116_Using_Textfields_-_Validation_continued.html">116. Using Textfields – Validation continued</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/117_Dialogs_overview.html">117. Dialogs overview</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/118_Using_Dialogs_-_Setup.html">118. Using Dialogs – Setup</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/119_Using_Dialogs_-_Styling.html">119. Using Dialogs – Styling</li>
-      <li data-file="Section_7_Inputs_validation_and_confirmation/120_Section_cleanup.html">120. Section cleanup</li>
+      <details class="section">
+        <summary>Section 6: Complex layouts</summary>
+        <ul class="menu">
+          <li data-file="Section_6_Complex_layouts/81_Section_Introduction.html">81. Section Introduction</li>
+          <li data-file="Section_6_Complex_layouts/82_Services_page_-_overview.html">82. Services page – overview</li>
+          <li data-file="Section_6_Complex_layouts/83_Services_page_-_setup.html">83. Services page – setup</li>
+          <li data-file="Section_6_Complex_layouts/84_Services_page_-_responsive_setup.html">84. Services page – responsive setup</li>
+          <li data-file="Section_6_Complex_layouts/85_Custom_software_development_page_-_overview.html">85. Custom software development page – overview</li>
+          <li data-file="Section_6_Complex_layouts/86_Custom_software_development_page_-_setup.html">86. Custom software development page – setup</li>
+          <li data-file="Section_6_Complex_layouts/87_Custom_software_development_page_-_middle_icons.html">87. Custom software development page – middle icons</li>
+          <li data-file="Section_6_Complex_layouts/88_Custom_software_development_page_-_animations_row_1.html">88. Custom software development page – animations row 1</li>
+          <li data-file="Section_6_Complex_layouts/89_Custom_software_development_page_-_row_2.html">89. Custom software development page – row 2</li>
+          <li data-file="Section_6_Complex_layouts/90_Custom_software_development_page_-_responsive_design.html">90. Custom software development page – responsive design</li>
+          <li data-file="Section_6_Complex_layouts/91_Custom_software_development_page_-_responsive_design_continued.html">91. Custom software development page – responsive design continued</li>
+          <li data-file="Section_6_Complex_layouts/92_iOS_Android_App_development_page_-_overview.html">92. iOS/Android App development page – overview</li>
+          <li data-file="Section_6_Complex_layouts/93_iOS_Android_App_development_page_-_setup.html">93. iOS/Android App development page – setup</li>
+          <li data-file="Section_6_Complex_layouts/94_iOS_Android_App_development_page_-_responsive_design.html">94. iOS/Android App development page – responsive design</li>
+          <li data-file="Section_6_Complex_layouts/95_Website_development_page_-_overview.html">95. Website development page – overview</li>
+          <li data-file="Section_6_Complex_layouts/96_Website_development_page_-_setup.html">96. Website development page – setup</li>
+          <li data-file="Section_6_Complex_layouts/97_Website_development_page_-_responsive_design.html">97. Website development page – responsive design</li>
+          <li data-file="Section_6_Complex_layouts/98_The_revolution_page_-_overview.html">98. The revolution page – overview</li>
+          <li data-file="Section_6_Complex_layouts/99_The_revolution_page_-_technology_and_vision.html">99. The revolution page – technology and vision</li>
+          <li data-file="Section_6_Complex_layouts/100_The_revolution_page_-_process.html">100. The revolution page – process</li>
+          <li data-file="Section_6_Complex_layouts/101_The_revolution_page_-_process_continued.html">101. The revolution page – process continued</li>
+          <li data-file="Section_6_Complex_layouts/102_The_revolution_page_-_responsive_design.html">102. The revolution page – responsive design</li>
+          <li data-file="Section_6_Complex_layouts/103_About_us_page_-_overview.html">103. About us page – overview</li>
+          <li data-file="Section_6_Complex_layouts/104_About_us_page_-_setup.html">104. About us page – setup</li>
+          <li data-file="Section_6_Complex_layouts/105_About_us_page_-_team.html">105. About us page – team</li>
+          <li data-file="Section_6_Complex_layouts/106_About_us_page_-_responsive_design.html">106. About us page – responsive design</li>
+        </ul>
+      </details>
 
-      <h2>Section 8: Google cloud functions</h2>
-      <li data-file="Section_8_Google_cloud_functions/121_Section_8_Introduction.html">121. Section 8 Introduction</li>
-      <li data-file="Section_8_Google_cloud_functions/122_Firebase_overview.html">122. Firebase overview</li>
-      <li data-file="Section_8_Google_cloud_functions/123_Firebase_Setup.html">123. Firebase Setup</li>
-      <li data-file="Section_8_Google_cloud_functions/124_Nodemailer_overview.html">124. Nodemailer overview</li>
-      <li data-file="Section_8_Google_cloud_functions/125_Firebase_Billing_Policy_Change.html">125. Firebase Billing Policy Change</li>
-      <li data-file="Section_8_Google_cloud_functions/126_Using_Nodemailer.html">126. Using Nodemailer</li>
-      <li data-file="Section_8_Google_cloud_functions/127_Nodemailer_fix.html">127. Nodemailer fix</li>
+      <details class="section">
+        <summary>Section 7: Inputs, validation and confirmation</summary>
+        <ul class="menu">
+          <li data-file="Section_7_Inputs_validation_and_confirmation/107_Section_7_Introduction.html">107. Section 7 Introduction</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/108_Textfield_overview.html">108. Textfield overview</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/109_Using_Textfields_-_setup.html">109. Using Textfields – setup</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/110_Contact_information.html">110. Contact information</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/111_Using_Textfields_-_State_controlled_values.html">111. Using Textfields – State controlled values</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/112_Using_Textfields_-_Styling.html">112. Using Textfields – Styling</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/113_Using_Textfields_-_Styling_continued.html">113. Using Textfields – Styling continued</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/114_Using_Textfields_-_Responsive_design.html">114. Using Textfields – Responsive design</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/115_Using_Textfields_-_Validation.html">115. Using Textfields – Validation</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/116_Using_Textfields_-_Validation_continued.html">116. Using Textfields – Validation continued</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/117_Dialogs_overview.html">117. Dialogs overview</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/118_Using_Dialogs_-_Setup.html">118. Using Dialogs – Setup</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/119_Using_Dialogs_-_Styling.html">119. Using Dialogs – Styling</li>
+          <li data-file="Section_7_Inputs_validation_and_confirmation/120_Section_cleanup.html">120. Section cleanup</li>
+        </ul>
+      </details>
 
-      <h2>Section 9: Network Requests</h2>
-      <li data-file="Section_9_Network_Requests/128_Section_9_Introduction.html">128. Section 9 Introduction</li>
-      <li data-file="Section_9_Network_Requests/129_Axios_overview_and_setup.html">129. Axios overview and setup</li>
-      <li data-file="Section_9_Network_Requests/130_Progress_indicators_overview.html">130. Progress indicators overview</li>
-      <li data-file="Section_9_Network_Requests/131_Using_circular_progress.html">131. Using circular progress</li>
-      <li data-file="Section_9_Network_Requests/132_Snackbars_overview.html">132. Snackbars overview</li>
-      <li data-file="Section_9_Network_Requests/133_Using_Snackbars.html">133. Using Snackbars</li>
-      <li data-file="Section_9_Network_Requests/134_Sending_the_form_values.html">134. Sending the form values</li>
+      <details class="section">
+        <summary>Section 8: Google cloud functions</summary>
+        <ul class="menu">
+          <li data-file="Section_8_Google_cloud_functions/121_Section_8_Introduction.html">121. Section 8 Introduction</li>
+          <li data-file="Section_8_Google_cloud_functions/122_Firebase_overview.html">122. Firebase overview</li>
+          <li data-file="Section_8_Google_cloud_functions/123_Firebase_Setup.html">123. Firebase Setup</li>
+          <li data-file="Section_8_Google_cloud_functions/124_Nodemailer_overview.html">124. Nodemailer overview</li>
+          <li data-file="Section_8_Google_cloud_functions/125_Firebase_Billing_Policy_Change.html">125. Firebase Billing Policy Change</li>
+          <li data-file="Section_8_Google_cloud_functions/126_Using_Nodemailer.html">126. Using Nodemailer</li>
+          <li data-file="Section_8_Google_cloud_functions/127_Nodemailer_fix.html">127. Nodemailer fix</li>
+        </ul>
+      </details>
 
-      <h2>Section 10: Putting it all together - estimate page</h2>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/135_Section_10_Introduction.html">135. Section 10 Introduction</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/136_Estimate_page_-_setup.html">136. Estimate page – setup</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/137_Estimate_page_-_setup_continued.html">137. Estimate page – setup continued</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/138_Estimate_page_-_dynamic_questions.html">138. Estimate page – dynamic questions</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/139_Question_navigation.html">139. Question navigation</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/140_Question_navigation_continued.html">140. Question navigation continued</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/141_Question_navigation_fix.html">141. Question navigation fix</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/142_Multiple_option_selection.html">142. Multiple option selection</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/143_Single_option_selection.html">143. Single option selection</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/144_Estimate_dialog.html">144. Estimate dialog</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/145_Calculate_estimate_cost.html">145. Calculate estimate cost</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/146_Selection_review.html">146. Selection review</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/147_Selection_review_continued.html">147. Selection review continued</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/148_Selection_review_features.html">148. Selection review features</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/149_Finishing_selection_review.html">149. Finishing selection review</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/150_Selection_review_websites_fix.html">150. Selection review websites fix</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/151_Responsive_design.html">151. Responsive design</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/152_Responsive_design_continued.html">152. Responsive design continued</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/153_Sending_the_estimate.html">153. Sending the estimate</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/154_Sending_the_estimate_continued.html">154. Sending the estimate continued</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/155_Disabling_the_estimate_button.html">155. Disabling the estimate button</li>
-      <li data-file="Section_10_Putting_it_all_together_-_estimate_page/156_Sending_the_estimate_cleanup.html">156. Sending the estimate cleanup</li>
+      <details class="section">
+        <summary>Section 9: Network Requests</summary>
+        <ul class="menu">
+          <li data-file="Section_9_Network_Requests/128_Section_9_Introduction.html">128. Section 9 Introduction</li>
+          <li data-file="Section_9_Network_Requests/129_Axios_overview_and_setup.html">129. Axios overview and setup</li>
+          <li data-file="Section_9_Network_Requests/130_Progress_indicators_overview.html">130. Progress indicators overview</li>
+          <li data-file="Section_9_Network_Requests/131_Using_circular_progress.html">131. Using circular progress</li>
+          <li data-file="Section_9_Network_Requests/132_Snackbars_overview.html">132. Snackbars overview</li>
+          <li data-file="Section_9_Network_Requests/133_Using_Snackbars.html">133. Using Snackbars</li>
+          <li data-file="Section_9_Network_Requests/134_Sending_the_form_values.html">134. Sending the form values</li>
+        </ul>
+      </details>
 
-      <h2>Section 11: Search Engine Optimization SEO</h2>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/157_Section_11_Introduction.html">157. Section 11 Introduction</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/158_NextJS_overview.html">158. NextJS overview</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/159_Important_NextJS_fix.html">159. Important NextJS fix</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/160_Migrate_from_create-react-app_to_NextJS.html">160. Migrate from create-react-app to NextJS</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/161_Using_static_images.html">161. Using static images</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/162_Using_static_images_continued.html">162. Using static images continued</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/163_Optimize_images_in_NextJS.html">163. Optimize images in NextJS</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/164_Adding_footer_and_header_to_NextJS.html">164. Adding footer and header to NextJS</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/165_FOUC_fix.html">165. FOUC fix</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/166_Good_title_tags.html">166. Good title tags</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/167_Meta_description_tags.html">167. Meta description tags</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/168_OpenGraph_tags.html">168. OpenGraph tags</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/169_Canonical_tags.html">169. Canonical tags</li>
-      <li data-file="Section_11_Search_Engine_Optimization_SEO/170_Robots_txt_and_sitemap_txt.html">170. Robots txt and sitemap txt</li>
+      <details class="section">
+        <summary>Section 10: Putting it all together - estimate page</summary>
+        <ul class="menu">
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/135_Section_10_Introduction.html">135. Section 10 Introduction</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/136_Estimate_page_-_setup.html">136. Estimate page – setup</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/137_Estimate_page_-_setup_continued.html">137. Estimate page – setup continued</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/138_Estimate_page_-_dynamic_questions.html">138. Estimate page – dynamic questions</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/139_Question_navigation.html">139. Question navigation</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/140_Question_navigation_continued.html">140. Question navigation continued</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/141_Question_navigation_fix.html">141. Question navigation fix</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/142_Multiple_option_selection.html">142. Multiple option selection</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/143_Single_option_selection.html">143. Single option selection</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/144_Estimate_dialog.html">144. Estimate dialog</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/145_Calculate_estimate_cost.html">145. Calculate estimate cost</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/146_Selection_review.html">146. Selection review</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/147_Selection_review_continued.html">147. Selection review continued</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/148_Selection_review_features.html">148. Selection review features</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/149_Finishing_selection_review.html">149. Finishing selection review</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/150_Selection_review_websites_fix.html">150. Selection review websites fix</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/151_Responsive_design.html">151. Responsive design</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/152_Responsive_design_continued.html">152. Responsive design continued</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/153_Sending_the_estimate.html">153. Sending the estimate</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/154_Sending_the_estimate_continued.html">154. Sending the estimate continued</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/155_Disabling_the_estimate_button.html">155. Disabling the estimate button</li>
+          <li data-file="Section_10_Putting_it_all_together_-_estimate_page/156_Sending_the_estimate_cleanup.html">156. Sending the estimate cleanup</li>
+        </ul>
+      </details>
 
-      <h2>Section 12: Cross-Browser support</h2>
-      <li data-file="Section_12_Cross-Browser_support/171_Section_12_Introduction.html">171. Section 12 Introduction</li>
-      <li data-file="Section_12_Cross-Browser_support/172_Important_note_watch_for_all_browsers.html">172. Important note watch for all browsers</li>
-      <li data-file="Section_12_Cross-Browser_support/173_Safari_support.html">173. Safari support</li>
-      <li data-file="Section_12_Cross-Browser_support/174_Safari_support_continued.html">174. Safari support continued</li>
-      <li data-file="Section_12_Cross-Browser_support/175_Firefox_support.html">175. Firefox support</li>
-      <li data-file="Section_12_Cross-Browser_support/176_Microsoft_edge_support.html">176. Microsoft edge support</li>
-      <li data-file="Section_12_Cross-Browser_support/177_Internet_explorer_support.html">177. Internet explorer support</li>
+      <details class="section">
+        <summary>Section 11: Search Engine Optimization SEO</summary>
+        <ul class="menu">
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/157_Section_11_Introduction.html">157. Section 11 Introduction</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/158_NextJS_overview.html">158. NextJS overview</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/159_Important_NextJS_fix.html">159. Important NextJS fix</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/160_Migrate_from_create-react-app_to_NextJS.html">160. Migrate from create-react-app to NextJS</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/161_Using_static_images.html">161. Using static images</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/162_Using_static_images_continued.html">162. Using static images continued</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/163_Optimize_images_in_NextJS.html">163. Optimize images in NextJS</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/164_Adding_footer_and_header_to_NextJS.html">164. Adding footer and header to NextJS</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/165_FOUC_fix.html">165. FOUC fix</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/166_Good_title_tags.html">166. Good title tags</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/167_Meta_description_tags.html">167. Meta description tags</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/168_OpenGraph_tags.html">168. OpenGraph tags</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/169_Canonical_tags.html">169. Canonical tags</li>
+          <li data-file="Section_11_Search_Engine_Optimization_SEO/170_Robots_txt_and_sitemap_txt.html">170. Robots txt and sitemap txt</li>
+        </ul>
+      </details>
 
-      <h2>Section 13: Deployment</h2>
-      <li data-file="Section_13_Deployment/178_Section_13_Introduction.html">178. Section 13 Introduction</li>
-      <li data-file="Section_13_Deployment/179_Heroku.html">179. Heroku</li>
-      <li data-file="Section_13_Deployment/180_Custom_URLs_on_Heroku.html">180. Custom URLs on Heroku</li>
-      <li data-file="Section_13_Deployment/181_Now.html">181. Now</li>
+      <details class="section">
+        <summary>Section 12: Cross-Browser support</summary>
+        <ul class="menu">
+          <li data-file="Section_12_Cross-Browser_support/171_Section_12_Introduction.html">171. Section 12 Introduction</li>
+          <li data-file="Section_12_Cross-Browser_support/172_Important_note_watch_for_all_browsers.html">172. Important note watch for all browsers</li>
+          <li data-file="Section_12_Cross-Browser_support/173_Safari_support.html">173. Safari support</li>
+          <li data-file="Section_12_Cross-Browser_support/174_Safari_support_continued.html">174. Safari support continued</li>
+          <li data-file="Section_12_Cross-Browser_support/175_Firefox_support.html">175. Firefox support</li>
+          <li data-file="Section_12_Cross-Browser_support/176_Microsoft_edge_support.html">176. Microsoft edge support</li>
+          <li data-file="Section_12_Cross-Browser_support/177_Internet_explorer_support.html">177. Internet explorer support</li>
+        </ul>
+      </details>
 
-      <h2>Section 14: Google analytics</h2>
-      <li data-file="Section_14_Google_analytics/182_Important_Google_analytics_update.html">182. Important Google analytics update</li>
-      <li data-file="Section_14_Google_analytics/183_Section_14_Introduction.html">183. Section 14 Introduction</li>
-      <li data-file="Section_14_Google_analytics/184_Account_setup_and_react-ga.html">184. Account setup and react-ga</li>
-      <li data-file="Section_14_Google_analytics/185_Filtering_and_page_tracking.html">185. Filtering and page tracking</li>
-      <li data-file="Section_14_Google_analytics/186_Event_tracking.html">186. Event tracking</li>
-      <li data-file="Section_14_Google_analytics/187_Conversion_tracking.html">187. Conversion tracking</li>
+      <details class="section">
+        <summary>Section 13: Deployment</summary>
+        <ul class="menu">
+          <li data-file="Section_13_Deployment/178_Section_13_Introduction.html">178. Section 13 Introduction</li>
+          <li data-file="Section_13_Deployment/179_Heroku.html">179. Heroku</li>
+          <li data-file="Section_13_Deployment/180_Custom_URLs_on_Heroku.html">180. Custom URLs on Heroku</li>
+          <li data-file="Section_13_Deployment/181_Now.html">181. Now</li>
+        </ul>
+      </details>
 
-      <h2>Section 15: Project manager</h2>
-      <li data-file="Section_15_Project_manager/188_Section_15_Introduction.html">188. Section 15 Introduction</li>
-      <li data-file="Section_15_Project_manager/189_Project_2_setup.html">189. Project 2 setup</li>
-      <li data-file="Section_15_Project_manager/190_Switches_overview.html">190. Switches overview</li>
-      <li data-file="Section_15_Project_manager/191_Using_switches.html">191. Using switches</li>
-      <li data-file="Section_15_Project_manager/192_Tables_overview.html">192. Tables overview</li>
-      <li data-file="Section_15_Project_manager/193_Using_tables.html">193. Using tables</li>
-      <li data-file="Section_15_Project_manager/194_Table_styling.html">194. Table styling</li>
-      <li data-file="Section_15_Project_manager/195_Pickers_overview.html">195. Pickers overview</li>
-      <li data-file="Section_15_Project_manager/196_Pickers_dependency_problem_-_fix.html">196. Pickers dependency problem – fix</li>
-      <li data-file="Section_15_Project_manager/197_Using_Datepicker.html">197. Using Datepicker</li>
-      <li data-file="Section_15_Project_manager/198_Using_Datepicker_continued.html">198. Using Datepicker continued</li>
-      <li data-file="Section_15_Project_manager/199_Radio_buttons_overview.html">199. Radio buttons overview</li>
-      <li data-file="Section_15_Project_manager/200_Using_Radios.html">200. Using Radios</li>
-      <li data-file="Section_15_Project_manager/201_Select_overview.html">201. Select overview</li>
-      <li data-file="Section_15_Project_manager/202_Using_select.html">202. Using select</li>
-      <li data-file="Section_15_Project_manager/203_Adding_a_project.html">203. Adding a project</li>
-      <li data-file="Section_15_Project_manager/204_Adding_a_project_continued.html">204. Adding a project continued</li>
-      <li data-file="Section_15_Project_manager/205_Fix_adding_website.html">205. Fix adding website</li>
-      <li data-file="Section_15_Project_manager/206_Filtering_Table_by_search.html">206. Filtering Table by search</li>
-      <li data-file="Section_15_Project_manager/207_Table_sorting_setup.html">207. Table sorting setup</li>
-      <li data-file="Section_15_Project_manager/208_Table_sorting_setup.html">208. Table sorting setup</li>
-      <li data-file="Section_15_Project_manager/209_Table_sorting_fixes.html">209. Table sorting fixes</li>
-      <li data-file="Section_15_Project_manager/210_Table_sorting_fixes_continued.html">210. Table sorting fixes continued</li>
-      <li data-file="Section_15_Project_manager/211_Tooltip_overview.html">211. Tooltip overview</li>
-      <li data-file="Section_15_Project_manager/212_Deleting_rows.html">212. Deleting rows</li>
-      <li data-file="Section_15_Project_manager/213_Undo_delete.html">213. Undo delete</li>
-      <li data-file="Section_15_Project_manager/214_Undo_delete_continued.html">214. Undo delete continued</li>
-      <li data-file="Section_15_Project_manager/215_Filtering_table_with_switches.html">215. Filtering table with switches</li>
-      <li data-file="Section_15_Project_manager/216_Filtering_total_by_range.html">216. Filtering total by range</li>
-      <li data-file="Section_15_Project_manager/217_Filtering_total_by_range_continued.html">217. Filtering total by range continued</li>
-      <li data-file="Section_15_Project_manager/218_Filtering_total_by_range_finished.html">218. Filtering total by range finished</li>
-      <li data-file="Section_15_Project_manager/219_Chips_overview.html">219. Chips overview</li>
-      <li data-file="Section_15_Project_manager/220_Using_chips.html">220. Using chips</li>
-      <li data-file="Section_15_Project_manager/221_Using_chips_continued.html">221. Using chips continued</li>
-      <li data-file="Section_15_Project_manager/222_Responsive_design.html">222. Responsive design</li>
-      <li data-file="Section_15_Project_manager/223_Responsive_design_continued.html">223. Responsive design continued</li>
-      <li data-file="Section_15_Project_manager/224_Responsive_design_wrap_up.html">224. Responsive design wrap up</li>
+      <details class="section">
+        <summary>Section 14: Google analytics</summary>
+        <ul class="menu">
+          <li data-file="Section_14_Google_analytics/182_Important_Google_analytics_update.html">182. Important Google analytics update</li>
+          <li data-file="Section_14_Google_analytics/183_Section_14_Introduction.html">183. Section 14 Introduction</li>
+          <li data-file="Section_14_Google_analytics/184_Account_setup_and_react-ga.html">184. Account setup and react-ga</li>
+          <li data-file="Section_14_Google_analytics/185_Filtering_and_page_tracking.html">185. Filtering and page tracking</li>
+          <li data-file="Section_14_Google_analytics/186_Event_tracking.html">186. Event tracking</li>
+          <li data-file="Section_14_Google_analytics/187_Conversion_tracking.html">187. Conversion tracking</li>
+        </ul>
+      </details>
 
-      <h2>Section 16: More videos, extra content</h2>
-      <li data-file="Section_16_More_videos_extra_content/225_Estimate_question_selection_fix.html">225. Estimate question selection fix</li>
-      <li data-file="Section_16_More_videos_extra_content/226_Estimate_question_selection_fix_continued.html">226. Estimate question selection fix continued</li>
-      <li data-file="Section_16_More_videos_extra_content/227_Snap_page_to_question_title.html">227. Snap page to question title</li>
-      <li data-file="Section_16_More_videos_extra_content/228_Fine_tune_mobile_styles.html">228. Fine tune mobile styles</li>
-      <li data-file="Section_16_More_videos_extra_content/229_Fine_tune_mobile_styles_continued.html">229. Fine tune mobile styles continued</li>
-      <li data-file="Section_16_More_videos_extra_content/230_The_revolution_refactor.html">230. The revolution refactor</li>
-      <li data-file="Section_16_More_videos_extra_content/231_Advanced_menu_overview_.html">231. Advanced menu overview</li>
-      <li data-file="Section_16_More_videos_extra_content/232_Advanced_menu_overview_continued.html">232. Advanced menu overview continued</li>
-      <li data-file="Section_16_More_videos_extra_content/233_Using_the_advanced_menu.html">233. Using the advanced menu</li>
-      <li data-file="Section_16_More_videos_extra_content/234_Using_the_advanced_menu_continued.html">234. Using the advanced menu continued</li>
-      <li data-file="Section_16_More_videos_extra_content/235_Thoughts_on_styled-components.html">235. Thoughts on styled-components</li>
-      <li data-file="Section_16_More_videos_extra_content/236_Convert_styled-components_to_Material-UI.html">236. Convert styled-components to Material‑UI</li>
-      <li data-file="Section_16_More_videos_extra_content/237_Convert_styled-components_to_Material-UI_continued.html">237. Convert styled-components to Material‑UI continued</li>
-      <li data-file="Section_16_More_videos_extra_content/238_Expansion_panels_overview.html">238. Expansion panels overview</li>
-      <li data-file="Section_16_More_videos_extra_content/239_Using_expansion_panels.html">239. Using expansion panels</li>
-      <li data-file="Section_16_More_videos_extra_content/240_Using_expansion_panels_continued.html">240. Using expansion panels continued</li>
-      <li data-file="Section_16_More_videos_extra_content/241_Using_expansion_panels_finished.html">241. Using expansion panels finished</li>
-      <li data-file="Section_16_More_videos_extra_content/242_Skeleton_overview.html">242. Skeleton overview</li>
-      <li data-file="Section_16_More_videos_extra_content/243_Non-blocking_Google_fonts.html">243. Non-blocking Google fonts</li>
-      <li data-file="Section_16_More_videos_extra_content/244_Lazy_loading_overview.html">244. Lazy loading overview</li>
-      <li data-file="Section_16_More_videos_extra_content/245_Implement_lazy_loading.html">245. Implement lazy loading</li>
-      <li data-file="Section_16_More_videos_extra_content/246_Better_Active_tab_approach.html">246. Better Active tab approach</li>
-      <li data-file="Section_16_More_videos_extra_content/247_Better_Active_tab_approach_continued.html">247. Better Active tab approach continued</li>
-    </ul>
-    </aside>
+      <details class="section">
+        <summary>Section 15: Project manager</summary>
+        <ul class="menu">
+          <li data-file="Section_15_Project_manager/188_Section_15_Introduction.html">188. Section 15 Introduction</li>
+          <li data-file="Section_15_Project_manager/189_Project_2_setup.html">189. Project 2 setup</li>
+          <li data-file="Section_15_Project_manager/190_Switches_overview.html">190. Switches overview</li>
+          <li data-file="Section_15_Project_manager/191_Using_switches.html">191. Using switches</li>
+          <li data-file="Section_15_Project_manager/192_Tables_overview.html">192. Tables overview</li>
+          <li data-file="Section_15_Project_manager/193_Using_tables.html">193. Using tables</li>
+          <li data-file="Section_15_Project_manager/194_Table_styling.html">194. Table styling</li>
+          <li data-file="Section_15_Project_manager/195_Pickers_overview.html">195. Pickers overview</li>
+          <li data-file="Section_15_Project_manager/196_Pickers_dependency_problem_-_fix.html">196. Pickers dependency problem – fix</li>
+          <li data-file="Section_15_Project_manager/197_Using_Datepicker.html">197. Using Datepicker</li>
+          <li data-file="Section_15_Project_manager/198_Using_Datepicker_continued.html">198. Using Datepicker continued</li>
+          <li data-file="Section_15_Project_manager/199_Radio_buttons_overview.html">199. Radio buttons overview</li>
+          <li data-file="Section_15_Project_manager/200_Using_Radios.html">200. Using Radios</li>
+          <li data-file="Section_15_Project_manager/201_Select_overview.html">201. Select overview</li>
+          <li data-file="Section_15_Project_manager/202_Using_select.html">202. Using select</li>
+          <li data-file="Section_15_Project_manager/203_Adding_a_project.html">203. Adding a project</li>
+          <li data-file="Section_15_Project_manager/204_Adding_a_project_continued.html">204. Adding a project continued</li>
+          <li data-file="Section_15_Project_manager/205_Fix_adding_website.html">205. Fix adding website</li>
+          <li data-file="Section_15_Project_manager/206_Filtering_Table_by_search.html">206. Filtering Table by search</li>
+          <li data-file="Section_15_Project_manager/207_Table_sorting_setup.html">207. Table sorting setup</li>
+          <li data-file="Section_15_Project_manager/208_Table_sorting_setup.html">208. Table sorting setup</li>
+          <li data-file="Section_15_Project_manager/209_Table_sorting_fixes.html">209. Table sorting fixes</li>
+          <li data-file="Section_15_Project_manager/210_Table_sorting_fixes_continued.html">210. Table sorting fixes continued</li>
+          <li data-file="Section_15_Project_manager/211_Tooltip_overview.html">211. Tooltip overview</li>
+          <li data-file="Section_15_Project_manager/212_Deleting_rows.html">212. Deleting rows</li>
+          <li data-file="Section_15_Project_manager/213_Undo_delete.html">213. Undo delete</li>
+          <li data-file="Section_15_Project_manager/214_Undo_delete_continued.html">214. Undo delete continued</li>
+          <li data-file="Section_15_Project_manager/215_Filtering_table_with_switches.html">215. Filtering table with switches</li>
+          <li data-file="Section_15_Project_manager/216_Filtering_total_by_range.html">216. Filtering total by range</li>
+          <li data-file="Section_15_Project_manager/217_Filtering_total_by_range_continued.html">217. Filtering total by range continued</li>
+          <li data-file="Section_15_Project_manager/218_Filtering_total_by_range_finished.html">218. Filtering total by range finished</li>
+          <li data-file="Section_15_Project_manager/219_Chips_overview.html">219. Chips overview</li>
+          <li data-file="Section_15_Project_manager/220_Using_chips.html">220. Using chips</li>
+          <li data-file="Section_15_Project_manager/221_Using_chips_continued.html">221. Using chips continued</li>
+          <li data-file="Section_15_Project_manager/222_Responsive_design.html">222. Responsive design</li>
+          <li data-file="Section_15_Project_manager/223_Responsive_design_continued.html">223. Responsive design continued</li>
+          <li data-file="Section_15_Project_manager/224_Responsive_design_wrap_up.html">224. Responsive design wrap up</li>
+        </ul>
+      </details>
 
-    <main id="content">
-      <p>Select a menu item to load its HTML here.</p>
-    </main>
-  </div>
+      <details class="section">
+        <summary>Section 16: More videos, extra content</summary>
+        <ul class="menu">
+          <li data-file="Section_16_More_videos_extra_content/225_Estimate_question_selection_fix.html">225. Estimate question selection fix</li>
+          <li data-file="Section_16_More_videos_extra_content/226_Estimate_question_selection_fix_continued.html">226. Estimate question selection fix continued</li>
+          <li data-file="Section_16_More_videos_extra_content/227_Snap_page_to_question_title.html">227. Snap page to question title</li>
+          <li data-file="Section_16_More_videos_extra_content/228_Fine_tune_mobile_styles.html">228. Fine tune mobile styles</li>
+          <li data-file="Section_16_More_videos_extra_content/229_Fine_tune_mobile_styles_continued.html">229. Fine tune mobile styles continued</li>
+          <li data-file="Section_16_More_videos_extra_content/230_The_revolution_refactor.html">230. The revolution refactor</li>
+          <li data-file="Section_16_More_videos_extra_content/231_Advanced_menu_overview_.html">231. Advanced menu overview</li>
+          <li data-file="Section_16_More_videos_extra_content/232_Advanced_menu_overview_continued.html">232. Advanced menu overview continued</li>
+          <li data-file="Section_16_More_videos_extra_content/233_Using_the_advanced_menu.html">233. Using the advanced menu</li>
+          <li data-file="Section_16_More_videos_extra_content/234_Using_the_advanced_menu_continued.html">234. Using the advanced menu continued</li>
+          <li data-file="Section_16_More_videos_extra_content/235_Thoughts_on_styled-components.html">235. Thoughts on styled-components</li>
+          <li data-file="Section_16_More_videos_extra_content/236_Convert_styled-components_to_Material-UI.html">236. Convert styled-components to Material-UI</li>
+          <li data-file="Section_16_More_videos_extra_content/237_Convert_styled-components_to_Material-UI_continued.html">237. Convert styled-components to Material-UI continued</li>
+          <li data-file="Section_16_More_videos_extra_content/238_Expansion_panels_overview.html">238. Expansion panels overview</li>
+          <li data-file="Section_16_More_videos_extra_content/239_Using_expansion_panels.html">239. Using expansion panels</li>
+          <li data-file="Section_16_More_videos_extra_content/240_Using_expansion_panels_continued.html">240. Using expansion panels continued</li>
+          <li data-file="Section_16_More_videos_extra_content/241_Using_expansion_panels_finished.html">241. Using expansion panels finished</li>
+          <li data-file="Section_16_More_videos_extra_content/242_Skeleton_overview.html">242. Skeleton overview</li>
+          <li data-file="Section_16_More_videos_extra_content/243_Non-blocking_Google_fonts.html">243. Non-blocking Google fonts</li>
+          <li data-file="Section_16_More_videos_extra_content/244_Lazy_loading_overview.html">244. Lazy loading overview</li>
+          <li data-file="Section_16_More_videos_extra_content/245_Implement_lazy_loading.html">245. Implement lazy loading</li>
+          <li data-file="Section_16_More_videos_extra_content/246_Better_Active_tab_approach.html">246. Better Active tab approach</li>
+          <li data-file="Section_16_More_videos_extra_content/247_Better_Active_tab_approach_continued.html">247. Better Active tab approach continued</li>
+        </ul>
+      </details>
+    </div>
+  </aside>
 
-  <button id="next-btn" disabled>Next →</button>
+  <main id="content">
+    <iframe id="viewer" title="Lesson viewer"></iframe>
+  </main>
+
+  <footer id="page-footer">
+    <div class="footer-left">
+      <span id="counter">0 / 0</span>
+      <span id="current-path" title=""></span>
+    </div>
+    <div class="footer-right">
+      <button class="btn" id="open-btn" title="Open current lesson in a new tab">Open</button>
+      <button class="btn" id="copy-btn" title="Copy current file path">Copy path</button>
+      <button class="btn" id="prev-btn" disabled>← Prev</button>
+      <button class="btn primary" id="next-btn" disabled>Next →</button>
+    </div>
+  </footer>
 
   <script>
-    const body      = document.body;
-    const sidebar   = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggle-btn');
-    const header    = document.getElementById('page-header');
-    const menuItems = Array.from(document.querySelectorAll('#menu li'));
-    const content   = document.getElementById('content');
-    const nextBtn   = document.getElementById('next-btn');
+    (function () {
+      const STORAGE_KEY = "courseMenu.currentIndex.v2";
 
-    toggleBtn.addEventListener('click', () => {
-      const isCollapsed = sidebar.classList.toggle('collapsed');
-      body.classList.toggle('nav-collapsed', isCollapsed);
-    });
+      const body        = document.body;
+      const sidebar     = document.getElementById("sidebar");
+      const backdrop    = document.getElementById("backdrop");
+      const toggleBtn   = document.getElementById("toggle-btn");
 
-    function loadItem(idx) {
-      if (idx < 0 || idx >= menuItems.length) return;
-      menuItems.forEach(li => li.classList.remove('active'));
-      const li = menuItems[idx];
-      li.classList.add('active');
-      header.textContent = li.textContent;
-      fetch(li.dataset.file)
-        .then(r => r.ok ? r.text() : Promise.reject('File not found'))
-        .then(html => content.innerHTML = html)
-        .catch(e => content.innerHTML = `<p style="color:red;">Error: ${e}</p>`);
-      nextBtn.disabled = idx === menuItems.length - 1;
-      nextBtn.dataset.currentIndex = idx;
-    }
+      const headerTitle = document.getElementById("header-title");
+      const headerMeta  = document.getElementById("header-meta");
 
-    menuItems.forEach((li,i) => li.addEventListener('click', () => loadItem(i)));
-    nextBtn.addEventListener('click', () => loadItem(+nextBtn.dataset.currentIndex + 1));
+      const search      = document.getElementById("search");
+      const searchMeta  = document.getElementById("search-meta");
 
-    // auto-load first:
-    // loadItem(0);
+      const viewer      = document.getElementById("viewer");
+
+      const counter     = document.getElementById("counter");
+      const currentPath = document.getElementById("current-path");
+
+      const prevBtn     = document.getElementById("prev-btn");
+      const nextBtn     = document.getElementById("next-btn");
+      const openBtn     = document.getElementById("open-btn");
+      const copyBtn     = document.getElementById("copy-btn");
+
+      const items = Array.from(document.querySelectorAll("li[data-file]"));
+      items.forEach((li, idx) => li.dataset.index = String(idx));
+
+      let currentIndex = -1;
+
+      function isMobile() {
+        return window.matchMedia("(max-width: 860px)").matches;
+      }
+
+      function setCollapsed(collapsed) {
+        body.classList.toggle("nav-collapsed", collapsed);
+      }
+
+      function toggleSidebar() {
+        const collapsed = body.classList.contains("nav-collapsed");
+        setCollapsed(!collapsed);
+      }
+
+      toggleBtn.addEventListener("click", toggleSidebar);
+      backdrop.addEventListener("click", () => setCollapsed(true));
+
+      function setActive(idx) {
+        items.forEach(li => li.classList.remove("active"));
+        const li = items[idx];
+        if (li) li.classList.add("active");
+      }
+
+      function scrollItemIntoView(li) {
+        if (!li) return;
+        const container = document.querySelector(".sidebar-scroll");
+        if (!container) return;
+        li.scrollIntoView({ block: "nearest" });
+      }
+
+      function updateFooter() {
+        const total = items.length;
+        counter.textContent = (currentIndex >= 0 ? (currentIndex + 1) : 0) + " / " + total;
+
+        const li = items[currentIndex];
+        const path = li ? li.dataset.file : "";
+        currentPath.textContent = path || "";
+        currentPath.title = path || "";
+
+        prevBtn.disabled = currentIndex <= 0;
+        nextBtn.disabled = currentIndex < 0 || currentIndex >= (total - 1);
+
+        headerMeta.textContent = (currentIndex >= 0)
+          ? `Lesson ${currentIndex + 1} of ${total}`
+          : "Ready";
+
+        openBtn.disabled = currentIndex < 0;
+        copyBtn.disabled = currentIndex < 0;
+      }
+
+      function loadIndex(idx, opts = { save: true, focus: true }) {
+        if (idx < 0 || idx >= items.length) return;
+
+        currentIndex = idx;
+        const li = items[idx];
+
+        setActive(idx);
+        headerTitle.textContent = li.textContent.trim();
+        viewer.src = li.dataset.file;
+
+        if (opts.save) {
+          try { localStorage.setItem(STORAGE_KEY, String(idx)); } catch {}
+        }
+
+        updateFooter();
+
+        // On mobile, auto-close sidebar after selection
+        if (isMobile()) setCollapsed(true);
+
+        // Keep active item visible in sidebar
+        scrollItemIntoView(li);
+
+        // Optional: focus iframe (so arrow keys work in page)
+        if (opts.focus) {
+          viewer.focus({ preventScroll: true });
+        }
+      }
+
+      items.forEach((li) => {
+        li.addEventListener("click", () => {
+          const idx = Number(li.dataset.index);
+          loadIndex(idx);
+        });
+      });
+
+      prevBtn.addEventListener("click", () => loadIndex(currentIndex - 1));
+      nextBtn.addEventListener("click", () => loadIndex(currentIndex + 1));
+
+      openBtn.addEventListener("click", () => {
+        const li = items[currentIndex];
+        if (!li) return;
+        window.open(li.dataset.file, "_blank", "noopener");
+      });
+
+      copyBtn.addEventListener("click", async () => {
+        const li = items[currentIndex];
+        if (!li) return;
+
+        const text = li.dataset.file;
+        try {
+          await navigator.clipboard.writeText(text);
+          headerMeta.textContent = "Copied path";
+          setTimeout(updateFooter, 900);
+        } catch {
+          // Fallback
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          headerMeta.textContent = "Copied path";
+          setTimeout(updateFooter, 900);
+        }
+      });
+
+      // Search / filter
+      function applySearch(q) {
+        const query = (q || "").trim().toLowerCase();
+        let visibleCount = 0;
+
+        items.forEach(li => {
+          const match = !query || li.textContent.toLowerCase().includes(query);
+          li.classList.toggle("hidden", !match);
+          if (match) visibleCount++;
+        });
+
+        // Auto-open sections that contain results; close ones with none (only when searching)
+        const sections = Array.from(document.querySelectorAll("details.section"));
+        sections.forEach(sec => {
+          const hasVisible = !!sec.querySelector("li[data-file]:not(.hidden)");
+          if (query) sec.open = hasVisible;
+        });
+
+        if (!query) {
+          searchMeta.textContent = "";
+        } else {
+          searchMeta.textContent = `${visibleCount} result(s)`;
+        }
+      }
+
+      search.addEventListener("input", (e) => applySearch(e.target.value));
+
+      // Keyboard shortcuts
+      window.addEventListener("keydown", (e) => {
+        const key = e.key;
+
+        // Ctrl+K / Cmd+K => focus search
+        if ((e.ctrlKey || e.metaKey) && key.toLowerCase() === "k") {
+          e.preventDefault();
+          if (body.classList.contains("nav-collapsed")) setCollapsed(false);
+          search.focus();
+          search.select();
+          return;
+        }
+
+        // Ctrl+B / Cmd+B => toggle sidebar
+        if ((e.ctrlKey || e.metaKey) && key.toLowerCase() === "b") {
+          e.preventDefault();
+          toggleSidebar();
+          return;
+        }
+
+        // Don't hijack keys while typing in inputs
+        const tag = (document.activeElement && document.activeElement.tagName) ? document.activeElement.tagName.toLowerCase() : "";
+        const typing = tag === "input" || tag === "textarea" || tag === "select";
+        if (typing) return;
+
+        // Prev/Next
+        if (key === "ArrowLeft") {
+          if (!prevBtn.disabled) loadIndex(currentIndex - 1);
+        } else if (key === "ArrowRight") {
+          if (!nextBtn.disabled) loadIndex(currentIndex + 1);
+        } else if (key === "Escape") {
+          if (!body.classList.contains("nav-collapsed")) setCollapsed(true);
+        }
+      });
+
+      // Initial load: restore last lesson
+      (function init() {
+        updateFooter();
+
+        let idx = -1;
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved !== null) idx = Number(saved);
+        } catch {}
+
+        if (!Number.isFinite(idx) || idx < 0 || idx >= items.length) {
+          // Default: do not auto-load; keep viewer blank.
+          // If you want auto-load first item, uncomment:
+          // idx = 0;
+        } else {
+          loadIndex(idx, { save: false, focus: false });
+        }
+      })();
+
+      // Keep UI consistent on resize
+      window.addEventListener("resize", () => {
+        // On desktop, allow open state without backdrop issues (CSS handles most of it)
+        updateFooter();
+      });
+    })();
   </script>
 </body>
 </html>
